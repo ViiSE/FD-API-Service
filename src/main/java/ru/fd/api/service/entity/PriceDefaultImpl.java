@@ -9,9 +9,9 @@ import ru.fd.api.service.data.PricePojo;
 public class PriceDefaultImpl implements Price {
 
     private final String departmentId;
-    private final double value;
+    private final float value;
 
-    public PriceDefaultImpl(String departmentId, double value) {
+    public PriceDefaultImpl(String departmentId, float value) {
         this.departmentId = departmentId;
         this.value = value;
     }

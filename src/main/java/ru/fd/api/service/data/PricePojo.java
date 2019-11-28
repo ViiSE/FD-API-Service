@@ -10,12 +10,12 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 public class PricePojo {
 
     private final String departmentId;
-    private final double value;
+    private final float value;
 
     @JsonCreator
     public PricePojo(
             @JsonProperty("depatment_id") String departmentId,
-            @JsonProperty("value") double value) {
+            @JsonProperty("value") float value) {
         this.departmentId = departmentId;
         this.value = value;
     }
@@ -24,7 +24,7 @@ public class PricePojo {
         return departmentId;
     }
 
-    public double getValue() {
+    public float getValue() {
         return value;
     }
 }

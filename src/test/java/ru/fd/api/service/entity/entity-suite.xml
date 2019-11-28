@@ -12,9 +12,38 @@
             <class name="ru.fd.api.service.entity.PricesDefaultTestNG">
                 <parameter name="departmentId1" value="111"/>
                 <parameter name="value1" value="150.50"/>
-
                 <parameter name="departmentId2" value="222"/>
                 <parameter name="value2" value="140.45"/>
+            </class>
+            <class name="ru.fd.api.service.entity.StatusDefaultTestNG">
+                <parameter name="departmentId" value="111"/>
+                <parameter name="statusId" value="222"/>
+            </class>
+            <class name="ru.fd.api.service.entity.StatusesDefaultTestNG">
+                <parameter name="departmentId1" value="111"/>
+                <parameter name="statusId1" value="123"/>
+                <parameter name="departmentId2" value="222"/>
+                <parameter name="statusId2" value="456"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributeDefaultTestNG">
+                <parameter name="attributeId" value="attr_111"/>
+                <parameter name="value" value="something attr"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributesDefaultTestNG">
+                <parameter name="attributeId1" value="attr_111"/>
+                <parameter name="value1" value="attr 1"/>
+                <parameter name="attributeId2" value="attr_222"/>
+                <parameter name="value2" value="attr 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.BalanceDefaultTestNG">
+                <parameter name="departmentId" value="1114354232"/>
+                <parameter name="quantity" value="10"/>
+            </class>
+            <class name="ru.fd.api.service.entity.BalancesDefaultTestNG">
+                <parameter name="departmentId1" value="11123544534"/>
+                <parameter name="quantity1" value="15"/>
+                <parameter name="departmentId2" value="2224345241"/>
+                <parameter name="quantity2" value="160"/>
             </class>
         </classes>
     </test>

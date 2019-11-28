@@ -5,37 +5,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.PricePojo;
+import ru.fd.api.service.data.StatusPojo;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class PriceDefaultTestNG {
+public class StatusDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private Price price;
+    private Status status;
 
     @BeforeClass
-    @Parameters({"departmentId", "value"})
-    public void setUpClass(String departmentId, float value) {
+    @Parameters({"departmentId", "statusId"})
+    public void setUpClass(String departmentId, String statusId) {
         assertNotNull(departmentId, "Department ID cannot be null!");
         assertFalse(departmentId.isEmpty(), "Department ID is empty!");
-        assertFalse(value < 0f, "Value is less than 0!");
 
-        price = new PriceDefaultImpl(departmentId, value);
-        assertNotNull(price, "Price is null!");
+        assertNotNull(statusId, "Status ID cannot be null!");
+        assertFalse(statusId.isEmpty(), "Status ID is empty!");
+
+        status = new StatusDefaultImpl(departmentId, statusId);
+        assertNotNull(status, "Status is null!");
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("PriceDefault", "formForSend()");
+        testBegin("StatusDefault", "formForSend()");
 
-        PricePojo pricePojo = (PricePojo) price.formForSend();
-        assertNotNull(pricePojo, "PricePojo is null!");
-        System.out.println(mapper.writeValueAsString(pricePojo));
+        StatusPojo statusPojo = (StatusPojo) status.formForSend();
+        assertNotNull(statusPojo, "StatusPojo is null!");
+        System.out.println(mapper.writeValueAsString(statusPojo));
 
-        testEnd("PriceDefault", "formForSend()");
+        testEnd("StatusDefault", "formForSend()");
     }
 }
