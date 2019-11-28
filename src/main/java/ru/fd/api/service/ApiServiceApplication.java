@@ -8,7 +8,6 @@ public class ApiServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiServiceApplication.class, args);
-		System.out.println("HI All jenkins ci/cd fd!");
 	}
 
 }
