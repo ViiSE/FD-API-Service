@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MessageSuite">
+
+    <test name="PriceDefaultSuiteTest">
+        <classes>
+            <class name="ru.fd.api.service.entity.PriceDefaultTestNG">
+                <parameter name="departmentId" value="123"/>
+                <parameter name="value" value="120.54"/>
+            </class>
+            <class name="ru.fd.api.service.entity.PricesDefaultTestNG">
+                <parameter name="departmentId1" value="111"/>
+                <parameter name="value1" value="150.50"/>
+
+                <parameter name="departmentId2" value="222"/>
+                <parameter name="value2" value="140.45"/>
+            </class>
+        </classes>
+    </test>
+
+</suite>
