@@ -7,8 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.BalancePojo;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
@@ -16,6 +15,9 @@ public class BalanceDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Balance balance;
+
+    private String departmentId;
+    private int quantity;
 
     @BeforeClass
     @Parameters({"departmentId", "quantity"})
@@ -26,6 +28,9 @@ public class BalanceDefaultTestNG {
 
         balance = new BalanceDefaultImpl(departmentId, quantity);
         assertNotNull(balance, "Balance is null!");
+
+        this.departmentId = departmentId;
+        this.quantity = quantity;
     }
 
     @Test
@@ -34,6 +39,8 @@ public class BalanceDefaultTestNG {
 
         BalancePojo balancePojo = (BalancePojo) balance.formForSend();
         assertNotNull(balancePojo, "BalancePojo is null!");
+        assertEquals(balancePojo.getDepartmentId(), departmentId);
+        assertEquals(balancePojo.getQuantity(), quantity);
         System.out.println(mapper.writeValueAsString(balancePojo));
 
         testEnd("BalanceDefault", "formForSend()");

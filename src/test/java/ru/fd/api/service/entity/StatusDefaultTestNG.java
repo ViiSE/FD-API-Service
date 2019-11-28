@@ -7,8 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.StatusPojo;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
@@ -16,6 +15,9 @@ public class StatusDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Status status;
+
+    private String departmentId;
+    private String statusId;
 
     @BeforeClass
     @Parameters({"departmentId", "statusId"})
@@ -28,6 +30,9 @@ public class StatusDefaultTestNG {
 
         status = new StatusDefaultImpl(departmentId, statusId);
         assertNotNull(status, "Status is null!");
+
+        this.departmentId = departmentId;
+        this.statusId = statusId;
     }
 
     @Test
@@ -36,6 +41,8 @@ public class StatusDefaultTestNG {
 
         StatusPojo statusPojo = (StatusPojo) status.formForSend();
         assertNotNull(statusPojo, "StatusPojo is null!");
+        assertEquals(statusPojo.getDepartmentId(), departmentId);
+        assertEquals(statusPojo.getStatusId(), statusId);
         System.out.println(mapper.writeValueAsString(statusPojo));
 
         testEnd("StatusDefault", "formForSend()");

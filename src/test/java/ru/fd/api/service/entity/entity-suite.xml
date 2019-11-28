@@ -45,6 +45,21 @@
                 <parameter name="departmentId2" value="2224345241"/>
                 <parameter name="quantity2" value="160"/>
             </class>
+            <class name="ru.fd.api.service.entity.ProductDefaultTestNG">
+                <parameter name="id" value="id_111222333444"/>
+                <parameter name="categoryId" value="cat_345213"/>
+                <parameter name="vendorId" value="vandor_225674"/>
+                <parameter name="name" value="Item 1"/>
+                <parameter name="unitId" value="unit_32"/>
+                <parameter name="tax" value="20"/>
+                <parameter name="articul" value="art_3305"/>
+                <parameter name="code" value="code_22505"/>
+                <parameter name="noReturn" value="false"/>
+            </class>
+            <class name="ru.fd.api.service.entity.ProductWithPricesTestNG"/>
+            <class name="ru.fd.api.service.entity.ProductWithStatusesTestNG"/>
+            <class name="ru.fd.api.service.entity.ProductWithFullDescriptionTestNG"/>
+            <class name="ru.fd.api.service.entity.ProductWithShortDescriptionTestNG"/>
         </classes>
     </test>
 

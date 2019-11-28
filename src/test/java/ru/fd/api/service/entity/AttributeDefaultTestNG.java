@@ -7,8 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.AttributePojo;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
@@ -16,6 +15,9 @@ public class AttributeDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Attribute attribute;
+
+    private String attributeId;
+    private String value;
 
     @BeforeClass
     @Parameters({"attributeId", "value"})
@@ -28,6 +30,9 @@ public class AttributeDefaultTestNG {
 
         attribute = new AttributeDefaultImpl(attributeId, value);
         assertNotNull(attribute, "Attribute is null!");
+
+        this.attributeId = attributeId;
+        this.value = value;
     }
 
     @Test
@@ -36,6 +41,8 @@ public class AttributeDefaultTestNG {
 
         AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
         assertNotNull(attributePojo, "AttributePojo is null!");
+        assertEquals(attributePojo.getAttributeId(), attributeId);
+        assertEquals(attributePojo.getValue(), value);
         System.out.println(mapper.writeValueAsString(attributePojo));
 
         testEnd("AttributeDefault", "formForSend()");
