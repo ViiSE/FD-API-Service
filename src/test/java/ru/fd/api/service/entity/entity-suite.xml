@@ -58,6 +58,8 @@
             </class>
             <class name="ru.fd.api.service.entity.ProductWithPricesTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithStatusesTestNG"/>
+            <class name="ru.fd.api.service.entity.ProductWithAttributesTestNG"/>
+            <class name="ru.fd.api.service.entity.ProductWithBalancesTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithFullDescriptionTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithShortDescriptionTestNG"/>
         </classes>
