@@ -13,7 +13,7 @@ public class StatusesPojo {
     private final List<StatusPojo> statuses;
 
     @JsonCreator
-    public StatusesPojo(@JsonProperty("statuses") List<StatusPojo> statuses) {
+    public StatusesPojo(List<StatusPojo> statuses) {
         this.statuses = statuses;
     }
 

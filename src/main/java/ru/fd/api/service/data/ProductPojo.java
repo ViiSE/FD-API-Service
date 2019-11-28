@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import java.util.List;
+import java.util.Objects;
+
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProductPojo {
 
@@ -11,7 +14,7 @@ public class ProductPojo {
     private String categoryId;
     private String vendorId;
     private String unitId;
-    private String tax;
+    private int tax;
     private String articul = "";
     private String code;
     private String name;
@@ -39,12 +42,12 @@ public class ProductPojo {
         this.unitId = unitId;
     }
 
-    public void setTax(String tax) {
+    public void setTax(int tax) {
         this.tax = tax;
     }
 
     public void setArticul(String articul) {
-        this.articul = articul;
+        this.articul = Objects.requireNonNullElse(articul, "");
     }
 
     public void setCode(String code) {
@@ -56,11 +59,11 @@ public class ProductPojo {
     }
 
     public void setFullDescription(String fullDescription) {
-        this.fullDescription = fullDescription;
+        this.fullDescription = Objects.requireNonNullElse(fullDescription, "");
     }
 
     public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+        this.shortDescription = Objects.requireNonNullElse(shortDescription, "");
     }
 
     public void setNoReturn(boolean noReturn) {
@@ -99,7 +102,7 @@ public class ProductPojo {
         return unitId;
     }
 
-    public String getTax() {
+    public int getTax() {
         return tax;
     }
 
@@ -127,19 +130,31 @@ public class ProductPojo {
         return noReturn;
     }
 
-    public PricesPojo getPrices() {
-        return prices;
+    public List<PricePojo> getPrices() {
+        if(prices != null)
+            return prices.getPrices();
+        else
+            return null;
     }
 
-    public StatusesPojo getStatuses() {
-        return statuses;
+    public List<StatusPojo> getStatuses() {
+        if(statuses != null)
+            return statuses.getStatuses();
+        else
+            return null;
     }
 
-    public BalancesPojo getBalances() {
-        return balances;
+    public List<BalancePojo> getBalances() {
+        if(balances != null)
+            return balances.getBalances();
+        else
+            return null;
     }
 
-    public AttributesPojo getAttributes() {
-        return attributes;
+    public List<AttributePojo> getAttributes() {
+        if(attributes != null)
+            return attributes.getAttributes();
+        else
+            return null;
     }
 }
