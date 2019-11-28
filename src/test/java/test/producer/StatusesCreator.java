@@ -1,0 +1,7 @@
+package test.producer;
+
+import ru.fd.api.service.entity.Statuses;
+
+public interface StatusesCreator {
+    Statuses createStatuses();
+}
