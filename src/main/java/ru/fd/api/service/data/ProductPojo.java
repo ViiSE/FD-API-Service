@@ -14,7 +14,7 @@ public class ProductPojo {
     private String categoryId;
     private String vendorId;
     private String unitId;
-    private int tax;
+    private short tax;
     private String articul = "";
     private String code;
     private String name;
@@ -42,7 +42,7 @@ public class ProductPojo {
         this.unitId = unitId;
     }
 
-    public void setTax(int tax) {
+    public void setTax(short tax) {
         this.tax = tax;
     }
 
@@ -102,7 +102,7 @@ public class ProductPojo {
         return unitId;
     }
 
-    public int getTax() {
+    public short getTax() {
         return tax;
     }
 
