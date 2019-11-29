@@ -3,7 +3,7 @@ package ru.fd.api.service.entity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.ProductPojo;
-import ru.fd.api.service.data.StatusesPojo;
+import ru.fd.api.service.data.ProductStatusesPojo;
 
 @Component("productWithStatuses")
 @Scope("prototype")
@@ -25,7 +25,7 @@ public class ProductWithStatusesImpl implements Product {
     @Override
     public Object formForSend() {
         ProductPojo productPojo = (ProductPojo) product.formForSend();
-        productPojo.setStatuses((StatusesPojo)statuses.formForSend());
+        productPojo.setStatuses((ProductStatusesPojo)statuses.formForSend());
         return productPojo;
     }
 }

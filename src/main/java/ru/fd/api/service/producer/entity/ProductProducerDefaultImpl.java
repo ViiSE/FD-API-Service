@@ -24,7 +24,7 @@ public class ProductProducerDefaultImpl implements ProductProducer {
     }
 
     @Override
-    public Product getProductWithBalancesInstance(Product product, BalancesProducer balances) {
+    public Product getProductWithBalancesInstance(Product product, Balances balances) {
         return (Product) ctx.getBean("productWithBalances", balances);
     }
 

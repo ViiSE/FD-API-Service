@@ -2,8 +2,8 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.ProductStatusPojo;
 import ru.fd.api.service.data.StatusPojo;
+import ru.fd.api.service.data.ProductStatusesPojo;
 import ru.fd.api.service.data.StatusesPojo;
 
 import java.util.List;

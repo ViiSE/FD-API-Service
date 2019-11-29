@@ -22,7 +22,7 @@ public class ProductPojo {
     private String shortDescription = "";
     private boolean noReturn;
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
-    @JsonInclude(JsonInclude.Include.NON_NULL) private StatusesPojo statuses;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
     @JsonInclude(JsonInclude.Include.NON_NULL) private AttributesPojo attributes;
 
@@ -74,7 +74,7 @@ public class ProductPojo {
         this.prices = prices;
     }
 
-    public void setStatuses(StatusesPojo statuses) {
+    public void setStatuses(ProductStatusesPojo statuses) {
         this.statuses = statuses;
     }
 
