@@ -37,13 +37,36 @@ public class TestMessage {
         System.out.println(className +  ". Method:" + methodName + ". Test " + identify.toString());
         System.out.println("-----------------------------------------------");
     }
+
+    private static void printTestMessage(String className, IDENTIFY identify) {
+        System.out.println("-----------------------------------------------");
+        System.out.println(className + ". Test " + identify.toString());
+        System.out.println("-----------------------------------------------");
+    }
+
+    private static void printTestMessage(String methodName) {
+        System.out.println("[Method: " + methodName + "]");
+        System.out.println("-----------------------------------------------");
+    }
     
     public static void testBegin(String className, String methodName) {
         printTestMessage(className, methodName, IDENTIFY.BEGIN);
     }
-    
+
+    public static void testBegin(String className) {
+        printTestMessage(className, IDENTIFY.BEGIN);
+    }
+
     public static void testEnd(String className, String methodName) {
         printTestMessage(className, methodName, IDENTIFY.END);
+    }
+
+    public static void testEnd(String className) {
+        printTestMessage(className, IDENTIFY.END);
+    }
+
+    public static void testMethod(String methodName) {
+        printTestMessage(methodName);
     }
 
     public static void catchMessage(Exception ex) {

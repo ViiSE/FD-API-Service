@@ -1,5 +1,6 @@
 package test.producer;
 
+import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.ProductDefaultImpl;
 import ru.fd.api.service.entity.Products;
@@ -11,7 +12,7 @@ import java.util.List;
 public class ProductsCreatorTestImpl implements ProductsCreator {
 
     @Override
-    public Products createProducts() {
+    public Products create() {
         List<Product> products = new ArrayList<>();
 
         for(int i = 1; i <= 10; i++)
@@ -27,7 +28,7 @@ public class ProductsCreatorTestImpl implements ProductsCreator {
                 "vendor_" + id,
                 "unit_" + id,
                 "Item_" + id,
-                20,
+                (short) 20,
                 "art_" + id,
                 "code_" + id,
                 false);

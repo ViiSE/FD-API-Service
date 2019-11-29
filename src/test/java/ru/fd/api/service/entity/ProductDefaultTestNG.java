@@ -2,14 +2,14 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
 
 import static org.testng.Assert.*;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class ProductDefaultTestNG {
 
@@ -21,7 +21,7 @@ public class ProductDefaultTestNG {
     private String vendorId;
     private String unitId;
     private String name;
-    private int tax;
+    private short tax;
     private String articul;
     private String code;
     private boolean noReturn;
@@ -30,7 +30,7 @@ public class ProductDefaultTestNG {
     @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code", "noReturn"})
     public void setUpClass(
             String id, String categoryId, String vendorId, String unitId, String name,
-            int tax, String articul, String code, boolean noReturn) {
+            short tax, String articul, String code, boolean noReturn) {
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
@@ -66,11 +66,13 @@ public class ProductDefaultTestNG {
         this.articul = articul;
         this.code = code;
         this.noReturn = noReturn;
+
+        testBegin("ProductDefault");
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("ProductDefault", "formForSend()");
+        testMethod("formForSend()");
 
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         assertNotNull(productPojo, "ProductPojo is null!");
@@ -84,7 +86,17 @@ public class ProductDefaultTestNG {
         assertEquals(productPojo.getCode(), code);
         assertEquals(productPojo.getNoReturn(), noReturn);
         System.out.println(mapper.writeValueAsString(productPojo));
+    }
 
-        testEnd("ProductDefault", "formForSend()");
+    @Test
+    public void id() {
+        testMethod("id()");
+
+        assertEquals(product.id(), id);
+    }
+
+    @AfterClass
+    public void teardownClass() {
+        testEnd("ProductDefault");
     }
 }
