@@ -16,24 +16,33 @@ cr_version() {
 	echo done!
 }
 
-echo $(ls)
-echo $(pwd)
+zip_src() {
+	echo archive source code...
+	zip -r src.zip /src JenkinsFile pom.xml README.md .gitignore
+	mv src.zip /home/viise/fd-api-service/releases/"$1"
+	echo done!
+}
+
+# echo $(ls)
+# echo $(pwd)
 pom=$(cat pom.xml)
 pom_version=$(grep -oPm1 "(?<=<version>)[^<]+" <<< "$pom")
 echo pom version: $pom_version
 pom_versions=($(main_sub_vs $pom_version))
 
-current_version=$(cat home/viise/fd-api-service/VERSION)
+current_version=$(cat /home/viise/fd-api-service/VERSION)
 echo current version: $current_version
 current_versions=($(main_sub_vs $current_version))
 
 if [[ ${pom_versions[0]} -gt ${current_versions[0]} ]]; then
 	echo new MAIN version is available!
 	cr_version $pom_version
+	zip_src $pom_version
 
 elif [[ ${pom_versions[1]} -gt ${current_versions[1]} ]]; then
 	echo new SUB version is available!
 	cr_version $pom_version
+	zip_src $pom_version
 else
 	echo nothing to deploy.
 fi

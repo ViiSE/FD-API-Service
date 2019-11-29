@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.StatusPojo;
+import ru.fd.api.service.data.ProductStatusPojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
@@ -39,7 +39,7 @@ public class StatusDefaultTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("StatusDefault", "formForSend()");
 
-        StatusPojo statusPojo = (StatusPojo) status.formForSend();
+        ProductStatusPojo statusPojo = (ProductStatusPojo) status.formForSend();
         assertNotNull(statusPojo, "StatusPojo is null!");
         assertEquals(statusPojo.getDepartmentId(), departmentId);
         assertEquals(statusPojo.getStatusId(), statusId);

@@ -54,7 +54,7 @@ public class ProductDefaultTestNG {
         assertNotNull(code, "Code cannot be null!");
         assertFalse(code.isEmpty(), "Code is empty!");
 
-        product = new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, noReturn);
+        product = new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, noReturn);
         assertNotNull(product, "Product is null!");
 
         this.id = id;
