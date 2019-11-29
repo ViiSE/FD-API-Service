@@ -13,14 +13,14 @@ public class ProductDefaultImpl implements Product {
     private final String vendorId;
     private final String unitId;
     private final String name;
-    private final int tax;
+    private final short tax;
     private final String articul;
     private final String code;
     private final boolean noReturn;
 
     public ProductDefaultImpl(
             String id, String categoryId, String vendorId, String unitId, String name,
-            int tax, String articul, String code, boolean noReturn) {
+            short tax, String articul, String code, boolean noReturn) {
         this.id = id;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
@@ -30,6 +30,11 @@ public class ProductDefaultImpl implements Product {
         this.articul = articul;
         this.code = code;
         this.noReturn = noReturn;
+    }
+
+    @Override
+    public String id() {
+        return id;
     }
 
     @Override

@@ -19,6 +19,20 @@ public class ProductsDefaultImpl implements Products {
     }
 
     @Override
+    public Product findProductById(String id) {
+        return products.stream()
+                .filter(product -> product.id().equals(id))
+                .limit(1).collect(Collectors.toList())
+                .get(0);
+    }
+
+    @Override
+    public void decorateProduct(String id, Product product) {
+        int index = products.indexOf(findProductById(id));
+        products.set(index, product);
+    }
+
+    @Override
     public Object formForSend() {
         List<ProductPojo> productPojos = products.stream()
                 .map(product -> (ProductPojo) product.formForSend())

@@ -18,6 +18,11 @@ public class ProductWithPricesImpl implements Product {
     }
 
     @Override
+    public String id() {
+        return product.id();
+    }
+
+    @Override
     public Object formForSend() {
         PricesPojo pricesPojo = (PricesPojo) prices.formForSend();
         ProductPojo productPojo = (ProductPojo) product.formForSend();
