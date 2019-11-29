@@ -9,13 +9,13 @@ import ru.fd.api.service.data.StatusesPojo;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component("productStatuses")
+@Component("statuses")
 @Scope("prototype")
-public class ProductStatusesImpl implements Statuses {
+public class StatusesImpl implements Statuses {
 
     private final List<Status> statuses;
 
-    public ProductStatusesImpl(List<Status> statuses) {
+    public StatusesImpl(List<Status> statuses) {
         this.statuses = statuses;
     }
 

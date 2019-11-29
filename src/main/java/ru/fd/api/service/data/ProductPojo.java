@@ -137,7 +137,7 @@ public class ProductPojo {
             return null;
     }
 
-    public List<StatusPojo> getStatuses() {
+    public List<ProductStatusPojo> getStatuses() {
         if(statuses != null)
             return statuses.getStatuses();
         else

@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.ProductPojo;
 
-@Component("productDefault")
+@Component("productSimple")
 @Scope("prototype")
-public class ProductDefaultImpl implements Product {
+public class ProductSimpleImpl implements Product {
 
     private final String id;
     private final String categoryId;
@@ -18,7 +18,7 @@ public class ProductDefaultImpl implements Product {
     private final String code;
     private final boolean noReturn;
 
-    public ProductDefaultImpl(
+    public ProductSimpleImpl(
             String id, String categoryId, String vendorId, String unitId, String name,
             short tax, String articul, String code, boolean noReturn) {
         this.id = id;

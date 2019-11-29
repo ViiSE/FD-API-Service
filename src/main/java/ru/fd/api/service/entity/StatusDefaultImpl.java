@@ -3,21 +3,22 @@ package ru.fd.api.service.entity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.ProductStatusPojo;
+import ru.fd.api.service.data.StatusPojo;
 
-@Component("productStatus")
+@Component("statusDefault")
 @Scope("prototype")
-public class ProductStatusImpl implements Status {
+public class StatusDefaultImpl implements Status {
 
-    private final String departmentId;
     private final String statusId;
+    private final String name;
 
-    public ProductStatusImpl(String departmentId, String statusId) {
-        this.departmentId = departmentId;
+    public StatusDefaultImpl(String statusId, String name) {
         this.statusId = statusId;
+        this.name = name;
     }
 
     @Override
     public Object formForSend() {
-        return new ProductStatusPojo(departmentId, statusId);
+        return new StatusPojo(statusId, name);
     }
 }
