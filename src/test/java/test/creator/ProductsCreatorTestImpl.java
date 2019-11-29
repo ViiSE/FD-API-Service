@@ -1,8 +1,8 @@
-package test.producer;
+package test.creator;
 
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.entity.Product;
-import ru.fd.api.service.entity.ProductDefaultImpl;
+import ru.fd.api.service.entity.ProductSimpleImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.entity.ProductsDefaultImpl;
 
@@ -22,7 +22,7 @@ public class ProductsCreatorTestImpl implements ProductsCreator {
     }
 
     private Product createProduct(int id) {
-        return new ProductDefaultImpl(
+        return new ProductSimpleImpl(
                 "id_" + id,
                 "category_" + id,
                 "vendor_" + id,

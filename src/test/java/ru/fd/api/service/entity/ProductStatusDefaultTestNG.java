@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class StatusDefaultTestNG {
+public class ProductStatusDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Status status;
@@ -28,7 +28,7 @@ public class StatusDefaultTestNG {
         assertNotNull(statusId, "Status ID cannot be null!");
         assertFalse(statusId.isEmpty(), "Status ID is empty!");
 
-        status = new StatusDefaultImpl(departmentId, statusId);
+        status = new ProductStatusImpl(departmentId, statusId);
         assertNotNull(status, "Status is null!");
 
         this.departmentId = departmentId;
@@ -37,7 +37,7 @@ public class StatusDefaultTestNG {
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("StatusDefault", "formForSend()");
+        testBegin("ProductStatusDefault", "formForSend()");
 
         ProductStatusPojo statusPojo = (ProductStatusPojo) status.formForSend();
         assertNotNull(statusPojo, "StatusPojo is null!");
@@ -45,6 +45,6 @@ public class StatusDefaultTestNG {
         assertEquals(statusPojo.getStatusId(), statusId);
         System.out.println(mapper.writeValueAsString(statusPojo));
 
-        testEnd("StatusDefault", "formForSend()");
+        testEnd("ProductStatusDefault", "formForSend()");
     }
 }

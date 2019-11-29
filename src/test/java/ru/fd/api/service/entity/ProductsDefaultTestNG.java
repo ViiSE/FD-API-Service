@@ -6,8 +6,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductsPojo;
-import test.producer.ProductCreatorTestPDTImpl;
-import test.producer.ProductsCreatorTestImpl;
+import test.creator.ProductCreatorTestImpl;
+import test.creator.ProductsCreatorTestImpl;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
@@ -21,7 +21,7 @@ public class ProductsDefaultTestNG {
     @BeforeClass
     public void setUpClass() {
         products = new ProductsCreatorTestImpl().create();
-        product = new ProductCreatorTestPDTImpl().createProduct();
+        product = new ProductCreatorTestImpl().createProduct();
 
         assertNotNull(products, "Products is null!");
         testBegin("ProductsDefault");

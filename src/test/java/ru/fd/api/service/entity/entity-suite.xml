@@ -15,11 +15,11 @@
                 <parameter name="departmentId2" value="222"/>
                 <parameter name="value2" value="140.45"/>
             </class>
-            <class name="ru.fd.api.service.entity.StatusDefaultTestNG">
+            <class name="ru.fd.api.service.entity.ProductStatusDefaultTestNG">
                 <parameter name="departmentId" value="111"/>
                 <parameter name="statusId" value="222"/>
             </class>
-            <class name="ru.fd.api.service.entity.StatusesDefaultTestNG">
+            <class name="ru.fd.api.service.entity.ProductStatusesDefaultTestNG">
                 <parameter name="departmentId1" value="111"/>
                 <parameter name="statusId1" value="123"/>
                 <parameter name="departmentId2" value="222"/>
@@ -45,7 +45,7 @@
                 <parameter name="departmentId2" value="2224345241"/>
                 <parameter name="quantity2" value="160"/>
             </class>
-            <class name="ru.fd.api.service.entity.ProductDefaultTestNG">
+            <class name="ru.fd.api.service.entity.ProductSimpleTestNG">
                 <parameter name="id" value="id_111222333444"/>
                 <parameter name="categoryId" value="cat_345213"/>
                 <parameter name="vendorId" value="vendor_225674"/>

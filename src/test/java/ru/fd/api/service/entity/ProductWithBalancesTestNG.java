@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
-import test.producer.BalancesCreatorTestImpl;
-import test.producer.ProductCreatorTestImpl;
+import test.creator.BalancesCreatorTestImpl;
+import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;

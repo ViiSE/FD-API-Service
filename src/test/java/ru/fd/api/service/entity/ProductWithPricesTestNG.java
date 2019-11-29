@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
-import test.producer.PricesCreatorTestImpl;
-import test.producer.ProductCreatorTestImpl;
+import test.creator.PricesCreatorTestImpl;
+import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;

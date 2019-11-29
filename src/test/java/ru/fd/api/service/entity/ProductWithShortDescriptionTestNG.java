@@ -6,7 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
-import test.producer.ProductCreatorTestImpl;
+import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.*;
 import static org.testng.Assert.assertTrue;

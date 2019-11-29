@@ -5,9 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
-import test.producer.PricesCreatorTestImpl;
-import test.producer.ProductCreatorTestImpl;
-import test.producer.StatusesCreatorTestImpl;
+import test.creator.ProductCreatorTestImpl;
+import test.creator.ProductStatusesCreatorTestImpl;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
@@ -28,7 +27,7 @@ public class ProductWithStatusesTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("ProductWithStatuses", "formForSend()");
 
-        Statuses statuses = new StatusesCreatorTestImpl().createStatuses();
+        Statuses statuses = new ProductStatusesCreatorTestImpl().createStatuses();
         product = new ProductWithStatusesImpl(product, statuses);
         assertNotNull(product, "Product with statuses is null!");
 

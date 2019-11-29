@@ -14,7 +14,7 @@ import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class StatusesDefaultTestNG {
+public class ProductStatusesDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Statuses statuses;
@@ -32,21 +32,21 @@ public class StatusesDefaultTestNG {
         assertNotNull(statusId2, "Status ID cannot be null!");
         assertFalse(statusId2.isEmpty(), "Status ID is empty!");
 
-        Status status1 = new StatusDefaultImpl(departmentId1, statusId1);
-        Status status2 = new StatusDefaultImpl(departmentId2, statusId2);
+        Status status1 = new ProductStatusImpl(departmentId1, statusId1);
+        Status status2 = new ProductStatusImpl(departmentId2, statusId2);
 
-        statuses = new StatusesDefaultImpl(new ArrayList<>(){{ add(status1); add(status2); }});
+        statuses = new ProductStatusesImpl(new ArrayList<>(){{ add(status1); add(status2); }});
         assertNotNull(statuses, "Statuses is null!");
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("StatusesDefault", "formForSend()");
+        testBegin("ProductStatusesDefault", "formForSend()");
 
         StatusesPojo statusesPojo = (StatusesPojo) statuses.formForSend();
         assertNotNull(statusesPojo, "StatusesPojo is null!");
         System.out.println(mapper.writeValueAsString(statusesPojo));
 
-        testEnd("StatusesDefault", "formForSend()");
+        testEnd("ProductStatusesDefault", "formForSend()");
     }
 }

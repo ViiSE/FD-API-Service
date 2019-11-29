@@ -11,7 +11,7 @@ import ru.fd.api.service.data.ProductPojo;
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class ProductDefaultTestNG {
+public class ProductSimpleTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Product product;
@@ -67,7 +67,7 @@ public class ProductDefaultTestNG {
         this.code = code;
         this.noReturn = noReturn;
 
-        testBegin("ProductDefault");
+        testBegin("ProductSimple");
     }
 
     @Test
@@ -97,6 +97,6 @@ public class ProductDefaultTestNG {
 
     @AfterClass
     public void teardownClass() {
-        testEnd("ProductDefault");
+        testEnd("ProductSimple");
     }
 }

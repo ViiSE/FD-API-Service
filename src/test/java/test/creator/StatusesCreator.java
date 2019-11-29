@@ -1,4 +1,4 @@
-package test.producer;
+package test.creator;
 
 import ru.fd.api.service.entity.Statuses;
 
