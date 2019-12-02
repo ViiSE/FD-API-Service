@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.data.ProductsPojo;
-import ru.fd.api.service.exception.ProductsCreatorException;
+import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerServer;
-import ru.fd.api.service.producer.entity.ProductsCreatorProducer;
+import ru.fd.api.service.producer.creator.ProductsCreatorProducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,25 +33,11 @@ public class ProductsController {
             ProductsPojo productsPojo = (ProductsPojo) productsCreator.create().formForSend();
             logger.info(ProductsController.class, "Site request products with " + with.toString());
             return productsPojo;
-        } catch (ProductsCreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+        } catch (CreatorException ex) {
+            logger.error(ProductsController.class, ex.getMessage() + "\n\t" + ex.getCause());
             return new ProductsPojo(new ArrayList<>());
         }
     }
-
-//    @GetMapping("/products/departments")
-//    @ResponseBody
-//    public DepartmentsPojo departments() {
-//        try {
-//            DepartmentsCreator departmentsCreator = departmentsCrProducer.getDepartmentsCreatorDefaultInstance();
-//            DepartmentsPojo departmentsPojo = (DepartmentsPojo) departmentsCreator.create().formForSend();
-//            logger.info(ProductsController.class, "Site request departments");
-//            return productsPojo;
-//        } catch (ProductsCreatorException ex) {
-//            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
-//            return new DepartmentsPojo(new ArrayList<>());
-//        }
-//    }
 
 //    @GetMapping("/products/statuses")
 //    @ResponseBody
