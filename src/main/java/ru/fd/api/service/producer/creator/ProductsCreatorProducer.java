@@ -1,4 +1,4 @@
-package ru.fd.api.service.producer.entity;
+package ru.fd.api.service.producer.creator;
 
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.entity.Products;

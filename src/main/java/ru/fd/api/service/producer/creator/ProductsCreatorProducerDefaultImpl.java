@@ -1,4 +1,4 @@
-package ru.fd.api.service.producer.entity;
+package ru.fd.api.service.producer.creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
