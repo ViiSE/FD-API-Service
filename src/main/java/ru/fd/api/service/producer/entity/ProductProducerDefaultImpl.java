@@ -20,31 +20,31 @@ public class ProductProducerDefaultImpl implements ProductProducer {
 
     @Override
     public Product getProductWithAttributesInstance(Product product, Attributes attributes) {
-        return (Product) ctx.getBean("productWithAttributes", attributes);
+        return (Product) ctx.getBean("productWithAttributes", product, attributes);
     }
 
     @Override
     public Product getProductWithBalancesInstance(Product product, Balances balances) {
-        return (Product) ctx.getBean("productWithBalances", balances);
+        return (Product) ctx.getBean("productWithBalances", product, balances);
     }
 
     @Override
     public Product getProductWithPricesInstance(Product product, Prices prices) {
-        return (Product) ctx.getBean("productWithPricces", prices);
+        return (Product) ctx.getBean("productWithPrices", product, prices);
     }
 
     @Override
     public Product getProductWithStatusesInstance(Product product, Statuses statuses) {
-        return (Product) ctx.getBean("productWithStatuses", statuses);
+        return (Product) ctx.getBean("productWithStatuses", product, statuses);
     }
 
     @Override
     public Product getProductWithShortDescription(Product product, String shortDescription) {
-        return (Product) ctx.getBean("productWithShortDescription", shortDescription);
+        return (Product) ctx.getBean("productWithShortDescription", product, shortDescription);
     }
 
     @Override
     public Product getProductWithFullDescription(Product product, String fullDescription) {
-        return (Product) ctx.getBean("productWithFullDescription", fullDescription);
+        return (Product) ctx.getBean("productWithFullDescription", product, fullDescription);
     }
 }

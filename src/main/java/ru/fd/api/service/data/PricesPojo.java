@@ -1,23 +1,22 @@
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class PricesPojo {
+public class ProductPricesPojo {
 
-    private final List<PricePojo> prices;
+    private final List<ProductPricePojo> prices;
 
     @JsonCreator
-    public PricesPojo(List<PricePojo> prices) {
+    public ProductPricesPojo(List<ProductPricePojo> prices) {
         this.prices = prices;
     }
 
-    public List<PricePojo> getPrices() {
+    public List<ProductPricePojo> getPrices() {
         return prices;
     }
 }
