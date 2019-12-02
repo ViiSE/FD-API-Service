@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ProductPricePojo {
+public class PricePojo {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String productId;
@@ -15,7 +15,7 @@ public class ProductPricePojo {
     private final float value;
 
     @JsonCreator
-    public ProductPricePojo(
+    public PricePojo(
             @JsonProperty("department_id") String departmentId,
             @JsonProperty("value") float value) {
         this.departmentId = departmentId;

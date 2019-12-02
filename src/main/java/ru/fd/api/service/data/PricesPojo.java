@@ -7,16 +7,16 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ProductPricesPojo {
+public class PricesPojo {
 
-    private final List<ProductPricePojo> prices;
+    private final List<PricePojo> prices;
 
     @JsonCreator
-    public ProductPricesPojo(List<ProductPricePojo> prices) {
+    public PricesPojo(List<PricePojo> prices) {
         this.prices = prices;
     }
 
-    public List<ProductPricePojo> getPrices() {
+    public List<PricePojo> getPrices() {
         return prices;
     }
 }

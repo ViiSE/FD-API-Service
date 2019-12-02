@@ -8,19 +8,19 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class StatusPojo {
 
-    private final String statusId;
+    private final String id;
     private final String name;
 
     @JsonCreator
     public StatusPojo(
-            @JsonProperty("status_id") String statusId,
-            @JsonProperty("status_id") String name) {
-        this.statusId = statusId;
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public String getStatusId() {
-        return statusId;
+    public String getId() {
+        return id;
     }
 
     public String getName() {
