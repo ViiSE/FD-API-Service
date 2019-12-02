@@ -14,6 +14,7 @@ public class ProductsRepositorySimpleImpl implements ProductsRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     @Override
     public Products readProducts() throws RepositoryException {
         try {
