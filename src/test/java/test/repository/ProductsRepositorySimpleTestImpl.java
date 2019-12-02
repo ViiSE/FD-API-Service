@@ -2,7 +2,7 @@ package test.repository;
 
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.exception.ProductsCreatorException;
+import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.repository.ProductsRepository;
 import test.creator.ProductsCreatorTestImpl;
 
@@ -13,7 +13,7 @@ public class ProductsRepositorySimpleTestImpl implements ProductsRepository {
         ProductsCreator productsCreator = new ProductsCreatorTestImpl();
         try {
             return productsCreator.create();
-        } catch (ProductsCreatorException ignore) {}
+        } catch (CreatorException ignore) {}
         return null;
     }
 }

@@ -41,7 +41,7 @@ public class AttributeDefaultTestNG {
 
         AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
         assertNotNull(attributePojo, "AttributePojo is null!");
-        assertEquals(attributePojo.getAttributeId(), attributeId);
+        assertEquals(attributePojo.getId(), attributeId);
         assertEquals(attributePojo.getValue(), value);
         System.out.println(mapper.writeValueAsString(attributePojo));
 
