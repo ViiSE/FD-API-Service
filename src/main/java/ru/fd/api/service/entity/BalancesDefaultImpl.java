@@ -8,13 +8,13 @@ import ru.fd.api.service.data.BalancesPojo;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component("balancesDefault")
+@Component("productBalancesDefault")
 @Scope("prototype")
-public class BalancesDefaultImpl implements Balances {
+public class ProductBalancesDefaultImpl implements Balances {
 
     private final List<Balance> balances;
 
-    public BalancesDefaultImpl(List<Balance> balances) {
+    public ProductBalancesDefaultImpl(List<Balance> balances) {
         this.balances = balances;
     }
 

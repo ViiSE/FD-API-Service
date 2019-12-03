@@ -22,7 +22,7 @@ public class BalanceDefaultTestNG {
     @BeforeClass
     @Parameters({"departmentId", "quantity"})
     public void setUpClass(String departmentId, int quantity) {
-        assertNotNull(departmentId, "DepartmentID cannot be null!");
+        assertNotNull(departmentId, "Department ID cannot be null!");
         assertFalse(departmentId.isEmpty(), "Department ID is empty!");
         assertFalse(quantity < 0, "Quantity is less than 0!");
 

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="MessageSuite">
+<suite name="EntitySuite">
 
-    <test name="PriceDefaultSuiteTest">
+    <test name="EntitySuiteTest">
         <classes>
             <class name="ru.fd.api.service.entity.PriceDefaultTestNG">
                 <parameter name="departmentId" value="123"/>
@@ -25,11 +25,11 @@
                 <parameter name="departmentId2" value="222"/>
                 <parameter name="statusId2" value="456"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributeDefaultTestNG">
+            <class name="ru.fd.api.service.entity.ProductAttributeDefaultTestNG">
                 <parameter name="attributeId" value="attr_111"/>
                 <parameter name="value" value="something attr"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributesDefaultTestNG">
+            <class name="ru.fd.api.service.entity.ProductAttributesDefaultTestNG">
                 <parameter name="attributeId1" value="attr_111"/>
                 <parameter name="value1" value="attr 1"/>
                 <parameter name="attributeId2" value="attr_222"/>
@@ -63,6 +63,73 @@
             <class name="ru.fd.api.service.entity.ProductWithFullDescriptionTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithShortDescriptionTestNG"/>
             <class name="ru.fd.api.service.entity.ProductsDefaultTestNG"/>
+            <class name="ru.fd.api.service.entity.DepartmentDefaultTestNG">
+                <parameter name="departmentId" value="dep_1"/>
+                <parameter name="name" value="Default Department"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DepartmentsDefaultTestNG">
+                <parameter name="departmentId1" value="dep_1"/>
+                <parameter name="name1" value="Department 1"/>
+                <parameter name="departmentId2" value="dep_2"/>
+                <parameter name="name2" value="Department 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributeDefaultTestNG">
+                <parameter name="attributeId" value="attr_1"/>
+                <parameter name="name" value="Attribute 1"/>
+                <parameter name="groupId" value="gr_1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributesDefaultTestNG">
+                <parameter name="attributeId1" value="attr_1"/>
+                <parameter name="name1" value="Attribute 1"/>
+                <parameter name="groupId1" value="gr_1"/>
+                <parameter name="attributeId2" value="attr_2"/>
+                <parameter name="name2" value="Attribute 2"/>
+                <parameter name="groupId2" value="gr_2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributeGroupDefaultTestNG">
+                <parameter name="attributeGroupId" value="attr_gr_1"/>
+                <parameter name="name" value="AttributeGroup 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.AttributeGroupsDefaultTestNG">
+                <parameter name="attributeGroupId1" value="attr_gr_1"/>
+                <parameter name="name1" value="Attribute 1"/>
+                <parameter name="attributeGroupId2" value="attr_gr_2"/>
+                <parameter name="name2" value="Attribute 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CategoryDefaultTestNG">
+                <parameter name="categoryId" value="cat_1"/>
+                <parameter name="name" value="Category 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CategoriesDefaultTestNG">
+                <parameter name="categoryId1" value="cat_1"/>
+                <parameter name="name1" value="Category 1"/>
+                <parameter name="categoryId2" value="cat_2"/>
+                <parameter name="name2" value="Category 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.StatusDefaultTestNG">
+                <parameter name="statusId" value="st_1"/>
+                <parameter name="name" value="Status 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.StatusDefaultTestNG">
+                <parameter name="statusId" value="stat_1"/>
+                <parameter name="name" value="Status 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.StatusesDefaultTestNG">
+                <parameter name="statusId1" value="stat_1"/>
+                <parameter name="name1" value="Status 1"/>
+                <parameter name="statusId2" value="stat_2"/>
+                <parameter name="name2" value="Status 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.UnitDefaultTestNG">
+                <parameter name="unitId" value="unit_1"/>
+                <parameter name="name" value="Unit 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.UnitsDefaultTestNG">
+                <parameter name="unitId1" value="unit_1"/>
+                <parameter name="name1" value="Unit 1"/>
+                <parameter name="unitId2" value="unit_2"/>
+                <parameter name="name2" value="Unit 2"/>
+            </class>
         </classes>
     </test>
 

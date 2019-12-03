@@ -4,14 +4,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.BalancePojo;
 
-@Component("balanceDefault")
+@Component("productBalanceDefault")
 @Scope("prototype")
-public class BalanceDefaultImpl implements Balance {
+public class ProductBalanceDefaultImpl implements Balance {
 
     private final String departmentId;
     private final int quantity;
 
-    public BalanceDefaultImpl(String departmentId, int quantity) {
+    public ProductBalanceDefaultImpl(String departmentId, int quantity) {
         this.departmentId = departmentId;
         this.quantity = quantity;
     }

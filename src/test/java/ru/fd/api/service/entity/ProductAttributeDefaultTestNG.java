@@ -5,16 +5,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.AttributePojo;
+import ru.fd.api.service.data.ProductAttributePojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class AttributeDefaultTestNG {
+public class ProductAttributeDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private Attribute attribute;
+    private ProductAttribute attribute;
 
     private String attributeId;
     private String value;
@@ -28,7 +28,7 @@ public class AttributeDefaultTestNG {
         assertNotNull(value, "Value cannot be null!");
         assertFalse(value.isEmpty(), "Value is empty!");
 
-        attribute = new AttributeDefaultImpl(attributeId, value);
+        attribute = new ProductAttributeDefaultImpl(attributeId, value);
         assertNotNull(attribute, "Attribute is null!");
 
         this.attributeId = attributeId;
@@ -37,14 +37,14 @@ public class AttributeDefaultTestNG {
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("AttributeDefault", "formForSend()");
+        testBegin("ProductAttributeDefault", "formForSend()");
 
-        AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
+        ProductAttributePojo attributePojo = (ProductAttributePojo) attribute.formForSend();
         assertNotNull(attributePojo, "AttributePojo is null!");
-        assertEquals(attributePojo.getId(), attributeId);
+        assertEquals(attributePojo.getAttributeId(), attributeId);
         assertEquals(attributePojo.getValue(), value);
         System.out.println(mapper.writeValueAsString(attributePojo));
 
-        testEnd("AttributeDefault", "formForSend()");
+        testEnd("ProductAttributeDefault", "formForSend()");
     }
 }

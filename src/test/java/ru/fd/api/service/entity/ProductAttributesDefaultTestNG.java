@@ -14,7 +14,7 @@ import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class AttributesDefaultTestNG {
+public class ProductAttributesDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Attributes attributes;
@@ -41,12 +41,12 @@ public class AttributesDefaultTestNG {
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("AttributesDefault", "formForSend()");
+        testBegin("ProductAttributesDefault", "formForSend()");
 
         ProductAttributesPojo attributesPojo = (ProductAttributesPojo) attributes.formForSend();
-        assertNotNull(attributesPojo, "AttributesPojo is null!");
+        assertNotNull(attributesPojo, "ProductAttributesPojo is null!");
         System.out.println(mapper.writeValueAsString(attributesPojo));
 
-        testEnd("AttributesDefault", "formForSend()");
+        testEnd("ProductAttributesDefault", "formForSend()");
     }
 }
