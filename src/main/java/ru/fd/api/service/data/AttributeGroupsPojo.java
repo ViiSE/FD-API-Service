@@ -8,16 +8,16 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ProductAttributesPojo {
+public class AttributeGroupsPojo {
 
-    private final List<ProductAttributePojo> attributes;
+    private final List<AttributeGroupPojo> attributeGroups;
 
     @JsonCreator
-    public ProductAttributesPojo(@JsonProperty("attributes") List<ProductAttributePojo> attributes) {
-        this.attributes = attributes;
+    public AttributeGroupsPojo(@JsonProperty("attribute_groups") List<AttributeGroupPojo> attributeGroups){
+        this.attributeGroups = attributeGroups;
     }
 
-    public List<ProductAttributePojo> getAttributes() {
-        return attributes;
+    public List<AttributeGroupPojo> getAttributeGroups() {
+        return attributeGroups;
     }
 }

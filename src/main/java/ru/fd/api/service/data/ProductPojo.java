@@ -24,7 +24,7 @@ public class ProductPojo {
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
-    @JsonInclude(JsonInclude.Include.NON_NULL) private AttributesPojo attributes;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private ProductAttributesPojo attributes;
 
     public void setId(String id) {
         this.id = id;
@@ -82,7 +82,7 @@ public class ProductPojo {
         this.balances = balances;
     }
 
-    public void setAttributes(AttributesPojo attributes) {
+    public void setAttributes(ProductAttributesPojo attributes) {
         this.attributes = attributes;
     }
 
@@ -151,7 +151,7 @@ public class ProductPojo {
             return null;
     }
 
-    public List<AttributePojo> getAttributes() {
+    public List<ProductAttributePojo> getAttributes() {
         if(attributes != null)
             return attributes.getAttributes();
         else

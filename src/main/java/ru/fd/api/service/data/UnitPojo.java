@@ -5,19 +5,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import java.util.List;
-
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ProductAttributesPojo {
+public class UnitPojo {
 
-    private final List<ProductAttributePojo> attributes;
+    private final String id;
+    private final String name;
 
     @JsonCreator
-    public ProductAttributesPojo(@JsonProperty("attributes") List<ProductAttributePojo> attributes) {
-        this.attributes = attributes;
+    public UnitPojo(
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public List<ProductAttributePojo> getAttributes() {
-        return attributes;
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

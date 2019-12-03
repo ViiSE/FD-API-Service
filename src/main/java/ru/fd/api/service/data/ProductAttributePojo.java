@@ -6,21 +6,21 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class AttributePojo {
+public class ProductAttributePojo {
 
-    private final String id;
+    private final String attributeId;
     private final String value;
 
     @JsonCreator
-    public AttributePojo(
-            @JsonProperty("id") String id,
+    public ProductAttributePojo(
+            @JsonProperty("attribute_id") String attributeId,
             @JsonProperty("value") String value) {
-        this.id = id;
+        this.attributeId = attributeId;
         this.value = value;
     }
 
-    public String getId() {
-        return id;
+    public String getAttributeId() {
+        return attributeId;
     }
 
     public String getValue() {
