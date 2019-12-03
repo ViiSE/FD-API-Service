@@ -1,6 +1,7 @@
 package test.repository;
 
 import ru.fd.api.service.entity.*;
+import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepository;
@@ -22,13 +23,15 @@ public class ProductsRepositoryWithAttributesTestImpl implements ProductsReposit
 
     @Override
     public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+        try {
 
-        Attributes attributes1 = new AttributesCreatorTestImpl().createAttributes();
-        Attributes attributes2 = new AttributesDefaultImpl(new ArrayList<>() {{
-            add(new AttributeDefaultImpl("attr_1", "value attr 1"));
-            add(new AttributeDefaultImpl("attr_2", "value attr 2"));
-            add(new AttributeDefaultImpl("attr_3", "value attr 3"));
+            Products products = productsRepository.readProducts();
+
+        Attributes attributes1 = new AttributesCreatorTestImpl().create();
+        Attributes attributes2 = new ProductAttributesDefaultImpl(new ArrayList<>() {{
+            add(new ProductAttributeDefaultImpl("attr_1", "value attr 1"));
+            add(new ProductAttributeDefaultImpl("attr_2", "value attr 2"));
+            add(new ProductAttributeDefaultImpl("attr_3", "value attr 3"));
         }});
 
 
@@ -42,5 +45,8 @@ public class ProductsRepositoryWithAttributesTestImpl implements ProductsReposit
                 products.decorateProduct(id, productProducer.getProductWithAttributesInstance(product, attr));
         });
         return products;
+        } catch (CreatorException ignore) {
+            return null;
+        }
     }
 }

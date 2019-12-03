@@ -3,7 +3,7 @@ package ru.fd.api.service.log;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.time.CurrentDateTime;
-import test.producer.CurrentDateTimeProducerTestImpl;
+import test.producer.time.CurrentDateTimeProducerTestImpl;
 
 import static test.message.TestMessage.*;
 

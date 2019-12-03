@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.log.FDAPIServiceDirectoryProducer;
 import ru.fd.api.service.time.CurrentDateTime;
-import test.producer.CurrentDateTimeProducerTestImpl;
+import test.producer.time.CurrentDateTimeProducerTestImpl;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 
 import java.io.*;

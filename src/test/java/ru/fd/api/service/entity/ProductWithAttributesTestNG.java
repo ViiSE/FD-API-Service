@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
+import ru.fd.api.service.exception.CreatorException;
 import test.creator.AttributesCreatorTestImpl;
 import test.creator.ProductCreatorTestImpl;
 
@@ -25,10 +26,10 @@ public class ProductWithAttributesTestNG {
     }
 
     @Test
-    public void formForSend() throws JsonProcessingException {
+    public void formForSend() throws JsonProcessingException, CreatorException {
         testBegin("ProductWithAttributes", "formForSend()");
 
-        Attributes attributes = new AttributesCreatorTestImpl().createAttributes();
+        Attributes attributes = new AttributesCreatorTestImpl().create();
         product = new ProductWithAttributesImpl(product, attributes);
         assertNotNull(product, "Product with attributes is null!");
 

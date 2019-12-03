@@ -24,7 +24,7 @@ public class ProductsRepositoryWithStatusesTestImpl implements ProductsRepositor
     public Products readProducts() throws RepositoryException {
         Products products = productsRepository.readProducts();
 
-        Statuses statuses1 = new ProductStatusesCreatorTestImpl().createStatuses();
+        Statuses statuses1 = new ProductStatusesCreatorTestImpl().create();
         Statuses statuses2 = new ProductStatusesImpl(new ArrayList<>() {{
             add(new ProductStatusImpl("dep_333", "status 333"));
             add(new ProductStatusImpl("dep_444", "status 444"));

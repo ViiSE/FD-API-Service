@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="RepositorySuite">
+
+    <test name="RepositorySuiteTest">
+        <classes>
+            <class name="ru.fd.api.service.repository.ProductsRepositorySimpleTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithAttributesTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithBalancesTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithFullDescriptionTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithPricesTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithShortDescriptionTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithStatusesTestNG"/>
+            <class name="ru.fd.api.service.repository.AttributeGroupsRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.AttributesRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.CategoriesRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.DepartmentsRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.StatusesRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.UnitsRepositoryTestNG"/>
+        </classes>
+    </test>
+
+</suite>

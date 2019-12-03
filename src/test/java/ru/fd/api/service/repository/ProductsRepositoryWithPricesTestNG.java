@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.entity.*;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
-import test.producer.ProductProducerTestImpl;
+import test.producer.entity.ProductProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;
 import test.repository.ProductsRepositoryWithPricesTestImpl;
 

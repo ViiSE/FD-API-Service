@@ -27,7 +27,7 @@ public class ProductWithStatusesTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("ProductWithStatuses", "formForSend()");
 
-        Statuses statuses = new ProductStatusesCreatorTestImpl().createStatuses();
+        Statuses statuses = new ProductStatusesCreatorTestImpl().create();
         product = new ProductWithStatusesImpl(product, statuses);
         assertNotNull(product, "Product with statuses is null!");
 
