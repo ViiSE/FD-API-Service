@@ -17,6 +17,24 @@
 
 package ru.fd.api.service.entity;
 
-public interface Attribute {
-    Object formForSend();
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.AttributeGroupPojo;
+
+@Component("attributeGroupDefault")
+@Scope("prototype")
+public class AttributeGroupDefaultImpl implements AttributeGroup {
+
+    private final String attributeId;
+    private final String name;
+
+    public AttributeGroupDefaultImpl(String attributeId, String name) {
+        this.attributeId = attributeId;
+        this.name = name;
+    }
+
+    @Override
+    public Object formForSend() {
+        return new AttributeGroupPojo(attributeId, name);
+    }
 }

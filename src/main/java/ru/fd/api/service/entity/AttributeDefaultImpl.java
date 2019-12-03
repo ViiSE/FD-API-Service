@@ -10,15 +10,17 @@ import ru.fd.api.service.data.BalancePojo;
 public class AttributeDefaultImpl implements Attribute {
 
     private final String attributeId;
-    private final String value;
+    private final String groupId;
+    private final String name;
 
-    public AttributeDefaultImpl(String attributeId, String value) {
+    public AttributeDefaultImpl(String attributeId, String groupId, String name) {
         this.attributeId = attributeId;
-        this.value = value;
+        this.groupId = groupId;
+        this.name = name;
     }
 
     @Override
     public Object formForSend() {
-        return new AttributePojo(attributeId, value);
+        return new AttributePojo(attributeId, groupId, name);
     }
 }

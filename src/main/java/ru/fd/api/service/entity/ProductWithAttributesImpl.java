@@ -2,7 +2,7 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.AttributesPojo;
+import ru.fd.api.service.data.ProductAttributesPojo;
 import ru.fd.api.service.data.ProductPojo;
 
 @Component("productWithAttributes")
@@ -24,7 +24,7 @@ public class ProductWithAttributesImpl implements Product {
 
     @Override
     public Object formForSend() {
-        AttributesPojo attributesPojo = (AttributesPojo) attributes.formForSend();
+        ProductAttributesPojo attributesPojo = (ProductAttributesPojo) attributes.formForSend();
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         productPojo.setAttributes(attributesPojo);
         return productPojo;

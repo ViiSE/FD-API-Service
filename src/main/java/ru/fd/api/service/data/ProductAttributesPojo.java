@@ -10,14 +10,14 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AttributesPojo {
 
-    private final List<AttributePojo> attributes;
+    private final List<ProductAttributePojo> attributes;
 
     @JsonCreator
-    public AttributesPojo(@JsonProperty("attributes") List<AttributePojo> attributes) {
+    public AttributesPojo(@JsonProperty("attributes") List<ProductAttributePojo> attributes) {
         this.attributes = attributes;
     }
 
-    public List<AttributePojo> getAttributes() {
+    public List<ProductAttributePojo> getAttributes() {
         return attributes;
     }
 }

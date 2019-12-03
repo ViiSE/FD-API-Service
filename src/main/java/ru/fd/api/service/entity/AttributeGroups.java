@@ -17,6 +17,6 @@
 
 package ru.fd.api.service.entity;
 
-public interface Attribute {
+public interface AttributeGroups {
     Object formForSend();
 }
