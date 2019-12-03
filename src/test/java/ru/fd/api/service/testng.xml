@@ -2,13 +2,13 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestNGSuite">
-
     <suite-files>
+        <suite-file path="creator/creator-suite.xml"/>
         <suite-file path="entity/entity-suite.xml"/>
         <suite-file path="log/log-suite.xml"/>
         <suite-file path="repository/repository-suite.xml"/>
         <suite-file path="repository/processor/repository_processor-suite.xml"/>
-        <suite-file path="creator/creator-suite.xml"/>
+        <suite-file path="time/time-suite.xml"/>
+        <suite-file path="util/util-suite.xml"/>
     </suite-files>
-
 </suite>
