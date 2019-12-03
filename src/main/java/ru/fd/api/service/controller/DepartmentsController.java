@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.log.LoggerServer;
+import ru.fd.api.service.log.LoggerService;
 import ru.fd.api.service.producer.creator.DepartmentsCreatorProducer;
 import ru.fd.api.service.producer.repository.DepartmentsRepositoryProducer;
 
@@ -18,7 +18,7 @@ public class DepartmentsController {
 
     @Autowired private DepartmentsCreatorProducer departmentsCrProducer;
     @Autowired private DepartmentsRepositoryProducer departmentsRepoProducer;
-    @Autowired private LoggerServer logger;
+    @Autowired private LoggerService logger;
 
 
     @GetMapping("/departments")

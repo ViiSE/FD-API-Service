@@ -94,6 +94,13 @@ public class LoggerFileDefaultTestNG {
         System.out.println(foundText);
     }
 
+    @Test(priority = 4)
+    public void writeLogFile_directory_not_found() {
+        LogDirectory logDirectory = new LogDirectoryExceptionTestImpl();
+        LoggerFile exLoggerFile = new LoggerFileDefaultImpl(logDirectory);
+        exLoggerFile.writeLogFile(LogMessageType.INFO.stringValue(), curDateTime, "Exception!");
+    }
+
     @AfterClass
     public void teardownClass() throws IOException {
         String fullFileName = logDirectory.directory() + "/log_" + curDateTime.dateLog() + ".txt";

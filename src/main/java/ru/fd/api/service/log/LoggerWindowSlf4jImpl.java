@@ -11,7 +11,7 @@ import static ru.fd.api.service.log.LogMessageType.INFO;
 @Component("loggerWindowSlf4j")
 public class LoggerWindowSlf4jImpl implements LoggerWindow {
 
-    private static final Logger loggerWindow = LoggerFactory.getLogger(LoggerServer.class);
+    private static final Logger loggerWindow = LoggerFactory.getLogger(LoggerService.class);
 
     @Override
     public void printLog(String type, CurrentDateTime currentDateTime, String message) {

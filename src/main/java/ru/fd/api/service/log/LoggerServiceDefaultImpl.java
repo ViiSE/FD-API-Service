@@ -7,15 +7,15 @@ import ru.fd.api.service.time.CurrentDateTime;
 import static ru.fd.api.service.log.LogMessageType.ERROR;
 import static ru.fd.api.service.log.LogMessageType.INFO;
 
-@Component("loggerServerDefault")
+@Component("loggerServiceDefault")
 @Scope("prototype")
-public class LoggerServerDefaultImpl implements LoggerServer {
+public class LoggerServiceDefaultImpl implements LoggerService {
 
     private final LoggerFile loggerFile;
     private final LoggerWindow loggerWindow;
     private final CurrentDateTime currentDateTime;
 
-    public LoggerServerDefaultImpl(LoggerFile loggerFile, LoggerWindow loggerWindow, CurrentDateTime currentDateTime) {
+    public LoggerServiceDefaultImpl(LoggerFile loggerFile, LoggerWindow loggerWindow, CurrentDateTime currentDateTime) {
         this.loggerFile = loggerFile;
         this.loggerWindow = loggerWindow;
         this.currentDateTime = currentDateTime;

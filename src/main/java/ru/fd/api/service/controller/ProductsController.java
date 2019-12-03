@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.fd.api.service.creator.*;
 import ru.fd.api.service.data.*;
 import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.log.LoggerServer;
+import ru.fd.api.service.log.LoggerService;
 import ru.fd.api.service.producer.creator.*;
 import ru.fd.api.service.producer.repository.*;
 
@@ -32,7 +32,7 @@ public class ProductsController {
 //    @Autowired private BalancesCreatorProducer balancesCrProducer;
 //    @Autowired private BalancesRepositoryProducer balancesRepoProducer;
 
-    @Autowired private LoggerServer logger;
+    @Autowired private LoggerService logger;
 
     @GetMapping("/products")
     @ResponseBody
