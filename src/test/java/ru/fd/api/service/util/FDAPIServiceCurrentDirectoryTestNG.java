@@ -38,7 +38,7 @@ public class FDAPIServiceCurrentDirectoryTestNG {
         testBegin("FDAPIServiceCurrentDirectory", "directory()");
 
         String dir = fdapiServiceDirectory.directory();
-        assertTrue(dir.contains("FD-API-Service/"), "The directory is not current!");
+        assertTrue(dir.contains("FD-API-Service"), "The directory is not current!");
         System.out.println(dir);
 
         testEnd("FDAPIServiceCurrentDirectory", "directory()");
