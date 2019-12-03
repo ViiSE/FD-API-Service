@@ -8,6 +8,7 @@
         <suite-file path="log/log-suite.xml"/>
         <suite-file path="repository/repository-suite.xml"/>
         <suite-file path="repository/processor/repository_processor-suite.xml"/>
+        <suite-file path="creator/creator-suite.xml"/>
     </suite-files>
 
 </suite>
