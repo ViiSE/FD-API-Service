@@ -3,6 +3,7 @@ package ru.fd.api.service.entity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.BalancePojo;
+import ru.fd.api.service.data.CategoryPojo;
 import ru.fd.api.service.data.UnitPojo;
 
 @Component("categoryDefault")
@@ -19,6 +20,6 @@ public class CategoryDefaultImpl implements Category {
 
     @Override
     public Object formForSend() {
-        return new UnitPojo(categoryId, name);
+        return new CategoryPojo(categoryId, name);
     }
 }

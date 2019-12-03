@@ -25,16 +25,16 @@ import ru.fd.api.service.data.AttributeGroupPojo;
 @Scope("prototype")
 public class AttributeGroupDefaultImpl implements AttributeGroup {
 
-    private final String attributeId;
+    private final String attributeGroupId;
     private final String name;
 
-    public AttributeGroupDefaultImpl(String attributeId, String name) {
-        this.attributeId = attributeId;
+    public AttributeGroupDefaultImpl(String attributeGroupId, String name) {
+        this.attributeGroupId = attributeGroupId;
         this.name = name;
     }
 
     @Override
     public Object formForSend() {
-        return new AttributeGroupPojo(attributeId, name);
+        return new AttributeGroupPojo(attributeGroupId, name);
     }
 }

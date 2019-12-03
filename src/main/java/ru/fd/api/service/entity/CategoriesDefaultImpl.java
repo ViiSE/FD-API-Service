@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Component("categoriesDefault")
 @Scope("prototype")
-public class CategoriesDefaultImpl implements Balances {
+public class CategoriesDefaultImpl implements Categories {
 
     private final List<Category> categories;
 
