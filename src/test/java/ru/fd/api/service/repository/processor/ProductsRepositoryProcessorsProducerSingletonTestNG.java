@@ -29,7 +29,7 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
-public class ProductsRepositoryProcessorsSingletonTestNG {
+public class ProductsRepositoryProcessorsProducerSingletonTestNG {
 
     private ProductsRepositoryProcessors prRepoProcessors;
 
