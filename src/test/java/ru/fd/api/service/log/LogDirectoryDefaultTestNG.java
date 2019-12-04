@@ -2,7 +2,7 @@ package ru.fd.api.service.log;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.producer.log.FDAPIServiceDirectoryProducer;
+import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 
 import static org.testng.Assert.assertNotNull;
