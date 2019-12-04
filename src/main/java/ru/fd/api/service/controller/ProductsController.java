@@ -10,7 +10,9 @@ import ru.fd.api.service.data.*;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
 import ru.fd.api.service.producer.creator.*;
+import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.*;
+import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,9 @@ import java.util.List;
 public class ProductsController {
 
     @Autowired private ProductsCreatorProducer productsCrProducer;
+    @Autowired private ProductsRepositoryProcessorsProducer productsRepoProsProducer;
+    @Autowired private ProductsRepositoryProducer productsRepoProducer;
+    @Autowired private ProductProducer productProducer;
     @Autowired private StatusesCreatorProducer statusesCrProducer;
     @Autowired private StatusesRepositoryProducer statusesRepositoryProducer;
     @Autowired private AttributesCreatorProducer attrCrProducer;
@@ -38,12 +43,15 @@ public class ProductsController {
     @ResponseBody
     public ProductsPojo products(@RequestParam(required = false) List<String> with) {
         try {
-            ProductsCreator productsCreator = productsCrProducer.getProductsCreatorDefaultInstance(with);
+            ProductsCreator productsCreator = productsCrProducer.getProductsCreatorDefaultInstance(
+                    productsRepoProsProducer.getProductsRepositoryProcessorsSingletonImpl(
+                            productsRepoProducer, productProducer),
+                    with);
             ProductsPojo productsPojo = (ProductsPojo) productsCreator.create().formForSend();
             logger.info(ProductsController.class, "Site request products with " + with.toString());
             return productsPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n\t" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new ProductsPojo(new ArrayList<>());
         }
     }
@@ -58,7 +66,7 @@ public class ProductsController {
             logger.info(ProductsController.class, "Site request statuses");
             return statusesPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new StatusesPojo(new ArrayList<>());
         }
     }
@@ -73,7 +81,7 @@ public class ProductsController {
             logger.info(ProductsController.class, "Site request attributes");
             return attributesPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new AttributesPojo(new ArrayList<>());
         }
     }
@@ -88,7 +96,7 @@ public class ProductsController {
             logger.info(ProductsController.class, "Site request attribute groups");
             return attributesGroupsPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new AttributeGroupsPojo(new ArrayList<>());
         }
     }
@@ -103,7 +111,7 @@ public class ProductsController {
             logger.info(ProductsController.class, "Site request units");
             return unitsPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new UnitsPojo(new ArrayList<>());
         }
     }
@@ -118,7 +126,7 @@ public class ProductsController {
             logger.info(ProductsController.class, "Site request categories");
             return categoriesPojo;
         } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new CategoriesPojo(new ArrayList<>());
         }
     }
@@ -133,7 +141,7 @@ public class ProductsController {
 //            logger.info(ProductsController.class, "Site request balances");
 //            return balancesPojo;
 //        } catch (CreatorException ex) {
-//            logger.error(ProductsController.class, ex.getMessage() + "\n" + ex.getCause());
+//            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
 //            return new BalancesPojo(new ArrayList<>());
 //        }
 //    }

@@ -31,7 +31,7 @@ public class DepartmentsController {
             logger.info(DepartmentsController.class, "Site request departments");
             return departmentsPojo;
         } catch (CreatorException ex) {
-            logger.error(DepartmentsController.class, ex.getMessage() + "\n\t" + ex.getCause());
+            logger.error(DepartmentsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new DepartmentsPojo(new ArrayList<>());
         }
     }
