@@ -19,53 +19,35 @@ package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Statuses;
+import ru.fd.api.service.entity.Unit;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.producer.entity.StatusesProducer;
+import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnitsDefaultRowMapper implements RowMapper<Units> {
 
+    private final UnitProducer unitProducer;
     private final UnitsProducer unitsProducer;
 
-    public UnitsDefaultRowMapper(UnitsProducer unitsProducer) {
+    public UnitsDefaultRowMapper(UnitProducer unitProducer, UnitsProducer unitsProducer) {
+        this.unitProducer = unitProducer;
         this.unitsProducer = unitsProducer;
     }
 
-    //    private final ProductProducer productProducer;
-
-//    public ProductsSimpleRowMapper(ProductProducer productProducer) {
-//        this.productProducer = productProducer;
-//    }
-
     @Override
     public Units mapRow(ResultSet rs, int i) throws SQLException {
-//        List<Product> products = new ArrayList<>();
-//        while(rs.next()) {
-//            String id = rs.getString("TOVAR.GID");
-//            String categoryId = rs.getString("DIRECTMAIN.IDENT");
-//            String vendorId = rs.getString("MAKER.GID");
-//            String unitId = rs.getString("OKEI");
-//            String name = rs.getString("TOVAR.NAME");
-//            short tax = rs.getShort("TAX");
-//            String articul = "";
-//            String code = rs.getString("TOVAR.GID");
-//            boolean noReturn = rs.getBoolean("NO_RETURN");
-//
-//            products.add(productProducer.getProductProducerDefaultInstance(
-//                    id,
-//                    categoryId,
-//                    vendorId,
-//                    unitId,
-//                    name,
-//                    tax,
-//                    articul,
-//                    code,
-//                    noReturn));
-//        }
-//        return new ProductsDefaultImpl(products);
-        return null;
+        List<Unit> units = new ArrayList<>();
+        while(rs.next()) {
+            String id = rs.getString("OKEI").trim();
+            String name = rs.getString("NAME").trim();
+            units.add(unitProducer.getUnitDefaultInstance(id, name));
+        }
+        return unitsProducer.getUnitsDefaultInstance(units);
     }
 }
