@@ -31,7 +31,7 @@ public class ProductsRepositoryWithShortDescriptionTestImpl implements ProductsR
         shortDescForProducts.forEach((id, shortDesc) -> {
             Product product = products.findProductById(id);
             if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithShortDescription(product, shortDesc));
+                products.decorateProduct(id, productProducer.getProductWithShortDescriptionInstance(product, shortDesc));
         });
         return products;
     }

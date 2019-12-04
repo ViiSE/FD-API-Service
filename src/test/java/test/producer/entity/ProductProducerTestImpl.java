@@ -32,8 +32,8 @@ public class ProductProducerTestImpl implements ProductProducer {
     @Override
     public Product getProductSimpleInstance(
             String id, String categoryId, String vendorId, String unitId, String name,
-            short tax, String articul, String code, boolean noReturn) {
-        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, noReturn);
+            short tax, String articul, String code) {
+        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class ProductProducerTestImpl implements ProductProducer {
     }
 
     @Override
-    public Product getProductWithShortDescription(Product product, String shortDescription) {
+    public Product getProductWithShortDescriptionInstance(Product product, String shortDescription) {
         return new ProductWithShortDescriptionImpl(product, shortDescription);
     }
 
     @Override
-    public Product getProductWithFullDescription(Product product, String fullDescription) {
+    public Product getProductWithFullDescriptionInstance(Product product, String fullDescription) {
         return new ProductWithFullDescriptionImpl(product, fullDescription);
     }
 }

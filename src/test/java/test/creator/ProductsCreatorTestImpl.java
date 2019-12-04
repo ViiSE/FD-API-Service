@@ -30,7 +30,6 @@ public class ProductsCreatorTestImpl implements ProductsCreator {
                 "Item_" + id,
                 (short) 20,
                 "art_" + id,
-                "code_" + id,
-                false);
+                "code_" + id);
     }
 }

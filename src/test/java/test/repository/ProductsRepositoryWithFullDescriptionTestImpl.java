@@ -32,7 +32,7 @@ public class ProductsRepositoryWithFullDescriptionTestImpl implements ProductsRe
         fullDescForProducts.forEach((id, fullDesc) -> {
             Product product = products.findProductById(id);
             if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithFullDescription(product, fullDesc));
+                products.decorateProduct(id, productProducer.getProductWithFullDescriptionInstance(product, fullDesc));
         });
         return products;
     }

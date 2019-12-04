@@ -16,6 +16,6 @@ public class ProductCreatorTestImpl implements ProductCreator {
         String articul = "art_1";
         String code = "code_1";
 
-        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, false);
+        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
     }
 }
