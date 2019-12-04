@@ -20,7 +20,7 @@ public class ProductPojo {
     private String name;
     private String fullDescription = "";
     private String shortDescription = "";
-    private boolean noReturn;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private boolean noReturn;
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
