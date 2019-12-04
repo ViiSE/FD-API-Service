@@ -16,11 +16,10 @@ public class ProductSimpleImpl implements Product {
     private final short tax;
     private final String articul;
     private final String code;
-    private final boolean noReturn;
 
     public ProductSimpleImpl(
             String id, String categoryId, String vendorId, String unitId, String name,
-            short tax, String articul, String code, boolean noReturn) {
+            short tax, String articul, String code) {
         this.id = id;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
@@ -29,7 +28,6 @@ public class ProductSimpleImpl implements Product {
         this.tax = tax;
         this.articul = articul;
         this.code = code;
-        this.noReturn = noReturn;
     }
 
     @Override
@@ -48,7 +46,6 @@ public class ProductSimpleImpl implements Product {
         productPojo.setTax(tax);
         productPojo.setArticul(articul);
         productPojo.setCode(code);
-        productPojo.setNoReturn(noReturn);
         return productPojo;
     }
 }
