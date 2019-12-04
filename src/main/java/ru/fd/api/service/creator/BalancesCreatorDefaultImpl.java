@@ -26,13 +26,13 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.AttributesRepository;
 import ru.fd.api.service.repository.BalancesRepository;
 
-@Service("balancesDefault")
+@Service("balancesCreatorDefault")
 @Scope("prototype")
-public class BalancesDefaultImpl implements BalancesCreator {
+public class BalancesCreatorDefaultImpl implements BalancesCreator {
 
     private final BalancesRepository balancesRepository;
 
-    public BalancesDefaultImpl(BalancesRepository balancesRepository) {
+    public BalancesCreatorDefaultImpl(BalancesRepository balancesRepository) {
         this.balancesRepository = balancesRepository;
     }
 
