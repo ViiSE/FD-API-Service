@@ -1,11 +1,11 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithFullDescriptionRowMapper;
@@ -13,6 +13,7 @@ import ru.fd.api.service.repository.mapper.ProductsWithFullDescriptionRowMapper;
 import java.util.Map;
 
 @Repository("productsRepositoryWithFullDescription")
+@Scope("prototype")
 public class ProductsRepositoryWithFullDescriptionImpl implements ProductsRepository {
 
     @Autowired
@@ -34,7 +35,7 @@ public class ProductsRepositoryWithFullDescriptionImpl implements ProductsReposi
             fullDescForProducts.forEach((id, fullDesc) -> {
                 Product product = products.findProductById(id);
                 if(product != null)
-                    products.decorateProduct(id, productProducer.getProductWithFullDescription(product, fullDesc));
+                    products.decorateProduct(id, productProducer.getProductWithFullDescriptionInstance(product, fullDesc));
             });
         }
         return products;

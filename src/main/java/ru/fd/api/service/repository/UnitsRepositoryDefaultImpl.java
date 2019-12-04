@@ -23,6 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
 import ru.fd.api.service.repository.mapper.UnitsDefaultRowMapper;
 
@@ -32,13 +33,15 @@ public class UnitsRepositoryDefaultImpl implements UnitsRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private UnitsProducer unitsProducer;
+    @Autowired private UnitsProducer unitsProducer;
+    @Autowired private UnitProducer unitProducer;
 
     @Override
     public Units readUnits() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject("SQL HERE", new UnitsDefaultRowMapper(unitsProducer));
+            return jdbcTemplate.queryForObject(
+                    "SELECT DISTINCT EE.NAME, EE.OKEI FROM EDISM E LEFT JOIN EDISM EE on EE.KOD = E.OWNER WHERE E.kod > 0",
+                    new UnitsDefaultRowMapper(unitProducer, unitsProducer));
         } catch (DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

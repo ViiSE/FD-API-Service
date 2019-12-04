@@ -1,6 +1,7 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.entity.*;
@@ -12,6 +13,7 @@ import ru.fd.api.service.repository.mapper.ProductsWithBalancesRowMapper;
 import java.util.Map;
 
 @Repository("productsRepositoryWithBalances")
+@Scope("prototype")
 public class ProductsRepositoryWithBalancesImpl implements ProductsRepository {
 
     @Autowired private JdbcTemplate jdbcTemplate;
