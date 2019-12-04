@@ -20,6 +20,7 @@ package ru.fd.api.service.util;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
@@ -38,6 +39,7 @@ public class FDAPIServiceCurrentDirectoryTestNG {
         testBegin("FDAPIServiceCurrentDirectory", "directory()");
 
         String dir = fdapiServiceDirectory.directory();
+        assertNotNull(dir, "Directory path is null!");
         assertTrue(dir.contains("FD-API-Service"), "The directory is not current!");
         System.out.println(dir);
 
