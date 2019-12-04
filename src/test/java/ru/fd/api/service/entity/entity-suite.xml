@@ -54,7 +54,6 @@
                 <parameter name="tax" value="20"/>
                 <parameter name="articul" value="art_3305"/>
                 <parameter name="code" value="code_22505"/>
-                <parameter name="noReturn" value="false"/>
             </class>
             <class name="ru.fd.api.service.entity.ProductWithPricesTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithStatusesTestNG"/>

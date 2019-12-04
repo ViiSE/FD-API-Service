@@ -24,13 +24,12 @@ public class ProductSimpleTestNG {
     private short tax;
     private String articul;
     private String code;
-    private boolean noReturn;
 
     @BeforeClass
-    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code", "noReturn"})
+    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code"})
     public void setUpClass(
-            String id, String categoryId, String vendorId, String unitId, String name,
-            short tax, String articul, String code, boolean noReturn) {
+            String id, String categoryId, String vendorId, String unitId,
+            String name, short tax, String articul, String code) {
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
@@ -54,7 +53,7 @@ public class ProductSimpleTestNG {
         assertNotNull(code, "Code cannot be null!");
         assertFalse(code.isEmpty(), "Code is empty!");
 
-        product = new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, noReturn);
+        product = new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
         assertNotNull(product, "Product is null!");
 
         this.id = id;
@@ -65,7 +64,6 @@ public class ProductSimpleTestNG {
         this.tax = tax;
         this.articul = articul;
         this.code = code;
-        this.noReturn = noReturn;
 
         testBegin("ProductSimple");
     }
@@ -84,7 +82,6 @@ public class ProductSimpleTestNG {
         assertEquals(productPojo.getTax(), tax);
         assertEquals(productPojo.getArticul(), articul);
         assertEquals(productPojo.getCode(), code);
-        assertEquals(productPojo.getNoReturn(), noReturn);
         System.out.println(mapper.writeValueAsString(productPojo));
     }
 
