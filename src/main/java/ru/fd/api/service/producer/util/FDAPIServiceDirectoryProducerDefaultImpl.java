@@ -1,4 +1,4 @@
-package ru.fd.api.service.producer.log;
+package ru.fd.api.service.producer.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
