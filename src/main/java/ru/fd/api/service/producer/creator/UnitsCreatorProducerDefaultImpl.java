@@ -16,6 +16,6 @@ public class UnitsCreatorProducerDefaultImpl implements UnitsCreatorProducer {
 
     @Override
     public UnitsCreator getUnitsCreatorDefaultInstance(UnitsRepository unitsRepository) {
-        return (UnitsCreator) ctx.getBean("statusesCreatorDefault", unitsRepository);
+        return (UnitsCreator) ctx.getBean("unitsCreatorDefault", unitsRepository);
     }
 }

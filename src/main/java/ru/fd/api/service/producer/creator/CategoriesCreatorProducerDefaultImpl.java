@@ -16,6 +16,6 @@ public class CategoriesCreatorProducerDefaultImpl implements CategoriesCreatorPr
 
     @Override
     public CategoriesCreator getCategoriesCreatorDefaultInstance(CategoriesRepository categoriesRepository) {
-        return (CategoriesCreator) ctx.getBean("catgoriesCreatorDefault", categoriesRepository);
+        return (CategoriesCreator) ctx.getBean("categoriesCreatorDefault", categoriesRepository);
     }
 }
