@@ -13,6 +13,6 @@ public class BalanceProducerDefaultImpl implements BalanceProducer {
 
     @Override
     public Balance getBalanceDefaultInstance(String departmentId, int quantity) {
-        return (Balance) ctx.getBean("balancesDefault", departmentId, quantity);
+        return (Balance) ctx.getBean("balanceDefault", departmentId, quantity);
     }
 }

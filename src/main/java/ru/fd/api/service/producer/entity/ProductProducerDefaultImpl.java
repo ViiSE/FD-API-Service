@@ -13,9 +13,9 @@ public class ProductProducerDefaultImpl implements ProductProducer {
 
     @Override
     public Product getProductSimpleInstance(
-            String id, String categoryId, String vendorId, String unitId, String name,
-            short tax, String articul, String code, boolean noReturn) {
-        return (Product) ctx.getBean("productSimple", id, categoryId, vendorId, unitId, name, tax, articul, code, noReturn);
+            String id, String categoryId, String vendorId, String unitId,
+            String name, short tax, String articul, String code) {
+        return (Product) ctx.getBean("productSimple", id, categoryId, vendorId, unitId, name, tax, articul, code);
     }
 
     @Override
@@ -39,12 +39,12 @@ public class ProductProducerDefaultImpl implements ProductProducer {
     }
 
     @Override
-    public Product getProductWithShortDescription(Product product, String shortDescription) {
+    public Product getProductWithShortDescriptionInstance(Product product, String shortDescription) {
         return (Product) ctx.getBean("productWithShortDescription", product, shortDescription);
     }
 
     @Override
-    public Product getProductWithFullDescription(Product product, String fullDescription) {
+    public Product getProductWithFullDescriptionInstance(Product product, String fullDescription) {
         return (Product) ctx.getBean("productWithFullDescription", product, fullDescription);
     }
 }

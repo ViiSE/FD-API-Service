@@ -5,11 +5,11 @@ import ru.fd.api.service.entity.*;
 public interface ProductProducer {
     Product getProductSimpleInstance(
             String id, String categoryId, String vendorId, String unitId, String name,
-            short tax, String articul, String code, boolean noReturn);
+            short tax, String articul, String code);
     Product getProductWithAttributesInstance(Product product, Attributes attributes);
     Product getProductWithBalancesInstance(Product product, Balances balances);
     Product getProductWithPricesInstance(Product product, Prices prices);
     Product getProductWithStatusesInstance(Product product, Statuses statuses);
-    Product getProductWithShortDescription(Product product, String shortDescription);
-    Product getProductWithFullDescription(Product product, String fullDescription);
+    Product getProductWithShortDescriptionInstance(Product product, String shortDescription);
+    Product getProductWithFullDescriptionInstance(Product product, String fullDescription);
 }
