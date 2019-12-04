@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProducerEntitySuite">
+
+    <test name="ProducerEntitySuiteIntegrationTest">
+        <classes>
+            <class name="ru.fd.api.service.producer.entity.BalanceProducerDefaultIntegrationTestNG">
+                <parameter name="departmentId" value="dep_1"/>
+                <parameter name="quantity" value="10"/>
+            </class>
+            <class name="ru.fd.api.service.producer.entity.ProductProducerDefaultIntegrationTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="categoryId" value="cat_1"/>
+                <parameter name="vendorId" value="ven_1"/>
+                <parameter name="unitId" value="un_1"/>
+                <parameter name="name" value="Item_1"/>
+                <parameter name="tax" value="20"/>
+                <parameter name="articul" value="art_1"/>
+                <parameter name="code" value="c_1"/>
+            </class>
+            <class name="ru.fd.api.service.producer.entity.UnitProducerDefaultIntegrationTestNG">
+                <parameter name="id" value="un_1"/>
+                <parameter name="name" value="unit_1"/>
+            </class>
+            <class name="ru.fd.api.service.producer.entity.DepartmentProducerDefaultIntegrationTestNG">
+                <parameter name="id" value="dep_1"/>
+                <parameter name="name" value="department_1"/>
+            </class>
+        </classes>
+    </test>
+
+</suite>
