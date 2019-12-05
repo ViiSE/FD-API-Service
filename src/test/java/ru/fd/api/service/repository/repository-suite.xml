@@ -5,6 +5,7 @@
 
     <test name="RepositorySuiteTest">
         <classes>
+           <!--     Unit tests     -->
             <class name="ru.fd.api.service.repository.ProductsRepositorySimpleTestNG"/>
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithAttributesTestNG"/>
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithBalancesTestNG"/>
@@ -18,6 +19,11 @@
             <class name="ru.fd.api.service.repository.DepartmentsRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.StatusesRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.UnitsRepositoryTestNG"/>
+
+            <!--     Integration tests     -->
+            <class name="ru.fd.api.service.repository.DepartmentsRepositoryDefaultIntegrationTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositorySimpleIntegrationTestNG"/>
+            <class name="ru.fd.api.service.repository.UnitsRepositoryDefaultIntegrationTestNG"/>
         </classes>
     </test>
 
