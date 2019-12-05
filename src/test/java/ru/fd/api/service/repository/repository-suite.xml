@@ -22,7 +22,7 @@
 
             <!--     Integration tests     -->
             <class name="ru.fd.api.service.repository.DepartmentsRepositoryDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.ProductsRepositorySimpleIntegrationTestNG"/>
+<!--            <class name="ru.fd.api.service.repository.ProductsRepositorySimpleIntegrationTestNG"/>-->
             <class name="ru.fd.api.service.repository.UnitsRepositoryDefaultIntegrationTestNG"/>
         </classes>
     </test>

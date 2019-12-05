@@ -82,22 +82,22 @@ public class JWTGenerator {
     }
 
     private static String readId() {
-        return readFile(path("JWTId"));
+        return readFile(path("jwtstore/JWTId"));
     }
 
     private static String readIssuer() {
-        return readFile(path("JWTIssuer"));
+        return readFile(path("jwtstore/JWTIssuer"));
     }
 
     private static String readSecret() {
-        return readFile(path("JWTSecret"));
+        return readFile(path("jwtstore/JWTSecret"));
     }
 
     private static String readSubject() {
-        return readFile(path("JWTSubject"));
+        return readFile(path("jwtstore/JWTSubject"));
     }
 
     private static long readTimeToLive() {
-        return Long.parseLong(readFile(path("JWTTimeToLive")));
+        return Long.parseLong(readFile(path("jwtstore/JWTTimeToLive")));
     }
 }
