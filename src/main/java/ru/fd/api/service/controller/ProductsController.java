@@ -43,6 +43,8 @@ public class ProductsController {
     @ResponseBody
     public ProductsPojo products(@RequestParam(required = false) List<String> with) {
         try {
+            if(with == null)
+                with = new ArrayList<>();
             ProductsCreator productsCreator = productsCrProducer.getProductsCreatorDefaultInstance(
                     productsRepoProsProducer.getProductsRepositoryProcessorsSingletonImpl(
                             productsRepoProducer, productProducer),
