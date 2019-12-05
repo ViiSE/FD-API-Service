@@ -20,7 +20,7 @@ public class ProductPojo {
     private String name;
     private String fullDescription = "";
     private String shortDescription = "";
-    @JsonInclude(JsonInclude.Include.NON_NULL) private boolean noReturn;
+//    @JsonInclude(JsonInclude.Include.NON_NULL) private boolean noReturn;
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
@@ -66,9 +66,9 @@ public class ProductPojo {
         this.shortDescription = Objects.requireNonNullElse(shortDescription, "");
     }
 
-    public void setNoReturn(boolean noReturn) {
-        this.noReturn = noReturn;
-    }
+//    public void setNoReturn(boolean noReturn) {
+//        this.noReturn = noReturn;
+//    }
 
     public void setPrices(PricesPojo prices) {
         this.prices = prices;
@@ -126,9 +126,9 @@ public class ProductPojo {
         return shortDescription;
     }
 
-    public boolean getNoReturn() {
-        return noReturn;
-    }
+//    public boolean getNoReturn() {
+//        return noReturn;
+//    }
 
     public List<PricePojo> getPrices() {
         if(prices != null)
