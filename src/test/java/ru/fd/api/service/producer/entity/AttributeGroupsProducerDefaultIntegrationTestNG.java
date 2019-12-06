@@ -22,11 +22,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.creator.AttributeGroupsCreator;
-import ru.fd.api.service.creator.AttributeGroupsCreatorDefaultImpl;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.entity.AttributeGroupsDefaultImpl;
-import ru.fd.api.service.repository.AttributeGroupsRepository;
 
 import java.util.ArrayList;
 

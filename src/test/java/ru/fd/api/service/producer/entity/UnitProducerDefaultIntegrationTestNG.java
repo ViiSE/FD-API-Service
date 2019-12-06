@@ -23,12 +23,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.StatusDefaultImpl;
-import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.entity.Unit;
 import ru.fd.api.service.entity.UnitDefaultImpl;
-
-import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;

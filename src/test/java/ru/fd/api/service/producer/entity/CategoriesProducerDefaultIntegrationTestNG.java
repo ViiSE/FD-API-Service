@@ -22,8 +22,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Attributes;
-import ru.fd.api.service.entity.AttributesDefaultImpl;
 import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.entity.CategoriesDefaultImpl;
 

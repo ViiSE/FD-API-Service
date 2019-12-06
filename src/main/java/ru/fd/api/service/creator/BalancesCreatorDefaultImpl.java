@@ -19,11 +19,9 @@ package ru.fd.api.service.creator;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.repository.AttributesRepository;
 import ru.fd.api.service.repository.BalancesRepository;
 
 @Service("balancesCreatorDefault")

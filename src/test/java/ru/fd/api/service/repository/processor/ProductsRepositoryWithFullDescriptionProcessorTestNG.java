@@ -26,7 +26,6 @@ import test.producer.entity.ProductProducerTestImpl;
 import test.producer.repository.ProductsRepositoryProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;
 import test.repository.ProductsRepositoryWithFullDescriptionTestImpl;
-import test.repository.ProductsRepositoryWithShortDescriptionTestImpl;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;

@@ -22,13 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.repository.CategoriesRepository;
 import ru.fd.api.service.repository.DepartmentsRepository;
-import test.repository.CategoriesRepositoryExceptionTestImpl;
-import test.repository.CategoriesRepositoryTestImpl;
 import test.repository.DepartmentsRepositoryExceptionTestImpl;
 import test.repository.DepartmentsRepositoryTestImpl;
 

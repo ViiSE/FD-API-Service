@@ -24,8 +24,6 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.creator.BalancesCreator;
 import ru.fd.api.service.creator.BalancesCreatorDefaultImpl;
-import ru.fd.api.service.creator.CategoriesCreator;
-import ru.fd.api.service.creator.CategoriesCreatorDefaultImpl;
 import ru.fd.api.service.repository.BalancesRepository;
 
 import static org.testng.Assert.assertTrue;

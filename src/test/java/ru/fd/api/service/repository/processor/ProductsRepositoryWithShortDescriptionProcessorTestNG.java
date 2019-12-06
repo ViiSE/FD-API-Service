@@ -25,7 +25,6 @@ import ru.fd.api.service.repository.ProductsRepository;
 import test.producer.entity.ProductProducerTestImpl;
 import test.producer.repository.ProductsRepositoryProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;
-import test.repository.ProductsRepositoryWithPricesTestImpl;
 import test.repository.ProductsRepositoryWithShortDescriptionTestImpl;
 
 import static org.testng.Assert.assertNotNull;

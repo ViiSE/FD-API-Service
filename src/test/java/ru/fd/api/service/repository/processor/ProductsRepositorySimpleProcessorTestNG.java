@@ -21,7 +21,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.ProductsRepository;
-import ru.fd.api.service.repository.ProductsRepositorySimpleImpl;
 import test.producer.repository.ProductsRepositoryProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;
 

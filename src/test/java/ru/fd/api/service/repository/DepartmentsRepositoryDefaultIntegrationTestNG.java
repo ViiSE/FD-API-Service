@@ -1,7 +1,5 @@
 package ru.fd.api.service.repository;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +7,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Departments;
-import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 
 import static org.testng.Assert.assertNotNull;

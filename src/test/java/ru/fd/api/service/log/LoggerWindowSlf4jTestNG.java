@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.time.CurrentDateTime;
 import test.producer.time.CurrentDateTimeProducerTestImpl;
 
-import static test.message.TestMessage.*;
+import static test.message.TestMessage.testBegin;
 
 public class LoggerWindowSlf4jTestNG {
 

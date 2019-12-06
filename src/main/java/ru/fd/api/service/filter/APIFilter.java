@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.filter;
 
-import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
@@ -26,11 +25,7 @@ import org.springframework.stereotype.Component;
 import ru.fd.api.service.log.LoggerService;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
-import java.util.Enumeration;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)

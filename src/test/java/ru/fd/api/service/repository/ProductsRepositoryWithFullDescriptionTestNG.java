@@ -2,7 +2,9 @@ package ru.fd.api.service.repository;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.ProductWithFullDescriptionImpl;
+import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import test.producer.entity.ProductProducerTestImpl;

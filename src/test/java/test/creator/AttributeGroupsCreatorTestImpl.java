@@ -1,8 +1,10 @@
 package test.creator;
 
 import ru.fd.api.service.creator.AttributeGroupsCreator;
-import ru.fd.api.service.entity.*;
-import ru.fd.api.service.exception.CreatorException;
+import ru.fd.api.service.entity.AttributeGroup;
+import ru.fd.api.service.entity.AttributeGroupDefaultImpl;
+import ru.fd.api.service.entity.AttributeGroups;
+import ru.fd.api.service.entity.AttributeGroupsDefaultImpl;
 
 import java.util.ArrayList;
 

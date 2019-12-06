@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.exception.RepositoryException;
-import test.repository.AttributeGroupsRepositoryTestImpl;
 import test.repository.AttributesRepositoryTestImpl;
 
 import static org.testng.Assert.assertTrue;

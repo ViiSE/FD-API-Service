@@ -1,6 +1,5 @@
 package ru.fd.api.service.repository.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;

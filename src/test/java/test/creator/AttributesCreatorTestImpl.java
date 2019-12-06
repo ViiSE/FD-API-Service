@@ -1,7 +1,10 @@
 package test.creator;
 
 import ru.fd.api.service.creator.AttributesCreator;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Attributes;
+import ru.fd.api.service.entity.ProductAttribute;
+import ru.fd.api.service.entity.ProductAttributeDefaultImpl;
+import ru.fd.api.service.entity.ProductAttributesDefaultImpl;
 import ru.fd.api.service.exception.CreatorException;
 
 import java.util.ArrayList;

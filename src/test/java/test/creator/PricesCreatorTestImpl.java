@@ -1,6 +1,9 @@
 package test.creator;
 
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Price;
+import ru.fd.api.service.entity.PriceDefaultImpl;
+import ru.fd.api.service.entity.Prices;
+import ru.fd.api.service.entity.PricesDefaultImpl;
 
 import java.util.ArrayList;
 

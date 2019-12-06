@@ -20,11 +20,8 @@ package ru.fd.api.service.producer.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Unit;
-import ru.fd.api.service.entity.UnitDefaultImpl;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.entity.UnitsDefaultImpl;
 

@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.repository;
 
-import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.RepositoryException;
 

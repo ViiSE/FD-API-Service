@@ -8,7 +8,8 @@ import ru.fd.api.service.data.ProductPojo;
 import test.creator.ProductCreatorTestImpl;
 import test.creator.ProductStatusesCreatorTestImpl;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 

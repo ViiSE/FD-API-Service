@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.AttributePojo;
 import ru.fd.api.service.data.AttributesPojo;
-import ru.fd.api.service.data.ProductAttributePojo;
-import ru.fd.api.service.data.ProductAttributesPojo;
 
 import java.util.List;
 import java.util.stream.Collectors;

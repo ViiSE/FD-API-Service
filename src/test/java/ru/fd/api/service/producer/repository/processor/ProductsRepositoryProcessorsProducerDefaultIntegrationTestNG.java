@@ -22,13 +22,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Departments;
-import ru.fd.api.service.entity.DepartmentsDefaultImpl;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
-import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsProducerSingletonTestNG;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsSingletonImpl;
-
-import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;

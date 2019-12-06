@@ -20,16 +20,11 @@ package ru.fd.api.service.producer.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Attributes;
-import ru.fd.api.service.entity.AttributesDefaultImpl;
 import ru.fd.api.service.entity.Balance;
 import ru.fd.api.service.entity.BalanceDefaultImpl;
-
-import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;

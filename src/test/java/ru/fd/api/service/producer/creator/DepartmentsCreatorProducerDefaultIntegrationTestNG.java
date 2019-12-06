@@ -22,8 +22,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.creator.CategoriesCreator;
-import ru.fd.api.service.creator.CategoriesCreatorDefaultImpl;
 import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.creator.DepartmentsCreatorDefaultImpl;
 import ru.fd.api.service.repository.DepartmentsRepository;

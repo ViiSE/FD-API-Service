@@ -3,7 +3,7 @@ package test.producer.repository;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.ProductsRepository;
-import test.repository.*;
+import test.repository.ProductsRepositoryWithAttributesExceptionTestImpl;
 
 public class ProductsRepositoryProducerExceptionTestImpl implements ProductsRepositoryProducer {
 

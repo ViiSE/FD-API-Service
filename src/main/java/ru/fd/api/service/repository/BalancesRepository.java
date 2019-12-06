@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.repository;
 
-import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.exception.RepositoryException;
 

@@ -1,10 +1,10 @@
 package test.creator;
 
 import ru.fd.api.service.creator.StatusesCreator;
-import ru.fd.api.service.entity.Status;
 import ru.fd.api.service.entity.ProductStatusImpl;
-import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.entity.ProductStatusesImpl;
+import ru.fd.api.service.entity.Status;
+import ru.fd.api.service.entity.Statuses;
 
 import java.util.ArrayList;
 

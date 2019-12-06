@@ -3,7 +3,6 @@ package ru.fd.api.service.entity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.AttributePojo;
-import ru.fd.api.service.data.BalancePojo;
 
 @Component("attributeDefault")
 @Scope("prototype")

@@ -22,7 +22,6 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.ProductsRepository;
-import ru.fd.api.service.repository.ProductsRepositoryWithAttributesTestNG;
 import test.producer.entity.ProductProducerTestImpl;
 import test.producer.repository.ProductsRepositoryProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;

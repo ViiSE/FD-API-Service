@@ -1,6 +1,5 @@
 package test.repository;
 
-import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;

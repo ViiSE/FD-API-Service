@@ -1,6 +1,9 @@
 package test.repository;
 
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.BalanceDefaultImpl;
+import ru.fd.api.service.entity.Balances;
+import ru.fd.api.service.entity.BalancesDefaultImpl;
+import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepository;

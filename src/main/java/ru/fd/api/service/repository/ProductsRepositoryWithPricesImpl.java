@@ -3,21 +3,15 @@ package ru.fd.api.service.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ru.fd.api.service.entity.Price;
-import ru.fd.api.service.entity.Prices;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.PriceProducer;
 import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithPricesRowMapper;
-
-import java.util.Map;
 
 @Repository("productsRepositoryWithPrices")
 @Scope("prototype")

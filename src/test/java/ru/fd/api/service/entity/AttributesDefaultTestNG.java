@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.AttributesPojo;
-import ru.fd.api.service.data.ProductAttributesPojo;
 
 import java.util.ArrayList;
 

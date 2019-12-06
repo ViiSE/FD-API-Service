@@ -1,8 +1,10 @@
 package test.creator;
 
-import ru.fd.api.service.creator.CategoriesCreator;
 import ru.fd.api.service.creator.StatusesCreator;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Status;
+import ru.fd.api.service.entity.StatusDefaultImpl;
+import ru.fd.api.service.entity.Statuses;
+import ru.fd.api.service.entity.StatusesDefaultImpl;
 import ru.fd.api.service.exception.CreatorException;
 
 import java.util.ArrayList;

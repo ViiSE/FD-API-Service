@@ -21,12 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.AttributesProducer;
 import ru.fd.api.service.producer.entity.BalancesProducer;
-import ru.fd.api.service.repository.mapper.AttributesDefaultRowMapper;
 import ru.fd.api.service.repository.mapper.BalancesDefaultRowMapper;
 
 @Repository("balancesRepositoryDefault")

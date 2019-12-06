@@ -2,7 +2,6 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.ProductStatusPojo;
 import ru.fd.api.service.data.StatusPojo;
 
 @Component("statusDefault")

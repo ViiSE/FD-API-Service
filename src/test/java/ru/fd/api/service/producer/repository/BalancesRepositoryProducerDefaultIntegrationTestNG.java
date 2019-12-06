@@ -22,9 +22,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.producer.repository.BalancesRepositoryProducer;
-import ru.fd.api.service.repository.AttributeGroupsRepositoryDefaultImpl;
-import ru.fd.api.service.repository.AttributesRepository;
 import ru.fd.api.service.repository.BalancesRepository;
 import ru.fd.api.service.repository.BalancesRepositoryDefaultImpl;
 

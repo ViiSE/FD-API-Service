@@ -1,13 +1,10 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.entity.Balance;
 import ru.fd.api.service.entity.Balances;
-import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.producer.entity.BalanceProducer;
 import ru.fd.api.service.producer.entity.BalancesProducer;
-import ru.fd.api.service.producer.entity.ProductProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

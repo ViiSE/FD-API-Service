@@ -22,13 +22,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.entity.AttributeGroups;
-import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
-import ru.fd.api.service.producer.entity.StatusesProducer;
-import ru.fd.api.service.repository.StatusesRepository;
 import ru.fd.api.service.repository.mapper.AttributeGroupsDefaultRowMapper;
-import ru.fd.api.service.repository.mapper.StatusesDefaultRowMapper;
 
 @Repository("attributeGroupsRepositoryDefault")
 public class AttributeGroupsRepositoryDefaultImpl implements AttributeGroupsRepository {

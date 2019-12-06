@@ -1,9 +1,7 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.entity.Statuses;
-import ru.fd.api.service.producer.entity.DepartmentProducer;
 import ru.fd.api.service.producer.entity.StatusesProducer;
 
 import java.sql.ResultSet;

@@ -1,7 +1,6 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Attributes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -9,7 +9,6 @@ import ru.fd.api.service.data.ProductPojo;
 import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.*;
-import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 

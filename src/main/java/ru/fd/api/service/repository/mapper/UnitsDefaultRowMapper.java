@@ -18,10 +18,8 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.entity.Unit;
 import ru.fd.api.service.entity.Units;
-import ru.fd.api.service.producer.entity.StatusesProducer;
 import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
 

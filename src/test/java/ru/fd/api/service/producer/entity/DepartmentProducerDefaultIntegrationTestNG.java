@@ -23,8 +23,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Balance;
-import ru.fd.api.service.entity.BalanceDefaultImpl;
 import ru.fd.api.service.entity.Department;
 import ru.fd.api.service.entity.DepartmentDefaultImpl;
 

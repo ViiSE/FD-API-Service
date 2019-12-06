@@ -1,8 +1,10 @@
 package test.creator;
 
-import ru.fd.api.service.creator.CategoriesCreator;
 import ru.fd.api.service.creator.DepartmentsCreator;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Department;
+import ru.fd.api.service.entity.DepartmentDefaultImpl;
+import ru.fd.api.service.entity.Departments;
+import ru.fd.api.service.entity.DepartmentsDefaultImpl;
 import ru.fd.api.service.exception.CreatorException;
 
 import java.util.ArrayList;

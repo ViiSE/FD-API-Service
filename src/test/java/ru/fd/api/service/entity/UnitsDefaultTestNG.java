@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.StatusesPojo;
 import ru.fd.api.service.data.UnitsPojo;
 
 import java.util.ArrayList;
