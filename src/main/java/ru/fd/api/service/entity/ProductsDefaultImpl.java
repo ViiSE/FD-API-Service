@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.ProductPojo;
 import ru.fd.api.service.data.ProductsPojo;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Component("productsDefault")
@@ -20,10 +22,14 @@ public class ProductsDefaultImpl implements Products {
 
     @Override
     public Product findProductById(String id) {
-        return products.stream()
-                .filter(product -> product.id().equals(id))
-                .limit(1).collect(Collectors.toList())
-                .get(0);
+        try {
+            return products.stream()
+                    .filter(product -> product.id().equals(id))
+                    .limit(1).collect(Collectors.toList())
+                    .get(0);
+        } catch (IndexOutOfBoundsException ignore) {
+            return null;
+        }
     }
 
     @Override
@@ -38,5 +44,16 @@ public class ProductsDefaultImpl implements Products {
                 .map(product -> (ProductPojo) product.formForSend())
                 .collect(Collectors.toList());
         return new ProductsPojo(productPojos);
+    }
+
+
+    @Override
+    public Iterator<Product> iterator() {
+        return products.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Product> action) {
+        products.forEach(action);
     }
 }
