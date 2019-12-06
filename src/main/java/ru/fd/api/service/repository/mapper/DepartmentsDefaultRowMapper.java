@@ -25,12 +25,12 @@ public class DepartmentsDefaultRowMapper implements RowMapper<Departments> {
     @Override
     public Departments mapRow(ResultSet rs, int i) throws SQLException {
         List<Department> departments = new ArrayList<>();
-        while(rs.next()) {
+        do {
             String id = rs.getString("GID").trim();
             String name = rs.getString("NAME").trim();
 
             departments.add(departmentProducer.getDepartmentDefaultInstance(id, name));
-        }
+        } while(rs.next());
         return departmentsProducer.getDepartmentsDefaultInstance(departments);
     }
 }

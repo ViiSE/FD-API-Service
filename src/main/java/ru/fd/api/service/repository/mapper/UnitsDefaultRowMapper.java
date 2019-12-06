@@ -43,11 +43,11 @@ public class UnitsDefaultRowMapper implements RowMapper<Units> {
     @Override
     public Units mapRow(ResultSet rs, int i) throws SQLException {
         List<Unit> units = new ArrayList<>();
-        while(rs.next()) {
+        do {
             String id = rs.getString("OKEI").trim();
             String name = rs.getString("NAME").trim();
             units.add(unitProducer.getUnitDefaultInstance(id, name));
-        }
+        } while(rs.next());
         return unitsProducer.getUnitsDefaultInstance(units);
     }
 }

@@ -33,8 +33,9 @@ public class ProductsRepositorySimpleImpl implements ProductsRepository {
                     "LEFT JOIN Maker m on m.Kod = t.Maker\n" +
                     "LEFT JOIN Edism e on e.Name = t.Edism\n" +
                     "WHERE b.KodTree = 1\n" +
-                    "AND b.Owner = (Select bb.Kod From Branch bb Where bb.KodTree = 1 and bb.Owner = 0 and bb.KodLeaf = -1 and bb.Name = 'Товары')\n" +
-                    "ORDER BY 1 Collate pxw_cyrl", new ProductsSimpleRowMapper(productProducer));
+                    "AND b.Owner = (SELECT bb.Kod FROM Branch bb WHERE bb.KodTree = 1 AND bb.Owner = 0 AND bb.KodLeaf = -1 AND bb.Name = 'Товары')\n" +
+                    "AND exists (SELECT 1 FROM PriceTovarHI ph LEFT JOIN GetPrice(ph.price, ph.Tovar, cast('NOW' as date)) gp on 1=1 WHERE ph.Tovar = t.Kod AND coalesce(gp.Price, 0) <> 0)" +
+                    "ORDER BY 2", new ProductsSimpleRowMapper(productProducer));
         } catch (DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }
