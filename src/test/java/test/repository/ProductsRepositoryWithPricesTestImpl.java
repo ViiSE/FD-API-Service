@@ -30,16 +30,19 @@ public class ProductsRepositoryWithPricesTestImpl implements ProductsRepository 
             add(new PriceDefaultImpl("dep_id_66665", 140.45f));
         }});
 
-
         Map<String, Prices> pricesForProducts = new HashMap<>() {{
             put("id_1", prices1);
             put("id_2", prices2); }};
 
-        pricesForProducts.forEach((id, prices) -> {
-            Product product = products.findProductById(id);
-            if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithPricesInstance(product, prices));
-        });
+        products.forEach(product ->
+                products.decorateProduct(
+                        product.id(),
+                        productProducer.getProductWithPricesInstance(
+                                product,
+                                pricesForProducts.getOrDefault(
+                                        product.id(),
+                                        new PricesDefaultImpl(new ArrayList<>())))));
+
         return products;
     }
 }

@@ -32,10 +32,7 @@ public class ProductsRepositoryWithFullDescriptionTestNG {
             System.out.println("Products:");
             for(int i = 1; i < 10; i++) {
                 Product pr = products.findProductById("id_" + i);
-                if(i == 1 || i == 2 || i == 8 || i ==9)
-                    assertTrue(pr instanceof ProductWithFullDescriptionImpl, "Products is not with full description!");
-                else
-                    assertTrue(pr instanceof ProductSimpleImpl, "Products is not simple!");
+                assertTrue(pr instanceof ProductWithFullDescriptionImpl, "Products is not with full description!");
                 System.out.println(pr);
             }
         } catch (RepositoryException ex) {

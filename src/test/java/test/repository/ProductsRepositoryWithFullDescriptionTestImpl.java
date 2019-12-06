@@ -29,11 +29,12 @@ public class ProductsRepositoryWithFullDescriptionTestImpl implements ProductsRe
             put("id_8", "Full Description 8");
             put("id_9", "Full Description 9");}};
 
-        fullDescForProducts.forEach((id, fullDesc) -> {
-            Product product = products.findProductById(id);
-            if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithFullDescriptionInstance(product, fullDesc));
-        });
+        products.forEach(product -> products.decorateProduct(
+                product.id(),
+                productProducer.getProductWithFullDescriptionInstance(
+                        product,
+                        fullDescForProducts.getOrDefault(product.id(), ""))));
+
         return products;
     }
 }

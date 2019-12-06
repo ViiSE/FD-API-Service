@@ -32,10 +32,7 @@ public class ProductsRepositoryWithShortDescriptionTestNG {
             System.out.println("Products:");
             for(int i = 1; i < 10; i++) {
                 Product pr = products.findProductById("id_" + i);
-                if(i == 1 || i == 2 || i == 6 || i == 7)
-                    assertTrue(pr instanceof ProductWithShortDescriptionImpl, "Products is not with short description!");
-                else
-                    assertTrue(pr instanceof ProductSimpleImpl, "Products is not simple!");
+                assertTrue(pr instanceof ProductWithShortDescriptionImpl, "Products is not with short description!");
                 System.out.println(pr);
             }
         } catch (RepositoryException ex) {

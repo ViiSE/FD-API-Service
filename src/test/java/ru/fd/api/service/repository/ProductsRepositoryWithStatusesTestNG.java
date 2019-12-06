@@ -32,10 +32,7 @@ public class ProductsRepositoryWithStatusesTestNG {
             System.out.println("Products:");
             for(int i = 1; i < 10; i++) {
                 Product pr = products.findProductById("id_" + i);
-                if(i <= 4)
-                    assertTrue(pr instanceof ProductWithStatusesImpl, "Products is not with statuses!");
-                else
-                    assertTrue(pr instanceof ProductSimpleImpl, "Products is not simple!");
+                assertTrue(pr instanceof ProductWithStatusesImpl, "Products is not with statuses!");
                 System.out.println(pr);
             }
         } catch (RepositoryException ex) {

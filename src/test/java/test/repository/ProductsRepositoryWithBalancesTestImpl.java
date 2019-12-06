@@ -36,11 +36,13 @@ public class ProductsRepositoryWithBalancesTestImpl implements ProductsRepositor
             put("id_1", balances1);
             put("id_2", balances2); }};
 
-        balancesForProducts.forEach((id, balances) -> {
-            Product product = products.findProductById(id);
-            if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithBalancesInstance(product, balances));
-        });
+        products.forEach(product ->
+                products.decorateProduct(
+                        product.id(),
+                        productProducer.getProductWithBalancesInstance(
+                                product,
+                                balancesForProducts.getOrDefault(product.id(), new BalancesDefaultImpl(new ArrayList<>())))));
+
         return products;
     }
 }

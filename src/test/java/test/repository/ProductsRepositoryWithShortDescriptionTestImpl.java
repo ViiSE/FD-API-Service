@@ -28,11 +28,13 @@ public class ProductsRepositoryWithShortDescriptionTestImpl implements ProductsR
             put("id_6", "Sh desc 6");
             put("id_7", "Sh desc 7");}};
 
-        shortDescForProducts.forEach((id, shortDesc) -> {
-            Product product = products.findProductById(id);
-            if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithShortDescriptionInstance(product, shortDesc));
-        });
+        products.forEach(product ->
+                products.decorateProduct(
+                        product.id(),
+                        productProducer.getProductWithShortDescriptionInstance(
+                                product,
+                                shortDescForProducts.getOrDefault(product.id(), ""))));
+
         return products;
     }
 }

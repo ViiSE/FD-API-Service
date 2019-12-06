@@ -39,11 +39,15 @@ public class ProductsRepositoryWithStatusesTestImpl implements ProductsRepositor
             put("id_3", statuses2);
             put("id_4", statuses1); }};
 
-        statusesForProducts.forEach((id, statuses) -> {
-            Product product = products.findProductById(id);
-            if(product != null)
-                products.decorateProduct(id, productProducer.getProductWithStatusesInstance(product, statuses));
-        });
+        products.forEach(product ->
+                products.decorateProduct(
+                        product.id(),
+                        productProducer.getProductWithStatusesInstance(
+                                product,
+                                statusesForProducts.getOrDefault(
+                                        product.id(),
+                                        new StatusesDefaultImpl(new ArrayList<>())))));
+
         return products;
     }
 }
