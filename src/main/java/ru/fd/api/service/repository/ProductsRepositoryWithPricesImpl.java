@@ -39,7 +39,7 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepository {
 
     @Override
     public Products readProducts() throws RepositoryException {
-        int count = 1;
+        // FIXME: 06.12.2019 CHANGE SQL
         Products products = productsRepository.readProducts();
         for (Product product : products) {
             try {
@@ -67,7 +67,6 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepository {
                                 pricesProducer,
                                 productProducer));
                 products.decorateProduct(product.id(), productWithPrices);
-                ++count;
             } catch (DataAccessException ex) {
                 throw new RepositoryException(ex.getMessage(), ex.getCause());
             }

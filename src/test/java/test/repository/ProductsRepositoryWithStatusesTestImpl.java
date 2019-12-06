@@ -46,7 +46,7 @@ public class ProductsRepositoryWithStatusesTestImpl implements ProductsRepositor
                                 product,
                                 statusesForProducts.getOrDefault(
                                         product.id(),
-                                        new StatusesDefaultImpl(new ArrayList<>())))));
+                                        new ProductStatusesImpl(new ArrayList<>())))));
 
         return products;
     }

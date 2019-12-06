@@ -10,6 +10,7 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithAttributesRowMapper;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @Repository("productsRepositoryWithAttributes")
@@ -31,12 +32,16 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepository 
     public Products readProducts() throws RepositoryException {
         Products products = productsRepository.readProducts();
         Map<String, Attributes> attrForProducts = jdbcTemplate.queryForObject("SQL HERE", new ProductsWithAttributesRowMapper());
+
         if (attrForProducts != null) {
-            attrForProducts.forEach((id, attr) -> {
-                Product product = products.findProductById(id);
-                if(product != null)
-                    products.decorateProduct(id, productProducer.getProductWithAttributesInstance(product, attr));
-            });
+            products.forEach(product ->
+                    products.decorateProduct(
+                            product.id(),
+                            productProducer.getProductWithAttributesInstance(
+                                    product,
+                                    attrForProducts.getOrDefault(
+                                            product.id(),
+                                            new ProductAttributesDefaultImpl(new ArrayList<>())))));
         }
         return products;
     }

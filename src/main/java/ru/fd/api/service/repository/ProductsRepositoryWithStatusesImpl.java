@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ru.fd.api.service.entity.Product;
-import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.entity.Statuses;
+import ru.fd.api.service.entity.*;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithStatusesRowMapper;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @Repository("productsRepositoryWithStatuses")
@@ -34,11 +33,14 @@ public class ProductsRepositoryWithStatusesImpl implements ProductsRepository {
         Products products = productsRepository.readProducts();
         Map<String, Statuses> statusesForProducts = jdbcTemplate.queryForObject("SQL HERE", new ProductsWithStatusesRowMapper());
         if (statusesForProducts != null) {
-            statusesForProducts.forEach((id, statuses) -> {
-                Product product = products.findProductById(id);
-                if(product != null)
-                    products.decorateProduct(id, productProducer.getProductWithStatusesInstance(product, statuses));
-            });
+            products.forEach(product ->
+                    products.decorateProduct(
+                            product.id(),
+                            productProducer.getProductWithStatusesInstance(
+                                    product,
+                                    statusesForProducts.getOrDefault(
+                                            product.id(),
+                                            new ProductStatusesImpl(new ArrayList<>())))));
         }
         return products;
     }

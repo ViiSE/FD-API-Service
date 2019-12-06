@@ -45,7 +45,7 @@ public class ProductsRepositoryWithAttributesTestImpl implements ProductsReposit
                                 product,
                                 attrForProducts.getOrDefault(
                                         product.id(),
-                                        new AttributesDefaultImpl(new ArrayList<>())))));
+                                        new ProductAttributesDefaultImpl(new ArrayList<>())))));
 
             return products;
         } catch (CreatorException ignore) {

@@ -54,34 +54,35 @@ public class APIFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        Enumeration<String> headerNames = (request).getHeaderNames();
-
-        if (headerNames != null) {
-            while (headerNames.hasMoreElements()) {
-                String name = headerNames.nextElement();
-                if(name.equalsIgnoreCase("authorization")) {
-                    try {
-                        String token = (request).getHeader(name).replaceFirst("Bearer ", "");
-                        Claims claims = Jwts.parser()
-                                .setSigningKey(DatatypeConverter.parseBase64Binary(jwtSecret))
-                                .parseClaimsJws(token).getBody();
-                        if(claims.getId().equals(jwtId)                &&
-                                claims.getIssuer().equals(jwtIssuer)   &&
-                                claims.getSubject().equals(jwtSubject)) {
-                            filterChain.doFilter(servletRequest, servletResponse);
-                        }
-                    } catch (ExpiredJwtException |
-                            UnsupportedJwtException |
-                            MalformedJwtException |
-                            SignatureException |
-                            IllegalArgumentException ex) {
-                        logger.error(APIFilter.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
-                    }
-                }
-            }
-        } else
-            logger.error(APIFilter.class, "Http header is null");
+//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//        HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        Enumeration<String> headerNames = (request).getHeaderNames();
+//
+//        if(headerNames != null) {
+//            while (headerNames.hasMoreElements()) {
+//                String name = headerNames.nextElement();
+//                if(name.equalsIgnoreCase("authorization")) {
+//                    try {
+//                        String token = (request).getHeader(name).replaceFirst("Bearer ", "");
+//                        Claims claims = Jwts.parser()
+//                                .setSigningKey(DatatypeConverter.parseBase64Binary(jwtSecret))
+//                                .parseClaimsJws(token).getBody();
+//                        if(claims.getId().equals(jwtId)                &&
+//                                claims.getIssuer().equals(jwtIssuer)   &&
+//                                claims.getSubject().equals(jwtSubject)) {
+//                            filterChain.doFilter(servletRequest, servletResponse);
+//                        }
+//                    } catch (ExpiredJwtException |
+//                            UnsupportedJwtException |
+//                            MalformedJwtException |
+//                            SignatureException |
+//                            IllegalArgumentException ex) {
+//                        logger.error(APIFilter.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+//                    }
+//                }
+//            }
+//        } else
+//            logger.error(APIFilter.class, "Http header is null");
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 }
