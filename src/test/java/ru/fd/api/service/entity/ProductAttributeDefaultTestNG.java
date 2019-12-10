@@ -24,7 +24,6 @@ public class ProductAttributeDefaultTestNG {
     public void setUpClass(String attributeId, String value) {
         assertNotNull(attributeId, "Attribute ID cannot be null!");
         assertFalse(attributeId.isEmpty(), "Attribute ID is empty!");
-
         assertNotNull(value, "Value cannot be null!");
         assertFalse(value.isEmpty(), "Value is empty!");
 
