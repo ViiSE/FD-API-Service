@@ -17,13 +17,13 @@ public class ProductsRepositoryProcessorsNotSingletonImpl implements ProductsRep
 
     public ProductsRepositoryProcessorsNotSingletonImpl(
             ProductsRepositoryProducer prodsRepoProducer, ProductProducer prodProducer) {
-        processors.put("simple", new ProductsRepositorySimpleProcessorImpl(prodsRepoProducer));
-        processors.put("attributes", new ProductsRepositoryWithAttributesProcessorImpl(prodsRepoProducer, prodProducer));
-        processors.put("balances", new ProductsRepositoryWithBalancesProcessorImpl(prodsRepoProducer, prodProducer));
-        processors.put("prices", new ProductsRepositoryWithPricesProcessorImpl(prodsRepoProducer, prodProducer));
-        processors.put("statuses", new ProductsRepositoryWithStatusesProcessorImpl(prodsRepoProducer, prodProducer));
-        processors.put("shortDescriptions", new ProductsRepositoryWithShortDescriptionProcessorImpl(prodsRepoProducer, prodProducer));
-        processors.put("fullDescriptions", new ProductsRepositoryWithFullDescriptionProcessorImpl(prodsRepoProducer, prodProducer));
+        processors.put("simple", new ProductsRepositorySimpleProcessorImpl(prodsRepoProducer, null, null));
+        processors.put("attributes", new ProductsRepositoryWithAttributesProcessorImpl(prodsRepoProducer, prodProducer, null));
+        processors.put("balances", new ProductsRepositoryWithBalancesProcessorImpl(prodsRepoProducer, prodProducer, null, null, null));
+        processors.put("prices", new ProductsRepositoryWithPricesProcessorImpl(prodsRepoProducer, prodProducer, null, null, null));
+        processors.put("statuses", new ProductsRepositoryWithStatusesProcessorImpl(prodsRepoProducer, prodProducer, null));
+        processors.put("shortDescriptions", new ProductsRepositoryWithShortDescriptionProcessorImpl(prodsRepoProducer, prodProducer, null));
+        processors.put("fullDescriptions", new ProductsRepositoryWithFullDescriptionProcessorImpl(prodsRepoProducer, prodProducer, null));
     }
 
     @Override

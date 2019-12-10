@@ -29,7 +29,7 @@ public class TestMessage {
         END {
             @Override
             public String toString() { return "END"; }
-        };
+        }
     }
     
     private static void printTestMessage(String className, String methodName, IDENTIFY identify) {
