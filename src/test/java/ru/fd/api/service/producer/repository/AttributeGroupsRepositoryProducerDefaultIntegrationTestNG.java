@@ -24,6 +24,8 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.repository.AttributeGroupsRepository;
 import ru.fd.api.service.repository.AttributeGroupsRepositoryDefaultImpl;
+import ru.fd.api.service.AttributeGroupsService;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
@@ -32,15 +34,23 @@ import static test.message.TestMessage.testEnd;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class AttributeGroupsRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private AttributeGroupsRepositoryProducer attributeGroupsRepositoryProducer;
+    @Autowired private AttributeGroupsRepositoryProducer attributeGroupsRepositoryProducer;
+    @Autowired private AttributeGroupsService attributeGroupsService;
+    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
 
     @Test
     public void getAttributeGroupsRepositoryDefaultInstance() {
         testBegin("AttributeGroupsRepositoryProducerDefault", "getAttributeGroupsRepositoryDefaultInstance()");
 
-        AttributeGroupsRepository attrGrRepo =
-                attributeGroupsRepositoryProducer.getAttributeGroupsRepositoryDefaultInstance();
+        AttributeGroupsRepository attrGrRepo = attributeGroupsService.attributeGroupsRepositoryProducer()
+                .getAttributeGroupsRepositoryDefaultInstance(
+                        attributeGroupsService.attributeGroupProducer(),
+                        attributeGroupsService.attributeGroupsProducer(),
+                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
+                attributeGroupsRepositoryProducer.getAttributeGroupsRepositoryDefaultInstance(
+                        attributeGroupsService.attributeGroupProducer(),
+                        attributeGroupsService.attributeGroupsProducer(),
+                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
         assertTrue(attrGrRepo instanceof AttributeGroupsRepositoryDefaultImpl,
                 "AttributeGroupsRepository: not a valid type!");
         System.out.println("Instance: " + attrGrRepo);

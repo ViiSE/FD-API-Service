@@ -39,7 +39,10 @@ public class UnitsRepositoryProducerDefaultIntegrationTestNG extends AbstractTes
     public void getUnitsRepositoryDefaultInstance() {
         testBegin("UnitsRepositoryProducerDefault", "getUnitsRepositoryDefaultInstance()");
 
-        UnitsRepository unRepo = unitsRepositoryProducer.getUnitsRepositoryDefaultInstance();
+        UnitsRepository unRepo = unitsRepositoryProducer.getUnitsRepositoryDefaultInstance(
+                null,
+                null,
+                null);
         assertTrue(unRepo instanceof UnitsRepositoryDefaultImpl,"UnitsRepository: not a valid type!");
         System.out.println("Instance: " + unRepo);
 

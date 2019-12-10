@@ -24,6 +24,8 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.repository.CategoriesRepository;
 import ru.fd.api.service.repository.CategoriesRepositoryDefaultImpl;
+import ru.fd.api.service.CategoriesService;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
@@ -32,14 +34,18 @@ import static test.message.TestMessage.testEnd;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class CategoriesRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private CategoriesRepositoryProducer categoriesRepositoryProducer;
+    @Autowired private CategoriesService categoriesService;
+    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
 
     @Test
     public void getCategoriesRepositoryDefaultInstance() {
         testBegin("CategoriesRepositoryProducerDefault", "getCategoriesRepositoryDefaultInstance()");
 
-        CategoriesRepository catRepo = categoriesRepositoryProducer.getCategoriesRepositoryDefaultInstance();
+        CategoriesRepository catRepo = categoriesService.categoriesRepositoryProducer()
+                .getCategoriesRepositoryDefaultInstance(
+                        categoriesService.categoryProducer(),
+                        categoriesService.categoriesProducer(),
+                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
         assertTrue(catRepo instanceof CategoriesRepositoryDefaultImpl,"CategoriesRepository: not a valid type!");
         System.out.println("Instance: " + catRepo);
 

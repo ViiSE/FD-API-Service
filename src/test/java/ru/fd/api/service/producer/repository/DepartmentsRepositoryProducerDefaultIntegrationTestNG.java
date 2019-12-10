@@ -24,6 +24,8 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.repository.DepartmentsRepository;
 import ru.fd.api.service.repository.DepartmentsRepositoryDefaultImpl;
+import ru.fd.api.service.DepartmentsService;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
@@ -32,14 +34,19 @@ import static test.message.TestMessage.testEnd;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class DepartmentsRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private DepartmentsRepositoryProducer departmentsRepositoryProducer;
+    @Autowired private DepartmentsRepositoryProducer departmentsRepositoryProducer;
+    @Autowired private DepartmentsService departmentsService;
+    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
 
     @Test
     public void getDepartmentsRepositoryDefaultInstance() {
         testBegin("DepartmentsRepositoryProducerDefault", "getDepartmentsRepositoryDefaultInstance()");
 
-        DepartmentsRepository depRepo = departmentsRepositoryProducer.getDepartmentsRepositoryDefaultInstance();
+        DepartmentsRepository depRepo = departmentsService.departmentsRepositoryProducer()
+                .getDepartmentsRepositoryDefaultInstance(
+                        departmentsService.departmentProducer(),
+                        departmentsService.departmentsProducer(),
+                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
         assertTrue(depRepo instanceof DepartmentsRepositoryDefaultImpl,"DepartmentsRepository: not a valid type!");
         System.out.println("Instance: " + depRepo);
 

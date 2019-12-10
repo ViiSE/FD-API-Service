@@ -40,7 +40,14 @@ public class ProductsRepositoryProcessorsProducerDefaultIntegrationTestNG extend
         testBegin("ProductsRepositoryProcessorsProducerDefault", "getProductsRepositoryProcessorsSingletonImpl()");
 
         ProductsRepositoryProcessors prRepoPros = productsRepositoryProcessorsProducer
-                .getProductsRepositoryProcessorsSingletonImpl(null,null);
+                .getProductsRepositoryProcessorsSingletonImpl(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null);
         assertTrue(prRepoPros instanceof ProductsRepositoryProcessorsSingletonImpl,
                 "ProductsRepositoryProcessors: not a valid type!");
         System.out.println("Instance: " + prRepoPros);

@@ -39,7 +39,10 @@ public class StatusesRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getStatusesRepositoryDefaultInstance() {
         testBegin("StatusesRepositoryProducerDefault", "getStatusesRepositoryDefaultInstance()");
 
-        StatusesRepository stRepo = statusesRepositoryProducer.getStatusesRepositoryDefaultInstance();
+        StatusesRepository stRepo = statusesRepositoryProducer.getStatusesRepositoryDefaultInstance(
+                null,
+                null,
+                null);
         assertTrue(stRepo instanceof StatusesRepositoryDefaultImpl,"StatusesRepository: not a valid type!");
         System.out.println("Instance: " + stRepo);
 

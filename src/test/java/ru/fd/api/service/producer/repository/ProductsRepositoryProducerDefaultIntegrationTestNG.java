@@ -46,7 +46,7 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositorySimpleInstance() {
         testMethod("getProductsRepositorySimpleInstance()");
 
-        prRepo = productsRepositoryProducer.getProductsRepositorySimpleInstance();
+        prRepo = productsRepositoryProducer.getProductsRepositorySimpleInstance(null, null);
         assertTrue(prRepo instanceof ProductsRepositorySimpleImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepo);
     }
@@ -55,7 +55,10 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithAttributesInstance() {
         testMethod("getProductsRepositoryWithAttributesInstance()");
 
-        ProductsRepository prRepoWA = productsRepositoryProducer.getProductsRepositoryWithAttributesInstance(prRepo ,null);
+        ProductsRepository prRepoWA = productsRepositoryProducer.getProductsRepositoryWithAttributesInstance(
+                prRepo ,
+                null,
+                null);
         assertTrue(prRepoWA instanceof ProductsRepositoryWithAttributesImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWA);
     }
@@ -64,7 +67,12 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithBalancesInstance() {
         testMethod("getProductsRepositoryWithBalancesInstance()");
 
-        ProductsRepository prRepoWB = productsRepositoryProducer.getProductsRepositoryWithBalancesInstance(prRepo ,null);
+        ProductsRepository prRepoWB = productsRepositoryProducer.getProductsRepositoryWithBalancesInstance(
+                prRepo ,
+                null,
+                null,
+                null,
+                null);
         assertTrue(prRepoWB instanceof ProductsRepositoryWithBalancesImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWB);
     }
@@ -73,7 +81,10 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithFullDescriptionInstance() {
         testMethod("getProductsRepositoryWithFullDescriptionInstance()");
 
-        ProductsRepository prRepoWFD = productsRepositoryProducer.getProductsRepositoryWithFullDescriptionInstance(prRepo ,null);
+        ProductsRepository prRepoWFD = productsRepositoryProducer.getProductsRepositoryWithFullDescriptionInstance(
+                prRepo,
+                null,
+                null);
         assertTrue(prRepoWFD instanceof ProductsRepositoryWithFullDescriptionImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWFD);
     }
@@ -82,7 +93,10 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithShortDescriptionInstance() {
         testMethod("getProductsRepositoryWithShortDescriptionInstance()");
 
-        ProductsRepository prRepoWSD = productsRepositoryProducer.getProductsRepositoryWithShortDescriptionInstance(prRepo ,null);
+        ProductsRepository prRepoWSD = productsRepositoryProducer.getProductsRepositoryWithShortDescriptionInstance(
+                prRepo,
+                null,
+                null);
         assertTrue(prRepoWSD instanceof ProductsRepositoryWithShortDescriptionImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWSD);
     }
@@ -91,7 +105,12 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithPricesInstance() {
         testMethod("getProductsRepositoryWithPricesInstance()");
 
-        ProductsRepository prRepoWP = productsRepositoryProducer.getProductsRepositoryWithPricesInstance(prRepo ,null);
+        ProductsRepository prRepoWP = productsRepositoryProducer.getProductsRepositoryWithPricesInstance(
+                prRepo ,
+                null,
+                null,
+                null,
+                null);
         assertTrue(prRepoWP instanceof ProductsRepositoryWithPricesImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWP);
     }
@@ -100,7 +119,10 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
     public void getProductsRepositoryWithStatusesInstance() {
         testMethod("getProductsRepositoryWithStatusesInstance()");
 
-        ProductsRepository prRepoWS = productsRepositoryProducer.getProductsRepositoryWithStatusesInstance(prRepo ,null);
+        ProductsRepository prRepoWS = productsRepositoryProducer.getProductsRepositoryWithStatusesInstance(
+                prRepo ,
+                null,
+                null);
         assertTrue(prRepoWS instanceof ProductsRepositoryWithStatusesImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWS);
     }
