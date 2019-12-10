@@ -14,8 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import static org.testng.Assert.*;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class LoggerFileDefaultTestNG {
 
@@ -30,59 +29,25 @@ public class LoggerFileDefaultTestNG {
         loggerFile = new LoggerFileDefaultImpl(logDirectory);
         curDateTime = new CurrentDateTimeProducerTestImpl().getCurrentDateTimeDefaultInstance();
 
-        testBegin("LoggerFileDefault", "writeLogFile()");
+        testBegin("LoggerFileDefault");
     }
 
     @Test(priority = 1)
     public void writeLogFile_info() throws IOException {
-        loggerFile.writeLogFile(LogMessageType.INFO.stringValue(), curDateTime, "Test write log");
-        String fullFileName = logDirectory.directory() + "/log_" + curDateTime.dateLog() + ".txt";
-        File logFile = new File(fullFileName);
-        assertNotNull(logFile, "Log file is null!");
-        assertNotEquals(logFile.length(), 0, "Log File is empty!");
-        BufferedReader br = new BufferedReader(new FileReader(logFile));
-        boolean isTextFound = false;
-        String foundText = "";
-        String st;
-        while((st = br.readLine()) != null) {
-            if(st.contains("[" + curDateTime.dateWithDot()))
-                if(st.contains(LogMessageType.INFO.stringValue() + ": Test write log")) {
-                    isTextFound = true;
-                    foundText = st;
-                    break;
-                }
-        }
-
-        if(isTextFound)
-            System.out.println("Text in log file " + logFile.getName() + ": " + foundText);
+        testMethod("writeLogFile() [info]");
+        test(LogMessageType.INFO.stringValue());
     }
 
     @Test(priority = 2)
     public void writeLogFile_error() throws IOException {
-        loggerFile.writeLogFile(LogMessageType.ERROR.stringValue(), curDateTime, "Test write log");
-        String fullFileName = logDirectory.directory() + "/log_" + curDateTime.dateLog() + ".txt";
-        File logFile = new File(fullFileName);
-        assertNotNull(logFile, "Log file is null!");
-        assertNotEquals(logFile.length(), 0, "Log File is empty!");
-        BufferedReader br = new BufferedReader(new FileReader(logFile));
-        boolean isTextFound = false;
-        String foundText = "";
-        String st;
-        while((st = br.readLine()) != null) {
-            if(st.contains("[" + curDateTime.dateWithDot()))
-                if(st.contains(LogMessageType.ERROR.stringValue() + ": Test write log")) {
-                    isTextFound = true;
-                    foundText = st;
-                    break;
-                }
-        }
-
-        if(isTextFound)
-            System.out.println("Text in log file " + logFile.getName() + ": " + foundText);
+        testMethod("writeLogFile() [error]");
+        test(LogMessageType.ERROR.stringValue());
     }
 
     @Test(priority = 3)
     public void writeLogFile_after_write_info_and_error() throws IOException {
+        testMethod("writeLogFile() [after write info and error]");
+
         File logFile = createAndCheckFile();
         BufferedReader br = new BufferedReader(new FileReader(logFile));
 
@@ -90,8 +55,9 @@ public class LoggerFileDefaultTestNG {
         String st;
         while((st = br.readLine()) != null)
                 foundText.append(st).append("\n");
-        assertTrue((foundText.toString().contains(LogMessageType.ERROR.stringValue() + ": Test write log") &&
-                            foundText.toString().contains(LogMessageType.INFO.stringValue() + ": Test write log")),
+        System.out.println(foundText.toString());
+        assertTrue(foundText.toString().contains(LogMessageType.INFO.stringValue() + ": Test write log") &&
+                foundText.toString().contains(LogMessageType.ERROR.stringValue() + ": Test write log"),
                 "File not contains records!");
         System.out.println("Text in log file " + logFile.getName() + ": ");
         System.out.println(foundText);
@@ -99,6 +65,8 @@ public class LoggerFileDefaultTestNG {
 
     @Test(priority = 4)
     public void writeLogFile_directory_not_found() {
+        testMethod("writeLogFile() [directory not found]");
+
         LogDirectory logDirectory = new LogDirectoryExceptionTestImpl();
         LoggerFile exLoggerFile = new LoggerFileDefaultImpl(logDirectory);
         exLoggerFile.writeLogFile(LogMessageType.INFO.stringValue(), curDateTime, "Exception!");
@@ -111,6 +79,23 @@ public class LoggerFileDefaultTestNG {
         if(logFile.delete())
             System.out.println("File " + logFile.getName() + " is delete");
         testEnd("LoggerFileDefault", "writeLogFile()");
+    }
+
+    private void test(String messageType) throws IOException {
+        loggerFile.writeLogFile(messageType, curDateTime, "Test write log");
+        File logFile = createAndCheckFile();
+        BufferedReader br = new BufferedReader(new FileReader(logFile));
+        boolean isTextFound = false;
+        String foundText = "";
+        String st;
+        while((st = br.readLine()) != null) {
+            if(st.contains("[" + curDateTime.dateWithDot()))
+                if(st.contains(LogMessageType.INFO.stringValue() + ": Test write log")) {
+                    isTextFound = true;
+                    foundText = st;
+                    break;
+                }
+        }
     }
 
     private File createAndCheckFile() {
