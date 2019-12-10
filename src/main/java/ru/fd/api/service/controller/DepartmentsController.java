@@ -8,8 +8,8 @@ import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
-import ru.fd.api.service.service.DepartmentsService;
-import ru.fd.api.service.service.SQLQueryCreatorService;
+import ru.fd.api.service.DepartmentsService;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 

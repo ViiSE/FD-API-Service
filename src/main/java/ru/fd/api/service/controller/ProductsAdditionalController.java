@@ -27,13 +27,11 @@ import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
 import ru.fd.api.service.producer.creator.AttributesCreatorProducer;
-import ru.fd.api.service.producer.creator.CategoriesCreatorProducer;
 import ru.fd.api.service.producer.repository.AttributesRepositoryProducer;
-import ru.fd.api.service.producer.repository.CategoriesRepositoryProducer;
-import ru.fd.api.service.service.AttributeGroupsService;
-import ru.fd.api.service.service.CategoriesService;
-import ru.fd.api.service.service.StatusesService;
-import ru.fd.api.service.service.UnitsService;
+import ru.fd.api.service.AttributeGroupsService;
+import ru.fd.api.service.CategoriesService;
+import ru.fd.api.service.StatusesService;
+import ru.fd.api.service.UnitsService;
 
 import java.util.ArrayList;
 

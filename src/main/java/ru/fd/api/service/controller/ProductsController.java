@@ -13,8 +13,8 @@ import ru.fd.api.service.producer.entity.BalanceProducer;
 import ru.fd.api.service.producer.entity.BalancesProducer;
 import ru.fd.api.service.producer.entity.PriceProducer;
 import ru.fd.api.service.producer.entity.PricesProducer;
-import ru.fd.api.service.service.ProductsService;
-import ru.fd.api.service.service.SQLQueryCreatorService;
+import ru.fd.api.service.ProductsService;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 import java.util.List;
