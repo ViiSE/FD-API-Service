@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -49,11 +50,7 @@ public class ProductsCreatorTestNG {
     @BeforeClass
     public void setUpClass() {
         with = new ArrayList<>();
-        ProductsRepositoryProducer productsRepoProducer = new ProductsRepositoryProducerTestImpl();
-        ProductProducer productProducer = new ProductProducerTestImpl();
-        ProductsRepositoryProcessors repoProcessors =
-                new ProductsRepositoryProcessorsSingletonImpl(productsRepoProducer, productProducer);
-        productsCreator = new ProductsCreatorDefaultImpl(repoProcessors, with);
+        createProductsCreator();
         testBegin("ProductsCreator");
     }
 
@@ -73,11 +70,7 @@ public class ProductsCreatorTestNG {
 
         with.add("attributes");
         with.add("statuses");
-        ProductsRepositoryProducer productsRepoProducer = new ProductsRepositoryProducerTestImpl();
-        ProductProducer productProducer = new ProductProducerTestImpl();
-        ProductsRepositoryProcessors repoProcessors =
-                new ProductsRepositoryProcessorsSingletonImpl(productsRepoProducer, productProducer);
-        productsCreator = new ProductsCreatorDefaultImpl(repoProcessors, with);
+        createProductsCreator();
 
         Products products = productsCreator.create();
         assertNotNull(products, "Products is null!");
@@ -104,5 +97,20 @@ public class ProductsCreatorTestNG {
     @AfterClass
     public void teardownClass() {
         testEnd("ProductsCreator");
+    }
+
+    private void createProductsCreator() {
+        ProductsRepositoryProducer productsRepoProducer = new ProductsRepositoryProducerTestImpl();
+        ProductProducer productProducer = new ProductProducerTestImpl();
+        ProductsRepositoryProcessors repoProcessors =
+                new ProductsRepositoryProcessorsSingletonImpl(
+                        productsRepoProducer,
+                        productProducer,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null);
+        productsCreator = new ProductsCreatorDefaultImpl(repoProcessors, with);
     }
 }
