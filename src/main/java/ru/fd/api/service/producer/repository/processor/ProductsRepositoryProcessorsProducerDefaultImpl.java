@@ -20,7 +20,8 @@ package ru.fd.api.service.producer.repository.processor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
 
@@ -32,8 +33,21 @@ public class ProductsRepositoryProcessorsProducerDefaultImpl implements Products
 
     @Override
     public ProductsRepositoryProcessors getProductsRepositoryProcessorsSingletonImpl(
-            ProductsRepositoryProducer prodsRepoProducer, ProductProducer prodProducer) {
-        return (ProductsRepositoryProcessors)
-                ctx.getBean("productsRepositoryProcessorsSingleton", prodsRepoProducer, prodProducer);
+            ProductsRepositoryProducer prodsRepoProducer,
+            ProductProducer prodProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            PriceProducer priceProducer,
+            PricesProducer pricesProducer) {
+        return (ProductsRepositoryProcessors) ctx.getBean(
+                "productsRepositoryProcessorsSingleton",
+                prodsRepoProducer,
+                prodProducer,
+                sqlQueryCreator,
+                balanceProducer,
+                balancesProducer,
+                priceProducer,
+                pricesProducer);
     }
 }

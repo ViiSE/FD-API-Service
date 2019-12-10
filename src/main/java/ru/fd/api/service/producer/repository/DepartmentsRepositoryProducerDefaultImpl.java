@@ -20,6 +20,12 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.database.SQLReader;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
+import ru.fd.api.service.producer.entity.DepartmentProducer;
+import ru.fd.api.service.producer.entity.DepartmentsProducer;
 import ru.fd.api.service.repository.DepartmentsRepository;
 
 @Service("departmentsRepositoryProducerDefault")
@@ -29,7 +35,14 @@ public class DepartmentsRepositoryProducerDefaultImpl implements DepartmentsRepo
     private ApplicationContext ctx;
 
     @Override
-    public DepartmentsRepository getDepartmentsRepositoryDefaultInstance() {
-        return ctx.getBean("departmentsRepositoryDefault", DepartmentsRepository.class);
+    public DepartmentsRepository getDepartmentsRepositoryDefaultInstance(
+            DepartmentProducer departmentProducer,
+            DepartmentsProducer departmentsProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (DepartmentsRepository) ctx.getBean(
+                "departmentsRepositoryDefault",
+                departmentProducer,
+                departmentsProducer,
+                sqlQueryCreator);
     }
 }

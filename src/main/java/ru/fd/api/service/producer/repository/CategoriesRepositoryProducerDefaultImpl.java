@@ -20,6 +20,9 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.producer.entity.CategoriesProducer;
+import ru.fd.api.service.producer.entity.CategoryProducer;
 import ru.fd.api.service.repository.CategoriesRepository;
 
 @Service("categoriesRepositoryProducerDefault")
@@ -29,7 +32,14 @@ public class CategoriesRepositoryProducerDefaultImpl implements CategoriesReposi
     private ApplicationContext ctx;
 
     @Override
-    public CategoriesRepository getCategoriesRepositoryDefaultInstance() {
-        return ctx.getBean("categoriesRepositoryDefault", CategoriesRepository.class);
+    public CategoriesRepository getCategoriesRepositoryDefaultInstance(
+            CategoryProducer categoryProducer,
+            CategoriesProducer categoriesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (CategoriesRepository) ctx.getBean(
+                "categoriesRepositoryDefault",
+                categoryProducer,
+                categoriesProducer,
+                sqlQueryCreator);
     }
 }

@@ -20,6 +20,11 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.repository.AttributeGroupsRepository;
 
 @Service("attributeGroupsRepositoryProducerDefault")
@@ -29,7 +34,14 @@ public class AttributeGroupsRepositoryProducerDefaultImpl implements AttributeGr
     private ApplicationContext ctx;
 
     @Override
-    public AttributeGroupsRepository getAttributeGroupsRepositoryDefaultInstance() {
-        return ctx.getBean("attributeGroupsRepositoryDefault", AttributeGroupsRepository.class);
+    public AttributeGroupsRepository getAttributeGroupsRepositoryDefaultInstance(
+            AttributeGroupProducer attributeGroupProducer,
+            AttributeGroupsProducer attributeGroupsProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (AttributeGroupsRepository) ctx.getBean(
+                "attributeGroupsRepositoryDefault",
+                attributeGroupProducer,
+                attributeGroupsProducer,
+                sqlQueryCreator);
     }
 }

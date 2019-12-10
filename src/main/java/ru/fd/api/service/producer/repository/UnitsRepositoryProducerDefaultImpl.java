@@ -20,6 +20,9 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.producer.entity.UnitProducer;
+import ru.fd.api.service.producer.entity.UnitsProducer;
 import ru.fd.api.service.repository.UnitsRepository;
 
 @Service("unitsRepositoryProducerDefault")
@@ -29,7 +32,14 @@ public class UnitsRepositoryProducerDefaultImpl implements UnitsRepositoryProduc
     private ApplicationContext ctx;
 
     @Override
-    public UnitsRepository getUnitsRepositoryDefaultInstance() {
-        return ctx.getBean("unitsRepositoryDefault", UnitsRepository.class);
+    public UnitsRepository getUnitsRepositoryDefaultInstance(
+            UnitProducer unitProducer,
+            UnitsProducer unitsProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (UnitsRepository) ctx.getBean(
+                "unitsRepositoryDefault",
+                unitProducer,
+                unitsProducer,
+                sqlQueryCreator);
     }
 }
