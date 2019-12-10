@@ -8,16 +8,16 @@ import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
-import ru.fd.api.service.producer.creator.DepartmentsCreatorProducer;
-import ru.fd.api.service.producer.repository.DepartmentsRepositoryProducer;
+import ru.fd.api.service.service.DepartmentsService;
+import ru.fd.api.service.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 
 @Controller
 public class DepartmentsController {
 
-    @Autowired private DepartmentsCreatorProducer departmentsCrProducer;
-    @Autowired private DepartmentsRepositoryProducer departmentsRepoProducer;
+    @Autowired private DepartmentsService departmentsService;
+    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
     @Autowired private LoggerService logger;
 
 
@@ -25,8 +25,13 @@ public class DepartmentsController {
     @ResponseBody
     public DepartmentsPojo departments() {
         try {
-            DepartmentsCreator departmentsCreator = departmentsCrProducer.getDepartmentsCreatorDefaultInstance(
-                    departmentsRepoProducer.getDepartmentsRepositoryDefaultInstance());
+            DepartmentsCreator departmentsCreator = departmentsService.departmentsCreatorProducer()
+                    .getDepartmentsCreatorDefaultInstance(
+                            departmentsService.departmentsRepositoryProducer()
+                                    .getDepartmentsRepositoryDefaultInstance(
+                                            departmentsService.departmentProducer(),
+                                            departmentsService.departmentsProducer(),
+                                            sqlQueryCreatorService.sqlQueryCreatorFromFileString()));
             DepartmentsPojo departmentsPojo = (DepartmentsPojo) departmentsCreator.create().formForSend();
             logger.info(DepartmentsController.class, "Site request departments");
             return departmentsPojo;
