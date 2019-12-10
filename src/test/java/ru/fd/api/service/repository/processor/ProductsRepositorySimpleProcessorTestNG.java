@@ -36,7 +36,7 @@ public class ProductsRepositorySimpleProcessorTestNG {
     @BeforeTest
     public void setUpClass() {
         ProductsRepositoryProducer prRepoProducer = new ProductsRepositoryProducerTestImpl();
-        processor = new ProductsRepositorySimpleProcessorImpl(prRepoProducer);
+        processor = new ProductsRepositorySimpleProcessorImpl(prRepoProducer, null, null);
     }
 
     @Test

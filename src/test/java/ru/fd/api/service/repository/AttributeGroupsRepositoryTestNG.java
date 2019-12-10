@@ -2,10 +2,14 @@ package ru.fd.api.service.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.AttributeGroupProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import test.repository.AttributeGroupsRepositoryTestImpl;
 
 import static org.testng.Assert.assertTrue;

@@ -37,7 +37,14 @@ public class ProductsRepositoryProcessorsProducerSingletonTestNG {
     public void setUpClass() {
         ProductsRepositoryProducer prRepoProducer = new ProductsRepositoryProducerTestImpl();
         ProductProducer productProducer = new ProductProducerTestImpl();
-        prRepoProcessors = new ProductsRepositoryProcessorsSingletonImpl(prRepoProducer, productProducer);
+        prRepoProcessors = new ProductsRepositoryProcessorsSingletonImpl(
+                prRepoProducer,
+                productProducer,
+                null,
+                null,
+                null,
+                null,
+                null);
         testBegin("ProductsRepositoryProcessorsSingleton");
     }
 

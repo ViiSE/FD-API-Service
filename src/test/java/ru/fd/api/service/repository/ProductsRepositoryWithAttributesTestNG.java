@@ -1,11 +1,15 @@
 package ru.fd.api.service.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.ProductWithAttributesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.AttributeGroupProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import test.producer.entity.ProductProducerTestImpl;
 import test.repository.ProductsRepositorySimpleTestImpl;

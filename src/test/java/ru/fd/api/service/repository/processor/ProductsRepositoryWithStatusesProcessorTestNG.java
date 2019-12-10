@@ -41,7 +41,7 @@ public class ProductsRepositoryWithStatusesProcessorTestNG {
     public void setUpClass() {
         ProductsRepositoryProducer prRepoProducer = new ProductsRepositoryProducerTestImpl();
         ProductProducer productProducer = new ProductProducerTestImpl();
-        processor = new ProductsRepositoryWithStatusesProcessorImpl(prRepoProducer, productProducer);
+        processor = new ProductsRepositoryWithStatusesProcessorImpl(prRepoProducer, productProducer, null);
         prRepoSimple = new ProductsRepositorySimpleTestImpl();
     }
 
