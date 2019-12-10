@@ -23,17 +23,20 @@ public class LoggerServiceDefaultImpl implements LoggerService {
 
     @Override
     public void info(Class<?> clazz, String message) {
-        loggerFile.writeLogFile(INFO.stringValue(), currentDateTime, formatString(clazz.getSimpleName(), message));
-        loggerWindow.printLog(INFO.stringValue(), currentDateTime, formatString(clazz.getSimpleName(), message));
+        log(INFO, clazz, message);
     }
 
     @Override
     public void error(Class<?> clazz, String message) {
-        loggerFile.writeLogFile(ERROR.stringValue(), currentDateTime, formatString(clazz.getSimpleName(), message));
-        loggerWindow.printLog(ERROR.stringValue(),currentDateTime, formatString(clazz.getSimpleName(), message));
+        log(ERROR, clazz, message);
     }
 
     private String formatString(String className, String message) {
         return String.format("{%s} : %s", className, message);
+    }
+
+    private void log(LogMessageType type, Class<?> clazz, String message) {
+        loggerFile.writeLogFile(type.stringValue(), currentDateTime, formatString(clazz.getSimpleName(), message));
+        loggerWindow.printLog(type.stringValue(), currentDateTime, formatString(clazz.getSimpleName(), message));
     }
 }
