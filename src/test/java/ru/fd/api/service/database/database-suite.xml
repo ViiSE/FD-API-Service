@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DatabaseSuite">
+
+    <test name="DatabaseSuiteTest">
+        <classes>
+            <class name="ru.fd.api.service.database.SQLReaderFromFileTestNG">
+                <parameter name="fileNameSuccess" value="test_success.sql"/>
+                <parameter name="fileNameFileNotFound" value="test_fail.sql"/>
+            </class>
+        </classes>
+    </test>
+
+</suite>
