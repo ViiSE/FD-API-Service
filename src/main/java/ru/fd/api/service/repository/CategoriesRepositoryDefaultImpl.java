@@ -18,28 +18,45 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Categories;
+import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.CategoriesProducer;
+import ru.fd.api.service.producer.entity.CategoryProducer;
 import ru.fd.api.service.repository.mapper.CategoriesDefaultRowMapper;
 
 @Repository("categoriesRepositoryDefault")
+@Scope("prototype")
 public class CategoriesRepositoryDefaultImpl implements CategoriesRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private CategoriesProducer categoriesProducer;
+    private final CategoryProducer categoryProducer;
+    private final CategoriesProducer categoriesProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
+
+    public CategoriesRepositoryDefaultImpl(
+            CategoryProducer categoryProducer,
+            CategoriesProducer categoriesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        this.categoryProducer = categoryProducer;
+        this.categoriesProducer = categoriesProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
+    }
 
     @Override
     public Categories readCategories() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject("SQL HERE", new CategoriesDefaultRowMapper(categoriesProducer));
-        } catch (DataAccessException ex) {
+            return jdbcTemplate.queryForObject(
+                    sqlQueryCreator.create("categories.sql").content(),
+                    new CategoriesDefaultRowMapper(categoryProducer, categoriesProducer));
+        } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }
     }

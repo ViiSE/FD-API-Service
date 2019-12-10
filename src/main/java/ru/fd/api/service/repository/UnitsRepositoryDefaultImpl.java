@@ -21,8 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Units;
+import ru.fd.api.service.exception.CreatorException;
+import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
 import ru.fd.api.service.repository.mapper.UnitsDefaultRowMapper;
@@ -33,16 +38,29 @@ public class UnitsRepositoryDefaultImpl implements UnitsRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired private UnitsProducer unitsProducer;
-    @Autowired private UnitProducer unitProducer;
+    private final UnitProducer unitProducer;
+    private final UnitsProducer unitsProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
+
+    public UnitsRepositoryDefaultImpl(
+            UnitProducer unitProducer,
+            UnitsProducer unitsProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        this.unitProducer = unitProducer;
+        this.unitsProducer = unitsProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
+    }
 
     @Override
     public Units readUnits() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT DISTINCT EE.NAME, EE.OKEI FROM EDISM E LEFT JOIN EDISM EE on EE.KOD = E.OWNER WHERE E.kod > 0",
+                    sqlQueryCreator.create("units.sql").content(),
                     new UnitsDefaultRowMapper(unitProducer, unitsProducer));
-        } catch (DataAccessException ex) {
+//            return jdbcTemplate.queryForObject(
+//                    "SELECT DISTINCT EE.NAME, EE.OKEI FROM EDISM E LEFT JOIN EDISM EE on EE.KOD = E.OWNER WHERE E.kod > 0",
+//                    new UnitsDefaultRowMapper(unitProducer, unitsProducer));
+        } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }
     }

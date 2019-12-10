@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.ProductStatusesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.entity.Statuses;
+import ru.fd.api.service.exception.CreatorException;
+import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithStatusesRowMapper;
 
@@ -23,26 +28,37 @@ public class ProductsRepositoryWithStatusesImpl implements ProductsRepository {
 
     private final ProductsRepository productsRepository;
     private final ProductProducer productProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
 
-    public ProductsRepositoryWithStatusesImpl(ProductsRepository productsRepository, ProductProducer productProducer) {
+    public ProductsRepositoryWithStatusesImpl(
+            ProductsRepository productsRepository,
+            ProductProducer productProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.productsRepository = productsRepository;
         this.productProducer = productProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
     }
 
     @Override
     public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
-        Map<String, Statuses> statusesForProducts = jdbcTemplate.queryForObject("SQL HERE", new ProductsWithStatusesRowMapper());
-        if (statusesForProducts != null) {
-            products.forEach(product ->
-                    products.decorateProduct(
-                            product.id(),
-                            productProducer.getProductWithStatusesInstance(
-                                    product,
-                                    statusesForProducts.getOrDefault(
-                                            product.id(),
-                                            new ProductStatusesImpl(new ArrayList<>())))));
+        try {
+            Products products = productsRepository.readProducts();
+            Map<String, Statuses> statusesForProducts = jdbcTemplate.queryForObject(
+                    sqlQueryCreator.create("products_with_statuses.sql").content(),
+                    new ProductsWithStatusesRowMapper());
+            if (statusesForProducts != null) {
+                products.forEach(product ->
+                        products.decorateProduct(
+                                product.id(),
+                                productProducer.getProductWithStatusesInstance(
+                                        product,
+                                        statusesForProducts.getOrDefault(
+                                                product.id(),
+                                                new ProductStatusesImpl(new ArrayList<>())))));
+            }
+            return products;
+        } catch (CreatorException ex) {
+            throw new RepositoryException(ex.getMessage(), ex.getCause());
         }
-        return products;
     }
 }

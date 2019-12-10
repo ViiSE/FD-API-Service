@@ -21,8 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.AttributeGroups;
+import ru.fd.api.service.exception.CreatorException;
+import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.repository.mapper.AttributeGroupsDefaultRowMapper;
 
@@ -32,14 +38,26 @@ public class AttributeGroupsRepositoryDefaultImpl implements AttributeGroupsRepo
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private AttributeGroupsProducer attributeGroupsProducer;
+    private final AttributeGroupProducer attributeGroupProducer;
+    private final AttributeGroupsProducer attributeGroupsProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
+
+    public AttributeGroupsRepositoryDefaultImpl(
+            AttributeGroupProducer attributeGroupProducer,
+            AttributeGroupsProducer attributeGroupsProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        this.attributeGroupProducer = attributeGroupProducer;
+        this.attributeGroupsProducer = attributeGroupsProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
+    }
 
     @Override
     public AttributeGroups readAttributeGroups() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject("SQL HERE", new AttributeGroupsDefaultRowMapper(attributeGroupsProducer));
-        } catch (DataAccessException ex) {
+            return jdbcTemplate.queryForObject(
+                    sqlQueryCreator.create("attribute_groups.sql").content(),
+                    new AttributeGroupsDefaultRowMapper(/*attributeGroupProducer,*/ attributeGroupsProducer));
+        } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }
     }

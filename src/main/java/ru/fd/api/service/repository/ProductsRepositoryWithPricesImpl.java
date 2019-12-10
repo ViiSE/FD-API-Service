@@ -5,9 +5,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.database.SQLReader;
+import ru.fd.api.service.entity.Price;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.database.SQLQueryProducer;
+import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.entity.PriceProducer;
 import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -20,15 +25,23 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired private PriceProducer priceProducer;
-    @Autowired private PricesProducer pricesProducer;
-
     private final ProductsRepository productsRepository;
     private final ProductProducer productProducer;
+    private final PriceProducer priceProducer;
+    private final PricesProducer pricesProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
 
-    public ProductsRepositoryWithPricesImpl(ProductsRepository productsRepository, ProductProducer productProducer) {
+    public ProductsRepositoryWithPricesImpl(
+            ProductsRepository productsRepository,
+            ProductProducer productProducer,
+            PriceProducer priceProducer,
+            PricesProducer pricesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.productsRepository = productsRepository;
         this.productProducer = productProducer;
+        this.priceProducer = priceProducer;
+        this.pricesProducer = pricesProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
     }
 
     @Override
