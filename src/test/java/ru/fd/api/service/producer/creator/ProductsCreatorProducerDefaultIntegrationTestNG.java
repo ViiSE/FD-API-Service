@@ -24,9 +24,10 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.creator.ProductsCreatorDefaultImpl;
-import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
+import ru.fd.api.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,11 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
     @Autowired private ProductsRepositoryProcessorsProducer productsRepoProsProducer;
     @Autowired private ProductsRepositoryProducer productsRepoProducer;
     @Autowired private ProductProducer productProducer;
+    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired private BalanceProducer balanceProducer;
+    @Autowired private BalancesProducer balancesProducer;
+    @Autowired private PriceProducer priceProducer;
+    @Autowired private PricesProducer pricesProducer;
 
     @Test
     public void getProductsCreatorDefaultInstance() {
@@ -50,7 +56,13 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
 
         ProductsCreator productsCreator = productsCreatorProducer.getProductsCreatorDefaultInstance(
                 productsRepoProsProducer.getProductsRepositoryProcessorsSingletonImpl(
-                        productsRepoProducer, productProducer),
+                        productsRepoProducer,
+                        productProducer,
+                        sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
+                        balanceProducer,
+                        balancesProducer,
+                        priceProducer,
+                        pricesProducer),
                 new ArrayList<>());
         assertTrue(productsCreator instanceof ProductsCreatorDefaultImpl, "ProductsCreator: not a valid type!");
         System.out.println("Instance: " + productsCreator);
