@@ -1,10 +1,6 @@
 package ru.fd.api.service.producer.repository;
 
-import ru.fd.api.service.database.SQLQuery;
 import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.database.SQLReader;
-import ru.fd.api.service.producer.database.SQLQueryProducer;
-import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.repository.ProductsRepository;
 
