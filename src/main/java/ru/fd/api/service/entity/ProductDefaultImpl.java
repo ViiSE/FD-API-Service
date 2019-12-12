@@ -36,6 +36,11 @@ public class ProductSimpleImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return 0;
+    }
+
+    @Override
     public Object formForSend() {
         ProductPojo productPojo = new ProductPojo();
         productPojo.setId(id);

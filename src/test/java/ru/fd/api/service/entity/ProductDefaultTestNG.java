@@ -26,10 +26,10 @@ public class ProductSimpleTestNG {
     private String code;
 
     @BeforeClass
-    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code"})
+    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code", "key"})
     public void setUpClass(
             String id, String categoryId, String vendorId, String unitId,
-            String name, short tax, String articul, String code) {
+            String name, short tax, String articul, String code, int key) {
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
@@ -53,7 +53,9 @@ public class ProductSimpleTestNG {
         assertNotNull(code, "Code cannot be null!");
         assertFalse(code.isEmpty(), "Code is empty!");
 
-        product = new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
+        assertFalse(key < 0, "Key is less than 0!");
+
+        product = new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, key);
         assertNotNull(product, "Product is null!");
 
         this.id = id;

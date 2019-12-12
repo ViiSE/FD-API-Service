@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.fd.api.service.producer.creator.AttributeGroupsCreatorProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
