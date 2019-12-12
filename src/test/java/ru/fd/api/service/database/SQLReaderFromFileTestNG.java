@@ -29,7 +29,6 @@ import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
 import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
