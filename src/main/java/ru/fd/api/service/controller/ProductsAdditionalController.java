@@ -21,6 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.fd.api.service.AttributeGroupsService;
+import ru.fd.api.service.CategoriesService;
+import ru.fd.api.service.StatusesService;
+import ru.fd.api.service.UnitsService;
 import ru.fd.api.service.creator.*;
 import ru.fd.api.service.data.*;
 import ru.fd.api.service.database.SQLQueryCreator;
@@ -28,10 +32,6 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
 import ru.fd.api.service.producer.creator.AttributesCreatorProducer;
 import ru.fd.api.service.producer.repository.AttributesRepositoryProducer;
-import ru.fd.api.service.AttributeGroupsService;
-import ru.fd.api.service.CategoriesService;
-import ru.fd.api.service.StatusesService;
-import ru.fd.api.service.UnitsService;
 
 import java.util.ArrayList;
 
@@ -48,8 +48,6 @@ public class ProductsAdditionalController {
     @Autowired private CategoriesService categoriesService;
 
     @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
-//    @Autowired private BalancesCreatorProducer balancesCrProducer;
-//    @Autowired private BalancesRepositoryProducer balancesRepoProducer;
 
     @Autowired private LoggerService logger;
 
@@ -143,19 +141,4 @@ public class ProductsAdditionalController {
             return new CategoriesPojo(new ArrayList<>());
         }
     }
-
-//    @GetMapping("/products/balances")
-//    @ResponseBody
-//    public BalancesPojo balances() {
-//        try {
-//            BalancesCreator balancesCreator = balancesCrProducer.getBalancesCreatorDefaultInstance(
-//                    balancesRepoProducer.getBalancesRepositoryDefaultInstance());
-//            BalancesPojo balancesPojo = (BalancesPojo) balancesCreator.create().formForSend();
-//            logger.info(ProductsController.class, "Site request balances");
-//            return balancesPojo;
-//        } catch (CreatorException ex) {
-//            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
-//            return new BalancesPojo(new ArrayList<>());
-//        }
-//    }
 }

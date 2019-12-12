@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.fd.api.service.DepartmentsService;
+import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
-import ru.fd.api.service.DepartmentsService;
-import ru.fd.api.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,6 @@ public class DepartmentsController {
     @Autowired private DepartmentsService departmentsService;
     @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
     @Autowired private LoggerService logger;
-
 
     @GetMapping("/departments")
     @ResponseBody
