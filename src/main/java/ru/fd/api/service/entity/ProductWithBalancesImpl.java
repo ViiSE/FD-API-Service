@@ -23,6 +23,11 @@ public class ProductWithBalancesImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         BalancesPojo balancesPojo = (BalancesPojo) balances.formForSend();
         ProductPojo productPojo = (ProductPojo) product.formForSend();

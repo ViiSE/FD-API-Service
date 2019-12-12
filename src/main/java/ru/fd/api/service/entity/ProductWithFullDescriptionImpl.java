@@ -22,6 +22,11 @@ public class ProductWithFullDescriptionImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         productPojo.setFullDescription(fullDescription);

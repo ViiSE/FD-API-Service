@@ -23,6 +23,11 @@ public class ProductWithStatusesImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         productPojo.setStatuses((ProductStatusesPojo)statuses.formForSend());

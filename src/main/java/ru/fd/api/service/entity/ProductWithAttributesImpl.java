@@ -23,6 +23,11 @@ public class ProductWithAttributesImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         ProductAttributesPojo attributesPojo = (ProductAttributesPojo) attributes.formForSend();
         ProductPojo productPojo = (ProductPojo) product.formForSend();

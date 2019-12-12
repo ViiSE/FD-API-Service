@@ -22,6 +22,11 @@ public class ProductWithShortDescriptionImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         productPojo.setShortDescription(shortDescription);

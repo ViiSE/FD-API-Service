@@ -23,6 +23,11 @@ public class ProductWithPricesImpl implements Product {
     }
 
     @Override
+    public int key() {
+        return product.key();
+    }
+
+    @Override
     public Object formForSend() {
         PricesPojo pricesPojo = (PricesPojo) prices.formForSend();
         ProductPojo productPojo = (ProductPojo) product.formForSend();
