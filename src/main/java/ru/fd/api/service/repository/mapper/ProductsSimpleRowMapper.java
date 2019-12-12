@@ -22,6 +22,7 @@ public class ProductsSimpleRowMapper implements RowMapper<Products> {
     @Override
     public Products mapRow(ResultSet rs, int i) throws SQLException {
         List<Product> products = new ArrayList<>();
+        int key = 0;
         do {
             String id = rs.getString("GIDTovar").trim();
             String categoryId = rs.getString("idCategory").trim();
@@ -33,15 +34,18 @@ public class ProductsSimpleRowMapper implements RowMapper<Products> {
             String code = rs.getString("tIdent").trim();
 
             products.add(productProducer.getProductSimpleInstance(
-                    id,
-                    categoryId,
-                    vendorId,
-                    unitId,
-                    name,
-                    tax,
-                    articul,
-                    code));
+                    productProducer.getProductDefaultInstance(
+                            id,
+                            categoryId,
+                            vendorId,
+                            unitId,
+                            name,
+                            tax,
+                            articul,
+                            code),
+                    key++));
+
         } while(rs.next());
-        return new ProductsDefaultImpl(products);
+        return new ProductsDefaultImpl(productProducer, products);
     }
 }
