@@ -22,10 +22,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.repository.AttributeGroupsRepository;
-import ru.fd.api.service.repository.AttributeGroupsRepositoryDefaultImpl;
 import ru.fd.api.service.AttributeGroupsService;
 import ru.fd.api.service.SQLQueryCreatorService;
+import ru.fd.api.service.repository.AttributeGroupsRepository;
+import ru.fd.api.service.repository.AttributeGroupsRepositoryDefaultImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.testBegin;
