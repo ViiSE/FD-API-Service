@@ -29,10 +29,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.UnitsService;
@@ -161,6 +159,11 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
                         .header("Authorization", "Bearer " + notJWTToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

@@ -2,6 +2,8 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -11,8 +13,7 @@ import java.util.ArrayList;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class BalancesDefaultTestNG {
 
@@ -46,5 +47,10 @@ public class BalancesDefaultTestNG {
         System.out.println(mapper.writeValueAsString(balancesPojo));
 
         testEnd("BalancesDefault", "formForSend()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

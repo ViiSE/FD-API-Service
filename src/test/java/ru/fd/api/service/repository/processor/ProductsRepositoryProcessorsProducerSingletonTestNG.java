@@ -17,7 +17,9 @@
 
 package ru.fd.api.service.repository.processor;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -116,6 +118,11 @@ public class ProductsRepositoryProcessorsProducerSingletonTestNG {
         assertNotNull(processor, "FullDescriptions processor is null!");
         assertTrue(processor instanceof ProductsRepositoryWithFullDescriptionProcessorImpl, "Processor is not instanceof fullDescriptions!");
         System.out.println("FullDescriptions processor: " + processor);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

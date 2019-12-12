@@ -17,13 +17,14 @@
 
 package ru.fd.api.service.util;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class FDAPIServiceCurrentDirectoryTestNG {
 
@@ -44,5 +45,10 @@ public class FDAPIServiceCurrentDirectoryTestNG {
         System.out.println(dir);
 
         testEnd("FDAPIServiceCurrentDirectory", "directory()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

@@ -20,7 +20,9 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
@@ -125,6 +127,11 @@ public class ProductsRepositoryProducerDefaultIntegrationTestNG extends Abstract
                 null);
         assertTrue(prRepoWS instanceof ProductsRepositoryWithStatusesImpl,"ProductsRepository: not a valid type!");
         System.out.println("Instance: " + prRepoWS);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

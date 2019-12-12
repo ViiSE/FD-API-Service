@@ -1,13 +1,14 @@
 package ru.fd.api.service.log;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 
 import static org.testng.Assert.assertNotNull;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class LogDirectoryDefaultTestNG {
 
@@ -29,5 +30,10 @@ public class LogDirectoryDefaultTestNG {
         System.out.println("Log directory: " + logDir);
 
         testEnd("LogDirectoryDefault", "directory()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

@@ -2,14 +2,15 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductStatusPojo;
 
 import static org.testng.Assert.*;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class ProductStatusDefaultTestNG {
 
@@ -46,5 +47,10 @@ public class ProductStatusDefaultTestNG {
         System.out.println(mapper.writeValueAsString(statusPojo));
 
         testEnd("ProductStatusDefault", "formForSend()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

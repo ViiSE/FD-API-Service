@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
@@ -114,6 +116,11 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
                 mapper.readTree(mapper.writeValueAsString(balancesPricesProducts.formForSend())),
                 mapper.readTree(mapper.writeValueAsString(pricesBalancesProducts.formForSend())),
                 "Not equals!");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

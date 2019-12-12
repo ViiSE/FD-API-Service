@@ -19,7 +19,9 @@ package ru.fd.api.service.creator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Units;
@@ -61,6 +63,11 @@ public class UnitsCreatorTestNG {
         UnitsRepository unitsRepository = new UnitsRepositoryExceptionTestImpl();
         unitsCreator = new UnitsCreatorDefaultImpl(unitsRepository);
         unitsCreator.create();
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

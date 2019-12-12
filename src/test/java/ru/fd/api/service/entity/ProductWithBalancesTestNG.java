@@ -2,6 +2,8 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
@@ -10,8 +12,7 @@ import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class ProductWithBalancesTestNG {
 
@@ -40,5 +41,10 @@ public class ProductWithBalancesTestNG {
         System.out.println(mapper.writeValueAsString(productPojo));
 
         testEnd("ProductWithBalances", "formForSend()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

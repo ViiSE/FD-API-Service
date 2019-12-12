@@ -15,6 +15,11 @@
  */
 package test.message;
 
+import org.testng.ITestResult;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author ViiSE
@@ -71,5 +76,10 @@ public class TestMessage {
 
     public static void catchMessage(Exception ex) {
         System.out.println("CATCH! Exception: " + ex.getMessage());
+    }
+
+    public static void printTestTime(ITestResult tr) {
+        long milliseconds = tr.getEndMillis() - tr.getStartMillis();
+        System.out.println(new SimpleDateFormat("'Elapsed time: 'mm'm' ss's' SSS'ms'").format(new Date(milliseconds)));
     }
 }

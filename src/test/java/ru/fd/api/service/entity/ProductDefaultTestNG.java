@@ -2,10 +2,8 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import ru.fd.api.service.data.ProductPojo;
 
 import static org.testng.Assert.*;
@@ -90,6 +88,11 @@ public class ProductDefaultTestNG {
         testMethod("id()");
 
         assertEquals(product.id(), id);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

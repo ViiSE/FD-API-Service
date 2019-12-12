@@ -20,6 +20,8 @@ package ru.fd.api.service.producer.creator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
@@ -32,8 +34,7 @@ import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcess
 import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
@@ -68,5 +69,10 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
         System.out.println("Instance: " + productsCreator);
 
         testEnd("ProductsCreatorProducerDefault", "getProductsCreatorDefaultInstance()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

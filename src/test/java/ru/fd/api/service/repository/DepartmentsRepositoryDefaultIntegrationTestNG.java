@@ -3,6 +3,8 @@ package ru.fd.api.service.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
@@ -40,5 +42,10 @@ public class DepartmentsRepositoryDefaultIntegrationTestNG extends AbstractTestN
         }
 
         testEnd("DepartmentsRepositoryDepartmentsIntegration", "readDepartments()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

@@ -19,6 +19,8 @@ package ru.fd.api.service.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Statuses;
@@ -54,5 +56,10 @@ public class StatusesRepositoryTestNG {
         }
 
         testEnd("StatusesRepository", "readStatuses()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

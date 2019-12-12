@@ -17,7 +17,9 @@
 
 package ru.fd.api.service.time;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -86,6 +88,11 @@ public class CurrentDateTimeDefaultTestNG {
 
         System.out.println("DateWithDot: " + dateWithDot);
         System.out.println("Result:      " + result);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

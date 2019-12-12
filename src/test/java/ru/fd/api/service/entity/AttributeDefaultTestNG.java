@@ -2,14 +2,15 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.AttributePojo;
 
 import static org.testng.Assert.*;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class AttributeDefaultTestNG {
 
@@ -52,5 +53,10 @@ public class AttributeDefaultTestNG {
         System.out.println(mapper.writeValueAsString(attributePojo));
 
         testEnd("AttributeDefault", "formForSend()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

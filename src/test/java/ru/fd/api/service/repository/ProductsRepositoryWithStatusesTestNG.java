@@ -1,5 +1,7 @@
 package ru.fd.api.service.repository;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Product;
@@ -41,5 +43,10 @@ public class ProductsRepositoryWithStatusesTestNG {
             catchMessage(ex);
         }
         testEnd("ProductRepositoryWithStatuses", "readProducts()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

@@ -20,10 +20,8 @@ package ru.fd.api.service.database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
@@ -80,6 +78,11 @@ public class SQLReaderFromFileTestNG extends AbstractTestNGSpringContextTests {
     public void read_fileIsNotFound(String fileName) {
         testMethod("read() [fileIsNotFound]");
         test(fileName);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

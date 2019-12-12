@@ -1,6 +1,8 @@
 package ru.fd.api.service.log;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
@@ -70,6 +72,11 @@ public class LoggerFileDefaultTestNG {
         LogDirectory logDirectory = new LogDirectoryExceptionTestImpl();
         LoggerFile exLoggerFile = new LoggerFileDefaultImpl(logDirectory);
         exLoggerFile.writeLogFile(LogMessageType.INFO.stringValue(), curDateTime, "Exception!");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

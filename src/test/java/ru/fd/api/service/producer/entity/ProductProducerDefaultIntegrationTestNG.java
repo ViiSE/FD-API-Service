@@ -20,10 +20,8 @@ package ru.fd.api.service.producer.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.*;
 
@@ -108,6 +106,11 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
         Product prSt = productProducer.getProductWithStatusesInstance(product, new StatusesDefaultImpl(new ArrayList<>()));
         assertTrue(prSt instanceof ProductWithStatusesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prSt);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

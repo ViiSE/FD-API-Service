@@ -2,6 +2,8 @@ package ru.fd.api.service.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.AttributeGroups;
@@ -31,11 +33,15 @@ public class AttributeGroupsRepositoryTestNG {
             String pojo = mapper.writeValueAsString(attributeGroups.formForSend());
             assertTrue(pojo.contains("\"attribute_groups\":"));
             System.out.println(pojo);
-
         } catch (RepositoryException ex) {
             catchMessage(ex);
         }
 
         testEnd("AttributeGroupsRepository", "readAttributeGroups()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

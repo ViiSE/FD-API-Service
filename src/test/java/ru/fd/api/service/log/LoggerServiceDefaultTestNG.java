@@ -1,6 +1,8 @@
 package ru.fd.api.service.log;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
@@ -40,6 +42,11 @@ public class LoggerServiceDefaultTestNG {
         testMethod("error()");
 
         loggerServer.error(LoggerServiceDefaultTestNG.class, "Test logger service");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

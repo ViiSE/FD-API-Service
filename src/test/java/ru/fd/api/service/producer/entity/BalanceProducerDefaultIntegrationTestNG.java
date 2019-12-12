@@ -20,6 +20,8 @@ package ru.fd.api.service.producer.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
@@ -27,8 +29,7 @@ import ru.fd.api.service.entity.Balance;
 import ru.fd.api.service.entity.BalanceDefaultImpl;
 
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class BalanceProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
@@ -46,5 +47,10 @@ public class BalanceProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
         System.out.println("Instance: " + balance);
 
         testEnd("BalanceProducerDefault", "getBalanceDefaultInstance()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

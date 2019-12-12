@@ -2,15 +2,16 @@ package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
 import test.creator.ProductCreatorTestImpl;
 
 import static org.testng.Assert.*;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class ProductWithShortDescriptionTestNG {
 
@@ -66,6 +67,11 @@ public class ProductWithShortDescriptionTestNG {
         String sendForForm = mapper.writeValueAsString(productPojo);
         assertTrue(sendForForm.contains("\"short_description\":\"\""));
         System.out.println(sendForForm);
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 
     @AfterClass

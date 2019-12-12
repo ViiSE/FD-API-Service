@@ -20,14 +20,15 @@ package ru.fd.api.service.producer.repository.processor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsSingletonImpl;
 
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class ProductsRepositoryProcessorsProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
@@ -53,5 +54,10 @@ public class ProductsRepositoryProcessorsProducerDefaultIntegrationTestNG extend
         System.out.println("Instance: " + prRepoPros);
 
         testEnd("ProductsRepositoryProcessorsProducerDefault", "getProductsRepositoryProcessorsSingletonImpl()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

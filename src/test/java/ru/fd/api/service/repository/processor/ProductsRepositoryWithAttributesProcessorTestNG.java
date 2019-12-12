@@ -17,6 +17,8 @@
 
 package ru.fd.api.service.repository.processor;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -29,8 +31,7 @@ import test.repository.ProductsRepositoryWithAttributesTestImpl;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 public class ProductsRepositoryWithAttributesProcessorTestNG {
 
@@ -55,5 +56,10 @@ public class ProductsRepositoryWithAttributesProcessorTestNG {
         System.out.println("ProductsRepository: " + prRepo);
 
         testEnd("ProductsRepositoryWithAttributesProcessor", "apply()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

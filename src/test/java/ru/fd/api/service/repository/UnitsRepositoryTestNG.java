@@ -19,6 +19,8 @@ package ru.fd.api.service.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Units;
@@ -48,11 +50,15 @@ public class UnitsRepositoryTestNG {
             String pojo = mapper.writeValueAsString(units.formForSend());
             assertTrue(pojo.contains("\"units\":"));
             System.out.println(pojo);
-
         } catch (RepositoryException ex) {
             catchMessage(ex);
         }
 
         testEnd("UnitsRepository", "readUnits()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

@@ -20,6 +20,8 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.DepartmentsService;
@@ -28,8 +30,7 @@ import ru.fd.api.service.repository.DepartmentsRepository;
 import ru.fd.api.service.repository.DepartmentsRepositoryDefaultImpl;
 
 import static org.testng.Assert.assertTrue;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class DepartmentsRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
@@ -51,5 +52,10 @@ public class DepartmentsRepositoryProducerDefaultIntegrationTestNG extends Abstr
         System.out.println("Instance: " + depRepo);
 
         testEnd("DepartmentsRepositoryProducerDefault", "getDepartmentsRepositoryDefaultInstance()");
+    }
+
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
     }
 }

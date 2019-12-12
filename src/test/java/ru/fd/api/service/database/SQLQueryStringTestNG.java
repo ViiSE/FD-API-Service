@@ -20,6 +20,8 @@ package ru.fd.api.service.database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,8 +29,7 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
 
 import static org.testng.Assert.assertNotNull;
-import static test.message.TestMessage.testBegin;
-import static test.message.TestMessage.testEnd;
+import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class SQLQueryStringTestNG extends AbstractTestNGSpringContextTests {
@@ -57,4 +58,8 @@ public class SQLQueryStringTestNG extends AbstractTestNGSpringContextTests {
         testEnd("SQLQueryString", "content()");
     }
 
+    @AfterMethod
+    public void getRunTime(ITestResult tr) {
+        printTestTime(tr);
+    }
 }
