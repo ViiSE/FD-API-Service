@@ -22,12 +22,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
+import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.creator.ProductsCreatorDefaultImpl;
 import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
-import ru.fd.api.service.SQLQueryCreatorService;
 
 import java.util.ArrayList;
 
