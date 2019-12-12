@@ -51,8 +51,8 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
             String id, String categoryId, String vendorId, String unitId, String name, short tax, String articul, String code) {
         testMethod("getProductSimpleInstance()");
 
-        product = productProducer.getProductSimpleInstance(id, categoryId, vendorId, unitId, name, tax, articul, code);
-        assertTrue(product instanceof ProductSimpleImpl, "Product: not a valid type!");
+        product = productProducer.getProductDefaultInstance(id, categoryId, vendorId, unitId, name, tax, articul, code);
+        assertTrue(product instanceof ProductDefaultImpl, "Product: not a valid type!");
         System.out.println("Instance: " + product);
     }
 
