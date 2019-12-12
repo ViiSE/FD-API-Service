@@ -19,13 +19,6 @@
             <class name="ru.fd.api.service.repository.DepartmentsRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.StatusesRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.UnitsRepositoryTestNG"/>
-
-            <!--     Integration tests     -->
-            <class name="ru.fd.api.service.repository.DepartmentsRepositoryDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.UnitsRepositoryDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.CategoriesRepositoryDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.ProductsRepositorySimpleIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.ProductsRepositoryWithBalancesIntegrationTestNG"/>
         </classes>
     </test>
 

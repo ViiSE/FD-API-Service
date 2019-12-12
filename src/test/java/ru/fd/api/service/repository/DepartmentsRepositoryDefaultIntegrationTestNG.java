@@ -5,12 +5,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
+import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.DepartmentProducer;
 import ru.fd.api.service.producer.entity.DepartmentsProducer;
 import ru.fd.api.service.producer.repository.DepartmentsRepositoryProducer;
-import ru.fd.api.service.SQLQueryCreatorService;
 
 import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.*;

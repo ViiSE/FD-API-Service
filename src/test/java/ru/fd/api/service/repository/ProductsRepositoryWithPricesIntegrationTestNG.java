@@ -1,7 +1,6 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
@@ -9,8 +8,12 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.*;
+import ru.fd.api.service.producer.entity.PriceProducer;
+import ru.fd.api.service.producer.entity.PricesProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
+
+import java.time.LocalDateTime;
 
 import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.*;
@@ -26,7 +29,7 @@ public class ProductsRepositoryWithPricesIntegrationTestNG extends AbstractTestN
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositoryWithPricesIntegration", "readProducts()");
+        testBegin("ProductsRepositoryWithPricesIntegration", "readProducts() [" + LocalDateTime.now() + "]");
 
         try {
             Products products = productsRepositoryProducer.getProductsRepositoryWithPricesInstance(
@@ -39,11 +42,12 @@ public class ProductsRepositoryWithPricesIntegrationTestNG extends AbstractTestN
                     sqlQueryCreator)
                     .readProducts();
             assertNotNull(products, "Products is null!");
-            System.out.println("DONE! ");
-        } catch (RepositoryException ex) {
+            System.out.println("DONE! [" + LocalDateTime.now() + "]");
+            //System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
+        } catch (RepositoryException ex) { //| JsonProcessingException ex) {
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositoryWithPricesIntegration", "readProducts()");
+        testEnd("ProductsRepositoryWithPricesIntegration", "readProducts() [" + LocalDateTime.now() + "]");
     }
 }

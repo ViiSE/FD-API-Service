@@ -1,7 +1,6 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeClass;
@@ -10,8 +9,6 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.AttributeGroupProducer;
-import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 
