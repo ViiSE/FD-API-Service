@@ -1,7 +1,7 @@
 package test.creator;
 
 import ru.fd.api.service.entity.Product;
-import ru.fd.api.service.entity.ProductSimpleImpl;
+import ru.fd.api.service.entity.ProductDefaultImpl;
 
 public class ProductCreatorTestImpl implements ProductCreator {
 
@@ -16,6 +16,6 @@ public class ProductCreatorTestImpl implements ProductCreator {
         String articul = "art_1";
         String code = "code_1";
 
-        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
+        return new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
     }
 }

@@ -1,10 +1,8 @@
 package test.creator;
 
 import ru.fd.api.service.creator.ProductsCreator;
-import ru.fd.api.service.entity.Product;
-import ru.fd.api.service.entity.ProductSimpleImpl;
-import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.entity.ProductsDefaultImpl;
+import ru.fd.api.service.entity.*;
+import test.producer.entity.ProductProducerTestImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +16,11 @@ public class ProductsCreatorTestImpl implements ProductsCreator {
         for(int i = 1; i <= 10; i++)
             products.add(createProduct(i));
 
-        return new ProductsDefaultImpl(products);
+        return new ProductsDefaultImpl(new ProductProducerTestImpl(), products);
     }
 
     private Product createProduct(int id) {
-        return new ProductSimpleImpl(
+        return new ProductSimpleImpl(new ProductDefaultImpl(
                 "id_" + id,
                 "category_" + id,
                 "vendor_" + id,
@@ -30,6 +28,7 @@ public class ProductsCreatorTestImpl implements ProductsCreator {
                 "Item_" + id,
                 (short) 20,
                 "art_" + id,
-                "code_" + id);
+                "code_" + id),
+                ++id);
     }
 }
