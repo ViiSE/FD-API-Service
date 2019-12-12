@@ -12,10 +12,13 @@ public class ProductProducerDefaultImpl implements ProductProducer {
     private ApplicationContext ctx;
 
     @Override
-    public Product getProductSimpleInstance(
-            String id, String categoryId, String vendorId, String unitId,
-            String name, short tax, String articul, String code) {
-        return (Product) ctx.getBean("productSimple", id, categoryId, vendorId, unitId, name, tax, articul, code);
+    public Product getProductDefaultInstance(String id, String categoryId, String vendorId, String unitId, String name, short tax, String articul, String code) {
+        return (Product) ctx.getBean("productDefault", id, categoryId, vendorId, unitId, name, tax, articul, code);
+    }
+
+    @Override
+    public Product getProductSimpleInstance(Product product, int key) {
+        return (Product) ctx.getBean("productSimple", product, key);
     }
 
     @Override

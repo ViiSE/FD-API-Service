@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Status;
-import ru.fd.api.service.entity.Unit;
 
 @Service("statusProducerDefault")
 public class StatusProducerDefaultImpl implements StatusProducer {
