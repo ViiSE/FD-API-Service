@@ -30,10 +30,15 @@ public class ProductProducerTestImpl implements ProductProducer {
     private ApplicationContext ctx;
 
     @Override
-    public Product getProductSimpleInstance(
+    public Product getProductDefaultInstance(
             String id, String categoryId, String vendorId, String unitId, String name,
             short tax, String articul, String code) {
-        return new ProductSimpleImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
+        return new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
+    }
+
+    @Override
+    public Product getProductSimpleInstance(Product product, int key) {
+        return new ProductSimpleImpl(product, key);
     }
 
     @Override
