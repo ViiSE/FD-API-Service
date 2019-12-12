@@ -11,7 +11,7 @@ import ru.fd.api.service.data.ProductPojo;
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class ProductSimpleTestNG {
+public class ProductDefaultTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Product product;
@@ -26,10 +26,10 @@ public class ProductSimpleTestNG {
     private String code;
 
     @BeforeClass
-    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code", "key"})
+    @Parameters({"id", "categoryId", "vendorId", "unitId", "name", "tax", "articul", "code"})
     public void setUpClass(
             String id, String categoryId, String vendorId, String unitId,
-            String name, short tax, String articul, String code, int key) {
+            String name, short tax, String articul, String code) {
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
@@ -53,9 +53,7 @@ public class ProductSimpleTestNG {
         assertNotNull(code, "Code cannot be null!");
         assertFalse(code.isEmpty(), "Code is empty!");
 
-        assertFalse(key < 0, "Key is less than 0!");
-
-        product = new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code, key);
+        product = new ProductDefaultImpl(id, categoryId, vendorId, unitId, name, tax, articul, code);
         assertNotNull(product, "Product is null!");
 
         this.id = id;

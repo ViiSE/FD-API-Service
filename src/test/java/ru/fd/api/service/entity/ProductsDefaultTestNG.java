@@ -74,6 +74,26 @@ public class ProductsDefaultTestNG {
         System.out.println(mapper.writeValueAsString(products.formForSend()));
     }
 
+    @Test(priority = 4)
+    public void removeProducts() throws JsonProcessingException {
+        testMethod("removeProducts()");
+
+        System.out.println("--Old products--");
+        System.out.println(mapper.writeValueAsString(products.formForSend()));
+
+        products.removeProducts(ProductSimpleImpl.class);
+
+        for(Product pr: products)
+            System.out.println(pr);
+
+
+        for(Product pr: products)
+            assertFalse(pr instanceof ProductWithFullDescriptionImpl, "Product not removed!");
+
+        System.out.println("--New products--");
+        System.out.println(mapper.writeValueAsString(products.formForSend()));
+    }
+
     @AfterTest
     public void teardownClass() {
         testEnd("ProductsDefault");
