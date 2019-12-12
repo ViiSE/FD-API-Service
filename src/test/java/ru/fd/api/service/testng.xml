@@ -13,6 +13,7 @@
         <suite-file path="util/util-suite.xml"/>
 
         <!--    Integration tests     -->
+        <suite-file path="repository/repository-integration-suite.xml"/>
         <suite-file path="producer/repository/processor/producer_repository_processor-integration-suite.xml"/>
         <suite-file path="producer/repository/producer_repository-integration-suite.xml"/>
         <suite-file path="producer/time/producer_time-integration-suite.xml"/>
