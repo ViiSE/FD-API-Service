@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ControllerSuite">
+
+    <test name="ControllerSuiteTest">
+        <parameter name="incorrectToken" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"/>
+        <parameter name="notJWTToken" value="IAmNotJWT"/>
+        <classes>
+            <class name="ru.fd.api.service.controller.DepartmentsControllerIntegrationTestNG">
+                <parameter name="timeToLive" value="5000"/>
+            </class>
+            <class name="ru.fd.api.service.controller.ProductsControllerIntegrationTestNG">
+                <parameter name="timeToLive" value="50000"/>
+            </class>
+<!--            <class name="ru.fd.api.service.controller.ProductsAttributeGroupsPointIntegrationTestNG">-->
+<!--                <parameter name="timeToLive" value="5000"/>-->
+<!--            </class>-->
+<!--            <class name="ru.fd.api.service.controller.ProductsStatusesPointIntegrationTestNG">-->
+<!--                <parameter name="timeToLive" value="5000"/>-->
+<!--            </class>-->
+            <class name="ru.fd.api.service.controller.ProductsCategoriesPointIntegrationTestNG">
+                <parameter name="timeToLive" value="5000"/>
+            </class>
+            <class name="ru.fd.api.service.controller.ProductsUnitsPointIntegrationTestNG">
+                <parameter name="timeToLive" value="5000"/>
+            </class>
+        </classes>
+    </test>
+
+</suite>
