@@ -38,19 +38,6 @@ public class DepartmentsRepositoryDefaultImpl implements DepartmentsRepository {
                     sqlQueryCreator.create("departments.sql")
                             .content(),
                     new DepartmentsDefaultRowMapper(departmentProducer, departmentsProducer));
-//            return jdbcTemplate.queryForObject(
-//                    "SELECT e.NAME, UUID_TO_CHAR(e.GID) as GID FROM ELU e\n" +
-//                        "    LEFT JOIN SpDI_Values(\n" +
-//                        "        (SELECT df.KOD FROM DI_FIELD df WHERE df.IDENT = 'Elu_CloseTK'),\n" +
-//                        "        (SELECT tr.KOD FROM TYPERES tr WHERE tr.IDENT = 'Elu'),\n" +
-//                        "        e.KOD,\n" +
-//                        "        cast('NOW' as date))\n" +
-//                        "        cl on 1=1\n" +
-//                        "    WHERE (e.IDENT STARTING 'ShopIndex_' OR E.IDENT STARTING 'Skl_')\n" +
-//                        "    AND coalesce(cl.FI, 0) = 0\n" +
-//                        "    AND e.IDENT <> 'Skl_9'\n" +
-//                        "ORDER BY 1 collate pxw_cyrl\n",
-//                    new DepartmentsDefaultRowMapper(departmentProducer, departmentsProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

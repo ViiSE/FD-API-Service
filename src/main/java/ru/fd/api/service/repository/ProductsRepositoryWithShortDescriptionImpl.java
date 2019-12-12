@@ -8,10 +8,7 @@ import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.database.SQLQueryProducer;
-import ru.fd.api.service.producer.database.SQLReaderProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.mapper.ProductsWithShortDescriptionRowMapper;
 
