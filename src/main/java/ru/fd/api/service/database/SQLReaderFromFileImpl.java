@@ -18,7 +18,6 @@
 package ru.fd.api.service.database;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.exception.ReaderException;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
