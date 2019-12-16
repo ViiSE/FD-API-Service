@@ -3,6 +3,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestNGSuite">
     <suite-files>
+        <!--    Begin     -->
+        <suite-file path="begin.xml"/>
+
         <!--    Unit tests     -->
         <suite-file path="creator/creator-suite.xml"/>
         <suite-file path="entity/entity-suite.xml"/>
@@ -20,5 +23,9 @@
         <suite-file path="producer/util/producer_util-integration-suite.xml"/>
         <suite-file path="producer/entity/producer_entity-integration-suite.xml"/>
         <suite-file path="producer/creator/producer_creator-integration-suite.xml"/>
+        <suite-file path="controller/controller-suite.xml"/>
+
+        <!--    End     -->
+        <suite-file path="end.xml"/>
     </suite-files>
 </suite>
