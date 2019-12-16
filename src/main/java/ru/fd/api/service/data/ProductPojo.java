@@ -3,10 +3,12 @@ package ru.fd.api.service.data;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.swagger.annotations.ApiModel;
 
 import java.util.List;
 import java.util.Objects;
 
+@ApiModel("Product")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProductPojo {
 

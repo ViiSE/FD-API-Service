@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel(value = "Attribute")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AttributePojo {
 
@@ -15,7 +17,7 @@ public class AttributePojo {
     @JsonCreator
     public AttributePojo(
             @JsonProperty("id") String id,
-            @JsonProperty("groupId") String groupId,
+            @JsonProperty("group_id") String groupId,
             @JsonProperty("name") String name) {
         this.id = id;
         this.groupId = groupId;
