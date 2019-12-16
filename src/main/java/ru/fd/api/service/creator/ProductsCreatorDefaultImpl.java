@@ -28,7 +28,8 @@ public class ProductsCreatorDefaultImpl implements ProductsCreator {
             ProductsRepository prRepo = prodsReposPrc.processor("simple").apply(null);
 
             for(String param: with)
-                prRepo = prodsReposPrc.processor(param).apply(prRepo);
+                if(prodsReposPrc.processor(param) != null)
+                    prRepo = prodsReposPrc.processor(param).apply(prRepo);
 
             return prRepo.readProducts();
         } catch (RepositoryException ex) {
