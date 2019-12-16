@@ -27,7 +27,6 @@ import ru.fd.api.service.log.LoggerService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -54,35 +53,43 @@ public class APIFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        Enumeration<String> headerNames = (request).getHeaderNames();
+        String url = ((HttpServletRequest)servletRequest).getRequestURL().toString();
+        if(url.contains("swagger-ui.html") ||
+                url.contains("webjars/springfox-swagger-ui/") ||
+                url.contains("swagger-resources") ||
+                url.contains("csrf") ||
+                url.contains("api-docs"))
+            filterChain.doFilter(servletRequest, servletResponse);
+        else {
+            Enumeration<String> headerNames = (request).getHeaderNames();
 
-        if(headerNames != null) {
-            while (headerNames.hasMoreElements()) {
-                String name = headerNames.nextElement();
-                if(name.equalsIgnoreCase("authorization")) {
-                    try {
-                        String token = (request).getHeader(name).replaceFirst("Bearer ", "");
-                        Claims claims = Jwts.parser()
-                                .setSigningKey(DatatypeConverter.parseBase64Binary(jwtSecret))
-                                .parseClaimsJws(token).getBody();
-                        if(claims.getId().equals(jwtId)                &&
-                                claims.getIssuer().equals(jwtIssuer)   &&
-                                claims.getSubject().equals(jwtSubject)) {
-                            filterChain.doFilter(servletRequest, servletResponse);
+            if (headerNames != null) {
+                while (headerNames.hasMoreElements()) {
+                    String name = headerNames.nextElement();
+                    if (name.equalsIgnoreCase("authorization")) {
+                        try {
+                            String token = (request).getHeader(name).replaceFirst("Bearer ", "");
+                            Claims claims = Jwts.parser()
+                                    .setSigningKey(DatatypeConverter.parseBase64Binary(jwtSecret))
+                                    .parseClaimsJws(token).getBody();
+                            if (claims.getId().equals(jwtId) &&
+                                    claims.getIssuer().equals(jwtIssuer) &&
+                                    claims.getSubject().equals(jwtSubject)) {
+                                filterChain.doFilter(servletRequest, servletResponse);
+                            }
+                        } catch (ExpiredJwtException |
+                                UnsupportedJwtException |
+                                MalformedJwtException |
+                                SignatureException |
+                                IllegalArgumentException ex) {
+                            logger.error(APIFilter.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
                         }
-                    } catch (ExpiredJwtException |
-                            UnsupportedJwtException |
-                            MalformedJwtException |
-                            SignatureException |
-                            IllegalArgumentException ex) {
-                        logger.error(APIFilter.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
                     }
                 }
-            }
-        } else
-            logger.error(APIFilter.class, "Http header is null");
+            } else
+                logger.error(APIFilter.class, "Http header is null");
+        }
 //        filterChain.doFilter(servletRequest, servletResponse);
     }
 }
