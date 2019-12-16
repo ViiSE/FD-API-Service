@@ -17,6 +17,8 @@
 
 package ru.fd.api.service.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,7 @@ import ru.fd.api.service.producer.repository.AttributesRepositoryProducer;
 
 import java.util.ArrayList;
 
+@Api(tags="Products Controller (Additional)", description = "Контроллер точек для работы с зависимостями товаров")
 @Controller
 public class ProductsAdditionalController {
 
@@ -51,6 +54,7 @@ public class ProductsAdditionalController {
 
     @Autowired private LoggerService logger;
 
+    @ApiOperation(value = "Выгружает все возможные статусы товаров")
     @GetMapping("/products/statuses")
     @ResponseBody
     public StatusesPojo statuses() {
@@ -70,6 +74,7 @@ public class ProductsAdditionalController {
         }
     }
 
+    @ApiOperation(value = "Выгружает все возможные атрибуты товаров")
     @GetMapping("/products/attributes")
     @ResponseBody
     public AttributesPojo attributes() {
@@ -85,6 +90,7 @@ public class ProductsAdditionalController {
         }
     }
 
+    @ApiOperation(value = "Выгружает все возможные группы атрибутов товаров")
     @GetMapping("/products/attribute-groups")
     @ResponseBody
     public AttributeGroupsPojo attributesGroups() {
@@ -104,6 +110,7 @@ public class ProductsAdditionalController {
         }
     }
 
+    @ApiOperation(value = "Выгружает все возможные единицы измерения товаров")
     @GetMapping("/products/units")
     @ResponseBody
     public UnitsPojo units() {
@@ -122,6 +129,7 @@ public class ProductsAdditionalController {
         }
     }
 
+    @ApiOperation(value = "Выгружает все возможные категории товаров")
     @GetMapping("/products/categories")
     @ResponseBody
     public CategoriesPojo categories() {

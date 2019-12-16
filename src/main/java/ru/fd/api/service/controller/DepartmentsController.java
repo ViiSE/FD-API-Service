@@ -1,5 +1,8 @@
 package ru.fd.api.service.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +16,16 @@ import ru.fd.api.service.log.LoggerService;
 
 import java.util.ArrayList;
 
+@Api(tags="Departments Controller", description = "Контроллер точек для работы с подразделениями", authorizations = {@Authorization(value = "Bearer")})
 @Controller
 public class DepartmentsController {
 
     @Autowired private DepartmentsService departmentsService;
+
     @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
     @Autowired private LoggerService logger;
 
+    @ApiOperation(value = "Выгружает все доступные подразделения")
     @GetMapping("/departments")
     @ResponseBody
     public DepartmentsPojo departments() {
