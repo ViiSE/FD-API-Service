@@ -101,6 +101,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
         testToken = jwtBuilder.compact();
 
         testBegin("DepartmentsController");
+        writeTestTime("DepartmentsController");
     }
 
     @Test(priority = 1)
@@ -125,7 +126,6 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
 
         assertEquals(response, objectMapper.writeValueAsString(depPojo));
         System.out.println("Response: " + response);
-
     }
 
     @Test(priority = 2)
@@ -168,6 +168,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass

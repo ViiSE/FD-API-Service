@@ -99,6 +99,7 @@ public class ProductsCategoriesPointIntegrationTestNG extends AbstractTestNGSpri
         testToken = jwtBuilder.compact();
 
         testBegin("ProductsAdditionalController [GET /products/categories]");
+        writeTestTime("ProductsAdditionalController [GET /products/categories]");
     }
 
     @Test(priority = 1)
@@ -164,6 +165,7 @@ public class ProductsCategoriesPointIntegrationTestNG extends AbstractTestNGSpri
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass

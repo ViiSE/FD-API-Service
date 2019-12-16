@@ -98,6 +98,7 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
         testToken = jwtBuilder.compact();
 
         testBegin("ProductsAdditionalController [GET /products/attribute-groups]");
+        writeTestTime("ProductsAdditionalController [GET /products/attribute-groups]");
     }
 
     @Test(priority = 1)
@@ -163,6 +164,7 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass

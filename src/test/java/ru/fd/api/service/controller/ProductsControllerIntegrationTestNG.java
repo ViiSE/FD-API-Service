@@ -107,6 +107,7 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
         testToken = jwtBuilder.compact();
 
         testBegin("ProductsController");
+        writeTestTime("ProductsController");
     }
 
     @Test(priority = 1)
@@ -135,7 +136,6 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
                 .formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(prodPojo));
-
     }
 
     @Test(priority = 2)
@@ -178,6 +178,7 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass

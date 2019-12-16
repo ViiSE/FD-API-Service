@@ -13,12 +13,12 @@
             <class name="ru.fd.api.service.controller.ProductsControllerIntegrationTestNG">
                 <parameter name="timeToLive" value="50000"/>
             </class>
-            <class name="ru.fd.api.service.controller.ProductsAttributeGroupsPointIntegrationTestNG">
-                <parameter name="timeToLive" value="5000"/>
-            </class>
-            <class name="ru.fd.api.service.controller.ProductsStatusesPointIntegrationTestNG">
-                <parameter name="timeToLive" value="5000"/>
-            </class>
+<!--            <class name="ru.fd.api.service.controller.ProductsAttributeGroupsPointIntegrationTestNG">-->
+<!--                <parameter name="timeToLive" value="5000"/>-->
+<!--            </class>-->
+<!--            <class name="ru.fd.api.service.controller.ProductsStatusesPointIntegrationTestNG">-->
+<!--                <parameter name="timeToLive" value="5000"/>-->
+<!--            </class>-->
             <class name="ru.fd.api.service.controller.ProductsCategoriesPointIntegrationTestNG">
                 <parameter name="timeToLive" value="5000"/>
             </class>

@@ -99,6 +99,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
         testToken = jwtBuilder.compact();
 
         testBegin("ProductsAdditionalController [GET /products/units]");
+        writeTestTime("ProductsAdditionalController [GET /products/units]");
     }
 
     @Test(priority = 1)
@@ -164,6 +165,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass
