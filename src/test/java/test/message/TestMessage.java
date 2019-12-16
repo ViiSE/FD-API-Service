@@ -16,7 +16,9 @@
 package test.message;
 
 import org.testng.ITestResult;
+import ru.fd.api.service.time.CurrentDateTimeDefaultImpl;
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -81,5 +83,34 @@ public class TestMessage {
     public static void printTestTime(ITestResult tr) {
         long milliseconds = tr.getEndMillis() - tr.getStartMillis();
         System.out.println(new SimpleDateFormat("'Elapsed time: 'mm'm' ss's' SSS'ms'").format(new Date(milliseconds)));
+    }
+
+    public static void beginWriteTestTime() {
+        writeToFile(new CurrentDateTimeDefaultImpl().dateTimeWithDot() + " - TEST BEGIN");
+    }
+
+    public static void endWriteTestTime() {
+        writeToFile(new CurrentDateTimeDefaultImpl().dateTimeWithDot() + " - TEST END");
+    }
+
+    public static void writeTestTime(String className) {
+        writeToFile(className);
+    }
+
+    public static void writeTestTime(ITestResult tr) {
+        long milliseconds = tr.getEndMillis() - tr.getStartMillis();
+        String time = new SimpleDateFormat("mm'm' ss's' SSS'ms'").format(new Date(milliseconds));
+        writeToFile("\t" + tr.getMethod().getMethodName() + "() - " + time);
+    }
+
+    private static void writeToFile(String message) {
+        File file = new File(System.getProperty("user.dir") + File.separator + "elapse_time_test");
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+            bw.write(message);
+            bw.newLine();
+        } catch (IOException ex) {
+            System.out.println("FILE elapse_time_test IS NOT FOUND!");
+        }
     }
 }
