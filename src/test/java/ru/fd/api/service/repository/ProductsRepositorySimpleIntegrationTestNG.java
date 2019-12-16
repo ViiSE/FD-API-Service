@@ -30,6 +30,7 @@ public class ProductsRepositorySimpleIntegrationTestNG extends AbstractTestNGSpr
     public void setUpClass() {
         productsRepository =
                 productsRepositoryProducer.getProductsRepositorySimpleInstance(productProducer, sqlQueryCreator);
+        writeTestTime("ProductsRepositorySimpleIntegration");
     }
 
     @Test
@@ -50,5 +51,6 @@ public class ProductsRepositorySimpleIntegrationTestNG extends AbstractTestNGSpr
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 }

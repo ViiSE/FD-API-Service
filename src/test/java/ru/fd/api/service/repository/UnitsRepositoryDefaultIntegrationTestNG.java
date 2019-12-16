@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.database.SQLQueryCreator;
@@ -24,6 +25,11 @@ public class UnitsRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
     @Autowired private UnitProducer unitProducer;
     @Autowired private UnitsProducer unitsProducer;
     @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+
+    @BeforeClass
+    public void setUpCLass() {
+        writeTestTime("UnitsRepositoryDefaultIntegration");
+    }
 
     @Test
     public void readUnits() {
@@ -47,5 +53,6 @@ public class UnitsRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 }

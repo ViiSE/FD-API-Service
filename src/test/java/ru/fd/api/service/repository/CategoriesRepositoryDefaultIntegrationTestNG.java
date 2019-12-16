@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.entity.Categories;
@@ -26,9 +25,14 @@ public class CategoriesRepositoryDefaultIntegrationTestNG extends AbstractTestNG
     @Autowired private CategoriesProducer categoriesProducer;
     @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
 
+    @BeforeClass
+    public void setUpClass() {
+        writeTestTime("CategoriesRepositoryDefaultIntegration");
+    }
+
     @Test
     public void readCategories() throws JsonProcessingException {
-        testBegin("CategoriesRepositoryDepartmentsIntegration", "readCategories()");
+        testBegin("CategoriesRepositoryDefaultIntegration", "readCategories()");
 
         try {
             Categories categories = categoriesRepositoryProducer.getCategoriesRepositoryDefaultInstance(
@@ -43,11 +47,12 @@ public class CategoriesRepositoryDefaultIntegrationTestNG extends AbstractTestNG
             catchMessage(ex);
         }
 
-        testEnd("CategoriesRepositoryDepartmentsIntegration", "readCategories()");
+        testEnd("CategoriesRepositoryDefaultIntegration", "readCategories()");
     }
 
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 }

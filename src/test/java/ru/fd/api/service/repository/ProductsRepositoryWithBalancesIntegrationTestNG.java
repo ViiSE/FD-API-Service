@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.database.SQLQueryCreator;
@@ -26,6 +27,11 @@ public class ProductsRepositoryWithBalancesIntegrationTestNG extends AbstractTes
     @Autowired private BalanceProducer balanceProducer;
     @Autowired private BalancesProducer balancesProducer;
     @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+
+    @BeforeClass
+    public void setUpCLass() {
+        writeTestTime("ProductsRepositoryWithBalancesIntegration");
+    }
 
     @Test
     public void readProducts() {
@@ -53,5 +59,6 @@ public class ProductsRepositoryWithBalancesIntegrationTestNG extends AbstractTes
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 }

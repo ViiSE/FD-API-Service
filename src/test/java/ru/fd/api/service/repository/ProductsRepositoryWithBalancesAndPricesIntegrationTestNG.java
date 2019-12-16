@@ -38,6 +38,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
     @BeforeClass
     public void setUpCLass() {
         testBegin("ProductsRepositoryWithBalancesAndPricesIntegration");
+        writeTestTime("ProductsRepositoryWithBalancesAndPricesIntegration");
     }
 
     @Test(priority = 1)
@@ -121,6 +122,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+        writeTestTime(tr);
     }
 
     @AfterClass
