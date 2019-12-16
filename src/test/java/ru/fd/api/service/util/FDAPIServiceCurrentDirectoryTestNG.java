@@ -50,5 +50,6 @@ public class FDAPIServiceCurrentDirectoryTestNG {
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+//        writeTestTime(tr);
     }
 }
