@@ -1,0 +1,350 @@
+13.12.2019 16:50:50 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 096ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 063ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 219ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 01m 25s 589ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 50s 720ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 00m 56s 558ms
+	readProducts_firstPricesThenBalances() - 00m 56s 882ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 257ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 019ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 002ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 256ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 063ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+13.12.2019 16:55:14 - TEST END
+13.12.2019 16:55:24 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 081ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 051ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 224ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 01m 20s 530ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 38s 759ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 02m 59s 547ms
+	readProducts_firstPricesThenBalances() - 01m 50s 857ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 357ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 029ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 450ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 059ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+13.12.2019 17:02:25 - TEST END
+13.12.2019 17:02:35 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 165ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 074ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 231ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 02m 15s 938ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 52s 380ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 02m 43s 403ms
+	readProducts_firstPricesThenBalances() - 01m 11s 932ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 267ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 004ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 023ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 271ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 079ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+13.12.2019 17:09:50 - TEST END
+13.12.2019 17:10:00 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 139ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 125ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 560ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 27s 337ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 42s 756ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 07m 03s 330ms
+	readProducts_firstPricesThenBalances() - 03m 06s 699ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 381ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 023ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 527ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 146ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+13.12.2019 17:21:33 - TEST END
+13.12.2019 17:21:42 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 082ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 058ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 198ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 22s 684ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 01m 54s 447ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 01m 02s 135ms
+	readProducts_firstPricesThenBalances() - 01m 03s 728ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 265ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 018ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 216ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 053ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+13.12.2019 17:26:17 - TEST END
+13.12.2019 17:26:27 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 103ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 042ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 929ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 27s 563ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 37s 239ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 01m 02s 775ms
+	readProducts_firstPricesThenBalances() - 01m 03s 501ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 306ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 021ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 218ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 058ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+13.12.2019 17:29:52 - TEST END
+13.12.2019 17:30:02 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 234ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 224ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 545ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 01m 35s 937ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 34s 711ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 00m 59s 349ms
+	readProducts_firstPricesThenBalances() - 00m 59s 705ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 259ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 007ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 024ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 002ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 193ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 065ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+13.12.2019 17:34:24 - TEST END
+13.12.2019 17:34:33 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 103ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 052ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 215ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 21s 750ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 01m 36s 284ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 01m 33s 684ms
+	readProducts_firstPricesThenBalances() - 00m 57s 150ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 275ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 024ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 196ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 000ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 066ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 002ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+13.12.2019 17:39:16 - TEST END
+13.12.2019 17:39:26 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 095ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 052ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 212ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 19s 201ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 32s 362ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 01m 28s 369ms
+	readProducts_firstPricesThenBalances() - 01m 04s 109ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 262ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 020ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 002ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 225ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 002ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 053ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+13.12.2019 17:43:02 - TEST END
+13.12.2019 17:43:11 - TEST BEGIN
+DepartmentsRepositoryDefaultIntegration
+	readDepartments() - 00m 00s 078ms
+UnitsRepositoryDefaultIntegration
+	readUnits() - 00m 00s 045ms
+CategoriesRepositoryDefaultIntegration
+	readCategories() - 00m 00s 177ms
+ProductsRepositorySimpleIntegration
+	readProducts() - 00m 19s 651ms
+ProductsRepositoryWithBalancesIntegration
+	readProducts() - 00m 33s 695ms
+ProductsRepositoryWithBalancesAndPricesIntegration
+	readProducts_firstBalancesThenPrices() - 01m 00s 534ms
+	readProducts_firstPricesThenBalances() - 00m 56s 207ms
+DepartmentsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 267ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+ProductsController
+	whenValidToken_thenReturns200WithContent() - 00m 00s 020ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/categories]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 185ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 002ms
+ProductsAdditionalController [GET /products/units]
+	whenValidToken_thenReturns200WithContent() - 00m 00s 053ms
+	whenNotValidToken_thenReturns200WithoutContent() - 00m 00s 005ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent() - 00m 00s 001ms
+	whenTokenIsNotJWT_thenReturns200WithoutContent() - 00m 00s 003ms
+13.12.2019 17:46:15 - TEST END
