@@ -1,0 +1,51 @@
+{
+  "filename": "/home/viise/fd-api/api-bot/results",
+  "hostname": "http://localhost:50003",
+  "repeat": 1,
+  "auth": {
+    "type": "Bearer",
+    "token": "<Token here>"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/products"
+    },
+    {
+      "method": "GET",
+      "url": "/products"
+    },
+    {
+      "method": "GET",
+      "url": "/products?with=prices"
+    },
+    {
+      "method": "GET",
+      "url": "/products?with=balances"
+    },
+    {
+      "method": "GET",
+      "url": "/products?with=balances,prices"
+    },
+    {
+      "method": "GET",
+      "url": "/products?with=prices,balances"
+    },
+    {
+      "method": "GET",
+      "url": "/products/units"
+    },
+    {
+      "method": "GET",
+      "url": "/departments"
+    },
+    {
+      "method": "GET",
+      "url": "/products/statuses"
+    },
+    {
+      "method": "GET",
+      "url": "/products/categories"
+    }
+  ]
+}
