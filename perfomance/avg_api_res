@@ -1,0 +1,11 @@
+Average times of tests results:
+Number of tests: 800
+GET:
+	http://localhost:50003/products: 00m 28s 137ms
+	http://localhost:50003/departments: 00m 00s 032ms
+	http://localhost:50003/products/categories: 00m 00s 097ms
+	http://localhost:50003/products?with=prices,balances: 00m 59s 549ms
+	http://localhost:50003/products?with=balances: 00m 35s 818ms
+	http://localhost:50003/products?with=prices: 00m 47s 222ms
+	http://localhost:50003/products/units: 00m 00s 041ms
+	http://localhost:50003/products?with=balances,prices: 00m 58s 121ms
