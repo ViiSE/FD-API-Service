@@ -1,6 +1,6 @@
 input_file=$1
 output_file=$2
-for i in {1..20}
+for i in {1..50}
 do
 	mvn test -B
 	echo Test $i done 

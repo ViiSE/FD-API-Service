@@ -1,0 +1,37 @@
+Hardware: AMD Ryzen 7 2700U with Radeon Vega Mobile Gfx, Min - 1600 Mhz, Max - 2200 Mhz, 8gb DDR4
+TestNG
+Average times of tests results:
+Number of tests: 50
+UnitsRepositoryDefaultIntegration:
+	readUnits(): 00m 00s 322ms
+ProductsRepositoryWithBalancesIntegration:
+	readProducts(): 01m 15s 945ms
+DepartmentsController:
+	whenTokenIsNotJWT_thenReturns200WithoutContent(): 00m 00s 003ms
+	whenValidToken_thenReturns200WithContent(): 00m 00s 303ms
+	whenNotValidToken_thenReturns200WithoutContent(): 00m 00s 006ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent(): 00m 00s 001ms
+ProductsRepositoryWithBalancesAndPricesIntegration:
+	readProducts_firstPricesThenBalances(): 00m 56s 026ms
+	readProducts_firstBalancesThenPrices(): 01m 02s 192ms
+ProductsController:
+	whenTokenIsNotJWT_thenReturns200WithoutContent(): 00m 00s 002ms
+	whenValidToken_thenReturns200WithContent(): 00m 00s 022ms
+	whenNotValidToken_thenReturns200WithoutContent(): 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent(): 00m 00s 001ms
+CategoriesRepositoryDefaultIntegration:
+	readCategories(): 00m 03s 241ms
+ProductsAdditionalController [GET /products/categories]:
+	whenTokenIsNotJWT_thenReturns200WithoutContent(): 00m 00s 002ms
+	whenValidToken_thenReturns200WithContent(): 00m 00s 195ms
+	whenNotValidToken_thenReturns200WithoutContent(): 00m 00s 004ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent(): 00m 00s 001ms
+DepartmentsRepositoryDefaultIntegration:
+	readDepartments(): 00m 00s 390ms
+ProductsAdditionalController [GET /products/units]:
+	whenTokenIsNotJWT_thenReturns200WithoutContent(): 00m 00s 002ms
+	whenValidToken_thenReturns200WithContent(): 00m 00s 048ms
+	whenNotValidToken_thenReturns200WithoutContent(): 00m 00s 003ms
+	whenNotAuthorizationHeader_thenReturns200WithoutContent(): 00m 00s 001ms
+ProductsRepositorySimpleIntegration:
+	readProducts(): 00m 43s 082ms
