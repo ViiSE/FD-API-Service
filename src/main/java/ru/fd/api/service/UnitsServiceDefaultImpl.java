@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.producer.creator.UnitsCreatorProducer;
 import ru.fd.api.service.producer.entity.UnitProducer;
@@ -27,10 +26,21 @@ import ru.fd.api.service.producer.repository.UnitsRepositoryProducer;
 @Service("unitsServiceDefault")
 public class UnitsServiceDefaultImpl implements UnitsService {
 
-    @Autowired private UnitProducer unitProducer;
-    @Autowired private UnitsProducer unitsProducer;
-    @Autowired private UnitsCreatorProducer unitsCrProducer;
-    @Autowired private UnitsRepositoryProducer unitsRepoProducer;
+    private final UnitProducer unitProducer;
+    private final UnitsProducer unitsProducer;
+    private final UnitsCreatorProducer unitsCrProducer;
+    private final UnitsRepositoryProducer unitsRepoProducer;
+
+    public UnitsServiceDefaultImpl(
+            UnitProducer unitProducer,
+            UnitsProducer unitsProducer,
+            UnitsCreatorProducer unitsCrProducer,
+            UnitsRepositoryProducer unitsRepoProducer) {
+        this.unitProducer = unitProducer;
+        this.unitsProducer = unitsProducer;
+        this.unitsCrProducer = unitsCrProducer;
+        this.unitsRepoProducer = unitsRepoProducer;
+    }
 
     @Override
     public UnitProducer unitProducer() {

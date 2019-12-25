@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.producer.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQueryCreator;
@@ -28,8 +27,11 @@ import ru.fd.api.service.repository.StatusesRepository;
 @Service("statusesRepositoryProducerDefault")
 public class StatusesRepositoryProducerDefaultImpl implements StatusesRepositoryProducer {
 
-    @Autowired
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
+
+    public StatusesRepositoryProducerDefaultImpl(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
     public StatusesRepository getStatusesRepositoryDefaultInstance(

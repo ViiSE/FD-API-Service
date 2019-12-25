@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.producer.database;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLReader;
@@ -27,8 +26,11 @@ import ru.fd.api.service.util.FDAPIServiceDirectory;
 @Service("sqlReaderProducerDefault")
 public class SQLReaderProducerDefaultImpl implements SQLReaderProducer {
 
-    @Autowired
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
+
+    public SQLReaderProducerDefaultImpl(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
     public SQLReader<String> getSQLReaderFromFileStringInstance(

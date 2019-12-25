@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.producer.creator.DepartmentsCreatorProducer;
 import ru.fd.api.service.producer.entity.DepartmentProducer;
@@ -27,10 +26,21 @@ import ru.fd.api.service.producer.repository.DepartmentsRepositoryProducer;
 @Service("departmentsServiceDefault")
 public class DepartmentsServiceDefaultImpl implements DepartmentsService {
 
-    @Autowired private DepartmentsCreatorProducer departmentsCrProducer;
-    @Autowired private DepartmentsRepositoryProducer departmentsRepoProducer;
-    @Autowired private DepartmentProducer departmentProducer;
-    @Autowired private DepartmentsProducer departmentsProducer;
+    private final DepartmentsCreatorProducer departmentsCrProducer;
+    private final DepartmentsRepositoryProducer departmentsRepoProducer;
+    private final DepartmentProducer departmentProducer;
+    private final DepartmentsProducer departmentsProducer;
+
+    public DepartmentsServiceDefaultImpl(
+            DepartmentsCreatorProducer departmentsCrProducer,
+            DepartmentsRepositoryProducer departmentsRepoProducer,
+            DepartmentProducer departmentProducer,
+            DepartmentsProducer departmentsProducer) {
+        this.departmentsCrProducer = departmentsCrProducer;
+        this.departmentsRepoProducer = departmentsRepoProducer;
+        this.departmentProducer = departmentProducer;
+        this.departmentsProducer = departmentsProducer;
+    }
 
     @Override
     public DepartmentsCreatorProducer departmentsCreatorProducer() {

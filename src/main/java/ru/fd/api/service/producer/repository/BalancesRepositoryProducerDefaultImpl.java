@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.producer.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.repository.BalancesRepository;
@@ -25,8 +24,11 @@ import ru.fd.api.service.repository.BalancesRepository;
 @Service("balancesRepositoryProducerDefault")
 public class BalancesRepositoryProducerDefaultImpl implements BalancesRepositoryProducer {
 
-    @Autowired
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
+
+    public BalancesRepositoryProducerDefaultImpl(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
     public BalancesRepository getBalancesRepositoryDefaultInstance() {

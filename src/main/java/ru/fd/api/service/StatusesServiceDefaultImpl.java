@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.producer.creator.StatusesCreatorProducer;
 import ru.fd.api.service.producer.entity.StatusProducer;
@@ -27,10 +26,21 @@ import ru.fd.api.service.producer.repository.StatusesRepositoryProducer;
 @Service("statusesServiceDefault")
 public class StatusesServiceDefaultImpl implements StatusesService {
 
-    @Autowired private StatusProducer statusProducer;
-    @Autowired private StatusesProducer statusesProducer;
-    @Autowired private StatusesCreatorProducer statusesCrProducer;
-    @Autowired private StatusesRepositoryProducer statusesRepositoryProducer;
+    private final StatusProducer statusProducer;
+    private final StatusesProducer statusesProducer;
+    private final StatusesCreatorProducer statusesCrProducer;
+    private final StatusesRepositoryProducer statusesRepositoryProducer;
+
+    public StatusesServiceDefaultImpl(
+            StatusProducer statusProducer,
+            StatusesProducer statusesProducer,
+            StatusesCreatorProducer statusesCrProducer,
+            StatusesRepositoryProducer statusesRepositoryProducer) {
+        this.statusProducer = statusProducer;
+        this.statusesProducer = statusesProducer;
+        this.statusesCrProducer = statusesCrProducer;
+        this.statusesRepositoryProducer = statusesRepositoryProducer;
+    }
 
     @Override
     public StatusProducer statusProducer() {

@@ -3,7 +3,6 @@ package ru.fd.api.service.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,18 +21,35 @@ import ru.fd.api.service.producer.entity.PricesProducer;
 import java.util.ArrayList;
 import java.util.List;
 
-@Api(tags="Products Controller", description = "Контроллер точек для работы с товарами")
+@Api(tags= "Products Controller", description = "Контроллер точек для работы с товарами")
 @Controller
 public class ProductsController {
 
-    @Autowired private ProductsService productsService;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
-    @Autowired private BalanceProducer balanceProducer;
-    @Autowired private BalancesProducer balancesProducer;
-    @Autowired private PriceProducer priceProducer;
-    @Autowired private PricesProducer pricesProducer;
+    private final ProductsService productsService;
+    private final SQLQueryCreatorService sqlQueryCreatorService;
+    private final BalanceProducer balanceProducer;
+    private final BalancesProducer balancesProducer;
+    private final PriceProducer priceProducer;
+    private final PricesProducer pricesProducer;
 
-    @Autowired private LoggerService logger;
+    private final LoggerService logger;
+
+    public ProductsController(
+            ProductsService productsService,
+            SQLQueryCreatorService sqlQueryCreatorService,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            PriceProducer priceProducer,
+            PricesProducer pricesProducer,
+            LoggerService logger) {
+        this.productsService = productsService;
+        this.sqlQueryCreatorService = sqlQueryCreatorService;
+        this.balanceProducer = balanceProducer;
+        this.balancesProducer = balancesProducer;
+        this.priceProducer = priceProducer;
+        this.pricesProducer = pricesProducer;
+        this.logger = logger;
+    }
 
     @ApiOperation(value = "Выгружает все товары")
     @GetMapping("/products")

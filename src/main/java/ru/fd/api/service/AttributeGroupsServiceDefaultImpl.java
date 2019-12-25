@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.producer.creator.AttributeGroupsCreatorProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
@@ -27,10 +26,21 @@ import ru.fd.api.service.producer.repository.AttributeGroupsRepositoryProducer;
 @Service("attributeGroupsServiceDefault")
 public class AttributeGroupsServiceDefaultImpl implements AttributeGroupsService {
 
-    @Autowired private AttributeGroupProducer attributeGroupProducer;
-    @Autowired private AttributeGroupsProducer attributeGroupsProducer;
-    @Autowired private AttributeGroupsCreatorProducer attrGrCrProducer;
-    @Autowired private AttributeGroupsRepositoryProducer attrGrRepoProducer;
+    private final AttributeGroupProducer attributeGroupProducer;
+    private final AttributeGroupsProducer attributeGroupsProducer;
+    private final AttributeGroupsCreatorProducer attrGrCrProducer;
+    private final AttributeGroupsRepositoryProducer attrGrRepoProducer;
+
+    public AttributeGroupsServiceDefaultImpl(
+            AttributeGroupProducer attributeGroupProducer,
+            AttributeGroupsProducer attributeGroupsProducer,
+            AttributeGroupsCreatorProducer attrGrCrProducer,
+            AttributeGroupsRepositoryProducer attrGrRepoProducer) {
+        this.attributeGroupProducer = attributeGroupProducer;
+        this.attributeGroupsProducer = attributeGroupsProducer;
+        this.attrGrCrProducer = attrGrCrProducer;
+        this.attrGrRepoProducer = attrGrRepoProducer;
+    }
 
     @Override
     public AttributeGroupProducer attributeGroupProducer() {

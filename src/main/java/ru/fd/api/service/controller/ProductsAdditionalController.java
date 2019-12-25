@@ -19,7 +19,6 @@ package ru.fd.api.service.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,18 +40,37 @@ import java.util.ArrayList;
 @Controller
 public class ProductsAdditionalController {
 
-    @Autowired private StatusesService statusesService;
+    private final StatusesService statusesService;
 
-    @Autowired private AttributesCreatorProducer attrCrProducer;
-    @Autowired private AttributesRepositoryProducer attrRepoProducer;
+    private final AttributesCreatorProducer attrCrProducer;
+    private final AttributesRepositoryProducer attrRepoProducer;
 
-    @Autowired private AttributeGroupsService attrGrsService;
-    @Autowired private UnitsService unitsService;
-    @Autowired private CategoriesService categoriesService;
+    private final AttributeGroupsService attrGrsService;
+    private final UnitsService unitsService;
+    private final CategoriesService categoriesService;
 
-    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
 
-    @Autowired private LoggerService logger;
+    private final LoggerService logger;
+
+    public ProductsAdditionalController(
+            StatusesService statusesService,
+            AttributesCreatorProducer attrCrProducer,
+            AttributesRepositoryProducer attrRepoProducer,
+            AttributeGroupsService attrGrsService,
+            UnitsService unitsService,
+            CategoriesService categoriesService,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            LoggerService logger) {
+        this.statusesService = statusesService;
+        this.attrCrProducer = attrCrProducer;
+        this.attrRepoProducer = attrRepoProducer;
+        this.attrGrsService = attrGrsService;
+        this.unitsService = unitsService;
+        this.categoriesService = categoriesService;
+        this.sqlQueryCreator = sqlQueryCreator;
+        this.logger = logger;
+    }
 
     @ApiOperation(value = "Выгружает все возможные статусы товаров")
     @GetMapping("/products/statuses")

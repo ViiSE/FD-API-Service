@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.producer.creator.CategoriesCreatorProducer;
 import ru.fd.api.service.producer.entity.CategoriesProducer;
@@ -27,10 +26,21 @@ import ru.fd.api.service.producer.repository.CategoriesRepositoryProducer;
 @Service("categoriesServiceDefault")
 public class CategoriesServiceDefaultImpl implements CategoriesService {
 
-    @Autowired private CategoriesCreatorProducer categoriesCreatorProducer;
-    @Autowired private CategoriesRepositoryProducer categoriesRepositoryProducer;
-    @Autowired private CategoryProducer categoryProducer;
-    @Autowired private CategoriesProducer categoriesProducer;
+    private final CategoriesCreatorProducer categoriesCreatorProducer;
+    private final CategoriesRepositoryProducer categoriesRepositoryProducer;
+    private final CategoryProducer categoryProducer;
+    private final CategoriesProducer categoriesProducer;
+
+    public CategoriesServiceDefaultImpl(
+            CategoriesCreatorProducer categoriesCreatorProducer,
+            CategoriesRepositoryProducer categoriesRepositoryProducer,
+            CategoryProducer categoryProducer,
+            CategoriesProducer categoriesProducer) {
+        this.categoriesCreatorProducer = categoriesCreatorProducer;
+        this.categoriesRepositoryProducer = categoriesRepositoryProducer;
+        this.categoryProducer = categoryProducer;
+        this.categoriesProducer = categoriesProducer;
+    }
 
     @Override
     public CategoriesCreatorProducer categoriesCreatorProducer() {

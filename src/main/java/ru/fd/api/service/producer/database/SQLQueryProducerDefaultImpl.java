@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.producer.database;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQuery;
@@ -26,8 +25,11 @@ import ru.fd.api.service.database.SQLQueryStringImpl;
 @Service("sqlQueryProducerDefault")
 public class SQLQueryProducerDefaultImpl implements SQLQueryProducer {
 
-    @Autowired
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
+
+    public SQLQueryProducerDefaultImpl(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
     public SQLQuery<String> getSQLQueryStringInstance(String content) {

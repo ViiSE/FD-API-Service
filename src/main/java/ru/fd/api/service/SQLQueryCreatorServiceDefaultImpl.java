@@ -17,7 +17,6 @@
 
 package ru.fd.api.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.producer.database.SQLQueryCreatorProducer;
@@ -28,10 +27,21 @@ import ru.fd.api.service.util.FDAPIServiceDirectory;
 @Service("sqlQueryCreatorServiceDefault")
 public class SQLQueryCreatorServiceDefaultImpl implements SQLQueryCreatorService {
 
-    @Autowired private FDAPIServiceDirectory fdapiServiceDirectory;
-    @Autowired private SQLReaderProducer sqlReaderProducer;
-    @Autowired private SQLQueryProducer sqlQueryProducer;
-    @Autowired private SQLQueryCreatorProducer sqlQueryCreatorProducer;
+    private final FDAPIServiceDirectory fdapiServiceDirectory;
+    private final SQLReaderProducer sqlReaderProducer;
+    private final SQLQueryProducer sqlQueryProducer;
+    private final SQLQueryCreatorProducer sqlQueryCreatorProducer;
+
+    public SQLQueryCreatorServiceDefaultImpl(
+            FDAPIServiceDirectory fdapiServiceDirectory,
+            SQLReaderProducer sqlReaderProducer,
+            SQLQueryProducer sqlQueryProducer,
+            SQLQueryCreatorProducer sqlQueryCreatorProducer) {
+        this.fdapiServiceDirectory = fdapiServiceDirectory;
+        this.sqlReaderProducer = sqlReaderProducer;
+        this.sqlQueryProducer = sqlQueryProducer;
+        this.sqlQueryCreatorProducer = sqlQueryCreatorProducer;
+    }
 
     @Override
     public SQLQueryCreator<String, String> sqlQueryCreatorFromFileString() {
