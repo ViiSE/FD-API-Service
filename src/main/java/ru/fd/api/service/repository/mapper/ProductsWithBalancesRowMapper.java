@@ -30,14 +30,14 @@ public class ProductsWithBalancesRowMapper implements RowMapper<Map<String, Bala
         List<Balance> balances = new ArrayList<>();
         do {
             if(id.isEmpty())
-                id = rs.getString("GID_TOVAR");
+                id = rs.getString("GID_TOVAR").trim();
             if(!id.equals(rs.getString("GID_TOVAR"))) {
                 balancesMap.put(id, balancesProducer.getBalancesDefaultInstance(new ArrayList<>(balances)));
-                id = rs.getString("GID_TOVAR");
+                id = rs.getString("GID_TOVAR").trim();
                 balances.clear();
             }
 
-            String department_id = rs.getString("GID_DEP");
+            String department_id = rs.getString("GID_DEP").trim();
             int quantity = rs.getInt("QUANTITY");
             balances.add(balanceProducer.getBalanceDefaultInstance(department_id, quantity));
         } while(rs.next());

@@ -30,14 +30,14 @@ public class ProductsWithPricesRowMapper implements RowMapper<Map<String, Prices
         List<Price> prices = new ArrayList<>();
         do {
             if(id.isEmpty())
-                id = rs.getString("GID_TOVAR");
+                id = rs.getString("GID_TOVAR").trim();
             if(!id.equals(rs.getString("GID_TOVAR"))) {
                 pricesMap.put(id, pricesProducer.getPricesDefaultInstance(new ArrayList<>(prices)));
-                id = rs.getString("GID_TOVAR");
+                id = rs.getString("GID_TOVAR").trim();
                 prices.clear();
             }
 
-            String department_id = rs.getString("GID_DEP");
+            String department_id = rs.getString("GID_DEP").trim();
             float value = rs.getInt("PRICE");
             prices.add(priceProducer.getPriceDefaultInstance(department_id, value));
         } while(rs.next());
