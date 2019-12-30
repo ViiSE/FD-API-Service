@@ -1,0 +1,45 @@
+/*
+ *  Copyright 2019 ViiSE.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
+package ru.fd.api.service.entity;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.CustomerPojo;
+
+@Component("customerFromCompany")
+@Scope("prototype")
+public class CustomerFromCompanyImpl implements Customer {
+
+    private final Customer customer;
+    private final String inn;
+    private final String kpp;
+
+    public CustomerFromCompanyImpl(Customer customer, String inn, String kpp) {
+        this.customer = customer;
+        this.inn = inn;
+        this.kpp = kpp;
+    }
+
+    @Override
+    public Object formForSend() {
+        CustomerPojo customerPojo = (CustomerPojo) customer.formForSend();
+        customerPojo.setInn(inn);
+        customerPojo.setKpp(kpp);
+        return customerPojo;
+    }
+}
