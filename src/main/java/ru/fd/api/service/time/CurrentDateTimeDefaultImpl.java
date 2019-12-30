@@ -29,6 +29,11 @@ import java.util.GregorianCalendar;
 public class CurrentDateTimeDefaultImpl implements CurrentDateTime {
 
     @Override
+    public String dateTimeInStandardFormat() {
+        return null;
+    }
+
+    @Override
     public String dateTimeWithDot() {
         return formatDate("dd.MM.yyyy HH:mm:ss");
     }
