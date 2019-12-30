@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service("productsRepositoryProcessorsSingleton")
-@Scope("prototype")
 public class ProductsRepositoryProcessorsSingletonImpl implements ProductsRepositoryProcessors  {
 
     private static final Map<String, ProductsRepositoryProcessor> processors = new HashMap<>();
