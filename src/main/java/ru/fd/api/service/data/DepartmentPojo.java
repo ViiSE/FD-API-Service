@@ -1,5 +1,7 @@
 package ru.fd.api.service.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
@@ -11,7 +13,10 @@ public class DepartmentPojo {
     private final String id;
     private final String name;
 
-    public DepartmentPojo(String id, String name) {
+    @JsonCreator
+    public DepartmentPojo(
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }
