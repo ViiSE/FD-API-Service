@@ -1,6 +1,5 @@
 package ru.fd.api.service.repository.processor;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.producer.entity.*;

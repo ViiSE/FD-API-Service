@@ -20,7 +20,9 @@ package ru.fd.api.service.repository.processor;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.constant.Processors;
 import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.producer.entity.ProductsProducer;
+import ru.fd.api.service.producer.entity.OrderResponseProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 
 import java.util.HashMap;
@@ -32,14 +34,22 @@ public class OrderRepositoryProcessorsSingletonImpl implements OrderRepositoryPr
     private static final Map<String, OrderRepositoryProcessor> processors = new HashMap<>();
 
     public OrderRepositoryProcessorsSingletonImpl(
-            Order order,
             OrderRepositoryProducer orderRepoProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator) {
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            ProductProducer productProducer,
+            ProductsProducer orderProductsProducer,
+            OrderResponseProducer orderResponseProducer) {
         if(processors.isEmpty()) {
             processors.put(Processors.CREATE_ORDER, new CreateOrderRepositoryProcessorImpl(
-                    order,
                     orderRepoProducer,
-                    sqlQueryCreator));
+                    sqlQueryCreator,
+                    productProducer,
+                    orderProductsProducer,
+                    orderResponseProducer));
+            processors.put(Processors.CREATE_ORDER_WITHOUT_CHECK_STATUS, new CreateOrderRepositoryWithoutCheckStatusProcessorImpl(
+                    orderRepoProducer,
+                    sqlQueryCreator,
+                    orderResponseProducer));
         }
     }
 
