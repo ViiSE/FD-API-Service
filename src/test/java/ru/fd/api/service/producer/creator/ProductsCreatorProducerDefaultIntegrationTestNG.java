@@ -25,12 +25,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
+import ru.fd.api.service.creator.OrderProductsCreatorDefaultImpl;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.creator.ProductsCreatorDefaultImpl;
+import ru.fd.api.service.data.CustomerPojo;
+import ru.fd.api.service.data.DeliveryPojo;
+import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
@@ -45,6 +50,7 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
     @Autowired private ProductsRepositoryProcessorsProducer productsRepoProsProducer;
     @Autowired private ProductsRepositoryProducer productsRepoProducer;
     @Autowired private ProductProducer productProducer;
+    @Autowired private ProductsProducer productsProducer;
     @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
     @Autowired private BalanceProducer balanceProducer;
     @Autowired private BalancesProducer balancesProducer;
@@ -69,6 +75,26 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
         System.out.println("Instance: " + productsCreator);
 
         testEnd("ProductsCreatorProducerDefault", "getProductsCreatorDefaultInstance()");
+    }
+
+    @Test
+    public void getOrderProductsCreatorDefaultInstance() {
+        testBegin("ProductsCreatorProducerDefault", "getOrderProductsCreatorDefaultInstance()");
+
+        ProductsCreator productsCreator = productsCreatorProducer.getOrderProductsCreatorDefaultInstance(
+                new OrderPojo(
+                        1,
+                        "cId1",
+                        new CustomerPojo(),
+                        new DeliveryPojo((short) 0, "cId1", "addr"),
+                        (short) 0,
+                        LocalDateTime.now()),
+                productsProducer,
+                productProducer);
+        assertTrue(productsCreator instanceof OrderProductsCreatorDefaultImpl, "OrderProductsCreator: not a valid type!");
+        System.out.println("Instance: " + productsCreator);
+
+        testEnd("ProductsCreatorProducerDefault", "getOrderProductsCreatorDefaultInstance()");
     }
 
     @AfterMethod

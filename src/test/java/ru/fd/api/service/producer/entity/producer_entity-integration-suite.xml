@@ -27,6 +27,14 @@
                 <parameter name="id" value="dep_1"/>
                 <parameter name="name" value="department_1"/>
             </class>
+            <class name="ru.fd.api.service.producer.entity.CustomerProducerDefaultIntegrationTestNG">
+                <parameter name="type" value="0"/>
+                <parameter name="phoneNumber" value="89091111111"/>
+                <parameter name="email" value="example@example.com"/>
+                <parameter name="name" value="John Doe"/>
+                <parameter name="inn" value="1212123412"/>
+                <parameter name="kpp" value="4534543"/>
+            </class>
         </classes>
     </test>
 
