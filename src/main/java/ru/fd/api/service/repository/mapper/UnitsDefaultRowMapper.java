@@ -43,7 +43,9 @@ public class UnitsDefaultRowMapper implements RowMapper<Units> {
         List<Unit> units = new ArrayList<>();
         do {
             String id = rs.getString("OKEI").trim();
-            String name = rs.getString("NAME").trim();
+            String name = rs.getString("CASE").trim();
+            if(name.endsWith("."))
+                name = name.substring(0, name.length() - 1);
             units.add(unitProducer.getUnitDefaultInstance(id, name));
         } while(rs.next());
         return unitsProducer.getUnitsDefaultInstance(units);

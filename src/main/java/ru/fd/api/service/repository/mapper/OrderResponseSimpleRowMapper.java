@@ -24,17 +24,19 @@ import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class OrderResponseDefaultRowMapper implements RowMapper<OrderResponse> {
+public class OrderResponseSimpleRowMapper implements RowMapper<OrderResponse> {
 
+    private final long id;
     private final OrderResponseProducer orderResponseProducer;
 
-    public OrderResponseDefaultRowMapper(OrderResponseProducer orderResponseProducer) {
+    public OrderResponseSimpleRowMapper(long id, OrderResponseProducer orderResponseProducer) {
+        this.id = id;
         this.orderResponseProducer = orderResponseProducer;
     }
 
     @Override
     public OrderResponse mapRow(ResultSet rs, int i) throws SQLException {
         short status = rs.getShort("STATUS");
-        return orderResponseProducer.getOrderResponseSimpleInstance(status);
+        return orderResponseProducer.getOrderResponseSimpleInstance(id, status);
     }
 }
