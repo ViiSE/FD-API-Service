@@ -30,7 +30,7 @@ public class CurrentDateTimeDefaultImpl implements CurrentDateTime {
 
     @Override
     public String dateTimeInStandardFormat() {
-        return null;
+        return formatDate("yyyy-MM-dd HH:mm:ss");
     }
 
     @Override

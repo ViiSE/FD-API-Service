@@ -17,16 +17,22 @@
 
 package ru.fd.api.service;
 
+import ru.fd.api.service.producer.creator.CustomerCreatorProducer;
+import ru.fd.api.service.producer.creator.DeliveryCreatorProducer;
+import ru.fd.api.service.producer.creator.OrderCreatorProducer;
 import ru.fd.api.service.producer.creator.ProductsCreatorProducer;
-import ru.fd.api.service.producer.entity.ProductProducer;
-import ru.fd.api.service.producer.entity.ProductsProducer;
-import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
-import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
+import ru.fd.api.service.producer.entity.*;
+import ru.fd.api.service.repository.processor.OrderRepositoryProcessors;
 
-public interface ProductsService {
+public interface OrdersService {
+    OrderCreatorProducer orderCreatorProducer();
+    OrderProducer orderProducer();
+    OrderRepositoryProcessors orderRepositoryProcessors();
     ProductsCreatorProducer productsCreatorProducer();
-    ProductsRepositoryProcessorsProducer productsRepositoryProcessorsProducer();
-    ProductsRepositoryProducer productsRepositoryProducer();
     ProductProducer productProducer();
     ProductsProducer productsProducer();
+    DeliveryCreatorProducer deliveryCreatorProducer();
+    CustomerCreatorProducer customerCreatorProducer();
+    DeliveryProducer deliveryProducer();
+    CustomerProducer customerProducer();
 }
