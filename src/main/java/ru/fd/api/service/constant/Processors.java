@@ -19,4 +19,5 @@ package ru.fd.api.service.constant;
 
 public class Processors {
     public static final String CREATE_ORDER = "create_order";
+    public static final String CREATE_ORDER_WITHOUT_CHECK_STATUS = "create_order_without_check_status";
 }
