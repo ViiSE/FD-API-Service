@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class AttributesCreatorTestImpl implements AttributesCreator {
 
     @Override
-    public Attributes create() throws CreatorException {
+    public Attributes create() {
         ProductAttribute attribute1 = new ProductAttributeDefaultImpl("attr_1", "value attr 1");
         ProductAttribute attribute2 = new ProductAttributeDefaultImpl("attr_2", "value attr 2");
         return new ProductAttributesDefaultImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});

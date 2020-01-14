@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class UnitsCreatorTestImpl implements UnitsCreator {
 
     @Override
-    public Units create() throws CreatorException {
+    public Units create() {
         Unit unit1 = new UnitDefaultImpl("uni_1", "Unit 1");
         Unit unit2 = new UnitDefaultImpl("uni_2", "Unit 2");
         return new UnitsDefaultImpl(new ArrayList<>() {{ add(unit1); add(unit2); }});
