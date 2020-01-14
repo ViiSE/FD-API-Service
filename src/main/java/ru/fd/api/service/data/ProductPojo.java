@@ -22,7 +22,6 @@ public class ProductPojo {
     private String name;
     private String fullDescription = "";
     private String shortDescription = "";
-//    @JsonInclude(JsonInclude.Include.NON_NULL) private boolean noReturn;
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
@@ -67,10 +66,6 @@ public class ProductPojo {
     public void setShortDescription(String shortDescription) {
         this.shortDescription = Objects.requireNonNullElse(shortDescription, "");
     }
-
-//    public void setNoReturn(boolean noReturn) {
-//        this.noReturn = noReturn;
-//    }
 
     public void setPrices(PricesPojo prices) {
         this.prices = prices;
@@ -128,35 +123,19 @@ public class ProductPojo {
         return shortDescription;
     }
 
-//    public boolean getNoReturn() {
-//        return noReturn;
-//    }
-
     public List<PricePojo> getPrices() {
-        if(prices != null)
-            return prices.getPrices();
-        else
-            return null;
+        return prices != null ? prices.getPrices() : null;
     }
 
     public List<ProductStatusPojo> getStatuses() {
-        if(statuses != null)
-            return statuses.getStatuses();
-        else
-            return null;
+        return statuses != null ? statuses.getStatuses() : null;
     }
 
     public List<BalancePojo> getBalances() {
-        if(balances != null)
-            return balances.getBalances();
-        else
-            return null;
+        return balances != null ? balances.getBalances() : null;
     }
 
     public List<ProductAttributePojo> getAttributes() {
-        if(attributes != null)
-            return attributes.getAttributes();
-        else
-            return null;
+        return attributes != null ? attributes.getAttributes() : null;
     }
 }

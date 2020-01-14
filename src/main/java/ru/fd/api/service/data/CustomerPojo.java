@@ -21,37 +21,44 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel("Customer")
+@ApiModel(value = "Customer", description = "Покупатель, оформивший заказ")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerPojo {
 
+    @ApiModelProperty(notes = "Номер покупателя", position = 1)
     private String phoneNumber;
+    @ApiModelProperty(notes = "Email покупателя", position = 2)
     private String email;
+    @ApiModelProperty(notes = "Имя покупателя (Имя, Имя Фамилия или ФИО)", position = 3)
     private String name;
+    @ApiModelProperty(notes = "<i>Для юридического лица</i>: ИНН покупателя", position = 4)
     private String inn;
+    @ApiModelProperty(notes = "<i>Для юридического лица</i>: КПП покупателя", position = 5)
     private String kpp;
+    @ApiModelProperty(notes = "Тип покупателя", position = 6)
     private short type;
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumber == null ? "" : phoneNumber;
     }
 
     public String getEmail() {
-        return email;
+        return email == null ? "" : email;
     }
 
     public String getName() {
-        return name;
+        return name == null ? "" : name;
     }
 
     public String getInn() {
-        return inn;
+        return inn == null ? "" : inn;
     }
 
     public String getKpp() {
-        return kpp;
+        return kpp == null ? "" : kpp;
     }
 
     public short getType() {

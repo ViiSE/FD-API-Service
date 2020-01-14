@@ -1,49 +1,57 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@ApiModel("Order")
+@ApiModel(value = "Order")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class OrderPojo {
 
+    @ApiModelProperty(notes = "ID заказа", position = 1)
     private final long id;
+    @ApiModelProperty(notes = "ID города заказа", position = 2)
     private final String cityId;
+    @ApiModelProperty(notes = "Покупатель, оформивший заказ", position = 3)
     private final CustomerPojo customer;
+    @ApiModelProperty(position = 4)
     private final DeliveryPojo delivery;
+    @ApiModelProperty(notes = "ID типа оплаты заказа", position = 5)
     private final short payTypeId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-DD HH:mm:ss")
+
+//    @JsonSerialize(using = LocalDateTimeDefaultSerializer.class)
+//    @JsonDeserialize(using = LocalDateTimeDefaultDeserializer.class)
+    @ApiModelProperty(example = "2020-01-13 00:45:36",
+            notes = "Дата и время оформления доставки (yyyy-MM-dd HH:mm:ss)",
+            position = 6)
     private final LocalDateTime dateTime;
 
-    private ProductsOrderPojo products;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ApiModelProperty(notes = "Коментарий покупателя к заказу", position = 7)
+    private String comment;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String comment;
+    @ApiModelProperty(notes = "Список товаров заказа", position = 8)
+    private List<ProductOrderPojo> products;
 
     @JsonCreator
     public OrderPojo(
@@ -58,7 +66,7 @@ public class OrderPojo {
         this.customer = customer;
         this.payTypeId = payTypeId;
         this.delivery = delivery;
-        this.dateTime = dateTime;
+        this.dateTime = Objects.requireNonNullElseGet(dateTime, LocalDateTime::now);
     }
 
     public long getId() {
@@ -66,7 +74,7 @@ public class OrderPojo {
     }
 
     public String getCityId() {
-        return cityId;
+        return cityId == null ? "": cityId;
     }
 
     public CustomerPojo getCustomer() {
@@ -90,14 +98,14 @@ public class OrderPojo {
     }
 
     public List<ProductOrderPojo> getProducts() {
-        return products.getProducts();
+        return products != null ? products : new ArrayList<>();
     }
 
     public void setComment(String comment) {
         this.comment = comment;
     }
 
-    public void setProducts(ProductsOrderPojo products) {
+    public void setProducts(List<ProductOrderPojo> products) {
         this.products = products;
     }
 }
