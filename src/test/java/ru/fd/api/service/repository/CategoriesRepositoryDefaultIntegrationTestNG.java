@@ -1,6 +1,7 @@
 package ru.fd.api.service.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -41,7 +42,7 @@ public class CategoriesRepositoryDefaultIntegrationTestNG extends AbstractTestNG
                     sqlQueryCreatorService.sqlQueryCreatorFromFileString())
                     .readCategories();
             assertNotNull(categories, "Categories is null!");
-//            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categories.formForSend()));
+            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categories.formForSend()));
             System.out.println("DONE!");
         } catch (RepositoryException ex) {
             catchMessage(ex);
