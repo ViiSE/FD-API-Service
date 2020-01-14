@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.data.OrderPojo;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
 
 import java.util.List;
@@ -23,7 +25,10 @@ public class ProductsCreatorProducerDefaultImpl implements ProductsCreatorProduc
     }
 
     @Override
-    public ProductsCreator getProductsOrderCreatorInstance(OrderPojo orderPojo) {
-        return (ProductsCreator) ctx.getBean("productsOrderCreator", orderPojo);
+    public ProductsCreator getOrderProductsCreatorDefaultInstance(
+            OrderPojo orderPojo,
+            ProductsProducer orderProductsProducer,
+            ProductProducer productProducer) {
+        return (ProductsCreator) ctx.getBean("orderProductsCreatorDefault", orderPojo, orderProductsProducer, productProducer);
     }
 }
