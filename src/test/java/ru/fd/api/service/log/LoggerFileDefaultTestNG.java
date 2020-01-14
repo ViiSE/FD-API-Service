@@ -80,7 +80,7 @@ public class LoggerFileDefaultTestNG {
     }
 
     @AfterClass
-    public void teardownClass() throws IOException {
+    public void teardownClass() {
         String fullFileName = logDirectory.directory() + "/log_" + curDateTime.dateLog() + ".txt";
         File logFile = new File(fullFileName);
         if(logFile.delete())
@@ -92,16 +92,11 @@ public class LoggerFileDefaultTestNG {
         loggerFile.writeLogFile(messageType, curDateTime, "Test write log");
         File logFile = createAndCheckFile();
         BufferedReader br = new BufferedReader(new FileReader(logFile));
-        boolean isTextFound = false;
-        String foundText = "";
         String st;
         while((st = br.readLine()) != null) {
             if(st.contains("[" + curDateTime.dateWithDot()))
-                if(st.contains(LogMessageType.INFO.stringValue() + ": Test write log")) {
-                    isTextFound = true;
-                    foundText = st;
+                if(st.contains(LogMessageType.INFO.stringValue() + ": Test write log"))
                     break;
-                }
         }
     }
 

@@ -31,14 +31,14 @@ public class LoggerServiceDefaultTestNG {
     }
 
     @Test(priority = 1)
-    public void info() throws IOException {
+    public void info() {
         testMethod("info()");
 
         loggerServer.info(LoggerServiceDefaultTestNG.class, "Test logger service");
     }
 
     @Test(priority = 2)
-    public void error() throws IOException {
+    public void error() {
         testMethod("error()");
 
         loggerServer.error(LoggerServiceDefaultTestNG.class, "Test logger service");
@@ -50,7 +50,7 @@ public class LoggerServiceDefaultTestNG {
     }
 
     @AfterClass
-    public void teardownClass() throws IOException {
+    public void teardownClass() {
         testEnd("LoggerServiceDefault");
     }
 }
