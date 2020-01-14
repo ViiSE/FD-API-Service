@@ -42,7 +42,7 @@ public class SQLQueryStringTestNG extends AbstractTestNGSpringContextTests {
     @BeforeClass
     @Parameters({"content"})
     public void setUpClass(String content) {
-        SQLQuery<String> sqlQuery = sqlQueryProducer.getSQLQueryStringInstance(content);
+        sqlQuery = sqlQueryProducer.getSQLQueryStringInstance(content);
         assertNotNull(sqlQuery, "SQLQuery is null!");
     }
 
