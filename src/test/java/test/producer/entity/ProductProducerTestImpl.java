@@ -70,4 +70,9 @@ public class ProductProducerTestImpl implements ProductProducer {
     public Product getProductWithFullDescriptionInstance(Product product, String fullDescription) {
         return new ProductWithFullDescriptionImpl(product, fullDescription);
     }
+
+    @Override
+    public Product getOrderProductSimpleInstance(String id, int quantity) {
+        return new OrderProductSimpleImpl(id, quantity);
+    }
 }
