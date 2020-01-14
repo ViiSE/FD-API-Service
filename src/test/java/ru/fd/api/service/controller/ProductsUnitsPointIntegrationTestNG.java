@@ -1,18 +1,11 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2020 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.controller;
@@ -34,7 +27,6 @@ import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.UnitsService;
-import ru.fd.api.service.data.StatusesPojo;
 import ru.fd.api.service.data.UnitsPojo;
 import ru.fd.api.service.filter.APIFilter;
 
@@ -127,38 +119,38 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
 
     @Test(priority = 2)
     @Parameters({"incorrectToken"})
-    void whenNotValidToken_thenReturns200WithoutContent(String incorrectToken) throws Exception {
-        testMethod("units() [when not valid token then returns 200 without content]");
+    void whenNotValidToken_thenReturns401WithoutContent(String incorrectToken) throws Exception {
+        testMethod("units() [when not valid token then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/units")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + incorrectToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 3)
-    void whenNotAuthorizationHeader_thenReturns200WithoutContent() throws Exception {
-        testMethod("units() [when not auth header then returns 200 without content]");
+    void whenNotAuthorizationHeader_thenReturns401WithoutContent() throws Exception {
+        testMethod("units() [when not auth header then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/units")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 4)
     @Parameters({"notJWTToken"})
-    void whenTokenIsNotJWT_thenReturns200WithoutContent(String notJWTToken) throws Exception {
-        testMethod("units() [when token is not JWT then returns 200 without content]");
+    void whenTokenIsNotJWT_thenReturns401WithoutContent(String notJWTToken) throws Exception {
+        testMethod("units() [when token is not JWT then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/units")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + notJWTToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 

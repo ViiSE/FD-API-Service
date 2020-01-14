@@ -41,10 +41,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -130,38 +127,38 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
 
     @Test(priority = 2)
     @Parameters({"incorrectToken"})
-    void whenNotValidToken_thenReturns200WithoutContent(String incorrectToken) throws Exception {
-        testMethod("departments() [when not valid token then returns 200 without content]");
+    void whenNotValidToken_thenReturns401WithoutContent(String incorrectToken) throws Exception {
+        testMethod("departments() [when not valid token then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/departments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + incorrectToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 3)
-    void whenNotAuthorizationHeader_thenReturns200WithoutContent() throws Exception {
-        testMethod("departments() [when not auth header then returns 200 without content]");
+    void whenNotAuthorizationHeader_thenReturns401WithoutContent() throws Exception {
+        testMethod("departments() [when not auth header then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/departments")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 4)
     @Parameters({"notJWTToken"})
-    void whenTokenIsNotJWT_thenReturns200WithoutContent(String notJWTToken) throws Exception {
-        testMethod("departments() [when token is not JWT then returns 200 without content]");
+    void whenTokenIsNotJWT_thenReturns401WithoutContent(String notJWTToken) throws Exception {
+        testMethod("departments() [when token is not JWT then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/departments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + notJWTToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 

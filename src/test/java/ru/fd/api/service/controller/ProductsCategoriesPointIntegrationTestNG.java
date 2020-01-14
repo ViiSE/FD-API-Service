@@ -35,7 +35,6 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.CategoriesService;
 import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.data.CategoriesPojo;
-import ru.fd.api.service.data.UnitsPojo;
 import ru.fd.api.service.filter.APIFilter;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -104,7 +103,7 @@ public class ProductsCategoriesPointIntegrationTestNG extends AbstractTestNGSpri
 
     @Test(priority = 1)
     void whenValidToken_thenReturns200WithContent() throws Exception {
-        testMethod("categories() [when valid token then returns 200 with content]");
+        testMethod("categories() [when valid token then returns 200 without content]");
 
         String response = mockMvc.perform(
                 get("/products/categories")
@@ -127,38 +126,38 @@ public class ProductsCategoriesPointIntegrationTestNG extends AbstractTestNGSpri
 
     @Test(priority = 2)
     @Parameters({"incorrectToken"})
-    void whenNotValidToken_thenReturns200WithoutContent(String incorrectToken) throws Exception {
-        testMethod("categories() [when not valid token then returns 200 without content]");
+    void whenNotValidToken_thenReturns401WithoutContent(String incorrectToken) throws Exception {
+        testMethod("categories() [when not valid token then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/categories")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + incorrectToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 3)
-    void whenNotAuthorizationHeader_thenReturns200WithoutContent() throws Exception {
-        testMethod("categories() [when not auth header then returns 200 without content]");
+    void whenNotAuthorizationHeader_thenReturns401WithoutContent() throws Exception {
+        testMethod("categories() [when not auth header then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/categories")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
     @Test(priority = 4)
     @Parameters({"notJWTToken"})
-    void whenTokenIsNotJWT_thenReturns200WithoutContent(String notJWTToken) throws Exception {
-        testMethod("categories() [when token is not JWT then returns 200 without content]");
+    void whenTokenIsNotJWT_thenReturns401WithoutContent(String notJWTToken) throws Exception {
+        testMethod("categories() [when token is not JWT then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
                 get("/products/categories")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + notJWTToken))
-                .andExpect(status().isOk())
+                .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 

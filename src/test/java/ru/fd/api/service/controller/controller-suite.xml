@@ -13,6 +13,10 @@
             <class name="ru.fd.api.service.controller.ProductsControllerIntegrationTestNG">
                 <parameter name="timeToLive" value="50000"/>
             </class>
+                <!--   TODO 14.01.2020 DO NOT WORK (DISPATCHER SERVLET ERROR)    -->
+<!--            <class name="ru.fd.api.service.controller.OrdersControllerIntegrationTestNG">-->
+<!--                <parameter name="timeToLive" value="50000"/>-->
+<!--            </class>-->
 <!--            <class name="ru.fd.api.service.controller.ProductsAttributeGroupsPointIntegrationTestNG">-->
 <!--                <parameter name="timeToLive" value="5000"/>-->
 <!--            </class>-->
