@@ -104,13 +104,14 @@ public class TestMessage {
     }
 
     private static void writeToFile(String message) {
-        File file = new File(System.getProperty("user.dir") + File.separator + "elapse_time_test");
+        // FIXME: 24.12.2019 ADD FILENAME IN XML SUITE
+        File file = new File(System.getProperty("user.dir") + File.separator + "elapse_time_test_14_01_2020");
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
             bw.write(message);
             bw.newLine();
         } catch (IOException ex) {
-            System.out.println("FILE elapse_time_test IS NOT FOUND!");
+            System.out.println("FILE elapse_time_test_14_01_2020 IS NOT FOUND!");
         }
     }
 }
