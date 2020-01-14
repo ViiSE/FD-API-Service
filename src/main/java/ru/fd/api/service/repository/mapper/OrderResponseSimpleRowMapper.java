@@ -35,6 +35,6 @@ public class OrderResponseDefaultRowMapper implements RowMapper<OrderResponse> {
     @Override
     public OrderResponse mapRow(ResultSet rs, int i) throws SQLException {
         short status = rs.getShort("STATUS");
-        return orderResponseProducer.getOrderResponseProducerDefaultInstance(status);
+        return orderResponseProducer.getOrderResponseSimpleInstance(status);
     }
 }
