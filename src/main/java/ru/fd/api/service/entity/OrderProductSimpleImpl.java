@@ -19,26 +19,32 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.OrderPojo;
-import ru.fd.api.service.data.ProductsOrderPojo;
+import ru.fd.api.service.data.ProductOrderPojo;
 
-@Component("orderWithProducts")
+@Component("orderProductSimple")
 @Scope("prototype")
-public class OrderWithProductsImpl implements Order {
+public class OrderProductSimpleImpl implements Product {
 
-    private final Order order;
-    private final Products products;
+    private final String id;
+    private final int quantity;
 
-    public OrderWithProductsImpl(Order order, Products products) {
-        this.order = order;
-        this.products = products;
+    public OrderProductSimpleImpl(String id, int quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String id() {
+        return id;
+    }
+
+    @Override
+    public int key() {
+        return 0;
     }
 
     @Override
     public Object formForSend() {
-        OrderPojo orderPojo = (OrderPojo) order.formForSend();
-        ProductsOrderPojo productsOrderPojo = (ProductsOrderPojo) products.formForSend();
-        orderPojo.setProducts(productsOrderPojo.getProducts());
-        return orderPojo;
+        return new ProductOrderPojo(id, quantity);
     }
 }

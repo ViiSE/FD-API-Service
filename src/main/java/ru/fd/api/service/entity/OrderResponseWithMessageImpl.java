@@ -44,4 +44,9 @@ public class OrderResponseWithMessageImpl implements OrderResponse {
     public short status() {
         return orderResponse.status();
     }
+
+    @Override
+    public long id() {
+        return orderResponse.id();
+    }
 }

@@ -20,4 +20,5 @@ package ru.fd.api.service.entity;
 public interface OrderResponse {
     Object formForSend();
     short status();
+    long id();
 }

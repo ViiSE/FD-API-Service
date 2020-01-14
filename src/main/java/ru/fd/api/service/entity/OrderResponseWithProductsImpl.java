@@ -27,9 +27,9 @@ import ru.fd.api.service.data.ProductsOrderPojo;
 public class OrderResponseWithProductsImpl implements OrderResponse {
 
     private final OrderResponse orderResponse;
-    private final OrderProducts orderProducts;
+    private final Products orderProducts;
 
-    public OrderResponseWithProductsImpl(OrderResponse orderResponse, OrderProducts orderProducts) {
+    public OrderResponseWithProductsImpl(OrderResponse orderResponse, Products orderProducts) {
         this.orderResponse = orderResponse;
         this.orderProducts = orderProducts;
     }
@@ -44,5 +44,10 @@ public class OrderResponseWithProductsImpl implements OrderResponse {
     @Override
     public short status() {
         return orderResponse.status();
+    }
+
+    @Override
+    public long id() {
+        return orderResponse.id();
     }
 }

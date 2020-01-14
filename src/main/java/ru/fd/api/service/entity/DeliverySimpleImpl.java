@@ -26,17 +26,17 @@ import ru.fd.api.service.data.DeliveryPojo;
 public class DeliverySimpleImpl implements Delivery {
 
     private final short type;
-    private final String city;
+    private final String cityId;
     private final String address;
 
-    public DeliverySimpleImpl(short type, String city, String address) {
+    public DeliverySimpleImpl(short type, String cityId, String address) {
         this.type = type;
-        this.city = city;
+        this.cityId = cityId;
         this.address = address;
     }
 
     @Override
     public Object formForSend() {
-        return new DeliveryPojo(type, city, address);
+        return new DeliveryPojo(type, cityId, address);
     }
 }

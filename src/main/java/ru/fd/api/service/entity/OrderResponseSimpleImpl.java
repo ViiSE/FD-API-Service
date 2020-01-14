@@ -25,15 +25,18 @@ import ru.fd.api.service.data.OrderResponsePojo;
 @Scope("prototype")
 public class OrderResponseSimpleImpl implements OrderResponse {
 
+    private final long id;
     private final short status;
 
-    public OrderResponseSimpleImpl(short status) {
+    public OrderResponseSimpleImpl(long id, short status) {
+        this.id = id;
         this.status = status;
     }
 
     @Override
     public Object formForSend() {
         OrderResponsePojo orderResponsePojo = new OrderResponsePojo();
+        orderResponsePojo.setId(id);
         orderResponsePojo.setStatus(status);
         return orderResponsePojo;
     }
@@ -41,5 +44,10 @@ public class OrderResponseSimpleImpl implements OrderResponse {
     @Override
     public short status() {
         return status;
+    }
+
+    @Override
+    public long id() {
+        return id;
     }
 }
