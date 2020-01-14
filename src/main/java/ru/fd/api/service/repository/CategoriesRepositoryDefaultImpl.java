@@ -18,7 +18,6 @@
 package ru.fd.api.service.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,7 +30,6 @@ import ru.fd.api.service.producer.entity.CategoryProducer;
 import ru.fd.api.service.repository.mapper.CategoriesDefaultRowMapper;
 
 @Repository("categoriesRepositoryDefault")
-@Scope("prototype")
 public class CategoriesRepositoryDefaultImpl implements CategoriesRepository {
 
     @Autowired

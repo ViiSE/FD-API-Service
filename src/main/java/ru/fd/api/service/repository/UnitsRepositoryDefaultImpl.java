@@ -54,9 +54,6 @@ public class UnitsRepositoryDefaultImpl implements UnitsRepository {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("units.sql").content(),
                     new UnitsDefaultRowMapper(unitProducer, unitsProducer));
-//            return jdbcTemplate.queryForObject(
-//                    "SELECT DISTINCT EE.NAME, EE.OKEI FROM EDISM E LEFT JOIN EDISM EE on EE.KOD = E.OWNER WHERE E.kod > 0",
-//                    new UnitsDefaultRowMapper(unitProducer, unitsProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

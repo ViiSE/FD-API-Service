@@ -17,10 +17,9 @@
 
 package ru.fd.api.service.repository;
 
-import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
 
-public interface OrderRepository {
-    long insert() throws RepositoryException;
-    OrderResponse read(long orderId) throws RepositoryException;
+public interface OrderRepository<T, V> {
+    T insert() throws RepositoryException;
+    V read(long orderId) throws RepositoryException;
 }
