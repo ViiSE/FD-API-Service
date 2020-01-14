@@ -1,67 +1,70 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import ru.fd.api.service.SQLQueryCreatorService;
+import org.springframework.web.bind.annotation.ResponseBody;
+import ru.fd.api.service.OrdersService;
 import ru.fd.api.service.constant.Processors;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.data.OrderResponsePojo;
 import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.exception.CreateOrderException;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
 
-@Controller
+@Controller("/orders")
+@Api(tags="Orders Controller", description = "Контроллер точек для работы с заказами", authorizations = {@Authorization(value = "Bearer")})
 public class OrdersController {
 
     private final OrdersService ordersService;
 
-    private final SQLQueryCreatorService sqlQueryCreatorService;
     private final LoggerService logger;
 
-    public OrdersController(
-            OrdersService ordersService,
-            SQLQueryCreatorService sqlQueryCreatorService,
-            LoggerService logger) {
+    public OrdersController(OrdersService ordersService, LoggerService logger) {
         this.ordersService = ordersService;
-        this.sqlQueryCreatorService = sqlQueryCreatorService;
         this.logger = logger;
     }
 
-    @PostMapping("/orders")
+    @ApiOperation(value = "Создает заказ", notes = "")
+    @PostMapping
+    @ResponseBody
     public OrderResponsePojo createOrder(@RequestBody OrderPojo orderPojo) {
         try {
             Order order = ordersService.orderCreatorProducer()
-                    .getOrderCreatorFromBodyInstance(orderPojo)
+                    .getOrderCreatorFromBodyInstance(
+                            orderPojo,
+                            ordersService)
                     .create();
-            OrderResponsePojo orderResponsePojo = ordersService.orderRepositoryProcessors
-                    .get(Processors.CREATE_ORDER)
+            OrderResponse orderResponse = ordersService.orderRepositoryProcessors()
+                    .processor(Processors.CREATE_ORDER_WITHOUT_CHECK_STATUS)
                     .apply(order);
-            logger.info(OrdersController.class, "Order " + orderResponsePojo.getId() + " was created");
-            return orderResponsePojo;
+            OrderResponsePojo orderResponsePojo = (OrderResponsePojo) orderResponse.formForSend();
+
+            if(orderResponsePojo.getStatus() == 500) {
+                logger.error(DepartmentsController.class, orderResponsePojo.getExMessage());
+                throw new CreateOrderException(orderResponsePojo.getMessage());
+            } else {
+                logger.info(OrdersController.class, "Order " + orderResponsePojo.getId() + " was created");
+                return orderResponsePojo;
+            }
         } catch (CreatorException ex) {
             logger.error(DepartmentsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
-            return orderService.orderCreatorProducer()
-                    .getOrderWithErrorInstance(ex.getMessage())
-                    .create();
+            throw new CreateOrderException(ex.getMessage());
         }
     }
-
 }
