@@ -19,8 +19,9 @@ package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.entity.Customer;
 import ru.fd.api.service.entity.Delivery;
+
+import java.time.LocalDate;
 
 @Service("deliveryProducerDefault")
 public class DeliveryProducerDefaultImpl implements DeliveryProducer {
@@ -34,5 +35,20 @@ public class DeliveryProducerDefaultImpl implements DeliveryProducer {
     @Override
     public Delivery getDeliverySimpleInstance(short type, String city, String address) {
         return (Delivery) ctx.getBean("deliverySimple", type, city, address);
+    }
+
+    @Override
+    public Delivery getDeliveryWithDateInstance(Delivery delivery, LocalDate deliveryDate) {
+        return (Delivery) ctx.getBean("deliveryWithDate", delivery, deliveryDate);
+    }
+
+    @Override
+    public Delivery getDeliveryWithTimeIdInstance(Delivery delivery, short deliveryTimeId) {
+        return (Delivery) ctx.getBean("deliveryWithTimeId", delivery, deliveryTimeId);
+    }
+
+    @Override
+    public Delivery getDeliveryWithDepartmentIdInstance(Delivery delivery, String departmentId) {
+        return (Delivery) ctx.getBean("deliveryWithDepartmentId", delivery, departmentId);
     }
 }

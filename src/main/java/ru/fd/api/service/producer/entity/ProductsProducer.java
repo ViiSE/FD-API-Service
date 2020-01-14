@@ -17,13 +17,11 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.entity.Delivery;
+import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.Products;
 
-import java.time.LocalDate;
+import java.util.List;
 
-public interface DeliveryProducer {
-    Delivery getDeliverySimpleInstance(short type, String city, String address);
-    Delivery getDeliveryWithDateInstance(Delivery delivery, LocalDate deliveryDate);
-    Delivery getDeliveryWithTimeIdInstance(Delivery delivery, short deliveryTimeId);
-    Delivery getDeliveryWithDepartmentIdInstance(Delivery delivery, String departmentId);
+public interface ProductsProducer {
+    Products getOrderProductsDefaultInstance(List<Product> products);
 }

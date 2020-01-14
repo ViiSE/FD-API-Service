@@ -52,4 +52,9 @@ public class ProductProducerDefaultImpl implements ProductProducer {
     public Product getProductWithFullDescriptionInstance(Product product, String fullDescription) {
         return (Product) ctx.getBean("productWithFullDescription", product, fullDescription);
     }
+
+    @Override
+    public Product getOrderProductSimpleInstance(String id, int quantity) {
+        return (Product) ctx.getBean("orderProductSimple", id, quantity);
+    }
 }

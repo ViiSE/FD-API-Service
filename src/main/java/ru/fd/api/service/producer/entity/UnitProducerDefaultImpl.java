@@ -7,7 +7,7 @@ import ru.fd.api.service.entity.Unit;
 @Service("unitProducerDefault")
 public class UnitProducerDefaultImpl implements UnitProducer {
 
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
 
     public UnitProducerDefaultImpl(ApplicationContext ctx) {
         this.ctx = ctx;

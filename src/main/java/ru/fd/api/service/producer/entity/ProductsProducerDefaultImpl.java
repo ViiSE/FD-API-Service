@@ -17,13 +17,24 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.entity.Delivery;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+import ru.fd.api.service.entity.Products;
+import ru.fd.api.service.entity.Product;
 
-import java.time.LocalDate;
+import java.util.List;
 
-public interface DeliveryProducer {
-    Delivery getDeliverySimpleInstance(short type, String city, String address);
-    Delivery getDeliveryWithDateInstance(Delivery delivery, LocalDate deliveryDate);
-    Delivery getDeliveryWithTimeIdInstance(Delivery delivery, short deliveryTimeId);
-    Delivery getDeliveryWithDepartmentIdInstance(Delivery delivery, String departmentId);
+@Service("productsProducerDefault")
+public class ProductsProducerDefaultImpl implements ProductsProducer {
+
+    private final ApplicationContext ctx;
+
+    public ProductsProducerDefaultImpl(ApplicationContext ctx) {
+        this.ctx = ctx;
+    }
+
+    @Override
+    public Products getOrderProductsDefaultInstance(List<Product> products) {
+        return (Products) ctx.getBean("orderProductsDefault", products);
+    }
 }

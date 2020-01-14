@@ -19,9 +19,10 @@ package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.data.CustomerPojo;
-import ru.fd.api.service.data.DeliveryPojo;
+import ru.fd.api.service.entity.Customer;
+import ru.fd.api.service.entity.Delivery;
 import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.Products;
 
 import java.time.LocalDateTime;
 
@@ -38,8 +39,8 @@ public class OrderProducerDefaultImpl implements OrderProducer {
     public Order getOrderSimpleInstance(
             long id,
             String city,
-            CustomerPojo customer,
-            DeliveryPojo delivery,
+            Customer customer,
+            Delivery delivery,
             short payTypeId,
             LocalDateTime dateTime) {
         return (Order) ctx.getBean("orderSimple", id, city, customer, delivery, payTypeId, dateTime);
@@ -48,5 +49,10 @@ public class OrderProducerDefaultImpl implements OrderProducer {
     @Override
     public Order getOrderWithCommentInstance(Order order, String comment) {
         return (Order) ctx.getBean("orderWithComment", order, comment);
+    }
+
+    @Override
+    public Order getOrderWithProductsInstance(Order order, Products products) {
+        return (Order) ctx.getBean("orderWithProducts", order, products);
     }
 }

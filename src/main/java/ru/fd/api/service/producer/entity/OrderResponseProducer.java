@@ -17,11 +17,12 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.entity.OrderProducts;
 import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.entity.Products;
 
 public interface OrderResponseProducer {
-    OrderResponse getOrderResponseSimpleInstance(short status);
+    OrderResponse getOrderResponseSimpleInstance(long id, short status);
     OrderResponse getOrderResponseWithMessageInstance(OrderResponse response, String message);
-    OrderResponse getOrderResponseWithProductsInstance(OrderResponse response, OrderProducts orderProducts);
+    OrderResponse getOrderResponseWithProductsInstance(OrderResponse response, Products orderProducts);
+    OrderResponse getOrderResponseWithExceptionMessageInstance(OrderResponse response, String exMessage);
 }

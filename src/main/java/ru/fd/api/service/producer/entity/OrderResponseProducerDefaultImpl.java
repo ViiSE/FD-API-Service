@@ -19,8 +19,8 @@ package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.entity.OrderProducts;
 import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.entity.Products;
 
 @Service("orderResponseProducerDefault")
 public class OrderResponseProducerDefaultImpl implements OrderResponseProducer {
@@ -32,8 +32,8 @@ public class OrderResponseProducerDefaultImpl implements OrderResponseProducer {
     }
 
     @Override
-    public OrderResponse getOrderResponseSimpleInstance(short status) {
-        return (OrderResponse) ctx.getBean("orderResponseSimple", status);
+    public OrderResponse getOrderResponseSimpleInstance(long id, short status) {
+        return (OrderResponse) ctx.getBean("orderResponseSimple", id, status);
     }
 
     @Override
@@ -42,7 +42,12 @@ public class OrderResponseProducerDefaultImpl implements OrderResponseProducer {
     }
 
     @Override
-    public OrderResponse getOrderResponseWithProductsInstance(OrderResponse response, OrderProducts orderProducts) {
+    public OrderResponse getOrderResponseWithProductsInstance(OrderResponse response, Products orderProducts) {
         return (OrderResponse) ctx.getBean("orderResponseWithProducts", response, orderProducts);
+    }
+
+    @Override
+    public OrderResponse getOrderResponseWithExceptionMessageInstance(OrderResponse response, String exMessage) {
+        return (OrderResponse) ctx.getBean("orderResponseWithExceptionMessage", response, exMessage);
     }
 }

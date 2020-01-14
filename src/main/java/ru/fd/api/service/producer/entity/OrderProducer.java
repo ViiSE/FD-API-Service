@@ -17,10 +17,7 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.data.CustomerPojo;
-import ru.fd.api.service.data.DeliveryPojo;
-import ru.fd.api.service.entity.Order;
-import ru.fd.api.service.entity.Products;
+import ru.fd.api.service.entity.*;
 
 import java.time.LocalDateTime;
 
@@ -28,8 +25,8 @@ public interface OrderProducer {
     Order getOrderSimpleInstance(
             long id,
             String city,
-            CustomerPojo customer,
-            DeliveryPojo delivery,
+            Customer customer,
+            Delivery delivery,
             short payTypeId,
             LocalDateTime dateTime);
     Order getOrderWithCommentInstance(Order order, String comment);

@@ -10,7 +10,7 @@ import java.util.List;
 @Service("pricesProducerDefault")
 public class PricesProducerDefaultImpl implements PricesProducer {
 
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
 
     public PricesProducerDefaultImpl(ApplicationContext ctx) {
         this.ctx = ctx;

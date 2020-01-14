@@ -24,7 +24,7 @@ import ru.fd.api.service.entity.Status;
 @Service("statusProducerDefault")
 public class StatusProducerDefaultImpl implements StatusProducer {
 
-    private ApplicationContext ctx;
+    private final ApplicationContext ctx;
 
     public StatusProducerDefaultImpl(ApplicationContext ctx) {
         this.ctx = ctx;
