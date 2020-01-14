@@ -10,7 +10,7 @@ import test.creator.AttributesCreatorTestImpl;
 public class AttributesRepositoryTestImpl implements AttributesRepository {
 
     @Override
-    public Attributes readAttributes() throws RepositoryException {
+    public Attributes readAttributes() {
         AttributesCreator attrCr = new AttributesCreatorTestImpl();
         try {
             return attrCr.create();

@@ -10,7 +10,7 @@ import test.creator.DepartmentsCreatorTestImpl;
 public class DepartmentsRepositoryTestImpl implements DepartmentsRepository {
 
     @Override
-    public Departments readDepartments() throws RepositoryException {
+    public Departments readDepartments() {
         DepartmentsCreator dpCr = new DepartmentsCreatorTestImpl();
         try {
             return dpCr.create();

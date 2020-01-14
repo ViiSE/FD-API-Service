@@ -10,7 +10,7 @@ import test.creator.UnitsCreatorTestImpl;
 public class UnitsRepositoryTestImpl implements UnitsRepository {
 
     @Override
-    public Units readUnits() throws RepositoryException {
+    public Units readUnits() {
         UnitsCreator uniCr = new UnitsCreatorTestImpl();
         try {
             return uniCr.create();

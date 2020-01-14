@@ -10,7 +10,7 @@ import test.creator.StatusesCreatorTestImpl;
 public class StatusesRepositoryTestImpl implements StatusesRepository {
 
     @Override
-    public Statuses readStatuses() throws RepositoryException {
+    public Statuses readStatuses() {
         StatusesCreator statCr = new StatusesCreatorTestImpl();
         try {
             return statCr.create();

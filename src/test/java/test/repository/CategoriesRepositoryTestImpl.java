@@ -10,7 +10,7 @@ import test.creator.CategoriesCreatorTestImpl;
 public class CategoriesRepositoryTestImpl implements CategoriesRepository {
 
     @Override
-    public Categories readCategories() throws RepositoryException {
+    public Categories readCategories() {
         CategoriesCreator catCr = new CategoriesCreatorTestImpl();
         try {
             return catCr.create();
