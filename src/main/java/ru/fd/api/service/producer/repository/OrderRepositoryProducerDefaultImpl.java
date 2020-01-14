@@ -21,7 +21,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.exception.ExceptionWithSendMessage;
+import ru.fd.api.service.producer.entity.OrderResponseProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.OrderRepository;
+import ru.fd.api.service.repository.OrderRepositoryDefaultImpl;
+import ru.fd.api.service.repository.OrderRepositoryFailedImpl;
+import ru.fd.api.service.repository.OrderRepositoryWithoutCheckStatusImpl;
 
 @Service("orderRepositoryProducerDefault")
 public class OrderRepositoryProducerDefaultImpl implements OrderRepositoryProducer {
@@ -33,7 +41,34 @@ public class OrderRepositoryProducerDefaultImpl implements OrderRepositoryProduc
     }
 
     @Override
-    public OrderRepository getOrderRepositoryDefaultInstance(Order order, SQLQueryCreator<String, String> sqlQueryCreator) {
-        return (OrderRepository) ctx.getBean("orderRepositoryProducerDefault", order, sqlQueryCreator);
+    public OrderRepository<Long, OrderResponse> getOrderRepositoryDefaultInstance(
+            Order order,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            ProductProducer productProducer,
+            ProductsProducer orderProductsProducer,
+            OrderResponseProducer orderResponseProducer) {
+        return (OrderRepositoryDefaultImpl) ctx.getBean(
+                "orderRepositoryDefault",
+                order,
+                sqlQueryCreator,
+                productProducer,
+                orderProductsProducer,
+                orderResponseProducer);
+    }
+
+    @Override
+    public OrderRepository<OrderResponse, Void> getOrderRepositoryWithoutCheckStatusInstance(
+            Order order,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            OrderResponseProducer orderResponseProducer) {
+        return (OrderRepositoryWithoutCheckStatusImpl) ctx.getBean("orderRepositoryWithoutCheckStatus",
+                order,
+                sqlQueryCreator,
+                orderResponseProducer);
+    }
+
+    @Override
+    public OrderRepository<Void, OrderResponse> getOrderRepositoryFailedInstance(OrderResponseProducer orderResponseProducer, ExceptionWithSendMessage ex) {
+        return (OrderRepositoryFailedImpl) ctx.getBean("orderRepositoryFailed", orderResponseProducer, ex);
     }
 }

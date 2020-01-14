@@ -19,8 +19,23 @@ package ru.fd.api.service.producer.repository;
 
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.exception.ExceptionWithSendMessage;
+import ru.fd.api.service.producer.entity.OrderResponseProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
 public interface OrderRepositoryProducer {
-    OrderRepository getOrderRepositoryDefaultInstance(Order order, SQLQueryCreator<String, String> sqlQueryCreator);
+    OrderRepository<Long, OrderResponse> getOrderRepositoryDefaultInstance(
+            Order order,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            ProductProducer productProducer,
+            ProductsProducer orderProductsProducer,
+            OrderResponseProducer orderResponseProducer);
+    OrderRepository<OrderResponse, Void> getOrderRepositoryWithoutCheckStatusInstance(
+            Order order,
+            SQLQueryCreator<String, String> sqlQueryCreator,
+            OrderResponseProducer orderResponseProducer);
+    OrderRepository<Void, OrderResponse> getOrderRepositoryFailedInstance(OrderResponseProducer orderResponseProducer, ExceptionWithSendMessage ex);
 }
