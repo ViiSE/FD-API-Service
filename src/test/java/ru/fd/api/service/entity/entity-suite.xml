@@ -3,7 +3,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="EntitySuite">
 
-    <test name="EntitySuiteTest">
+    <test name="EntitySuiteProductsTest">
         <classes>
             <class name="ru.fd.api.service.entity.PriceDefaultTestNG">
                 <parameter name="departmentId" value="123"/>
@@ -128,6 +128,100 @@
                 <parameter name="name1" value="Unit 1"/>
                 <parameter name="unitId2" value="unit_2"/>
                 <parameter name="name2" value="Unit 2"/>
+            </class>
+        </classes>
+    </test>
+
+    <test name="EntitySuiteOrderTest">
+        <classes>
+            <class name="ru.fd.api.service.entity.OrderProductSimpleTestNG">
+                <parameter name="id" value="id_1"/>
+                <parameter name="quantity" value="1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderResponseSimpleTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderResponseWithMessagesTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+                <parameter name="message" value="Message here"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderResponseWithProductsTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+                <parameter name="opId1" value="opId1"/>
+                <parameter name="opId2" value="opId2"/>
+                <parameter name="opq1" value="1"/>
+                <parameter name="opq2" value="1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderProductsDefaultTestNG">
+                <parameter name="id1" value="id1"/>
+                <parameter name="quantity1" value="1"/>
+                <parameter name="id2" value="id2"/>
+                <parameter name="quantity2" value="2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerSimpleTestNG">
+                <parameter name="type" value="1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerFromCompanyTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="inn" value="2323313"/>
+                <parameter name="kpp" value="4676546"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerWithEmailTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="email" value="example@example.com"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerWithNameTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="name" value="John Doe"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="phoneNumber" value="89091111111"/>
+            </class>
+            <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="phoneNumber" value="89091111111"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DeliverySimpleTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="address" value="st. Example, 404"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DeliveryWithDepartmentIdTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="address" value="st. Example, 404"/>
+                <parameter name="departmentId" value="dep_1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DeliveryWithTimeIdTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="address" value="st. Example, 404"/>
+                <parameter name="timeId" value="1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DeliveryWithDateTestNG">
+                <parameter name="type" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="address" value="st. Example, 404"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderSimpleTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="payTypeId" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithCommentTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="payTypeId" value="0"/>
+                <parameter name="comment" value="Example comment here"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithProductsTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="cityId" value="city_1"/>
+                <parameter name="payTypeId" value="0"/>
             </class>
         </classes>
     </test>
