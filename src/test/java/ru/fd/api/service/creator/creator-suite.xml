@@ -3,10 +3,34 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="CreatorSuite">
 
-    <test name="CreatorSuiteTest">
-        <packages>
-            <package name="ru.fd.api.service.creator"/>
-        </packages>
+    <test name="CreatorProductsSuiteTest">
+        <classes>
+            <class name="ru.fd.api.service.creator.AttributeGroupsCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.AttributesCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.CategoriesCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.DepartmentsCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.ProductsCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.StatusesCreatorTestNG"/>
+            <class name="ru.fd.api.service.creator.UnitsCreatorTestNG"/>
+        </classes>
+    </test>
+
+    <test name="CreatorOrderSuiteTest">
+        <classes>
+            <class name="ru.fd.api.service.creator.CustomerCreatorEmailOrPhoneRequiredTestNG">
+                <parameter name="email" value="example@example.com"/>
+                <parameter name="phoneNumber" value="79091111111"/>
+            </class>
+            <class name="ru.fd.api.service.creator.DeliveryCreatorDefaultTestNG">
+                <parameter name="type" value="0"/>
+                <parameter name="cityId" value="cId1"/>
+                <parameter name="address" value="Example st."/>
+                <parameter name="departmentId" value="dep1"/>
+                <parameter name="deliveryTimeId" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.creator.OrderProductsCreatorDefaultTestNG"/>
+            <class name="ru.fd.api.service.creator.OrderCreatorFromBodyTestNG"/>
+        </classes>
     </test>
 
 </suite>
