@@ -27,7 +27,7 @@ import java.io.File;
 public class LogDirectoryTestImpl implements LogDirectory {
 
     private static final String logDirectoryName = "logs";
-    private FDAPIServiceDirectoryProducer fdAPIServiceDirProducer;
+    private final FDAPIServiceDirectoryProducer fdAPIServiceDirProducer;
 
     public LogDirectoryTestImpl(FDAPIServiceDirectoryProducer fdAPIServiceDirProducer) {
         this.fdAPIServiceDirProducer = fdAPIServiceDirProducer;
