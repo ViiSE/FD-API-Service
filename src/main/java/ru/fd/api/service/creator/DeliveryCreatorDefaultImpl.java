@@ -24,6 +24,8 @@ import ru.fd.api.service.entity.Delivery;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.producer.entity.DeliveryProducer;
 
+import java.time.LocalDate;
+
 @Service("deliveryCreatorDefault")
 @Scope("prototype")
 public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
@@ -38,9 +40,34 @@ public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
 
     @Override
     public Delivery create() throws CreatorException {
-        return deliveryProducer.getDeliverySimpleInstance(
-                deliveryPojo.getType(),
-                deliveryPojo.getCityId(),
-                deliveryPojo.getAddress());
+        checkDelivery();
+
+        return deliveryProducer.getDeliveryWithDateInstance(
+                deliveryProducer.getDeliveryWithTimeIdInstance(
+                        deliveryProducer.getDeliveryWithDepartmentIdInstance(
+                                deliveryProducer.getDeliverySimpleInstance(
+                                        deliveryPojo.getType(),
+                                        deliveryPojo.getCityId(),
+                                        deliveryPojo.getAddress()),
+                                deliveryPojo.getDepartmentId()),
+                        deliveryPojo.getDeliveryTimeId()),
+                deliveryPojo.getDeliveryDate());
+    }
+
+    private void checkDelivery() throws CreatorException {
+        if(deliveryPojo == null)
+            throw new CreatorException("Delivery required");
+
+        if(deliveryPojo.getCityId().isEmpty())
+            throw new CreatorException("Delivery: city id required");
+
+        if(deliveryPojo.getAddress().isEmpty())
+            throw new CreatorException("Delivery: address required");
+
+        if(deliveryPojo.getDepartmentId().isEmpty())
+            throw new CreatorException("Delivery: department id required");
+
+        if(deliveryPojo.getDeliveryDate().equals(LocalDate.MIN))
+            throw new CreatorException("Delivery: delivery date required");
     }
 }

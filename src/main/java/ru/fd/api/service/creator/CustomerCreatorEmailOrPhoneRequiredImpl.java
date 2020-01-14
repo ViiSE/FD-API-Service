@@ -38,6 +38,9 @@ public class CustomerCreatorEmailOrPhoneRequiredImpl implements CustomerCreator 
 
     @Override
     public Customer create() throws CreatorException {
+        // TODO: 14.01.2020 ADDED EMPTY IMPL INSTEAD NULL
+        checkCustomer();
+
         checkPhoneAndEmail();
 
         return customerProducer.getCustomerFromCompanyImpl(
@@ -59,10 +62,15 @@ public class CustomerCreatorEmailOrPhoneRequiredImpl implements CustomerCreator 
     }
 
     private boolean checkPhone() {
-        return customerPojo.getEmail().isEmpty();
+        return customerPojo.getPhoneNumber() != null && !customerPojo.getPhoneNumber().isEmpty();
     }
 
     private boolean checkEmail() {
-        return customerPojo.getEmail().isEmpty();
+        return customerPojo.getEmail() != null && !customerPojo.getEmail().isEmpty();
+    }
+
+    private void checkCustomer() throws CreatorException {
+        if(customerPojo == null)
+            throw new CreatorException("Customer required");
     }
 }

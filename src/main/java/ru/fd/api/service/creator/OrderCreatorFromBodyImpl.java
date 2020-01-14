@@ -1,29 +1,25 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2020 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.creator;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.OrdersService;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.exception.CreatorException;
+import ru.fd.api.service.producer.creator.CustomerCreatorProducer;
+import ru.fd.api.service.producer.creator.DeliveryCreatorProducer;
 import ru.fd.api.service.producer.creator.ProductsCreatorProducer;
-import ru.fd.api.service.producer.entity.OrderProducer;
+import ru.fd.api.service.producer.entity.*;
 
 @Service("orderCreatorFromBody")
 @Scope("prototype")
@@ -32,30 +28,47 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
     private final OrderPojo orderPojo;
     private final OrderProducer orderProducer;
     private final ProductsCreatorProducer productsCreatorProducer;
+    private final ProductProducer productProducer;
+    private final ProductsProducer productsProducer;
+    private final DeliveryCreatorProducer deliveryCreatorProducer;
+    private final DeliveryProducer deliveryProducer;
+    private final CustomerCreatorProducer customerCreatorProducer;
+    private final CustomerProducer customerProducer;
 
-    public OrderCreatorFromBodyImpl(
-            OrderPojo orderPojo,
-            OrderProducer orderProducer,
-            ProductsCreatorProducer productsCreatorProducer) {
+    public OrderCreatorFromBodyImpl(OrderPojo orderPojo, OrdersService ordersService) {
         this.orderPojo = orderPojo;
-        this.orderProducer = orderProducer;
-        this.productsCreatorProducer = productsCreatorProducer;
+        this.orderProducer = ordersService.orderProducer();
+        this.productsCreatorProducer = ordersService.productsCreatorProducer();
+        this.productProducer = ordersService.productProducer();
+        this.productsProducer = ordersService.productsProducer();
+        this.deliveryCreatorProducer = ordersService.deliveryCreatorProducer();
+        this.deliveryProducer = ordersService.deliveryProducer();
+        this.customerCreatorProducer = ordersService.customerCreatorProducer();
+        this.customerProducer = ordersService.customerProducer();
     }
 
     @Override
     public Order create() throws CreatorException {
+        checkOrder();
+
         Order order = orderProducer.getOrderSimpleInstance(
                 orderPojo.getId(),
                 orderPojo.getCityId(),
-                orderPojo.getCustomer(),
-                orderPojo.getDelivery(),
+                customerCreatorProducer
+                        .getCustomerCreatorEmailOrPhoneRequiredInstance(orderPojo.getCustomer(), customerProducer)
+                        .create(),
+                deliveryCreatorProducer
+                        .getDeliveryCreatorDefaultInstance(orderPojo.getDelivery(), deliveryProducer)
+                        .create(),
                 orderPojo.getPayTypeId(),
                 orderPojo.getDateTime());
 
-        if(orderPojo.getProducts() != null)
+        if(orderPojo.getProducts() != null && !(orderPojo.getProducts().isEmpty()))
             order = orderProducer.getOrderWithProductsInstance(
                     order,
-                    productsCreatorProducer.getProductsOrderCreatorInstance(orderPojo).create());
+                    productsCreatorProducer
+                            .getOrderProductsCreatorDefaultInstance(orderPojo, productsProducer, productProducer)
+                            .create());
         else
             throw new CreatorException("Products required");
 
@@ -63,5 +76,13 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
             return order;
         else
             return orderProducer.getOrderWithCommentInstance(order, orderPojo.getComment());
+    }
+
+    private void checkOrder() throws CreatorException {
+        if(orderPojo == null)
+            throw new CreatorException("Order required");
+
+        if(orderPojo.getCityId().isEmpty())
+            throw new CreatorException("Order: city id required");
     }
 }
