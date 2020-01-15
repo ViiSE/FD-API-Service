@@ -22,13 +22,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-@ApiModel("ProductsOrder")
+@ApiModel(value = "ProductsOrder", description = "Товары заказа")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProductsOrderPojo {
 
+    @ApiModelProperty(notes = "Список товаров заказа", position = 1)
     private final List<ProductOrderPojo> products;
 
     @JsonCreator

@@ -34,11 +34,13 @@ public class CustomerPojo {
     private String email;
     @ApiModelProperty(notes = "Имя покупателя (Имя, Имя Фамилия или ФИО)", position = 3)
     private String name;
-    @ApiModelProperty(notes = "<i>Для юридического лица</i>: ИНН покупателя", position = 4)
+    @ApiModelProperty(notes = "<i>Для юридического лица (тип <b>1</b>)</i>: ИНН покупателя", position = 4)
     private String inn;
-    @ApiModelProperty(notes = "<i>Для юридического лица</i>: КПП покупателя", position = 5)
+    @ApiModelProperty(notes = "<i>Для юридического лица (тип <b>1</b>)</i>: КПП покупателя", position = 5)
     private String kpp;
-    @ApiModelProperty(notes = "Тип покупателя", position = 6)
+    @ApiModelProperty(notes = "Тип покупателя. Возможные значения:\n" +
+            "<b>0</b> - физическое лицо,\n" +
+            "<b>1</b> - юридическое лицо", position = 6, required = true)
     private short type;
 
     public String getPhoneNumber() {

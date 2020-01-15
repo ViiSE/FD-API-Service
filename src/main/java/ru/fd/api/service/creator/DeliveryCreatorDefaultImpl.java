@@ -61,13 +61,15 @@ public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
         if(deliveryPojo.getCityId().isEmpty())
             throw new CreatorException("Delivery: city id required");
 
-        if(deliveryPojo.getAddress().isEmpty())
-            throw new CreatorException("Delivery: address required");
+        if(deliveryPojo.getType() == 0) {
+            if (deliveryPojo.getDepartmentId().isEmpty())
+                throw new CreatorException("Delivery: department id required");
+        } else if(deliveryPojo.getType() == 1) {
+            if(deliveryPojo.getAddress().isEmpty())
+                throw new CreatorException("Delivery: address required");
 
-        if(deliveryPojo.getDepartmentId().isEmpty())
-            throw new CreatorException("Delivery: department id required");
-
-        if(deliveryPojo.getDeliveryDate().equals(LocalDate.MIN))
-            throw new CreatorException("Delivery: delivery date required");
+            if (deliveryPojo.getDeliveryDate().equals(LocalDate.MIN))
+                throw new CreatorException("Delivery: delivery date required");
+        }
     }
 }

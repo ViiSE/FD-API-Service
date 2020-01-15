@@ -4,27 +4,42 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 import java.util.Objects;
 
-@ApiModel("Product")
+@ApiModel(value = "Product", description = "Товар")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProductPojo {
 
+    @ApiModelProperty(notes = "GID товара", position = 1)
     private String id;
+    @ApiModelProperty(notes = "GID категории", position = 2)
     private String categoryId;
+    @ApiModelProperty(notes = "GID производителя", position = 3)
     private String vendorId;
+    @ApiModelProperty(notes = "GID единицы измерения", position = 4)
     private String unitId;
+    @ApiModelProperty(notes = "Ставка НДС", position = 5)
     private short tax;
+    @ApiModelProperty(notes = "Артикул", position = 6)
     private String articul = "";
+    @ApiModelProperty(notes = "Код товара в FD", position = 7)
     private String code;
+    @ApiModelProperty(notes = "Наименование", position = 8)
     private String name;
+    @ApiModelProperty(notes = "Полное описание товара (по умолчанию пустое значение)", position = 9)
     private String fullDescription = "";
+    @ApiModelProperty(notes = "Краткое описание товара (по умолчанию пустое значение)", position = 10)
     private String shortDescription = "";
+    @ApiModelProperty(notes = "Цены", position = 1)
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
+    @ApiModelProperty(notes = "Статусы", position = 1)
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
+    @ApiModelProperty(notes = "Остатки", position = 1)
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
+    @ApiModelProperty(notes = "Атрибуты", position = 1)
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductAttributesPojo attributes;
 
     public void setId(String id) {

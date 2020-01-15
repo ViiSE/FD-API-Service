@@ -24,7 +24,13 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class OrderResponsePojo {
 
-    @ApiModelProperty(notes = "Статус заказа", position = 1)
+    @ApiModelProperty(notes = "Статус заказа. Возможные значения:" +
+            "\n<b>0</b> - не обработан," +
+            "\n<b>1</b> - готов к сборке," +
+            "\n<b>2</b> - нехватка остатков," +
+            "\n<b>3</b> - собран," +
+            "\n<b>4</b> - отменен," +
+            "\n<b>5</b> - выполнен,", position = 1)
     private short status;
     @ApiModelProperty(notes = "ID заказа", position = 2)
     private long id;

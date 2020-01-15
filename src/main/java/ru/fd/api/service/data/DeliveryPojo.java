@@ -24,23 +24,27 @@ import java.time.LocalDate;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class DeliveryPojo {
 
-    @ApiModelProperty(notes = "Тип доставки", position = 1)
+    @ApiModelProperty(notes = "Тип доставки. Возможные значения:\n" +
+            "<b>0</b> - самовывоз,\n" +
+            "<b>1</b> - доставка на дом", position = 1, required = true)
     private final short type;
-    @ApiModelProperty(notes = "ID города доставки", position = 2)
+    @ApiModelProperty(notes = "GID города доставки", position = 2, required = true)
     private final String cityId;
-    @ApiModelProperty(notes = "Адрес доставки", position = 3)
+    @ApiModelProperty(notes = "Адрес доставки (для типа <b>1</b>)", position = 3, required = true)
     private final String address;
 
-    @ApiModelProperty(notes = "ID подразделения доставки", position = 4)
+    @ApiModelProperty(notes = "GID подразделения доставки (для типа <b>0</b>)", position = 4, required = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String departmentId;
 
-    @ApiModelProperty(notes = "ID периода времени доставки заказа", position = 5)
+    @ApiModelProperty(notes = "ID периода времени доставки заказа (для типа <b>1</b>). Возможные значения:\n" +
+            "<b>0</b> - с 9 до 14,\n" +
+            "<b>1</b> - с 14 до 19", position = 5, required = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Short deliveryTimeId;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ApiModelProperty(example = "2020-01-13", notes = "Дата доставки", position = 6)
+    @ApiModelProperty(example = "2020-01-13", notes = "Дата доставки (для типа <b>1</b>)", position = 6, required = true)
     private LocalDate deliveryDate;
 
     @JsonCreator

@@ -5,13 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Attribute")
+@ApiModel(value = "Attribute", description = "Атрибут товара")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AttributePojo {
 
+    @ApiModelProperty(notes = "GID атрибута", position = 1)
     private final String id;
+    @ApiModelProperty(notes = "GID группы атрибута", position = 2)
     private final String groupId;
+    @ApiModelProperty(notes = "Название атрибута", position = 3)
     private final String name;
 
     @JsonCreator

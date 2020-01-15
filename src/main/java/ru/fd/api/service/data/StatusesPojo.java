@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-@ApiModel("Statuses")
+@ApiModel(value = "Statuses", description = "Статусы товаров")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class StatusesPojo {
 
+    @ApiModelProperty(notes = "Список статусов товаров", position = 1)
     private final List<StatusPojo> statuses;
 
     @JsonCreator

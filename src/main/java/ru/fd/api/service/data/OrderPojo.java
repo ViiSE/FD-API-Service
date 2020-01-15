@@ -23,25 +23,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@ApiModel(value = "Order")
+@ApiModel(value = "Order", description = "Заказ")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class OrderPojo {
 
-    @ApiModelProperty(notes = "ID заказа", position = 1)
+    @ApiModelProperty(notes = "ID заказа", position = 1, required = true)
     private final long id;
-    @ApiModelProperty(notes = "ID города заказа", position = 2)
+    @ApiModelProperty(notes = "GID города заказа", position = 2, required = true)
     private final String cityId;
-    @ApiModelProperty(notes = "Покупатель, оформивший заказ", position = 3)
+    @ApiModelProperty(notes = "Покупатель, оформивший заказ", position = 3, required = true)
     private final CustomerPojo customer;
-    @ApiModelProperty(position = 4)
+    @ApiModelProperty(position = 4, required = true)
     private final DeliveryPojo delivery;
-    @ApiModelProperty(notes = "ID типа оплаты заказа", position = 5)
+    @ApiModelProperty(notes = "ID типа оплаты заказа. Возможные значения:\n" +
+            "<b>0</b> - оплата на месте,\n" +
+            "<b>1</b> - оплата на сайте по безналичному расчету", position = 5, required = true)
     private final short payTypeId;
 
 //    @JsonSerialize(using = LocalDateTimeDefaultSerializer.class)
 //    @JsonDeserialize(using = LocalDateTimeDefaultDeserializer.class)
     @ApiModelProperty(example = "2020-01-13 00:45:36",
-            notes = "Дата и время оформления доставки (yyyy-MM-dd HH:mm:ss)",
+            notes = "Дата и время оформления доставки (yyyy-MM-dd HH:mm:ss). Значение по умолчанию - <i>текущие дата и время</i>",
             position = 6)
     private final LocalDateTime dateTime;
 
@@ -50,7 +52,7 @@ public class OrderPojo {
     private String comment;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ApiModelProperty(notes = "Список товаров заказа", position = 8)
+    @ApiModelProperty(notes = "Список товаров заказа", position = 8, required = true)
     private List<ProductOrderPojo> products;
 
     @JsonCreator

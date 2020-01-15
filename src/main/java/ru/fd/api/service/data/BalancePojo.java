@@ -6,15 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
-@ApiModel("Balance")
+@ApiModel(value = "Balance", description = "Остаток товара")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BalancePojo {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ApiModelProperty(notes = "GID товара", position = 1)
     private String productId;
+    @ApiModelProperty(notes = "GID подразделения", position = 2)
     private final String departmentId;
+    @ApiModelProperty(notes = "Количество", position = 3)
     private final int quantity;
 
     @JsonCreator
