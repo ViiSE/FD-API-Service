@@ -72,11 +72,11 @@ public class DeliveryCreatorDefaultTestNG {
     }
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: address required")
-    @Parameters({"type", "cityId", "departmentId", "deliveryTimeId"})
-    public void create_withoutAddress(short type, String cityId, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
+    @Parameters({"cityId", "departmentId", "deliveryTimeId"})
+    public void create_withoutAddress(String cityId, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create() [without address]");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, "");
+        DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, "");
         deliveryPojo.setDepartmentId(departmentId);
         deliveryPojo.setDeliveryDate(LocalDate.now());
         deliveryPojo.setDeliveryTimeId(deliveryTimeId);
