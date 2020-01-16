@@ -70,7 +70,19 @@ public class CustomerCreatorEmailOrPhoneRequiredImpl implements CustomerCreator 
     }
 
     private void checkCustomer() throws CreatorException {
+        // TODO: 16.01.2020 NEW INTERFACE FOR CHECKER
         if(customerPojo == null)
             throw new CreatorException("Customer required");
+
+        if(customerPojo.getType() != 0 && customerPojo.getType() != 1)
+            throw new CreatorException("Customer: Type required");
+
+        if(customerPojo.getType() == 1) {
+            if(customerPojo.getInn().isEmpty())
+                throw new CreatorException("Customer: Inn required");
+
+            if(customerPojo.getKpp().isEmpty())
+                throw new CreatorException("Customer: Kpp required");
+        }
     }
 }

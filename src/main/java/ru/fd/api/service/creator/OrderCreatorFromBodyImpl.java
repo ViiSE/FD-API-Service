@@ -70,7 +70,7 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
                             .getOrderProductsCreatorDefaultInstance(orderPojo, productsProducer, productProducer)
                             .create());
         else
-            throw new CreatorException("Products required");
+            throw new CreatorException("Order: products required");
 
         if(orderPojo.getComment().isEmpty())
             return order;
@@ -81,6 +81,12 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
     private void checkOrder() throws CreatorException {
         if(orderPojo == null)
             throw new CreatorException("Order required");
+
+        if(orderPojo.getId() < 0)
+            throw new CreatorException("Order: id required");
+
+        if(orderPojo.getPayTypeId() != 0 && orderPojo.getPayTypeId() != 1)
+            throw new CreatorException("Order: pay type id required");
 
         if(orderPojo.getCityId().isEmpty())
             throw new CreatorException("Order: city id required");

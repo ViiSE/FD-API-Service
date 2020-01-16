@@ -55,8 +55,13 @@ public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
     }
 
     private void checkDelivery() throws CreatorException {
+        // TODO: 16.01.2020 CREATE CHECKER INTERFACE
+
         if(deliveryPojo == null)
             throw new CreatorException("Delivery required");
+
+        if(deliveryPojo.getType() != 0 && deliveryPojo.getType() != 1)
+            throw new CreatorException("Delivery: unknown type");
 
         if(deliveryPojo.getCityId().isEmpty())
             throw new CreatorException("Delivery: city id required");
@@ -70,6 +75,10 @@ public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
 
             if (deliveryPojo.getDeliveryDate().equals(LocalDate.MIN))
                 throw new CreatorException("Delivery: delivery date required");
+
+            if(deliveryPojo.getDeliveryTimeId() != 0 && deliveryPojo.getDeliveryTimeId() != 1) {
+                throw new CreatorException("Delivery: unknown delivery time id");
+            }
         }
     }
 }
