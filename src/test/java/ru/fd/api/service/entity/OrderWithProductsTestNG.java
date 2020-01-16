@@ -25,6 +25,7 @@ import ru.fd.api.service.exception.CreatorException;
 import test.creator.CustomerCreatorTestImpl;
 import test.creator.DeliveryCreatorTestImpl;
 import test.creator.OrderProductsCreatorTest;
+import test.util.TestUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,11 +82,7 @@ public class OrderWithProductsTestNG {
         ProductsOrderPojo productsOrderPojo = (ProductsOrderPojo) orderProducts.formForSend();
         orderPojo.setProducts(productsOrderPojo.getProducts());
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
-        LocalDateTimeDeserializer localDateTimeDeserializer = new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        javaTimeModule.addDeserializer(LocalDateTime.class, localDateTimeDeserializer);
-        objectMapper.registerModule(javaTimeModule);
+        ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(
                 objectMapper.writeValueAsString(order.formForSend()),
                 objectMapper.writeValueAsString(orderPojo));
@@ -102,6 +99,7 @@ public class OrderWithProductsTestNG {
                 "\"comment\":\"hi\"," +
                 "\"date_time\":\"2020-01-10 09:06:30\"}";
         OrderPojo orderPojod = objectMapper.readValue(json, OrderPojo.class);
+
         System.out.println("Done!");
 
         testEnd("OrderWithProducts", "formForSend()");

@@ -21,6 +21,7 @@ import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.exception.CreatorException;
 import test.creator.CustomerCreatorTestImpl;
 import test.creator.DeliveryCreatorTestImpl;
+import test.util.TestUtils;
 
 import java.time.LocalDateTime;
 
@@ -69,7 +70,7 @@ public class OrderSimpleTestNG {
                 payTypeId,
                 dateTime);
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(
                 objectMapper.writeValueAsString(order.formForSend()),
                 objectMapper.writeValueAsString(orderPojo));

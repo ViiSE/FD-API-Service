@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.DeliveryPojo;
+import test.util.TestUtils;
 
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.testBegin;
@@ -46,7 +47,7 @@ public class DeliverySimpleTestNG {
 
         DeliveryPojo deliveryPojo = new DeliveryPojo(type, city, address);
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(
                 objectMapper.writeValueAsString(delivery.formForSend()),
                 objectMapper.writeValueAsString(deliveryPojo));
