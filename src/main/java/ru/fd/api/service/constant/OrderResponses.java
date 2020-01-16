@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -17,4 +17,5 @@ public class OrderResponses {
     public static final short ASSEMBLED = 3;
     public static final short CANCELLED = 4;
     public static final short COMPLETED = 5;
+    public static final short INTERNAL_SERVER_ERROR = 500;
 }
