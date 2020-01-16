@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -9,6 +9,9 @@
  */
 
 package test.util;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.util.regex.Pattern;
 
@@ -23,5 +26,18 @@ public class TestUtils {
 
     public static boolean phoneNumberMatches(String phoneNumber) {
         return phoneNumberPattern.matcher(phoneNumber).matches();
+    }
+
+    public static ObjectMapper objectMapperWithJavaTimeModule() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JavaTimeModule javaTimeModule = new JavaTimeModuleUtils()
+                .createJavaTimeModule()
+                .addLocalDateTimeSerializer("yyyy-MM-dd HH:mm:ss")
+                .addLocalDateTimeDeserializer("yyyy-MM-dd HH:mm:ss")
+                .addLocalDateSerializer("yyyy-MM-dd")
+                .addLocalDateDeserializer("yyyy-MM-dd")
+                .javaTimeModule();
+
+        return objectMapper.registerModule(javaTimeModule);
     }
 }
