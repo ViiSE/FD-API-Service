@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -84,14 +84,57 @@ public class DeliveryCreatorDefaultTestNG {
         new DeliveryCreatorDefaultImpl(deliveryPojo, deliveryProducer).create();
     }
 
+    @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: delivery date required")
+    @Parameters({"cityId", "departmentId", "deliveryTimeId", "address"})
+    public void create_delivery_date_is_missing(String cityId, String departmentId, short deliveryTimeId, String address) throws CreatorException, JsonProcessingException {
+        testMethod("create() [delivery date is missing]");
+
+        DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, address);
+        deliveryPojo.setDepartmentId(departmentId);
+        deliveryPojo.setDeliveryTimeId(deliveryTimeId);
+
+        new DeliveryCreatorDefaultImpl(deliveryPojo, deliveryProducer).create();
+    }
+
+    @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: unknown delivery time id")
+    @Parameters({"cityId", "departmentId", "address"})
+    public void create_unknown_delivery_time_id(String cityId, String departmentId, String address) throws CreatorException, JsonProcessingException {
+        testMethod("create() [delivery date is missing]");
+
+        DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, address);
+        deliveryPojo.setDepartmentId(departmentId);
+        deliveryPojo.setDeliveryDate(LocalDate.now());
+        deliveryPojo.setDeliveryTimeId((short) -1);
+
+        new DeliveryCreatorDefaultImpl(deliveryPojo, deliveryProducer).create();
+    }
+
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: department id required")
-    @Parameters({"type", "cityId", "departmentId", "deliveryTimeId"})
-    public void create_withoutDepartmentId(short type, String cityId, String address, short deliveryTimeId) throws CreatorException, JsonProcessingException {
+    @Parameters({"cityId", "departmentId", "deliveryTimeId"})
+    public void create_withoutDepartmentId(String cityId, String address, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create() [without departmentId]");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, address);
+        DeliveryPojo deliveryPojo = new DeliveryPojo((short) 0, cityId, address);
         deliveryPojo.setDeliveryDate(LocalDate.now());
         deliveryPojo.setDeliveryTimeId(deliveryTimeId);
+
+        new DeliveryCreatorDefaultImpl(deliveryPojo, deliveryProducer).create();
+    }
+
+    @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery required")
+    public void create_delivery_is_null() throws CreatorException, JsonProcessingException {
+        testMethod("create() [Delivery is null]");
+
+        new DeliveryCreatorDefaultImpl(null, deliveryProducer).create();
+    }
+
+    @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: unknown type")
+    @Parameters({"unknownType", "cityId", "address"})
+    public void create_delivery_unknown_type(short unknownType, String cityId, String address) throws CreatorException, JsonProcessingException {
+        testMethod("create() [unknown type]");
+
+        DeliveryPojo deliveryPojo = new DeliveryPojo(unknownType, cityId, address);
+        deliveryPojo.setDeliveryDate(LocalDate.now());
 
         new DeliveryCreatorDefaultImpl(deliveryPojo, deliveryProducer).create();
     }

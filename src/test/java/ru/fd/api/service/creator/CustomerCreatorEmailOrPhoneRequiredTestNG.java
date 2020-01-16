@@ -110,6 +110,41 @@ public class CustomerCreatorEmailOrPhoneRequiredTestNG {
         new CustomerCreatorEmailOrPhoneRequiredImpl(customerPojo, customerProducer).create();
     }
 
+    @Test(priority = 8, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Customer required")
+    public void create_customer_is_null() throws CreatorException {
+        testMethod("create() [Customer is  null]");
+
+        new CustomerCreatorEmailOrPhoneRequiredImpl(null, customerProducer).create();
+    }
+
+    @Test(priority = 9, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Customer: Type required")
+    @Parameters({"type"})
+    public void create_customer_unknown_type(short type) throws CreatorException {
+        testMethod("create() [Unknown type]");
+
+        CustomerPojo customerPojo = createCustomerPojo("", "");
+        customerPojo.setType(type);
+        new CustomerCreatorEmailOrPhoneRequiredImpl(customerPojo, customerProducer).create();
+    }
+
+    @Test(priority = 10, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Customer: Inn required")
+    public void create_customer_inn_is_missing() throws CreatorException {
+        testMethod("create() [Inn is missing]");
+
+        CustomerPojo customerPojo = createCustomerPojo("", "");
+        customerPojo.setInn("");
+        new CustomerCreatorEmailOrPhoneRequiredImpl(customerPojo, customerProducer).create();
+    }
+
+    @Test(priority = 11, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Customer: Kpp required")
+    public void create_customer_kpp_is_missing() throws CreatorException {
+        testMethod("create() [Kpp is missing]");
+
+        CustomerPojo customerPojo = createCustomerPojo("", "");
+        customerPojo.setKpp("");
+        new CustomerCreatorEmailOrPhoneRequiredImpl(customerPojo, customerProducer).create();
+    }
+
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);

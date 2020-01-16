@@ -20,9 +20,11 @@
             <class name="ru.fd.api.service.creator.CustomerCreatorEmailOrPhoneRequiredTestNG">
                 <parameter name="email" value="example@example.com"/>
                 <parameter name="phoneNumber" value="79091111111"/>
+                <parameter name="type" value="5"/>
             </class>
             <class name="ru.fd.api.service.creator.DeliveryCreatorDefaultTestNG">
                 <parameter name="type" value="0"/>
+                <parameter name="unknownType" value="5"/>
                 <parameter name="cityId" value="cId1"/>
                 <parameter name="address" value="Example st."/>
                 <parameter name="departmentId" value="dep1"/>
