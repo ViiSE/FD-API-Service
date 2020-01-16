@@ -3,6 +3,7 @@ package ru.fd.api.service.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.fd.api.service.ProductsService;
 import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.creator.ProductsCreator;
+import ru.fd.api.service.data.ChangedBalancePojo;
+import ru.fd.api.service.data.ChangedBalancesPojo;
 import ru.fd.api.service.data.ProductsPojo;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
@@ -21,7 +24,7 @@ import ru.fd.api.service.producer.entity.PricesProducer;
 import java.util.ArrayList;
 import java.util.List;
 
-@Api(tags= "Products Controller", description = "Контроллер точек для работы с товарами")
+@Api(tags= "Products Controller", description = "Контроллер точек для работы с товарами", authorizations = {@Authorization(value = "Bearer")})
 @Controller
 public class ProductsController {
 
@@ -86,5 +89,13 @@ public class ProductsController {
             logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
             return new ProductsPojo(new ArrayList<>());
         }
+    }
+
+    @ApiOperation(value = "Выгружает изменения остатков товаров")
+    @GetMapping("/products/changed-balances")
+    @ResponseBody
+    public ChangedBalancesPojo changedBalances() {
+        // TODO: 16.01.2020 CREATE IMPL
+        return new ChangedBalancesPojo(new ArrayList<>() {{ add(new ChangedBalancePojo("id1", 10)); }});
     }
 }
