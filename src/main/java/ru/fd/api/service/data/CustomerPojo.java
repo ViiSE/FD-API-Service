@@ -41,7 +41,7 @@ public class CustomerPojo {
     @ApiModelProperty(notes = "Тип покупателя. Возможные значения:\n" +
             "<b>0</b> - физическое лицо,\n" +
             "<b>1</b> - юридическое лицо", position = 6, required = true)
-    private short type;
+    private short type = -1;
 
     public String getPhoneNumber() {
         return phoneNumber == null ? "" : phoneNumber;
