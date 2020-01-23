@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -13,57 +13,70 @@ package ru.fd.api.service.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.QueryTimeoutException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ru.fd.api.service.constant.OrderResponses;
+import ru.fd.api.service.constant.OrderStatuses;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
+import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
+import ru.fd.api.service.repository.mapper.OrderProductsDefaultRowMapper;
+import ru.fd.api.service.repository.mapper.OrderResponseSimpleRowMapper;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
-@Repository("orderRepositoryWithoutCheckStatus")
+@Repository("orderRepositoryDefault")
 @Scope("prototype")
-public class OrderRepositoryWithoutCheckStatusImpl implements OrderRepository<OrderResponse, Void> {
+public class OrderRepositoryDefaultImpl implements OrderRepository<Long, OrderResponse> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private final Order order;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
+    private final ProductProducer productProducer;
+    private final ProductsProducer orderProductsProducer;
     private final OrderResponseProducer orderResponseProducer;
 
-    public OrderRepositoryWithoutCheckStatusImpl(
+    public OrderRepositoryDefaultImpl(
             Order order,
             SQLQueryCreator<String, String> sqlQueryCreator,
+            ProductProducer productProducer,
+            ProductsProducer orderProductsProducer,
             OrderResponseProducer orderResponseProducer) {
         this.order = order;
         this.sqlQueryCreator = sqlQueryCreator;
+        this.productProducer = productProducer;
+        this.orderProductsProducer = orderProductsProducer;
         this.orderResponseProducer = orderResponseProducer;
     }
 
     @Override
-    public OrderResponse insert() throws RepositoryException {
+    public Long insert() throws RepositoryException {
         try {
             OrderPojo orderPojo = (OrderPojo) order.formForSend();
             jdbcTemplate.update(
                     sqlQueryCreator.create("order_create.sql").content(),
                     orderPojo.getId(),
-                    orderPojo.getCityId().getBytes("windows-1251"),
+                    orderPojo.getCityId(),
                     orderPojo.getCustomer().getPhoneNumber().getBytes("windows-1251"),
                     orderPojo.getCustomer().getEmail().getBytes("windows-1251"),
                     orderPojo.getCustomer().getInn().getBytes("windows-1251"),
                     orderPojo.getCustomer().getKpp().getBytes("windows-1251"),
                     orderPojo.getCustomer().getType(),
-                    orderPojo.getDelivery().getCityId().getBytes("windows-1251"),
+                    orderPojo.getDelivery().getCityId(),
                     orderPojo.getDelivery().getType(),
                     orderPojo.getDelivery().getAddress().getBytes("windows-1251"),
                     orderPojo.getDelivery().getDepartmentId().getBytes("windows-1251"),
@@ -93,27 +106,53 @@ public class OrderRepositoryWithoutCheckStatusImpl implements OrderRepository<Or
                             return orderPojo.getProducts().size();
                         }
                     });
-
-            return orderResponseProducer.getOrderResponseWithMessageInstance(
-                    orderResponseProducer.getOrderResponseSimpleInstance(orderPojo.getId(), OrderResponses.NOT_PROCESSED),
-                    "OK");
-
+            return orderPK;
         } catch (CreatorException | DataAccessException ex) {
-            String exMsg = ex.getMessage();
-            String msg = "SQL Exception";
-            if(exMsg.contains("ISC error code:335544349")) {
-                msg = exMsg.substring(exMsg.indexOf("Problematic key value is"));
-                msg = msg.substring(0, msg.indexOf(";")) + " : must be unique!";
-            }
-
-            throw new RepositoryException(msg, ex.getMessage());
+            throw new RepositoryException(ex.getMessage());
         } catch (UnsupportedEncodingException ex) {
-            throw new RepositoryException("Unknown encoding");
+            throw new RepositoryException("Кодировка не поддерживается");
         }
     }
 
     @Override
-    public Void read(long orderPK) throws RepositoryException {
-        throw new RepositoryException("Cannot read in OrderRepositoryWithoutCheckStatus instance");
+    public OrderResponse read(long id) throws RepositoryException {
+        jdbcTemplate.setQueryTimeout(1);
+        try {
+            while (true) {
+                OrderResponse response = jdbcTemplate.queryForObject(
+                        sqlQueryCreator.create("order_status.sql").content(),
+                        new Object[]{id},
+                        new OrderResponseSimpleRowMapper(id, orderResponseProducer));
+                if(response != null) {
+                    if (response.status() == OrderStatuses.READY_TO_ASSEMBLY)
+                        return orderResponseProducer.getOrderResponseWithMessageInstance(response, "Заказ в обработке");
+                    else if (response.status() == OrderStatuses.LACK_OF_PRODUCTS_QUANTITY) {
+                        Products orderProducts = jdbcTemplate.queryForObject(
+                                sqlQueryCreator.create("order_products_lack.sql").content(),
+                                new Object[]{id},
+                                new OrderProductsDefaultRowMapper(productProducer, orderProductsProducer));
+                        return orderResponseProducer.getOrderResponseWithProductsInstance(
+                                response,
+                                orderProducts);
+                    }
+                }
+            }
+        } catch(QueryTimeoutException ex) {
+            throw new RepositoryException("Время обработки заказа истекло");
+        } catch(DataAccessException | CreatorException ex) {
+            throw new RepositoryException(ex.getMessage());
+        }
+    }
+
+    // TODO: 22.01.2020 CREATE IMPL
+    @Override
+    public List<OrderResponse> readAll() throws RepositoryException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    // TODO: 22.01.2020 CREATE IMPL
+    @Override
+    public List<OrderResponse> readFirst(int sliceSize) throws RepositoryException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

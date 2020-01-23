@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -22,31 +22,42 @@ import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
-@Component("createOrderRepositoryWithoutCheckStatusProcessor")
+@Component("createOrderRepositoryProcessor")
 @Scope("prototype")
-public class CreateOrderRepositoryWithoutCheckStatusProcessorImpl implements OrderRepositoryProcessor {
+public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProcessor {
 
     private final OrderRepositoryProducer orderRepoProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
+    private final ProductProducer productProducer;
+    private final ProductsProducer orderProductsProducer;
     private final OrderResponseProducer orderResponseProducer;
 
-    public CreateOrderRepositoryWithoutCheckStatusProcessorImpl(
+    public CreateOrderRepositoryProcessorImpl(
             OrderRepositoryProducer orderRepoProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
+            ProductProducer productProducer,
+            ProductsProducer orderProductsProducer,
             OrderResponseProducer orderResponseProducer) {
         this.orderRepoProducer = orderRepoProducer;
         this.sqlQueryCreator = sqlQueryCreator;
+        this.productProducer = productProducer;
+        this.orderProductsProducer = orderProductsProducer;
         this.orderResponseProducer = orderResponseProducer;
     }
 
     @Override
-    public OrderResponse apply(Order order) {
+    public Object apply(Object orderObj) {
+        Order order = (Order) orderObj;
+
         try {
-            OrderRepository<OrderResponse, Void> orderRepository = orderRepoProducer.getOrderRepositoryWithoutCheckStatusInstance(
+            OrderRepository<Long, OrderResponse> orderRepository = orderRepoProducer.getOrderRepositoryDefaultInstance(
                     order,
                     sqlQueryCreator,
+                    productProducer,
+                    orderProductsProducer,
                     orderResponseProducer);
-            return orderRepository.insert();
+            long orderCode = orderRepository.insert();
+            return orderRepository.read(orderCode);
         } catch (RepositoryException ex) {
             try {
                 return orderRepoProducer.getOrderRepositoryFailedInstance(orderResponseProducer, ex).read(0);

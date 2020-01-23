@@ -1,18 +1,11 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2020 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.repository.processor;
@@ -23,46 +16,39 @@ import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
-@Component("createOrderRepositoryProcessor")
+@Component("createOrderRepositoryWithoutCheckStatusProcessor")
 @Scope("prototype")
-public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProcessor {
+public class CreateOrderRepositoryWithoutCheckStatusProcessorImpl implements OrderRepositoryProcessor {
 
     private final OrderRepositoryProducer orderRepoProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final ProductProducer productProducer;
-    private final ProductsProducer orderProductsProducer;
     private final OrderResponseProducer orderResponseProducer;
 
-    public CreateOrderRepositoryProcessorImpl(
+    public CreateOrderRepositoryWithoutCheckStatusProcessorImpl(
             OrderRepositoryProducer orderRepoProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
-            ProductProducer productProducer,
-            ProductsProducer orderProductsProducer,
             OrderResponseProducer orderResponseProducer) {
         this.orderRepoProducer = orderRepoProducer;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.productProducer = productProducer;
-        this.orderProductsProducer = orderProductsProducer;
         this.orderResponseProducer = orderResponseProducer;
     }
 
     @Override
-    public OrderResponse apply(Order order) {
+    public Object apply(Object orderObj) {
+        Order order = (Order) orderObj;
+
         try {
-            OrderRepository<Long, OrderResponse> orderRepository = orderRepoProducer.getOrderRepositoryDefaultInstance(
+            OrderRepository<OrderResponse, Order> orderRepository = orderRepoProducer.getOrderRepositoryWithoutCheckStatusInstance(
                     order,
                     sqlQueryCreator,
-                    productProducer,
-                    orderProductsProducer,
                     orderResponseProducer);
-            long orderCode = orderRepository.insert();
-            return orderRepository.read(orderCode);
+            return orderRepository.insert();
         } catch (RepositoryException ex) {
             try {
                 return orderRepoProducer.getOrderRepositoryFailedInstance(orderResponseProducer, ex).read(0);

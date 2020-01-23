@@ -36,41 +36,51 @@ import java.util.ArrayList;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class OrderRepositoryWithoutCheckStatusIntegrationRealDBTestNG extends AbstractTestNGSpringContextTests {
+public class OrderRepositoryDefaultIntegrationRealDBTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private OrdersService ordersService;
     @Autowired private OrderRepositoryProducer orderRepositoryProducer;
     @Autowired private OrderResponseProducer orderResponseProducer;
     @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
 
-    private OrderRepository<OrderResponse, Void> orderRepo;
+    private OrderRepository<OrderResponse, Order> orderRepo;
 
     @BeforeClass
     public void setUpClass() {
         Order order = ordersService.orderProducer().getOrderWithCommentInstance(
                 ordersService.orderProducer().getOrderWithProductsInstance(
-                        ordersService.orderProducer().getOrderSimpleInstance(
-                                0,
-                                "777",
+                        ordersService.orderProducer().getOrderWithCustomerInstance(
+                                ordersService.orderProducer().getOrderWithDeliveryInstance(
+                                        ordersService.orderProducer().getOrderWithDateTimeInstance(
+                                                ordersService.orderProducer().getOrderWithPayTypeIdInstance(
+                                                        ordersService.orderProducer().getOrderWithCityIdInstance(
+                                                                ordersService.orderProducer().getOrderSimpleInstance(
+                                                                        0,
+                                                                        (short) 0),
+                                                                0),
+                                                        (short) 0),
+                                                LocalDateTime.now()),
+                                        ordersService.deliveryProducer().getDeliveryWithDateInstance(
+                                                ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
+                                                        ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
+                                                                ordersService.deliveryProducer().getDeliverySimpleInstance(
+                                                                        (short) 0,
+                                                                        101,
+                                                                        "ул. Ленинградская, 145Б"),
+                                                                "100"),
+                                                        (short) 0),
+                                                LocalDate.now())),
                                 ordersService.customerProducer().getCustomerFromCompanyImpl(
                                         ordersService.customerProducer().getCustomerWithNameInstance(
                                                 ordersService.customerProducer().getCustomerWithEmailInstance(
                                                         ordersService.customerProducer().getCustomerWithPhoneNumberInstance(
-                                                                ordersService.customerProducer().getCustomerSimpleInstance((short) 0),
+                                                                ordersService.customerProducer()
+                                                                        .getCustomerSimpleInstance((short) 0),
                                                                 "89098238724"),
                                                         "example@example.com"),
                                                 "John Doe"),
                                         "22505",
-                                        "43122"),
-                                ordersService.deliveryProducer().getDeliveryWithDateInstance(
-                                        ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
-                                                ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
-                                                        ordersService.deliveryProducer().getDeliverySimpleInstance((short) 0, "777", "ул. Ленинградская, 145Б"),
-                                                        "100"),
-                                                (short) 0),
-                                        LocalDate.now()),
-                                (short) 0,
-                                LocalDateTime.now()),
+                                        "43122")),
                         ordersService.productsProducer().getOrderProductsDefaultInstance(
                                 new ArrayList<>() {{
                                     add(ordersService.productProducer().getOrderProductSimpleInstance("id1", 10));
@@ -79,11 +89,11 @@ public class OrderRepositoryWithoutCheckStatusIntegrationRealDBTestNG extends Ab
                 "Коментарий");
 
         orderRepo = orderRepositoryProducer
-                .getOrderRepositoryWithoutCheckStatusInstance(
+                .getOrderRepositoryDefaultInstance(
                         order,
                         sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
                         orderResponseProducer);
-        testBegin("OrderRepositoryWithoutCheckStatus");
+        testBegin("OrderRepositoryDefault");
     }
 
     @Test(priority = 1)
@@ -94,11 +104,25 @@ public class OrderRepositoryWithoutCheckStatusIntegrationRealDBTestNG extends Ab
         System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orderResp.formForSend()));
     }
 
-    @Test(priority = 2, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Cannot read in OrderRepositoryWithoutCheckStatus instance")
+    @Test(priority = 2, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Not supported yet.")
     public void read() throws RepositoryException {
         testMethod("read()");
 
         orderRepo.read(0);
+    }
+
+    @Test(priority = 3, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Not supported yet.")
+    public void readAll() throws RepositoryException {
+        testMethod("readAll()");
+
+        orderRepo.readAll();
+    }
+
+    @Test(priority = 4, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Not supported yet.")
+    public void readFirst() throws RepositoryException {
+        testMethod("readFirst()");
+
+        orderRepo.readFirst(5);
     }
 
     @AfterMethod
@@ -109,6 +133,6 @@ public class OrderRepositoryWithoutCheckStatusIntegrationRealDBTestNG extends Ab
 
     @AfterClass
     public void shutdownClass() {
-        testEnd("OrderRepositoryWithoutCheckStatus");
+        testEnd("OrderRepositoryDefault");
     }
 }
