@@ -26,6 +26,7 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.AttributesProducer;
 import ru.fd.api.service.repository.mapper.AttributesDefaultRowMapper;
 
+// TODO: 23.01.2020 CREATE SQL
 @Repository("attributesRepositoryDefault")
 public class AttributesRepositoryDefaultImpl implements AttributesRepository {
 

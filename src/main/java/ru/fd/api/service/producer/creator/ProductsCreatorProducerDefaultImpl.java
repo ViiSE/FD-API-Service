@@ -31,4 +31,11 @@ public class ProductsCreatorProducerDefaultImpl implements ProductsCreatorProduc
             ProductProducer productProducer) {
         return (ProductsCreator) ctx.getBean("orderProductsCreatorDefault", orderPojo, orderProductsProducer, productProducer);
     }
+
+    @Override
+    public ProductsCreator getProductsWithChangedBalancesCreatorInstance(
+            ProductsRepositoryProcessors productsRepositoryProcessors,
+            long orderId) {
+        return (ProductsCreator) ctx.getBean("productsWithChangedBalancesCreator", productsRepositoryProcessors, orderId);
+    }
 }

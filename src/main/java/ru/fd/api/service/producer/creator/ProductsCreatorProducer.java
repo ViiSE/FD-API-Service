@@ -14,4 +14,7 @@ public interface ProductsCreatorProducer {
             OrderPojo orderPojo,
             ProductsProducer orderProductsProducer,
             ProductProducer productProducer);
+    ProductsCreator getProductsWithChangedBalancesCreatorInstance(
+            ProductsRepositoryProcessors productsRepositoryProcessors,
+            long orderId);
 }

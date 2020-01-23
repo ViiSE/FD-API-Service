@@ -12,46 +12,41 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.CustomerPojo;
-import ru.fd.api.service.data.DeliveryPojo;
 import ru.fd.api.service.data.OrderPojo;
-
-import java.time.LocalDateTime;
 
 @Component("orderSimple")
 @Scope("prototype")
 public class OrderSimpleImpl implements Order {
 
     private final long id;
-    private final String cityId;
-    private final Customer customer;
-    private final Delivery delivery;
-    private final short payTypeId;
-    private final LocalDateTime dateTime;
+    private final short status;
 
-    public OrderSimpleImpl(
-            long id,
-            String cityId,
-            Customer customer,
-            Delivery delivery,
-            short payTypeId,
-            LocalDateTime dateTime) {
+    public OrderSimpleImpl(long id, short status) {
         this.id = id;
-        this.cityId = cityId;
-        this.customer = customer;
-        this.delivery = delivery;
-        this.payTypeId = payTypeId;
-        this.dateTime = dateTime;
+        this.status = status;
     }
 
     @Override
     public Object formForSend() {
-        return new OrderPojo(
-                id,
-                cityId,
-                (CustomerPojo) customer.formForSend(),
-                (DeliveryPojo) delivery.formForSend(),
-                payTypeId,
-                dateTime);
+        return new OrderPojo(id) {{ setStatus(status); }};
+    }
+
+    @Override
+    public long id() {
+        return id;
+    }
+
+    @Override
+    public short status() {
+        return status;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Order) {
+            Order orderE = (Order) obj;
+            return this.id == orderE.id();
+        }
+        return super.equals(obj);
     }
 }

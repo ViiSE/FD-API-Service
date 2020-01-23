@@ -25,11 +25,11 @@ public class ProductsCreatorDefaultImpl implements ProductsCreator {
     @Override
     public Products create() throws CreatorException {
         try {
-            ProductsRepository prRepo = prodsReposPrc.processor("simple").apply(null);
+            ProductsRepository prRepo = (ProductsRepository) prodsReposPrc.processor("simple").apply(null);
 
             for(String param: with)
                 if(prodsReposPrc.processor(param) != null)
-                    prRepo = prodsReposPrc.processor(param).apply(prRepo);
+                    prRepo = (ProductsRepository) prodsReposPrc.processor(param).apply(prRepo);
 
             return prRepo.readProducts();
         } catch (RepositoryException ex) {

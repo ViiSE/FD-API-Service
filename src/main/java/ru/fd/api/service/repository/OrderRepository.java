@@ -19,7 +19,11 @@ package ru.fd.api.service.repository;
 
 import ru.fd.api.service.exception.RepositoryException;
 
+import java.util.List;
+
 public interface OrderRepository<T, V> {
     T insert() throws RepositoryException;
-    V read(long orderId) throws RepositoryException;
+    V read(long id) throws RepositoryException;
+    List<V> readAll() throws RepositoryException;
+    List<V> readFirst(int sliceSize) throws RepositoryException;
 }

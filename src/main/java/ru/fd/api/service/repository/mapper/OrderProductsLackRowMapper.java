@@ -28,12 +28,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderProductsDefaultRowMapper implements RowMapper<Products> {
+public class OrderProductsLackRowMapper implements RowMapper<Products> {
 
     private final ProductProducer productProducer;
     private final ProductsProducer orderProductsProducer;
 
-    public OrderProductsDefaultRowMapper(ProductProducer productProducer, ProductsProducer orderProductsProducer) {
+    public OrderProductsLackRowMapper(ProductProducer productProducer, ProductsProducer orderProductsProducer) {
         this.productProducer = productProducer;
         this.orderProductsProducer = orderProductsProducer;
     }

@@ -29,6 +29,7 @@ import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.repository.mapper.AttributeGroupsDefaultRowMapper;
 
+// TODO: 23.01.2020 CREATE SQL
 @Repository("attributeGroupsRepositoryDefault")
 public class AttributeGroupsRepositoryDefaultImpl implements AttributeGroupsRepository {
 

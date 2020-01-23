@@ -19,9 +19,8 @@ package ru.fd.api.service.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import ru.fd.api.service.AttributeGroupsService;
 import ru.fd.api.service.CategoriesService;
 import ru.fd.api.service.StatusesService;
@@ -37,11 +36,12 @@ import ru.fd.api.service.producer.repository.AttributesRepositoryProducer;
 import java.util.ArrayList;
 
 @Api(tags="Products Controller (Additional)", description = "Контроллер точек для работы с зависимостями товаров")
-@Controller
+@RestController
 public class ProductsAdditionalController {
 
     private final StatusesService statusesService;
 
+    // TODO: 21.01.2020 CREATE SERVICE
     private final AttributesCreatorProducer attrCrProducer;
     private final AttributesRepositoryProducer attrRepoProducer;
 
@@ -72,9 +72,8 @@ public class ProductsAdditionalController {
         this.logger = logger;
     }
 
-    @ApiOperation(value = "Выгружает все возможные статусы товаров")
+    @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные статусы товаров")
     @GetMapping("/products/statuses")
-    @ResponseBody
     public StatusesPojo statuses() {
         try {
             StatusesCreator statusesCreator = statusesService.statusesCreatorProducer()
@@ -92,9 +91,8 @@ public class ProductsAdditionalController {
         }
     }
 
-    @ApiOperation(value = "Выгружает все возможные атрибуты товаров")
+    @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные атрибуты товаров")
     @GetMapping("/products/attributes")
-    @ResponseBody
     public AttributesPojo attributes() {
         try {
             AttributesCreator attributesCreator = attrCrProducer.getAttributesCreatorDefaultInstance(
@@ -108,9 +106,8 @@ public class ProductsAdditionalController {
         }
     }
 
-    @ApiOperation(value = "Выгружает все возможные группы атрибутов товаров")
+    @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные группы атрибутов товаров")
     @GetMapping("/products/attribute-groups")
-    @ResponseBody
     public AttributeGroupsPojo attributesGroups() {
         try {
             AttributeGroupsCreator attributesGroupsCreator = attrGrsService.attributeGroupsCreatorProducer()
@@ -130,7 +127,6 @@ public class ProductsAdditionalController {
 
     @ApiOperation(value = "Выгружает все возможные единицы измерения товаров")
     @GetMapping("/products/units")
-    @ResponseBody
     public UnitsPojo units() {
         try {
             UnitsCreator unitsCreator = unitsService.unitsCreatorProducer().getUnitsCreatorDefaultInstance(
@@ -149,7 +145,6 @@ public class ProductsAdditionalController {
 
     @ApiOperation(value = "Выгружает все возможные категории товаров")
     @GetMapping("/products/categories")
-    @ResponseBody
     public CategoriesPojo categories() {
         try {
             CategoriesCreator categoriesCreator = categoriesService.categoriesCreatorProducer()

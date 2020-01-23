@@ -39,4 +39,14 @@ public class OrderWithCommentImpl implements Order {
         orderPojo.setComment(comment);
         return orderPojo;
     }
+
+    @Override
+    public long id() {
+        return order.id();
+    }
+
+    @Override
+    public short status() {
+        return order.status();
+    }
 }

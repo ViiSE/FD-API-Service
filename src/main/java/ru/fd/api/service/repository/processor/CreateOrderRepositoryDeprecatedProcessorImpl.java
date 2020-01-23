@@ -22,9 +22,10 @@ import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
-@Component("createOrderRepositoryProcessor")
+@Component("createOrderRepositoryDeprecatedProcessor")
 @Scope("prototype")
-public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProcessor {
+@Deprecated
+public class CreateOrderRepositoryDeprecatedProcessorImpl implements OrderRepositoryProcessor {
 
     private final OrderRepositoryProducer orderRepoProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
@@ -32,7 +33,7 @@ public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProces
     private final ProductsProducer orderProductsProducer;
     private final OrderResponseProducer orderResponseProducer;
 
-    public CreateOrderRepositoryProcessorImpl(
+    public CreateOrderRepositoryDeprecatedProcessorImpl(
             OrderRepositoryProducer orderRepoProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
             ProductProducer productProducer,
@@ -50,7 +51,7 @@ public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProces
         Order order = (Order) orderObj;
 
         try {
-            OrderRepository<Long, OrderResponse> orderRepository = orderRepoProducer.getOrderRepositoryDefaultInstance(
+            OrderRepository<Long, OrderResponse> orderRepository = orderRepoProducer.getOrderRepositoryDeprecatedInstance(
                     order,
                     sqlQueryCreator,
                     productProducer,

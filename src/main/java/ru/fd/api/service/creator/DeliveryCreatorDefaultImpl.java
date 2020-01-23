@@ -63,7 +63,7 @@ public class DeliveryCreatorDefaultImpl implements DeliveryCreator {
         if(deliveryPojo.getType() != 0 && deliveryPojo.getType() != 1)
             throw new CreatorException("Delivery: unknown type");
 
-        if(deliveryPojo.getCityId().isEmpty())
+        if(deliveryPojo.getCityId() < 0)
             throw new CreatorException("Delivery: city id required");
 
         if(deliveryPojo.getType() == 0) {

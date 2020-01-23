@@ -26,10 +26,10 @@ import ru.fd.api.service.data.DeliveryPojo;
 public class DeliverySimpleImpl implements Delivery {
 
     private final short type;
-    private final String cityId;
+    private final int cityId;
     private final String address;
 
-    public DeliverySimpleImpl(short type, String cityId, String address) {
+    public DeliverySimpleImpl(short type, int cityId, String address) {
         this.type = type;
         this.cityId = cityId;
         this.address = address;

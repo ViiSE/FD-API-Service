@@ -24,8 +24,6 @@ import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
-import ru.fd.api.service.producer.mapper.OrdersRowMapperProducer;
-import ru.fd.api.service.repository.mapper.ProductsSimpleRowMapper;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
@@ -33,10 +31,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: 21.01.2020 RENAME IT TO DEFAULT
-@Repository("orderRepositoryWithoutCheckStatus")
+@Repository("orderRepositoryDefault")
 @Scope("prototype")
-public class OrderRepositoryWithoutCheckStatusImpl implements OrderRepository<OrderResponse, Order> {
+public class OrderRepositoryDefaultImpl implements OrderRepository<OrderResponse, Order> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -45,7 +42,7 @@ public class OrderRepositoryWithoutCheckStatusImpl implements OrderRepository<Or
     private final SQLQueryCreator<String, String> sqlQueryCreator;
     private final OrderResponseProducer orderResponseProducer;
 
-    public OrderRepositoryWithoutCheckStatusImpl(
+    public OrderRepositoryDefaultImpl(
             Order order,
             SQLQueryCreator<String, String> sqlQueryCreator,
             OrderResponseProducer orderResponseProducer) {
@@ -119,20 +116,18 @@ public class OrderRepositoryWithoutCheckStatusImpl implements OrderRepository<Or
     // TODO: 21.01.2020 CREATE IMPL
     @Override
     public Order read(long id) throws RepositoryException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new RepositoryException("Not supported yet.");
     }
 
     // TODO: 21.01.2020 CREATE IMPL
     @Override
     public List<Order> readAll() throws RepositoryException {
-        return jdbcTemplate.queryForObject(
-                sqlQueryCreator.create("orders.sql").content(),
-                new ProductsSimpleRowMapper());
+        throw new RepositoryException("Not supported yet.");
     }
 
     // TODO: 21.01.2020 CREATE IMPL
     @Override
     public List<Order> readFirst(int sliceSize) throws RepositoryException {
-        return null;
+        throw new RepositoryException("Not supported yet.");
     }
 }

@@ -28,24 +28,22 @@ import java.util.Objects;
 public class OrderPojo {
 
     @ApiModelProperty(notes = "ID заказа", position = 1, required = true)
-    private final long id;
-    @ApiModelProperty(notes = "GID города заказа", position = 2, required = true)
-    private final String cityId;
+    private final Long id;
+    @ApiModelProperty(notes = "ID города заказа", position = 2, required = true)
+    private Integer cityId = -1;
     @ApiModelProperty(notes = "Покупатель, оформивший заказ", position = 3, required = true)
-    private final CustomerPojo customer;
+    private CustomerPojo customer;
     @ApiModelProperty(position = 4, required = true)
-    private final DeliveryPojo delivery;
+    private DeliveryPojo delivery;
     @ApiModelProperty(notes = "ID типа оплаты заказа. Возможные значения:\n" +
             "<b>0</b> - оплата на месте,\n" +
             "<b>1</b> - оплата на сайте по безналичному расчету", position = 5, required = true)
-    private final short payTypeId;
+    private Short payTypeId = -1;
 
-//    @JsonSerialize(using = LocalDateTimeDefaultSerializer.class)
-//    @JsonDeserialize(using = LocalDateTimeDefaultDeserializer.class)
     @ApiModelProperty(example = "2020-01-13 00:45:36",
             notes = "Дата и время оформления доставки (yyyy-MM-dd HH:mm:ss). Значение по умолчанию - <i>текущие дата и время</i>",
             position = 6)
-    private final LocalDateTime dateTime;
+    private LocalDateTime dateTime = LocalDateTime.now();
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(notes = "Коментарий покупателя к заказу", position = 7)
@@ -55,28 +53,32 @@ public class OrderPojo {
     @ApiModelProperty(notes = "Список товаров заказа", position = 8, required = true)
     private List<ProductOrderPojo> products;
 
+    // TODO: 20.01.2020 FUTURE
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+//    @ApiModelProperty(notes = "Список действительных остатков товара (указывается при статусе заказа <b>2</b>)", position = 9)
+//    private List<ProductOrderPojo> productsActual;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ApiModelProperty(notes = "Статус заказа. Возможные значения:" +
+            "\n<b>0</b> - не обработан," +
+            "\n<b>1</b> - готов к сборке," +
+            "\n<b>2</b> - нехватка остатков," +
+            "\n<b>3</b> - собран," +
+            "\n<b>4</b> - отменен," +
+            "\n<b>5</b> - выполнен", position = 10)
+    private Short status = 0;
+
     @JsonCreator
-    public OrderPojo(
-            @JsonProperty("id") long id,
-            @JsonProperty("city_id") String cityId,
-            @JsonProperty("customer") CustomerPojo customer,
-            @JsonProperty("delivery") DeliveryPojo delivery,
-            @JsonProperty("pay_type_id") short payTypeId,
-            @JsonProperty("date_time") LocalDateTime dateTime) {
-        this.id = id;
-        this.cityId = cityId;
-        this.customer = customer;
-        this.payTypeId = payTypeId;
-        this.delivery = delivery;
-        this.dateTime = Objects.requireNonNullElseGet(dateTime, LocalDateTime::now);
+    public OrderPojo(@JsonProperty("id") Long id) {
+        this.id = Objects.requireNonNullElse(id, -1L);
     }
 
     public long getId() {
         return id;
     }
 
-    public String getCityId() {
-        return cityId == null ? "": cityId;
+    public int getCityId() {
+        return cityId;
     }
 
     public CustomerPojo getCustomer() {
@@ -103,11 +105,49 @@ public class OrderPojo {
         return products != null ? products : new ArrayList<>();
     }
 
+    // TODO: 20.01.2020 FUTURE
+//    public List<ProductOrderPojo> getProductsActual() {
+//        return productsActual;
+//    }
+
+    public short getStatus() {
+        return status;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public void setCustomer(CustomerPojo customer) {
+        this.customer = customer;
+    }
+
+    public void setDelivery(DeliveryPojo delivery) {
+        this.delivery = delivery;
+    }
+
+    public void setPayTypeId(Short payTypeId) {
+        this.payTypeId = payTypeId;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public void setComment(String comment) {
         this.comment = comment;
     }
 
     public void setProducts(List<ProductOrderPojo> products) {
         this.products = products;
+    }
+
+    // TODO: 20.01.2020 FUTURE
+//    public void setProductsActual(List<ProductOrderPojo> productsActual) {
+//        this.productsActual = productsActual;
+//    }
+
+    public void setStatus(Short status) {
+        this.status = status;
     }
 }

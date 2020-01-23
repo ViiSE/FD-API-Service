@@ -25,7 +25,7 @@ public class ProductsRepositorySimpleProcessorImpl implements ProductsRepository
     }
 
     @Override
-    public ProductsRepository apply(ProductsRepository productsRepository) {
+    public ProductsRepository apply(Object nothing) {
         return prodsRepoProducer.getProductsRepositorySimpleInstance(
                 productProducer,
                 sqlQueryCreator);

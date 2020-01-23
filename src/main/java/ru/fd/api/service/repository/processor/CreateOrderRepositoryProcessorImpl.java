@@ -17,20 +17,18 @@ import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
-import ru.fd.api.service.producer.entity.ProductProducer;
-import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
-@Component("createOrderRepositoryWithoutCheckStatusProcessor")
+@Component("createOrderRepositoryProcessor")
 @Scope("prototype")
-public class CreateOrderRepositoryWithoutCheckStatusProcessorImpl implements OrderRepositoryProcessor {
+public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProcessor {
 
     private final OrderRepositoryProducer orderRepoProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
     private final OrderResponseProducer orderResponseProducer;
 
-    public CreateOrderRepositoryWithoutCheckStatusProcessorImpl(
+    public CreateOrderRepositoryProcessorImpl(
             OrderRepositoryProducer orderRepoProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
             OrderResponseProducer orderResponseProducer) {
@@ -44,7 +42,7 @@ public class CreateOrderRepositoryWithoutCheckStatusProcessorImpl implements Ord
         Order order = (Order) orderObj;
 
         try {
-            OrderRepository<OrderResponse, Order> orderRepository = orderRepoProducer.getOrderRepositoryWithoutCheckStatusInstance(
+            OrderRepository<OrderResponse, Order> orderRepository = orderRepoProducer.getOrderRepositoryDefaultInstance(
                     order,
                     sqlQueryCreator,
                     orderResponseProducer);

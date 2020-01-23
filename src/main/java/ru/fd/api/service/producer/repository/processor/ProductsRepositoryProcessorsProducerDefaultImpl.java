@@ -34,22 +34,12 @@ public class ProductsRepositoryProcessorsProducerDefaultImpl implements Products
     }
 
     @Override
-    public ProductsRepositoryProcessors getProductsRepositoryProcessorsSingletonImpl(
-            ProductsRepositoryProducer prodsRepoProducer,
-            ProductProducer prodProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator,
-            BalanceProducer balanceProducer,
-            BalancesProducer balancesProducer,
-            PriceProducer priceProducer,
-            PricesProducer pricesProducer) {
-        return (ProductsRepositoryProcessors) ctx.getBean(
-                "productsRepositoryProcessorsSingleton",
-                prodsRepoProducer,
-                prodProducer,
-                sqlQueryCreator,
-                balanceProducer,
-                balancesProducer,
-                priceProducer,
-                pricesProducer);
+    public ProductsRepositoryProcessors getProductsRepositoryProcessorsSingletonImpl() {
+        return ctx.getBean("productsRepositoryProcessorsSingleton", ProductsRepositoryProcessors.class);
+    }
+
+    @Override
+    public ProductsRepositoryProcessors getProductsChangedBalancesRepositoryProcessorsSingletonImpl() {
+        return ctx.getBean("productsChangedBalancesRepositoryProcessorsSingleton", ProductsRepositoryProcessors.class);
     }
 }

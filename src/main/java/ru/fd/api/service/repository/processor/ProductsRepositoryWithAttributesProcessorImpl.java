@@ -25,9 +25,9 @@ public class ProductsRepositoryWithAttributesProcessorImpl implements ProductsRe
     }
 
     @Override
-    public ProductsRepository apply(ProductsRepository productsRepository) {
+    public ProductsRepository apply(Object productsRepository) {
         return prodsRepoProducer.getProductsRepositoryWithAttributesInstance(
-                productsRepository,
+                (ProductsRepository) productsRepository,
                 prodProducer,
                 sqlQueryCreator);
     }

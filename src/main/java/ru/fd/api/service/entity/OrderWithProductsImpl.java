@@ -41,4 +41,14 @@ public class OrderWithProductsImpl implements Order {
         orderPojo.setProducts(productsOrderPojo.getProducts());
         return orderPojo;
     }
+
+    @Override
+    public long id() {
+        return order.id();
+    }
+
+    @Override
+    public short status() {
+        return order.status();
+    }
 }

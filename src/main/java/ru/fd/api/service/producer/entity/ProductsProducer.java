@@ -24,4 +24,6 @@ import java.util.List;
 
 public interface ProductsProducer {
     Products getOrderProductsDefaultInstance(List<Product> products);
+    Products getProductsDefaultInstance(ProductProducer productProducer, List<Product> products);
+    Products getProductsFailedInstance(String errorMessage);
 }

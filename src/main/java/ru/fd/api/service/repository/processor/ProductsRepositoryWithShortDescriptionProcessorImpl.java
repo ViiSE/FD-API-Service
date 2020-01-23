@@ -25,9 +25,9 @@ public class ProductsRepositoryWithShortDescriptionProcessorImpl implements Prod
     }
 
     @Override
-    public ProductsRepository apply(ProductsRepository productsRepository) {
+    public ProductsRepository apply(Object productsRepository) {
         return prodsRepoProducer.getProductsRepositoryWithShortDescriptionInstance(
-                productsRepository,
+                (ProductsRepository) productsRepository,
                 prodProducer,
                 sqlQueryCreator);
     }

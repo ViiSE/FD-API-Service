@@ -33,9 +33,9 @@ public class ProductsRepositoryWithPricesProcessorImpl implements ProductsReposi
     }
 
     @Override
-    public ProductsRepository apply(ProductsRepository productsRepository) {
+    public ProductsRepository apply(Object productsRepository) {
         return prodsRepoProducer.getProductsRepositoryWithPricesInstance(
-                productsRepository,
+                (ProductsRepository) productsRepository,
                 prodProducer,
                 priceProducer,
                 pricesProducer,

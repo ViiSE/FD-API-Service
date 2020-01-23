@@ -36,14 +36,33 @@ public class OrderProducerDefaultImpl implements OrderProducer {
     }
 
     @Override
-    public Order getOrderSimpleInstance(
-            long id,
-            String city,
-            Customer customer,
-            Delivery delivery,
-            short payTypeId,
-            LocalDateTime dateTime) {
-        return (Order) ctx.getBean("orderSimple", id, city, customer, delivery, payTypeId, dateTime);
+    public Order getOrderSimpleInstance(long id, short status) {
+        return (Order) ctx.getBean("orderSimple", id, status);
+    }
+
+    @Override
+    public Order getOrderWithCityIdInstance(Order order, int cityId) {
+        return (Order) ctx.getBean("orderWithCityId", order, cityId);
+    }
+
+    @Override
+    public Order getOrderWithCustomerInstance(Order order, Customer customer) {
+        return (Order) ctx.getBean("orderWithCustomer", order, customer);
+    }
+
+    @Override
+    public Order getOrderWithDeliveryInstance(Order order, Delivery delivery) {
+        return (Order) ctx.getBean("orderWithDelivery", order, delivery);
+    }
+
+    @Override
+    public Order getOrderWithDateTimeInstance(Order order, LocalDateTime dateTime) {
+        return (Order) ctx.getBean("orderWithDateTime", order, dateTime);
+    }
+
+    @Override
+    public Order getOrderWithPayTypeIdInstance(Order order, short payTypeId) {
+        return (Order) ctx.getBean("orderWithPayTypeId", order, payTypeId);
     }
 
     @Override
@@ -54,5 +73,10 @@ public class OrderProducerDefaultImpl implements OrderProducer {
     @Override
     public Order getOrderWithProductsInstance(Order order, Products products) {
         return (Order) ctx.getBean("orderWithProducts", order, products);
+    }
+
+    @Override
+    public Order getOrderEmptyInstance() {
+        return ctx.getBean("orderEmpty", Order.class);
     }
 }

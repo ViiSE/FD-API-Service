@@ -3,6 +3,7 @@ package ru.fd.api.service.producer.repository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.repository.ProductsRepository;
 
@@ -101,6 +102,40 @@ public class ProductsRepositoryProducerDefaultImpl implements ProductsRepository
                 "productsRepositoryWithFullDescription",
                 productsRepository,
                 productProducer,
+                sqlQueryCreator);
+    }
+
+    @Override
+    public ProductsRepository getProductsRepositoryWithChangedBalancesInstance(
+            ProductProducer productProducer,
+            ProductsProducer productsProducer,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (ProductsRepository) ctx.getBean(
+                "productsRepositoryWithChangedBalances",
+                productProducer,
+                productsProducer,
+                balanceProducer,
+                balancesProducer,
+                sqlQueryCreator);
+    }
+
+    @Override
+    public ProductsRepository getProductsRepositoryWithChangedBalancesAndOrderInstance(
+            Order order,
+            ProductProducer productProducer,
+            ProductsProducer productsProducer,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return (ProductsRepository) ctx.getBean(
+                "productsRepositoryWithChangedBalancesAndOrder",
+                order,
+                productProducer,
+                productsProducer,
+                balanceProducer,
+                balancesProducer,
                 sqlQueryCreator);
     }
 }

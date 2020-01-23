@@ -23,6 +23,7 @@ import ru.fd.api.service.producer.creator.DeliveryCreatorProducer;
 import ru.fd.api.service.producer.creator.OrderCreatorProducer;
 import ru.fd.api.service.producer.creator.ProductsCreatorProducer;
 import ru.fd.api.service.producer.entity.*;
+import ru.fd.api.service.repository.processor.OrderRepositoryProcessor;
 import ru.fd.api.service.repository.processor.OrderRepositoryProcessors;
 
 @Service("orderServiceDefault")

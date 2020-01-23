@@ -13,12 +13,9 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BalancePojo {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ApiModelProperty(notes = "GID товара", position = 1)
-    private String productId;
-    @ApiModelProperty(notes = "GID подразделения", position = 2)
+    @ApiModelProperty(notes = "GID подразделения", position = 1)
     private final String departmentId;
-    @ApiModelProperty(notes = "Количество", position = 3)
+    @ApiModelProperty(notes = "Количество", position = 2)
     private final int quantity;
 
     @JsonCreator
@@ -27,14 +24,6 @@ public class BalancePojo {
             @JsonProperty("quantity") int quantity) {
         this.departmentId = departmentId;
         this.quantity = quantity;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getProductId() {
-        return productId;
     }
 
     public String getDepartmentId() {

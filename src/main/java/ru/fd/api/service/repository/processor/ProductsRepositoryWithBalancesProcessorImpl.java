@@ -33,9 +33,9 @@ public class ProductsRepositoryWithBalancesProcessorImpl implements ProductsRepo
     }
 
     @Override
-    public ProductsRepository apply(ProductsRepository productsRepository) {
+    public ProductsRepository apply(Object productsRepository) {
         return prodsRepoProducer.getProductsRepositoryWithBalancesInstance(
-                productsRepository,
+                (ProductsRepository) productsRepository,
                 prodProducer,
                 balanceProducer,
                 balancesProducer,

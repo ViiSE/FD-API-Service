@@ -1,3 +1,13 @@
+/*
+ *  Copyright 2019 FD Company. All rights reserved.
+ *
+ *  Licensed under the FD License.
+ *
+ *  To read the license text, please contact: viise@outlook.com
+ *
+ *  Author: ViiSE.
+ */
+
 package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;

@@ -19,8 +19,8 @@ package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.Products;
 
 import java.util.List;
 
@@ -36,5 +36,15 @@ public class ProductsProducerDefaultImpl implements ProductsProducer {
     @Override
     public Products getOrderProductsDefaultInstance(List<Product> products) {
         return (Products) ctx.getBean("orderProductsDefault", products);
+    }
+
+    @Override
+    public Products getProductsDefaultInstance(ProductProducer productProducer, List<Product> products) {
+        return (Products) ctx.getBean("productsDefault", productProducer, products);
+    }
+
+    @Override
+    public Products getProductsFailedInstance(String errorMessage) {
+        return (Products) ctx.getBean("productsFailed", errorMessage);
     }
 }

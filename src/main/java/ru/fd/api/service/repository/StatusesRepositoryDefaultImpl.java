@@ -12,6 +12,7 @@ import ru.fd.api.service.producer.entity.StatusProducer;
 import ru.fd.api.service.producer.entity.StatusesProducer;
 import ru.fd.api.service.repository.mapper.StatusesDefaultRowMapper;
 
+// TODO: 23.01.2020 CREATE SQL
 @Repository("statusesRepositoryDefault")
 public class StatusesRepositoryDefaultImpl implements StatusesRepository {
 

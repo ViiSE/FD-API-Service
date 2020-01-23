@@ -20,9 +20,9 @@ package ru.fd.api.service.repository.processor;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.constant.Processors;
 import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 
 import java.util.HashMap;
@@ -40,18 +40,19 @@ public class OrderRepositoryProcessorsSingletonImpl implements OrderRepositoryPr
             ProductsProducer orderProductsProducer,
             OrderResponseProducer orderResponseProducer) {
         if(processors.isEmpty()) {
-            processors.put(Processors.CREATE_ORDER, new CreateOrderRepositoryProcessorImpl(
+            processors.put(Processors.CREATE_ORDER_DEPRECATED, new CreateOrderRepositoryDeprecatedProcessorImpl(
                     orderRepoProducer,
                     sqlQueryCreator,
                     productProducer,
                     orderProductsProducer,
                     orderResponseProducer));
-            processors.put(Processors.CREATE_ORDER_WITHOUT_CHECK_STATUS, new CreateOrderRepositoryWithoutCheckStatusProcessorImpl(
+            processors.put(Processors.CREATE_ORDER, new CreateOrderRepositoryProcessorImpl(
                     orderRepoProducer,
                     sqlQueryCreator,
                     orderResponseProducer));
         }
     }
+
 
     @Override
     public OrderRepositoryProcessor processor(String key) {

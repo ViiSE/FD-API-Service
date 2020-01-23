@@ -54,6 +54,11 @@ public class ProductProducerDefaultImpl implements ProductProducer {
     }
 
     @Override
+    public Product getProductWithChangedBalancesInstance(String id, Balances balances) {
+        return (Product) ctx.getBean("productWithChangedBalances", id, balances);
+    }
+
+    @Override
     public Product getOrderProductSimpleInstance(String id, int quantity) {
         return (Product) ctx.getBean("orderProductSimple", id, quantity);
     }

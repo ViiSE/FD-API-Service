@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ *  Copyright 2019 FD Company. All rights reserved.
  *
  *  Licensed under the FD License.
  *
@@ -30,17 +30,17 @@ public class OrderResponsePojo {
             "\n<b>2</b> - нехватка остатков," +
             "\n<b>3</b> - собран," +
             "\n<b>4</b> - отменен," +
-            "\n<b>5</b> - выполнен,", position = 1)
+            "\n<b>5</b> - выполнен", position = 1)
     private short status;
     @ApiModelProperty(notes = "ID заказа", position = 2)
     private long id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(notes = "Сообщение от API", position = 3)
     private String message;
-    @JsonProperty("products")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ApiModelProperty(notes = "Товары, остатков которых не хватило для оформления заказа", position = 4)
-    private ProductsOrderPojo productsOrderPojo;
+//    @JsonProperty("products")
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+//    @ApiModelProperty(notes = "Товары, остатков которых не хватило для оформления заказа", position = 4)
+//    private ProductsOrderPojo productsOrderPojo;
     @JsonIgnore
     private String exMessage;
 
@@ -56,10 +56,10 @@ public class OrderResponsePojo {
         this.message = message;
     }
 
-    @JsonProperty("products")
-    public void setProductsOrderPojo(ProductsOrderPojo productsOrderPojo) {
-        this.productsOrderPojo = productsOrderPojo;
-    }
+//    @JsonProperty("products")
+//    public void setProductsOrderPojo(ProductsOrderPojo productsOrderPojo) {
+//        this.productsOrderPojo = productsOrderPojo;
+//    }
 
     public void setExMessage(String exMessage) {
         this.exMessage = exMessage;
@@ -77,10 +77,10 @@ public class OrderResponsePojo {
         return message;
     }
 
-    @JsonProperty("products")
-    public List<ProductOrderPojo> getProductsOrder() {
-        return productsOrderPojo != null ? productsOrderPojo.getProducts() : null;
-    }
+//    @JsonProperty("products")
+//    public List<ProductOrderPojo> getProductsOrder() {
+//        return productsOrderPojo != null ? productsOrderPojo.getProducts() : null;
+//    }
 
     @JsonIgnore
     public String getExMessage() {

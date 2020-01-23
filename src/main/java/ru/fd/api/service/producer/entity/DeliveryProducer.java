@@ -22,7 +22,7 @@ import ru.fd.api.service.entity.Delivery;
 import java.time.LocalDate;
 
 public interface DeliveryProducer {
-    Delivery getDeliverySimpleInstance(short type, String city, String address);
+    Delivery getDeliverySimpleInstance(short type, int cityId, String address);
     Delivery getDeliveryWithDateInstance(Delivery delivery, LocalDate deliveryDate);
     Delivery getDeliveryWithTimeIdInstance(Delivery delivery, short deliveryTimeId);
     Delivery getDeliveryWithDepartmentIdInstance(Delivery delivery, String departmentId);

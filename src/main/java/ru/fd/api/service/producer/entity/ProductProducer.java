@@ -13,5 +13,6 @@ public interface ProductProducer {
     Product getProductWithStatusesInstance(Product product, Statuses statuses);
     Product getProductWithShortDescriptionInstance(Product product, String shortDescription);
     Product getProductWithFullDescriptionInstance(Product product, String fullDescription);
+    Product getProductWithChangedBalancesInstance(String id, Balances balances);
     Product getOrderProductSimpleInstance(String id, int quantity);
 }

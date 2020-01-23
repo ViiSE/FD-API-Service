@@ -10,7 +10,7 @@
 
 package ru.fd.api.service.constant;
 
-public class OrderResponses {
+public class OrderStatuses {
     public static final short NOT_PROCESSED = 0;
     public static final short READY_TO_ASSEMBLY = 1;
     public static final short LACK_OF_PRODUCTS_QUANTITY = 2;

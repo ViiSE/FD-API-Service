@@ -28,7 +28,7 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
-import ru.fd.api.service.repository.mapper.OrderProductsDefaultRowMapper;
+import ru.fd.api.service.repository.mapper.OrderProductsLackRowMapper;
 import ru.fd.api.service.repository.mapper.OrderResponseSimpleRowMapper;
 
 import java.io.UnsupportedEncodingException;
@@ -37,9 +37,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
-@Repository("orderRepositoryDefault")
+@Repository("orderRepositoryDeprecated")
 @Scope("prototype")
-public class OrderRepositoryDefaultImpl implements OrderRepository<Long, OrderResponse> {
+@Deprecated
+public class OrderRepositoryDeprecatedImpl implements OrderRepository<Long, OrderResponse> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -50,7 +51,7 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<Long, OrderRe
     private final ProductsProducer orderProductsProducer;
     private final OrderResponseProducer orderResponseProducer;
 
-    public OrderRepositoryDefaultImpl(
+    public OrderRepositoryDeprecatedImpl(
             Order order,
             SQLQueryCreator<String, String> sqlQueryCreator,
             ProductProducer productProducer,
@@ -130,7 +131,7 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<Long, OrderRe
                         Products orderProducts = jdbcTemplate.queryForObject(
                                 sqlQueryCreator.create("order_products_lack.sql").content(),
                                 new Object[]{id},
-                                new OrderProductsDefaultRowMapper(productProducer, orderProductsProducer));
+                                new OrderProductsLackRowMapper(productProducer, orderProductsProducer));
                         return orderResponseProducer.getOrderResponseWithProductsInstance(
                                 response,
                                 orderProducts);
@@ -144,15 +145,13 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<Long, OrderRe
         }
     }
 
-    // TODO: 22.01.2020 CREATE IMPL
     @Override
     public List<OrderResponse> readAll() throws RepositoryException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new RepositoryException("Not supported yet.");
     }
 
-    // TODO: 22.01.2020 CREATE IMPL
     @Override
     public List<OrderResponse> readFirst(int sliceSize) throws RepositoryException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new RepositoryException("Not supported yet.");
     }
 }

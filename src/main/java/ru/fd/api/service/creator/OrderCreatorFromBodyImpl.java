@@ -51,17 +51,20 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
     public Order create() throws CreatorException {
         checkOrder();
 
-        Order order = orderProducer.getOrderSimpleInstance(
-                orderPojo.getId(),
-                orderPojo.getCityId(),
-                customerCreatorProducer
-                        .getCustomerCreatorEmailOrPhoneRequiredInstance(orderPojo.getCustomer(), customerProducer)
-                        .create(),
+        Order order = orderProducer.getOrderSimpleInstance(orderPojo.getId(), orderPojo.getStatus());
+        order = orderProducer.getOrderWithCityIdInstance(order, orderPojo.getCityId());
+        order = orderProducer.getOrderWithPayTypeIdInstance(order, orderPojo.getPayTypeId());
+        order = orderProducer.getOrderWithDateTimeInstance(order, orderPojo.getDateTime());
+        order = orderProducer.getOrderWithDeliveryInstance(
+                order,
                 deliveryCreatorProducer
                         .getDeliveryCreatorDefaultInstance(orderPojo.getDelivery(), deliveryProducer)
-                        .create(),
-                orderPojo.getPayTypeId(),
-                orderPojo.getDateTime());
+                        .create());
+        order = orderProducer.getOrderWithCustomerInstance(
+                order,
+                customerCreatorProducer
+                        .getCustomerCreatorEmailOrPhoneRequiredInstance(orderPojo.getCustomer(), customerProducer)
+                        .create());
 
         if(orderPojo.getProducts() != null && !(orderPojo.getProducts().isEmpty()))
             order = orderProducer.getOrderWithProductsInstance(
@@ -88,7 +91,7 @@ public class OrderCreatorFromBodyImpl implements OrderCreator {
         if(orderPojo.getPayTypeId() != 0 && orderPojo.getPayTypeId() != 1)
             throw new CreatorException("Order: pay type id required");
 
-        if(orderPojo.getCityId().isEmpty())
+        if(orderPojo.getCityId() < 0)
             throw new CreatorException("Order: city id required");
     }
 }

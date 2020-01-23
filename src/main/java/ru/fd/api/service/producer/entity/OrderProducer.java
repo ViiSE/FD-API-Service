@@ -22,13 +22,13 @@ import ru.fd.api.service.entity.*;
 import java.time.LocalDateTime;
 
 public interface OrderProducer {
-    Order getOrderSimpleInstance(
-            long id,
-            String city,
-            Customer customer,
-            Delivery delivery,
-            short payTypeId,
-            LocalDateTime dateTime);
+    Order getOrderSimpleInstance(long id, short status);
+    Order getOrderWithCityIdInstance(Order order, int cityId);
+    Order getOrderWithCustomerInstance(Order order, Customer customer);
+    Order getOrderWithDeliveryInstance(Order order, Delivery delivery);
+    Order getOrderWithDateTimeInstance(Order order, LocalDateTime dateTime);
+    Order getOrderWithPayTypeIdInstance(Order order, short payTypeId);
     Order getOrderWithCommentInstance(Order order, String comment);
     Order getOrderWithProductsInstance(Order order, Products products);
+    Order getOrderEmptyInstance();
 }

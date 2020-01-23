@@ -95,7 +95,7 @@ public class SwaggerConfiguration {
                 .description("Добро пожаловать в документацию FD API")
                 .license("FD (c)")
                 .licenseUrl("")
-                .version("1.0")
+                .version("1.0 (SNAPSHOT)")
                 .build();
     }
 }

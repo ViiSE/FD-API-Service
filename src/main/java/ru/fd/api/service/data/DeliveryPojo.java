@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @ApiModel(value = "Delivery", description = "Доставка заказа")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
@@ -27,9 +28,9 @@ public class DeliveryPojo {
     @ApiModelProperty(notes = "Тип доставки. Возможные значения:\n" +
             "<b>0</b> - самовывоз,\n" +
             "<b>1</b> - доставка на дом", position = 1, required = true)
-    private final short type;
-    @ApiModelProperty(notes = "GID города доставки", position = 2, required = true)
-    private final String cityId;
+    private final Short type;
+    @ApiModelProperty(notes = "ID города доставки", position = 2, required = true)
+    private final Integer cityId;
     @ApiModelProperty(notes = "Адрес доставки (для типа <b>1</b>)", position = 3, required = true)
     private final String address;
 
@@ -49,20 +50,20 @@ public class DeliveryPojo {
 
     @JsonCreator
     public DeliveryPojo(
-            @JsonProperty("type") short type,
-            @JsonProperty("city_id") String cityId,
+            @JsonProperty("type") Short type,
+            @JsonProperty("city_id") Integer cityId,
             @JsonProperty("address") String address) {
-        this.type = type;
-        this.cityId = cityId;
+        this.type = Objects.requireNonNullElse(type, (short) -1);
+        this.cityId = Objects.requireNonNullElse(cityId, -1);
         this.address = address;
     }
 
-    public short getType() {
+    public Short getType() {
         return type;
     }
 
-    public String getCityId() {
-        return cityId == null ? "" : cityId;
+    public Integer getCityId() {
+        return cityId;
     }
 
     public String getAddress() {
