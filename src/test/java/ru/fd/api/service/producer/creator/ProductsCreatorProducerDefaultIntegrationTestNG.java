@@ -24,15 +24,14 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.creator.OrderProductsCreatorDefaultImpl;
 import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.creator.ProductsCreatorDefaultImpl;
 import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.data.DeliveryPojo;
 import ru.fd.api.service.data.OrderPojo;
-import ru.fd.api.service.producer.entity.*;
-import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.repository.processor.ProductsRepositoryProcessorsProducer;
 
 import java.time.LocalDateTime;
@@ -48,28 +47,15 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
     private ProductsCreatorProducer productsCreatorProducer;
 
     @Autowired private ProductsRepositoryProcessorsProducer productsRepoProsProducer;
-    @Autowired private ProductsRepositoryProducer productsRepoProducer;
     @Autowired private ProductProducer productProducer;
     @Autowired private ProductsProducer productsProducer;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
-    @Autowired private BalanceProducer balanceProducer;
-    @Autowired private BalancesProducer balancesProducer;
-    @Autowired private PriceProducer priceProducer;
-    @Autowired private PricesProducer pricesProducer;
 
     @Test
     public void getProductsCreatorDefaultInstance() {
         testBegin("ProductsCreatorProducerDefault", "getProductsCreatorDefaultInstance()");
 
         ProductsCreator productsCreator = productsCreatorProducer.getProductsCreatorDefaultInstance(
-                productsRepoProsProducer.getProductsRepositoryProcessorsSingletonImpl(
-                        productsRepoProducer,
-                        productProducer,
-                        sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
-                        balanceProducer,
-                        balancesProducer,
-                        priceProducer,
-                        pricesProducer),
+                productsRepoProsProducer.getProductsRepositoryProcessorsSingletonImpl(),
                 new ArrayList<>());
         assertTrue(productsCreator instanceof ProductsCreatorDefaultImpl, "ProductsCreator: not a valid type!");
         System.out.println("Instance: " + productsCreator);
@@ -81,14 +67,16 @@ public class ProductsCreatorProducerDefaultIntegrationTestNG extends AbstractTes
     public void getOrderProductsCreatorDefaultInstance() {
         testBegin("ProductsCreatorProducerDefault", "getOrderProductsCreatorDefaultInstance()");
 
+        OrderPojo orderP = new OrderPojo(1L);
+        orderP.setStatus((short) 0);
+        orderP.setCityId(101);
+        orderP.setCustomer(new CustomerPojo());
+        orderP.setDelivery(new DeliveryPojo((short) 0, 101, "addr"));
+        orderP.setDateTime(LocalDateTime.now());
+        orderP.setProducts(new ArrayList<>());
+
         ProductsCreator productsCreator = productsCreatorProducer.getOrderProductsCreatorDefaultInstance(
-                new OrderPojo(
-                        1,
-                        "cId1",
-                        new CustomerPojo(),
-                        new DeliveryPojo((short) 0, "cId1", "addr"),
-                        (short) 0,
-                        LocalDateTime.now()),
+                orderP,
                 productsProducer,
                 productProducer);
         assertTrue(productsCreator instanceof OrderProductsCreatorDefaultImpl, "OrderProductsCreator: not a valid type!");

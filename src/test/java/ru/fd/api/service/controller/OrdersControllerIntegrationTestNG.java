@@ -51,7 +51,6 @@ import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-
 public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private WebApplicationContext context;
@@ -103,28 +102,39 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
         testToken = jwtBuilder.compact();
 
         order = ordersService.orderProducer().getOrderWithCommentInstance(
-                ordersService.orderProducer().getOrderSimpleInstance(
-                        0,
-                        "777",
+                ordersService.orderProducer().getOrderWithCustomerInstance(
+                        ordersService.orderProducer().getOrderWithDeliveryInstance(
+                                ordersService.orderProducer().getOrderWithCityIdInstance(
+                                        ordersService.orderProducer().getOrderWithPayTypeIdInstance(
+                                                ordersService.orderProducer().getOrderWithDateTimeInstance(
+                                                        ordersService.orderProducer().getOrderSimpleInstance(
+                                                                1L,
+                                                                (short) 0),
+                                                        LocalDateTime.now()),
+                                                (short) 0),
+                                        101),
+                                ordersService.deliveryProducer().getDeliveryWithDateInstance(
+                                        ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
+                                                ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
+                                                        ordersService.deliveryProducer()
+                                                                .getDeliverySimpleInstance(
+                                                                        (short) 0,
+                                                                        101,
+                                                                        "ул. Ленинградская, 145Б"),
+                                                        "100"),
+                                                (short) 0),
+                                        LocalDate.now())),
                         ordersService.customerProducer().getCustomerFromCompanyImpl(
                                 ordersService.customerProducer().getCustomerWithNameInstance(
                                         ordersService.customerProducer().getCustomerWithEmailInstance(
                                                 ordersService.customerProducer().getCustomerWithPhoneNumberInstance(
-                                                        ordersService.customerProducer().getCustomerSimpleInstance((short) 0),
+                                                        ordersService.customerProducer()
+                                                                .getCustomerSimpleInstance((short) 0),
                                                         "89098238724"),
                                                 "example@example.com"),
                                         "John Doe"),
                                 "22505",
-                                "43122"),
-                        ordersService.deliveryProducer().getDeliveryWithDateInstance(
-                                ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
-                                        ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
-                                                ordersService.deliveryProducer().getDeliverySimpleInstance((short) 0, "777", "ул. Ленинградская, 145Б"),
-                                                "100"),
-                                        (short) 0),
-                                LocalDate.now()),
-                        (short) 0,
-                        LocalDateTime.now()),
+                                "43122")),
                 "Коментарий");
 
         testBegin("OrdersController");

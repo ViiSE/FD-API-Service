@@ -14,6 +14,7 @@ import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.ExceptionWithSendMessage;
+import ru.fd.api.service.producer.entity.OrderProducer;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
@@ -24,7 +25,7 @@ import ru.fd.api.service.repository.OrderRepositoryFailedImpl;
 public class OrderRepositoryProducerTestImpl implements OrderRepositoryProducer {
 
     @Override
-    public OrderRepository<Long, OrderResponse> getOrderRepositoryDefaultInstance(
+    public OrderRepository<Long, OrderResponse> getOrderRepositoryDeprecatedInstance(
             Order order,
             SQLQueryCreator<String, String> sqlQueryCreator,
             ProductProducer productProducer,
@@ -34,7 +35,12 @@ public class OrderRepositoryProducerTestImpl implements OrderRepositoryProducer 
     }
 
     @Override
-    public OrderRepository<OrderResponse, Void> getOrderRepositoryWithoutCheckStatusInstance(Order order, SQLQueryCreator<String, String> sqlQueryCreator, OrderResponseProducer orderResponseProducer) {
+    public OrderRepository<OrderResponse, Order> getOrderRepositoryDefaultInstance(Order order, SQLQueryCreator<String, String> sqlQueryCreator, OrderResponseProducer orderResponseProducer) {
+        return null;
+    }
+
+    @Override
+    public OrderRepository<Void, Order> getOrderRepositoryChangedBalancesInstance(SQLQueryCreator<String, String> sqlQueryCreator, OrderProducer orderProducer) {
         return null;
     }
 

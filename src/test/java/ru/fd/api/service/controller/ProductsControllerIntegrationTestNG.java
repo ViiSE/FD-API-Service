@@ -33,13 +33,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.ProductsService;
-import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.data.ProductsPojo;
 import ru.fd.api.service.filter.APIFilter;
-import ru.fd.api.service.producer.entity.BalanceProducer;
-import ru.fd.api.service.producer.entity.BalancesProducer;
-import ru.fd.api.service.producer.entity.PriceProducer;
-import ru.fd.api.service.producer.entity.PricesProducer;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
@@ -54,7 +49,6 @@ import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-
 public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private WebApplicationContext context;
@@ -62,11 +56,6 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
 
     @Autowired private ObjectMapper objectMapper;
     @Autowired private ProductsService productsService;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
-    @Autowired private BalanceProducer balanceProducer;
-    @Autowired private BalancesProducer balancesProducer;
-    @Autowired private PriceProducer priceProducer;
-    @Autowired private PricesProducer pricesProducer;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -123,14 +112,7 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
         ProductsPojo prodPojo = (ProductsPojo) productsService.productsCreatorProducer()
                 .getProductsCreatorDefaultInstance(
                         productsService.productsRepositoryProcessorsProducer()
-                                .getProductsRepositoryProcessorsSingletonImpl(
-                                        productsService.productsRepositoryProducer(),
-                                        productsService.productProducer(),
-                                        sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
-                                        balanceProducer,
-                                        balancesProducer,
-                                        priceProducer,
-                                        pricesProducer),
+                                .getProductsRepositoryProcessorsSingletonImpl(),
                         new ArrayList<>())
                 .create()
                 .formForSend();

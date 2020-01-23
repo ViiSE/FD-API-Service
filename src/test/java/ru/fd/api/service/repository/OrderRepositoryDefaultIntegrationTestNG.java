@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class OrderRepositoryDefaultIntegrationRealDBTestNG extends AbstractTestNGSpringContextTests {
+public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private OrdersService ordersService;
     @Autowired private OrderRepositoryProducer orderRepositoryProducer;

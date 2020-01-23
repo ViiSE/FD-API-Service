@@ -108,6 +108,15 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
         System.out.println("Instance: " + prSt);
     }
 
+    @Test(priority = 8)
+    public void getProductWithChangedBalancesInstance() {
+        testMethod("getProductWithChangedBalancesInstance()");
+
+        Product prSt = productProducer.getProductWithChangedBalancesInstance(product.id(), new BalancesDefaultImpl(new ArrayList<>()));
+        assertTrue(prSt instanceof ProductWithChangedBalancesImpl, "Product: not a valid type!");
+        System.out.println("Instance: " + prSt);
+    }
+
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);

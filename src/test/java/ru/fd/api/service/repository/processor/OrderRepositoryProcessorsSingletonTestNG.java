@@ -43,9 +43,9 @@ public class OrderRepositoryProcessorsSingletonTestNG {
     public void processor_createOrder() {
         testMethod("processor() ['create order']");
 
-        OrderRepositoryProcessor processor = orderRepoProcessors.processor(Processors.CREATE_ORDER);
+        OrderRepositoryProcessor processor = orderRepoProcessors.processor(Processors.CREATE_ORDER_DEPRECATED);
         assertNotNull(processor, "Simple processor is null!");
-        assertTrue(processor instanceof CreateOrderRepositoryProcessorImpl, "Processor is not instanceof create order!");
+        assertTrue(processor instanceof CreateOrderRepositoryDeprecatedProcessorImpl, "Processor is not instanceof create order!");
         System.out.println("Simple processor: " + processor);
     }
 

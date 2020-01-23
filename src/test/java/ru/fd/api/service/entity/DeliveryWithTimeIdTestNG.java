@@ -26,15 +26,15 @@ public class DeliveryWithTimeIdTestNG {
 
     private Delivery delivery;
     private short type;
-    private String city;
+    private int cityId;
     private String address;
     private short timeId;
 
     @BeforeClass
     @Parameters({"type", "cityId", "address", "timeId"})
-    public void setUpClass(short type, String cityId, String address, short timeId) {
+    public void setUpClass(short type, int cityId, String address, short timeId) {
         this.type = type;
-        this.city = cityId;
+        this.cityId = cityId;
         this.address = address;
         this.timeId = timeId;
         delivery = new DeliveryWithTimeIdImpl(
@@ -49,7 +49,7 @@ public class DeliveryWithTimeIdTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("DeliveryWithTimeId", "formForSend()");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, city, address);
+        DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, address);
         deliveryPojo.setDeliveryTimeId(timeId);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();

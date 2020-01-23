@@ -1,18 +1,11 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2020 FD Company. All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Licensed under the FD License.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *  To read the license text, please contact: viise@outlook.com
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *  Author: ViiSE.
  */
 
 package ru.fd.api.service.controller;
@@ -32,9 +25,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.DepartmentsService;
-import ru.fd.api.service.data.DepartmentsPojo;
-import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.ProductsService;
+import ru.fd.api.service.data.ProductChangedBalancesPojo;
 import ru.fd.api.service.filter.APIFilter;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -49,14 +41,13 @@ import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class ChangedBalancesPointIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private WebApplicationContext context;
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private DepartmentsService departmentsService;
-    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+    @Autowired private ProductsService productsService;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -96,65 +87,80 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
 
         testToken = jwtBuilder.compact();
 
-        testBegin("DepartmentsController");
-        writeTestTime("DepartmentsController");
+        testBegin("ProductsController [/products/changes/balances/ point]");
+        writeTestTime("ProductsController");
     }
 
     @Test(priority = 1)
-    void whenValidToken_thenReturns200WithContent() throws Exception {
-        testMethod("departments() [when valid token then returns 200 with content]");
+    void whenValidToken_and_noOrderId_thenReturns200WithContent() throws Exception {
+        testMethod("changedBalances() [when valid token then returns 200 with content]");
 
         String response = mockMvc.perform(
-                get("/departments")
+                get("/products/changes/balances")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        DepartmentsPojo depPojo = (DepartmentsPojo) departmentsService.departmentsCreatorProducer()
-                .getDepartmentsCreatorDefaultInstance(
-                        departmentsService.departmentsRepositoryProducer()
-                                .getDepartmentsRepositoryDefaultInstance(
-                                        departmentsService.departmentProducer(),
-                                        departmentsService.departmentsProducer(),
-                                        sqlQueryCreator))
-                .create()
-                .formForSend();
+        ProductChangedBalancesPojo productP = (ProductChangedBalancesPojo) productsService.productsCreatorProducer()
+                .getProductsWithChangedBalancesCreatorInstance(
+                        productsService.productsRepositoryProcessorsProducer()
+                                .getProductsChangedBalancesRepositoryProcessorsSingletonImpl(),
+                        -1L);
 
-        assertEquals(response, objectMapper.writeValueAsString(depPojo));
-        System.out.println("Response: " + response);
+        assertEquals(response, objectMapper.writeValueAsString(productP));
     }
 
     @Test(priority = 2)
+    void whenValidToken_and_orderId_thenReturns200WithContent() throws Exception {
+        testMethod("changedBalances() [when valid token then returns 200 with content]");
+
+        String response = mockMvc.perform(
+                get("/products/changes/balances")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization", "Bearer " + testToken)
+                        .requestAttr("order_id", 1L))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        ProductChangedBalancesPojo productP = (ProductChangedBalancesPojo) productsService.productsCreatorProducer()
+                .getProductsWithChangedBalancesCreatorInstance(
+                        productsService.productsRepositoryProcessorsProducer()
+                                .getProductsChangedBalancesRepositoryProcessorsSingletonImpl(),
+                        1L);
+
+        assertEquals(response, objectMapper.writeValueAsString(productP));
+    }
+
+    @Test(priority = 3)
     @Parameters({"incorrectToken"})
     void whenNotValidToken_thenReturns401WithoutContent(String incorrectToken) throws Exception {
-        testMethod("departments() [when not valid token then returns 401 without content]");
+        testMethod("changedBalances() [when not valid token then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
-                get("/departments")
+                get("/products/changes/balances")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + incorrectToken))
                 .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     void whenNotAuthorizationHeader_thenReturns401WithoutContent() throws Exception {
-        testMethod("departments() [when not auth header then returns 401 without content]");
+        testMethod("changedBalances() [when not auth header then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
-                get("/departments")
+                get("/products/changes/balances")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     @Parameters({"notJWTToken"})
     void whenTokenIsNotJWT_thenReturns401WithoutContent(String notJWTToken) throws Exception {
-        testMethod("departments() [when token is not JWT then returns 401 without content]");
+        testMethod("changedBalances() [when token is not JWT then returns 401 without content]");
 
         System.out.println(mockMvc.perform(
-                get("/departments")
+                get("/products/changes/balances")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Bearer " + notJWTToken))
                 .andExpect(status().isUnauthorized())
@@ -169,6 +175,6 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
 
     @AfterClass
     public void teardownClass() {
-        testEnd("DepartmentsController");
+        testEnd("ProductsController");
     }
 }

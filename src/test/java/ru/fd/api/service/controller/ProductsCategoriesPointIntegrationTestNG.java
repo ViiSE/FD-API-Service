@@ -49,7 +49,6 @@ import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-
 public class ProductsCategoriesPointIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private WebApplicationContext context;

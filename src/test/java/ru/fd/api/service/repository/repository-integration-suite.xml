@@ -16,9 +16,11 @@
                     <exclude name="readProducts_firstBalancesThenPricesEqualsFirstPricesThenBalances"/>
                 </methods>
             </class>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithChangedBalancesIntegrationTestNG"/>
             <class name="ru.fd.api.service.repository.OrderRepositoryFailedIntegrationTestNG"/>
-            <!--     EXCLUDE THIS TEST WHEN JENKINS OR MVN RUN!     -->
-<!--            <class name="ru.fd.api.service.repository.OrderRepositoryWithoutCheckStatusIntegrationRealDBTestNG"/>-->
+<!--            <class name="ru.fd.api.service.repository.OrderRepositoryDefaultIntegrationTestNG"/>-->
+<!--            <class name="ru.fd.api.service.repository.OrderRepositoryChangedBalancesIntegrationTestNG"/>-->
+<!--            <class name="ru.fd.api.service.repository.OrderRepositoryDefaultIntegrationTestNG"/>-->
         </classes>
     </test>
 

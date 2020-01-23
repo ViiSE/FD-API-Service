@@ -40,7 +40,7 @@ public class DeliveryCreatorProducerDefaultIntegrationTestNG extends AbstractTes
 
         DeliveryCreator delCr = deliveryCreatorProducer
                 .getDeliveryCreatorDefaultInstance(
-                        new DeliveryPojo((short) 0, "cId1", "addr"),
+                        new DeliveryPojo((short) 0, 101, "addr"),
                         deliveryProducer);
 
         assertTrue(delCr instanceof DeliveryCreatorDefaultImpl, "DeliveryCreator: not a valid type!");

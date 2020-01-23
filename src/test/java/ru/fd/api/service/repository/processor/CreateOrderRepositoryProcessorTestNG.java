@@ -17,13 +17,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.*;
-import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import test.producer.entity.OrderResponseProducerTestImpl;
 import test.producer.entity.ProductProducerTestImpl;
 import test.producer.entity.ProductsProducerTestImpl;
 import test.producer.repository.OrderRepositoryProducerTestImpl;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.testng.Assert.assertNotNull;
@@ -37,8 +35,7 @@ public class CreateOrderRepositoryProcessorTestNG {
 
     @BeforeTest
     public void setUpClass() {
-        OrderRepositoryProducer oRepoProducer = new OrderRepositoryProducerTestImpl();
-        processor = new CreateOrderRepositoryProcessorImpl(
+        processor = new CreateOrderRepositoryDeprecatedProcessorImpl(
                 new OrderRepositoryProducerTestImpl(),
                 null,
                 new ProductProducerTestImpl(),
@@ -50,14 +47,8 @@ public class CreateOrderRepositoryProcessorTestNG {
     public void apply() throws JsonProcessingException {
         testBegin("CreateOrderRepositoryProcessor", "apply()");
 
-        OrderResponse oResp = processor.apply(new OrderWithProductsImpl(
-                new OrderSimpleImpl(
-                        0,
-                        "cId1",
-                        new CustomerSimpleImpl((short) 0),
-                        new DeliverySimpleImpl((short) 0, "cId1", "addr"),
-                        (short) 0,
-                        LocalDateTime.now()),
+        OrderResponse oResp = (OrderResponse) processor.apply(new OrderWithProductsImpl(
+                new OrderSimpleImpl(0, (short) 0),
                 new OrderProductsDefaultImpl(new ArrayList<>() {{
                     add(new OrderProductSimpleImpl("id1", 10));
                     add(new OrderProductSimpleImpl("id2", 20));

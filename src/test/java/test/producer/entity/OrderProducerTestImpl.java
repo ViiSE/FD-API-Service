@@ -18,14 +18,33 @@ import java.time.LocalDateTime;
 public class OrderProducerTestImpl implements OrderProducer {
 
     @Override
-    public Order getOrderSimpleInstance(
-            long id,
-            String city,
-            Customer customer,
-            Delivery delivery,
-            short payTypeId,
-            LocalDateTime dateTime) {
-        return new OrderSimpleImpl(id, city, customer, delivery, payTypeId, dateTime);
+    public Order getOrderSimpleInstance(long id, short status) {
+        return new OrderSimpleImpl(id, status);
+    }
+
+    @Override
+    public Order getOrderWithCityIdInstance(Order order, int cityId) {
+        return new OrderWithCityIdImpl(order, cityId);
+    }
+
+    @Override
+    public Order getOrderWithCustomerInstance(Order order, Customer customer) {
+        return new OrderWithCustomerImpl(order, customer);
+    }
+
+    @Override
+    public Order getOrderWithDeliveryInstance(Order order, Delivery delivery) {
+        return new OrderWithDeliveryImpl(order, delivery);
+    }
+
+    @Override
+    public Order getOrderWithDateTimeInstance(Order order, LocalDateTime dateTime) {
+        return new OrderWithDateTimeImpl(order, dateTime);
+    }
+
+    @Override
+    public Order getOrderWithPayTypeIdInstance(Order order, short payTypeId) {
+        return new OrderWithPayTypeIdImpl(order, payTypeId);
     }
 
     @Override
@@ -36,5 +55,10 @@ public class OrderProducerTestImpl implements OrderProducer {
     @Override
     public Order getOrderWithProductsInstance(Order order, Products products) {
         return new OrderWithProductsImpl(order, products);
+    }
+
+    @Override
+    public Order getOrderEmptyInstance() {
+        return null;
     }
 }

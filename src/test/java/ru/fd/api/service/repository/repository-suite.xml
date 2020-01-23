@@ -13,6 +13,7 @@
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithPricesTestNG"/>
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithShortDescriptionTestNG"/>
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithStatusesTestNG"/>
+            <class name="ru.fd.api.service.repository.ProductsRepositoryWithChangedBalancesTestNG"/>
             <class name="ru.fd.api.service.repository.AttributeGroupsRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.AttributesRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.CategoriesRepositoryTestNG"/>

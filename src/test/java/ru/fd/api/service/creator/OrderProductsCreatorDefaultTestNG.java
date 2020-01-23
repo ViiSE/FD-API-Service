@@ -17,7 +17,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.*;
+import ru.fd.api.service.data.OrderPojo;
+import ru.fd.api.service.data.ProductOrderPojo;
+import ru.fd.api.service.data.ProductsOrderPojo;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -25,7 +27,6 @@ import ru.fd.api.service.producer.entity.ProductsProducer;
 import test.producer.entity.ProductProducerTestImpl;
 import test.producer.entity.ProductsProducerTestImpl;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
@@ -72,13 +73,7 @@ public class OrderProductsCreatorDefaultTestNG {
     }
 
     private OrderPojo createOrder() {
-       OrderPojo orderPojo = new OrderPojo(
-               1L,
-               "cId1",
-               new CustomerPojo(),
-               new DeliveryPojo((short) 0, "cId1", "Example st."),
-               (short) 0,
-               LocalDateTime.now());
+       OrderPojo orderPojo = new OrderPojo(1L);
        orderPojo.setProducts(
                new ProductsOrderPojo(
                        new ArrayList<>() {{

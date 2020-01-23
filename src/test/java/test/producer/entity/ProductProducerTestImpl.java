@@ -26,9 +26,6 @@ import ru.fd.api.service.producer.entity.ProductProducer;
 @Service("productProducerDefault")
 public class ProductProducerTestImpl implements ProductProducer {
 
-    @Autowired
-    private ApplicationContext ctx;
-
     @Override
     public Product getProductDefaultInstance(
             String id, String categoryId, String vendorId, String unitId, String name,
@@ -69,6 +66,11 @@ public class ProductProducerTestImpl implements ProductProducer {
     @Override
     public Product getProductWithFullDescriptionInstance(Product product, String fullDescription) {
         return new ProductWithFullDescriptionImpl(product, fullDescription);
+    }
+
+    @Override
+    public Product getProductWithChangedBalancesInstance(String id, Balances balances) {
+        return new ProductWithChangedBalancesImpl(id, balances);
     }
 
     @Override

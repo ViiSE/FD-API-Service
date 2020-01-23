@@ -92,11 +92,11 @@ public class OrderResponseWithProductsTestNG {
         OrderResponsePojo orderResponsePojo = new OrderResponsePojo();
         orderResponsePojo.setId(id);
         orderResponsePojo.setStatus(status);
-        orderResponsePojo.setProductsOrderPojo(
-                new ProductsOrderPojo(new ArrayList<>() {{
-                    add(new ProductOrderPojo(opId1, opq1));
-                    add(new ProductOrderPojo(opId2, opq2));
-                }}));
+//        orderResponsePojo.setProductsOrderPojo(
+//                new ProductsOrderPojo(new ArrayList<>() {{
+//                    add(new ProductOrderPojo(opId1, opq1));
+//                    add(new ProductOrderPojo(opId2, opq2));
+//                }}));
 
         assertEquals(
                 objectMapper.writeValueAsString(orderResponse.formForSend()),

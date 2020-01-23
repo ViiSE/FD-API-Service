@@ -26,14 +26,14 @@ public class DeliverySimpleTestNG {
 
     private Delivery delivery;
     private short type;
-    private String city;
+    private int cityId;
     private String address;
 
     @BeforeClass
     @Parameters({"type", "cityId", "address"})
-    public void setUpClass(short type, String cityId, String address) {
+    public void setUpClass(short type, int cityId, String address) {
         this.type = type;
-        this.city = cityId;
+        this.cityId = cityId;
         this.address = address;
         delivery = new DeliverySimpleImpl(
                 type,
@@ -45,7 +45,7 @@ public class DeliverySimpleTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("DeliverySimple", "formForSend()");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, city, address);
+        DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, address);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(

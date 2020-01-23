@@ -42,14 +42,15 @@ public class OrderCreatorProducerDefaultIntegrationTestNG extends AbstractTestNG
     public void getOrderCreatorFromBodyInstance() {
         testBegin("OrderCreatorProducer", "getOrderCreatorFromBodyInstance()");
 
+        OrderPojo orderP = new OrderPojo(1L);
+        orderP.setStatus((short) 0);
+        orderP.setCityId(101);
+        orderP.setCustomer(new CustomerPojo());
+        orderP.setDelivery(new DeliveryPojo((short) 0, 101, "addr"));
+        orderP.setDateTime(LocalDateTime.now());
+
         OrderCreator orderCr = orderCreatorProducer.getOrderCreatorFromBodyInstance(
-                new OrderPojo(
-                        1,
-                        "cId1",
-                        new CustomerPojo(),
-                        new DeliveryPojo((short) 0, "cId1", "addr"),
-                        (short) 0,
-                        LocalDateTime.now()),
+                orderP,
                 ordersService);
 
         assertTrue(orderCr instanceof OrderCreatorFromBodyImpl, "OrderCreator: not a valid type!");

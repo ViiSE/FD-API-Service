@@ -18,8 +18,8 @@ import java.time.LocalDate;
 public class DeliveryProducerTestImpl implements DeliveryProducer {
 
     @Override
-    public Delivery getDeliverySimpleInstance(short type, String city, String address) {
-        return new DeliverySimpleImpl(type, city, address);
+    public Delivery getDeliverySimpleInstance(short type, int cityId, String address) {
+        return new DeliverySimpleImpl(type, cityId, address);
     }
 
     @Override

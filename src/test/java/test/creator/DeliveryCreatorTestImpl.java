@@ -25,7 +25,7 @@ public class DeliveryCreatorTestImpl implements DeliveryCreator {
                         new DeliveryWithDepartmentIdImpl(
                                 new DeliverySimpleImpl(
                                         (short) 0,
-                                        "city_1",
+                                        1,
                                         "st. Example, 404"),
                                 "dep_1"),
                         (short) 0),

@@ -187,41 +187,72 @@
             </class>
             <class name="ru.fd.api.service.entity.DeliverySimpleTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="cityId" value="city_1"/>
+                <parameter name="cityId" value="101"/>
                 <parameter name="address" value="st. Example, 404"/>
             </class>
             <class name="ru.fd.api.service.entity.DeliveryWithDepartmentIdTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="cityId" value="city_1"/>
+                <parameter name="cityId" value="101"/>
                 <parameter name="address" value="st. Example, 404"/>
                 <parameter name="departmentId" value="dep_1"/>
             </class>
             <class name="ru.fd.api.service.entity.DeliveryWithTimeIdTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="cityId" value="city_1"/>
+                <parameter name="cityId" value="101"/>
                 <parameter name="address" value="st. Example, 404"/>
                 <parameter name="timeId" value="1"/>
             </class>
             <class name="ru.fd.api.service.entity.DeliveryWithDateTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="cityId" value="city_1"/>
+                <parameter name="cityId" value="101"/>
                 <parameter name="address" value="st. Example, 404"/>
             </class>
             <class name="ru.fd.api.service.entity.OrderSimpleTestNG">
                 <parameter name="id" value="1"/>
-                <parameter name="cityId" value="city_1"/>
+                <parameter name="status" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithCityIdTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+                <parameter name="cityId" value="101"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithPayTypeIdTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
                 <parameter name="payTypeId" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithCustomerTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithDeliveryTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OrderWithDateTimeTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="status" value="0"/>
             </class>
             <class name="ru.fd.api.service.entity.OrderWithCommentTestNG">
                 <parameter name="id" value="1"/>
-                <parameter name="cityId" value="city_1"/>
-                <parameter name="payTypeId" value="0"/>
+                <parameter name="status" value="0"/>
                 <parameter name="comment" value="Example comment here"/>
             </class>
             <class name="ru.fd.api.service.entity.OrderWithProductsTestNG">
                 <parameter name="id" value="1"/>
-                <parameter name="cityId" value="city_1"/>
-                <parameter name="payTypeId" value="0"/>
+                <parameter name="status" value="0"/>
+            </class>
+        </classes>
+    </test>
+
+    <test name="EntitySuiteChangedBalancesTest">
+        <classes>
+            <class name="ru.fd.api.service.entity.ProductWithChangedBalancesTestNG">
+                <parameter name="id" value="id_1"/>
+                <parameter name="departmentId1" value="dep_1"/>
+                <parameter name="quantity1" value="10"/>
+                <parameter name="departmentId2" value="dep_2"/>
+                <parameter name="quantity2" value="20"/>
             </class>
         </classes>
     </test>

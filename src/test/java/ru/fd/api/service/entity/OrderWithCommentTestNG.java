@@ -33,46 +33,25 @@ public class OrderWithCommentTestNG {
 
     private Order order;
     private long id;
-    private String cityId;
-    private Customer customer;
-    private Delivery delivery;
-    private short payTypeId;
+    private short status;
     private String comment;
-    private LocalDateTime dateTime;
 
     @BeforeClass
-    @Parameters({"id", "cityId", "payTypeId", "comment"})
-    public void setUpClass(long id, String cityId, short payTypeId, String comment) throws CreatorException {
+    @Parameters({"id", "status", "comment"})
+    public void setUpClass(long id, short status, String comment) {
         this.id = id;
-        this.cityId = cityId;
-        this.customer = new CustomerCreatorTestImpl().create();
-        this.delivery = new DeliveryCreatorTestImpl().create();
-        this.payTypeId = payTypeId;
+        this.status = status;
         this.comment = comment;
-        this.dateTime = LocalDateTime.now();
 
-        order = new OrderWithCommentImpl(
-                new OrderSimpleImpl(
-                        id,
-                        cityId,
-                        customer,
-                        delivery,
-                        payTypeId,
-                        dateTime),
-                comment);
+        order = new OrderWithCommentImpl(new OrderSimpleImpl(id, status), comment);
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
         testBegin("OrderWithComment", "formForSend()");
 
-        OrderPojo orderPojo = new OrderPojo(
-                id,
-                cityId,
-                (CustomerPojo) customer.formForSend(),
-                (DeliveryPojo) delivery.formForSend(),
-                payTypeId,
-                dateTime);
+        OrderPojo orderPojo = new OrderPojo(id);
+        orderPojo.setStatus(status);
         orderPojo.setComment(comment);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();

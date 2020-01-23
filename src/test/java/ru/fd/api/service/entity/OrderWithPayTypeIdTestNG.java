@@ -16,39 +16,36 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.OrderPojo;
-import ru.fd.api.service.data.ProductsOrderPojo;
-import test.creator.OrderProductsCreatorTest;
 import test.util.TestUtils;
 
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.testBegin;
 import static test.message.TestMessage.testEnd;
 
-public class OrderWithProductsTestNG {
+public class OrderWithPayTypeIdTestNG {
 
     private Order order;
     private long id;
     private short status;
-    private Products orderProducts;
+    private short payTypeId;
 
     @BeforeClass
-    @Parameters({"id", "status"})
-    public void setUpClass(long id, short status) {
+    @Parameters({"id", "status", "payTypeId"})
+    public void setUpClass(long id, short status, short payTypeId){
         this.id = id;
         this.status = status;
-        orderProducts = new OrderProductsCreatorTest().create();
+        this.payTypeId = payTypeId;
 
-        order = new OrderWithProductsImpl(new OrderSimpleImpl(id, status), orderProducts);
+        order = new OrderWithPayTypeIdImpl(new OrderSimpleImpl(id, status), payTypeId);
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("OrderWithProducts", "formForSend()");
+        testBegin("OrderWithPayTypeId", "formForSend()");
 
         OrderPojo orderPojo = new OrderPojo(id);
         orderPojo.setStatus(status);
-        ProductsOrderPojo productsOrderPojo = (ProductsOrderPojo) orderProducts.formForSend();
-        orderPojo.setProducts(productsOrderPojo.getProducts());
+        orderPojo.setPayTypeId(payTypeId);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(
@@ -56,8 +53,7 @@ public class OrderWithProductsTestNG {
                 objectMapper.writeValueAsString(orderPojo));
 
         System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(order.formForSend()));
-        System.out.println("Done!");
 
-        testEnd("OrderWithProducts", "formForSend()");
+        testEnd("OrderWithPayTypeId", "formForSend()");
     }
 }

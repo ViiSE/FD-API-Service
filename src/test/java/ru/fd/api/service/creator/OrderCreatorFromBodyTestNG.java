@@ -91,7 +91,7 @@ public class OrderCreatorFromBodyTestNG {
         new OrderCreatorFromBodyImpl(orderPojo, ordersService).create();
     }
 
-    @Test(priority = 6, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Order: pay type id required")
+    @Test(priority = 7, expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Order: pay type id required")
     public void create_unknownPayTypeId() throws CreatorException {
         testMethod("create() [unknown payTypeId]");
 
@@ -109,53 +109,64 @@ public class OrderCreatorFromBodyTestNG {
         testEnd("OrderCreatorFromBody");
     }
 
-    private OrderPojo createOrder(String comment, String cityId, long id, short payTypeId) {
-        OrderPojo orderPojo = new OrderPojo(
-                id,
-                cityId,
+    private ProductsOrderPojo createProducts() {
+        return new ProductsOrderPojo(
+                new ArrayList<>() {{
+                    add(new ProductOrderPojo("item1", 10));
+                    add(new ProductOrderPojo("item2", 20));
+                }});
+    }
+
+    private OrderPojo createOrder(String comment, int cityId, long id, short payTypeId) {
+        OrderPojo orderPojo = new OrderPojo(id);
+        orderPojo.setCityId(cityId);
+        orderPojo.setCustomer(
                 new CustomerPojo() {{
                     setName("Customer");
                     setEmail("example@example.com");
-                    setType((short) 0); }},
-                new DeliveryPojo((short) 0, "cId1", "Example st.") {{
+                    setType((short) 0); }});
+        orderPojo.setDelivery(
+                new DeliveryPojo((short) 0, cityId, "Example st.") {{
                     setDeliveryTimeId((short) 0);
                     setDeliveryDate(LocalDate.now().plusDays(1));
-                    setDepartmentId("depId1");}},
-                payTypeId,
-                LocalDateTime.now());
+                    setDepartmentId("depId1");}});
+        orderPojo.setPayTypeId(payTypeId);
+        orderPojo.setDateTime(LocalDateTime.now());
         orderPojo.setComment(comment);
 
         return orderPojo;
     }
 
     private OrderPojo createOrderWithProducts(String comment) {
-       OrderPojo orderPojo = createOrder(comment, "cId1", 1L, (short) 0);
-       orderPojo.setProducts(
-               new ProductsOrderPojo(
-                       new ArrayList<>() {{
-                           add(new ProductOrderPojo("item1", 10));
-                           add(new ProductOrderPojo("item2", 20));
-                       }})
-                       .getProducts());
+       OrderPojo orderPojo = createOrder(comment, 101, 1L, (short) 0);
+       orderPojo.setProducts(createProducts().getProducts());
        orderPojo.setComment(comment);
 
        return orderPojo;
     }
 
+    private OrderPojo createOrderWithProducts(String comment, int cityId, long id, short payTypeId) {
+        OrderPojo orderPojo = createOrder(comment, cityId, id, payTypeId);
+        orderPojo.setProducts(createProducts().getProducts());
+        orderPojo.setComment(comment);
+
+        return orderPojo;
+    }
+
     private OrderPojo createOrderWithoutProducts() {
-        return createOrder("", "cId1", 1L, (short) 0);
+        return createOrder("", 101, 1L, (short) 0);
     }
 
     private OrderPojo createOrderWithoutCityId() {
-        return createOrder("", "", 1L, (short) 0);
+        return createOrderWithProducts("", -1, 1L, (short) 0);
     }
 
     private OrderPojo createOrderWithoutId() {
-        return createOrder("", "cId1", -1L, (short) 0);
+        return createOrderWithProducts("", 101, -1L, (short) 0);
     }
 
     private OrderPojo createOrderWithoutPayTypeId() {
-        return createOrder("", "cId1", 1L, (short) -1);
+        return createOrderWithProducts("", 101, 1L, (short) -1);
     }
 
     private void test(OrderPojo orderPojo) throws JsonProcessingException, CreatorException {

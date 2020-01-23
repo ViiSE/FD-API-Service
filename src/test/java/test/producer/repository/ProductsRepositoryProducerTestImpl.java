@@ -1,9 +1,11 @@
 package test.producer.repository;
 
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.producer.entity.*;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.ProductsRepository;
+import ru.fd.api.service.repository.ProductsRepositoryWithChangedBalancesImpl;
 import test.repository.*;
 
 public class ProductsRepositoryProducerTestImpl implements ProductsRepositoryProducer {
@@ -65,5 +67,26 @@ public class ProductsRepositoryProducerTestImpl implements ProductsRepositoryPro
             ProductProducer productProducer,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         return new ProductsRepositoryWithFullDescriptionTestImpl(productsRepository, productProducer);
+    }
+
+    @Override
+    public ProductsRepository getProductsRepositoryWithChangedBalancesInstance(
+            ProductProducer productProducer,
+            ProductsProducer productsProducer,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return new ProductsRepositoryWithChangedBalancesTestImpl();
+    }
+
+    @Override
+    public ProductsRepository getProductsRepositoryWithChangedBalancesAndOrderInstance(
+            Order order,
+            ProductProducer productProducer,
+            ProductsProducer productsProducer,
+            BalanceProducer balanceProducer,
+            BalancesProducer balancesProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
+        return null;
     }
 }

@@ -25,7 +25,7 @@
             <class name="ru.fd.api.service.creator.DeliveryCreatorDefaultTestNG">
                 <parameter name="type" value="0"/>
                 <parameter name="unknownType" value="5"/>
-                <parameter name="cityId" value="cId1"/>
+                <parameter name="cityId" value="101"/>
                 <parameter name="address" value="Example st."/>
                 <parameter name="departmentId" value="dep1"/>
                 <parameter name="deliveryTimeId" value="0"/>

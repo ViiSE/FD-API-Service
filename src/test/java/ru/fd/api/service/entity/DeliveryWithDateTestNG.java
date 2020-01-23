@@ -28,15 +28,15 @@ public class DeliveryWithDateTestNG {
 
     private Delivery delivery;
     private short type;
-    private String city;
+    private int cityId;
     private String address;
     private LocalDate date;
 
     @BeforeClass
     @Parameters({"type", "cityId", "address"})
-    public void setUpClass(short type, String cityId, String address) {
+    public void setUpClass(short type, int cityId, String address) {
         this.type = type;
-        this.city = cityId;
+        this.cityId = cityId;
         this.address = address;
         this.date = LocalDate.now();
         delivery = new DeliveryWithDateImpl(
@@ -51,7 +51,7 @@ public class DeliveryWithDateTestNG {
     public void formForSend() throws JsonProcessingException {
         testBegin("DeliveryWithDate", "formForSend()");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, city, address);
+        DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, address);
         deliveryPojo.setDeliveryDate(date);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();

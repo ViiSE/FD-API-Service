@@ -44,7 +44,7 @@ public class ProductsRepositorySimpleProcessorTestNG {
     public void apply() {
         testBegin("ProductsRepositorySimpleProcessor", "apply()");
 
-        ProductsRepository prRepo = processor.apply(null);
+        ProductsRepository prRepo = (ProductsRepository) processor.apply(null);
         assertNotNull(prRepo, "ProductsRepository is null!");
         assertTrue(prRepo instanceof ProductsRepositorySimpleTestImpl, "Products repository is not instanceof test simple!");
         System.out.println("ProductsRepository: " + prRepo);

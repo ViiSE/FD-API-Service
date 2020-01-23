@@ -55,7 +55,7 @@ public class ProductsRepositoryWithBalancesProcessorTestNG {
     public void apply() {
         testBegin("ProductsRepositoryWithBalancesProcessor", "apply()");
 
-        ProductsRepository prRepo = processor.apply(prRepoSimple);
+        ProductsRepository prRepo = (ProductsRepository) processor.apply(prRepoSimple);
         assertNotNull(prRepo, "ProductsRepository is null!");
         assertTrue(prRepo instanceof ProductsRepositoryWithBalancesTestImpl, "Products repository is not instanceof test balances!");
         System.out.println("ProductsRepository: " + prRepo);

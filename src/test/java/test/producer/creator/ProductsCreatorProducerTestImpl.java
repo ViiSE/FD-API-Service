@@ -12,6 +12,7 @@ package test.producer.creator;
 
 import ru.fd.api.service.creator.OrderProductsCreatorDefaultImpl;
 import ru.fd.api.service.creator.ProductsCreator;
+import ru.fd.api.service.creator.ProductsWithChangedBalancesCreatorImpl;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.producer.creator.ProductsCreatorProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
@@ -34,5 +35,12 @@ public class ProductsCreatorProducerTestImpl implements ProductsCreatorProducer 
             ProductsProducer orderProductsProducer,
             ProductProducer productProducer) {
         return new OrderProductsCreatorDefaultImpl(orderPojo, orderProductsProducer, productProducer);
+    }
+
+    @Override
+    public ProductsCreator getProductsWithChangedBalancesCreatorInstance(
+            ProductsRepositoryProcessors productsRepositoryProcessors,
+            long orderId) {
+        return new ProductsWithChangedBalancesCreatorImpl(productsRepositoryProcessors, orderId);
     }
 }

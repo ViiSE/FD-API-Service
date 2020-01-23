@@ -39,7 +39,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test
     @Parameters({"type", "cityId", "address", "departmentId", "deliveryTimeId"})
-    public void create(short type, String cityId, String address, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
+    public void create(short type, int cityId, String address, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create()");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo(type, cityId, address);
@@ -63,7 +63,7 @@ public class DeliveryCreatorDefaultTestNG {
     public void create_withoutCityId(short type, String address, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create() [without cityId]");
 
-        DeliveryPojo deliveryPojo = new DeliveryPojo(type, "", address);
+        DeliveryPojo deliveryPojo = new DeliveryPojo(type, -1, address);
         deliveryPojo.setDepartmentId(departmentId);
         deliveryPojo.setDeliveryDate(LocalDate.now());
         deliveryPojo.setDeliveryTimeId(deliveryTimeId);
@@ -73,7 +73,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: address required")
     @Parameters({"cityId", "departmentId", "deliveryTimeId"})
-    public void create_withoutAddress(String cityId, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
+    public void create_withoutAddress(int cityId, String departmentId, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create() [without address]");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, "");
@@ -86,7 +86,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: delivery date required")
     @Parameters({"cityId", "departmentId", "deliveryTimeId", "address"})
-    public void create_delivery_date_is_missing(String cityId, String departmentId, short deliveryTimeId, String address) throws CreatorException, JsonProcessingException {
+    public void create_delivery_date_is_missing(int cityId, String departmentId, short deliveryTimeId, String address) throws CreatorException, JsonProcessingException {
         testMethod("create() [delivery date is missing]");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, address);
@@ -98,7 +98,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: unknown delivery time id")
     @Parameters({"cityId", "departmentId", "address"})
-    public void create_unknown_delivery_time_id(String cityId, String departmentId, String address) throws CreatorException, JsonProcessingException {
+    public void create_unknown_delivery_time_id(int cityId, String departmentId, String address) throws CreatorException, JsonProcessingException {
         testMethod("create() [delivery date is missing]");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo((short) 1, cityId, address);
@@ -111,7 +111,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: department id required")
     @Parameters({"cityId", "departmentId", "deliveryTimeId"})
-    public void create_withoutDepartmentId(String cityId, String address, short deliveryTimeId) throws CreatorException, JsonProcessingException {
+    public void create_withoutDepartmentId(int cityId, String address, short deliveryTimeId) throws CreatorException, JsonProcessingException {
         testMethod("create() [without departmentId]");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo((short) 0, cityId, address);
@@ -130,7 +130,7 @@ public class DeliveryCreatorDefaultTestNG {
 
     @Test(expectedExceptions = CreatorException.class, expectedExceptionsMessageRegExp = "Delivery: unknown type")
     @Parameters({"unknownType", "cityId", "address"})
-    public void create_delivery_unknown_type(short unknownType, String cityId, String address) throws CreatorException, JsonProcessingException {
+    public void create_delivery_unknown_type(short unknownType, int cityId, String address) throws CreatorException, JsonProcessingException {
         testMethod("create() [unknown type]");
 
         DeliveryPojo deliveryPojo = new DeliveryPojo(unknownType, cityId, address);

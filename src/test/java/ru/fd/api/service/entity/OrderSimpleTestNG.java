@@ -19,11 +19,7 @@ import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.data.DeliveryPojo;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.exception.CreatorException;
-import test.creator.CustomerCreatorTestImpl;
-import test.creator.DeliveryCreatorTestImpl;
 import test.util.TestUtils;
-
-import java.time.LocalDateTime;
 
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.testBegin;
@@ -33,42 +29,23 @@ public class OrderSimpleTestNG {
 
     private Order order;
     private long id;
-    private String cityId;
-    private Customer customer;
-    private Delivery delivery;
-    private short payTypeId;
-    private LocalDateTime dateTime;
+    private short status;
 
     @BeforeClass
-    @Parameters({"id", "cityId", "payTypeId"})
-    public void setUpClass(long id, String cityId, short payTypeId) throws CreatorException {
+    @Parameters({"id", "status"})
+    public void setUpClass(long id, short status) throws CreatorException {
         this.id = id;
-        this.cityId = cityId;
-        this.customer = new CustomerCreatorTestImpl().create();
-        this.delivery = new DeliveryCreatorTestImpl().create();
-        this.payTypeId = payTypeId;
-        this.dateTime = LocalDateTime.now();
+        this.status = status;
 
-        order = new OrderSimpleImpl(
-                id,
-                cityId,
-                customer,
-                delivery,
-                payTypeId,
-                dateTime);
+        order = new OrderSimpleImpl(id, status);
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
         testBegin("OrderSimple", "formForSend()");
 
-        OrderPojo orderPojo = new OrderPojo(
-                id,
-                cityId,
-                (CustomerPojo) customer.formForSend(),
-                (DeliveryPojo) delivery.formForSend(),
-                payTypeId,
-                dateTime);
+        OrderPojo orderPojo = new OrderPojo(id);
+        orderPojo.setStatus(status);
 
         ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
         assertEquals(
