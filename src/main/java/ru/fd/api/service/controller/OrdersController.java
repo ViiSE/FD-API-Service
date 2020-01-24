@@ -40,7 +40,7 @@ public class OrdersController {
         this.logger = logger;
     }
 
-    @ApiOperation(value = "Создает заказ")
+    @ApiOperation(value = "Создает заказ (ТЕСТОВАЯ ВЕРСИЯ)")
     @PostMapping("/orders")
     public OrderResponsePojo createOrder(
             @ApiParam(required = true, value = "Поля <code><b>order{id}</b></code>, " +
@@ -103,11 +103,11 @@ public class OrdersController {
                     "<code><b>order_response{id}</b></code>, и статуса заказа " +
                     "<code><b>order_response{status}</b></code>." +
                     "\n___" +
-                    "\n<b><i>При создании нового заказа указывать</i></b> <code><b>order{status}</b></code> <b><i>не обязательно!</b></i>" +
-                    "\n___" +
-                    "\n<i>Примечание: В данной реализации сайт должен после создания заказа вызвать <b>GET</b> метод " +
-                    "<code><b>/products/changes/balances</b> для получения товаров с измененными остатками. (см. " +
-                    "<code><b>Products Controller<code></b></i>)")
+                    "\n<b><i>При создании нового заказа указывать</i></b> <code><b>order{status}</b></code> <b><i>не обязательно!</b></i>") //+
+//                    "\n___" +
+//                    "\n<i>Примечание: В данной реализации сайт должен после создания заказа вызвать <b>GET</b> метод " +
+//                    "<code><b>/products/changes/balances</b> для получения товаров с измененными остатками. (см. " +
+//                    "<code><b>Products Controller<code></b></i>)")
             @RequestBody OrderPojo orderPojo) {
         try {
             Order order = ordersService.orderCreatorProducer()

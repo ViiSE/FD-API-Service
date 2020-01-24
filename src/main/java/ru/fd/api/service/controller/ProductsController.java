@@ -60,7 +60,7 @@ public class ProductsController {
         }
     }
 
-    @ApiOperation(value = "Выгружает товары с измененными остатками")
+    @ApiOperation(value = "[!!НЕДОСТУПНО!!!] Выгружает товары с измененными остатками")
     @GetMapping("/products/balances/changes")
     public ProductsChangedBalancesPojo changedBalances(
             @ApiParam(value = "При указании параметра <code><b>order_id</code></b> метод вернет изменения остатков " +
