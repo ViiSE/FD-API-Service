@@ -62,7 +62,7 @@ public class ProductsRepositoryWithChangedBalancesAndOrderIntegrationTestNG exte
         testBegin("ProductsRepositoryWithChangedBalancesAndOrderIntegration", "readProducts()");
 
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             assertNotNull(products, "Products is null!");
             System.out.println("DONE! ");
         } catch (RepositoryException ex) {

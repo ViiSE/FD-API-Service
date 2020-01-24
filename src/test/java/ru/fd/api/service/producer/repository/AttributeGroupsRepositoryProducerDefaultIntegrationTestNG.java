@@ -18,14 +18,13 @@
 package ru.fd.api.service.producer.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.AttributeGroupsService;
-import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.repository.AttributeGroupsRepository;
 import ru.fd.api.service.repository.AttributeGroupsRepositoryDefaultImpl;
 
@@ -35,23 +34,16 @@ import static test.message.TestMessage.*;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class AttributeGroupsRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired private AttributeGroupsRepositoryProducer attributeGroupsRepositoryProducer;
-    @Autowired private AttributeGroupsService attributeGroupsService;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired
+    @Qualifier("attributeGroupsRepositoryProducerDefault")
+    private AttributeGroupsRepositoryProducer attributeGroupsRepositoryProducer;
 
     @Test
     public void getAttributeGroupsRepositoryDefaultInstance() {
         testBegin("AttributeGroupsRepositoryProducerDefault", "getAttributeGroupsRepositoryDefaultInstance()");
 
-        AttributeGroupsRepository attrGrRepo = attributeGroupsService.attributeGroupsRepositoryProducer()
-                .getAttributeGroupsRepositoryDefaultInstance(
-                        attributeGroupsService.attributeGroupProducer(),
-                        attributeGroupsService.attributeGroupsProducer(),
-                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
-                attributeGroupsRepositoryProducer.getAttributeGroupsRepositoryDefaultInstance(
-                        attributeGroupsService.attributeGroupProducer(),
-                        attributeGroupsService.attributeGroupsProducer(),
-                        sqlQueryCreatorService.sqlQueryCreatorFromFileString());
+        AttributeGroupsRepository attrGrRepo = attributeGroupsRepositoryProducer
+                .getAttributeGroupsRepositoryDefaultInstance();
         assertTrue(attrGrRepo instanceof AttributeGroupsRepositoryDefaultImpl,
                 "AttributeGroupsRepository: not a valid type!");
         System.out.println("Instance: " + attrGrRepo);

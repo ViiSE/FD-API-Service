@@ -46,9 +46,9 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepository {
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
           try {
-              Products products = productsRepository.readProducts();
+              Products products = productsRepository.read();
               Map<String, Prices> pricesForProducts = jdbcTemplate.queryForObject(
                       sqlQueryCreator.create("products_with_prices.sql").content(),
                       new ProductsWithPricesRowMapper(priceProducer, pricesProducer));

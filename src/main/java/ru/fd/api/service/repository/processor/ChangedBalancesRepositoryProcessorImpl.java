@@ -10,23 +10,19 @@
 
 package ru.fd.api.service.repository.processor;
 
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.constant.OrderStatuses;
-import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.BalancesProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
-import ru.fd.api.service.repository.BalancesRepository;
 import ru.fd.api.service.repository.OrderRepository;
 import ru.fd.api.service.repository.ProductsRepository;
 
 import java.util.List;
 
 @Component("changedBalancesRepositoryProcessor")
-@Scope("prototype")
 public class ChangedBalancesRepositoryProcessorImpl implements ProductsRepositoryProcessor {
 
     private final OrderRepository<Void, Order> oRepo;
@@ -35,7 +31,7 @@ public class ChangedBalancesRepositoryProcessorImpl implements ProductsRepositor
 
     public ChangedBalancesRepositoryProcessorImpl(
             OrderRepository<Void, Order> oRepo,
-            ProductsRepository pRepo,
+            @Qualifier("productsRepositoryWithChangedBalances") ProductsRepository pRepo,
             ProductsProducer pProducer) {
         this.oRepo = oRepo;
         this.pRepo = pRepo;
@@ -61,7 +57,7 @@ public class ChangedBalancesRepositoryProcessorImpl implements ProductsRepositor
                     sleep();
             } while(!isDone);
 
-            return pRepo.readProducts();
+            return pRepo.read();
         } catch (RepositoryException ex) {
             return pProducer.getProductsFailedInstance(ex.getMessage());
         }

@@ -4,7 +4,6 @@ import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.entity.ProductAttributeDefaultImpl;
 import ru.fd.api.service.entity.ProductAttributesDefaultImpl;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepository;
@@ -25,8 +24,8 @@ public class ProductsRepositoryWithAttributesTestImpl implements ProductsReposit
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Attributes attributes1 = new AttributesCreatorTestImpl().create();
         Attributes attributes2 = new ProductAttributesDefaultImpl(new ArrayList<>() {{

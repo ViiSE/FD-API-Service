@@ -18,9 +18,6 @@
 package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,13 +32,10 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.ProductsService;
 import ru.fd.api.service.data.ProductsPojo;
 import ru.fd.api.service.filter.APIFilter;
+import test.util.TestUtils;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,27 +67,7 @@ public class ProductsControllerIntegrationTestNG extends AbstractTestNGSpringCon
                 .addFilters(filter)
                 .build();
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMills = System.currentTimeMillis();
-        Date now = new Date(nowMills);
-
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
-        JwtBuilder jwtBuilder = Jwts.builder()
-                .setIssuedAt(now)
-                .setId(id)
-                .setIssuer(issuer)
-                .setSubject(subject)
-                .signWith(signatureAlgorithm, signingKey);
-
-        if(timeToLive >= 0) {
-            long expMills = nowMills + timeToLive;
-            Date exp = new Date(expMills);
-            jwtBuilder.setExpiration(exp);
-        }
-
-        testToken = jwtBuilder.compact();
+        testToken = TestUtils.generateTestToken(id, issuer, secret, subject, timeToLive);
 
         testBegin("ProductsController");
         writeTestTime("ProductsController");

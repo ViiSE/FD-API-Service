@@ -19,8 +19,8 @@ public class ProductsRepositoryWithFullDescriptionTestImpl implements ProductsRe
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Map<String, String> fullDescForProducts = new HashMap<>() {{
             put("id_1", "Full Description 1");

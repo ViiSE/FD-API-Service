@@ -37,9 +37,9 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepository 
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             Map<String, Attributes> attrForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_attr.sql").content(),
                     new ProductsWithAttributesRowMapper());

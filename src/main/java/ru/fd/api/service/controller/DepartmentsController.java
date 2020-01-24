@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fd.api.service.DepartmentsService;
-import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.exception.CreatorException;
@@ -18,17 +16,11 @@ import java.util.ArrayList;
 @RestController
 public class DepartmentsController {
 
-    private final DepartmentsService departmentsService;
-
-    private final SQLQueryCreatorService sqlQueryCreatorService;
+    private final DepartmentsCreator departmentsCreator;
     private final LoggerService logger;
 
-    public DepartmentsController(
-            DepartmentsService departmentsService,
-            SQLQueryCreatorService sqlQueryCreatorService,
-            LoggerService logger) {
-        this.departmentsService = departmentsService;
-        this.sqlQueryCreatorService = sqlQueryCreatorService;
+    public DepartmentsController(DepartmentsCreator departmentsCreator, LoggerService logger) {
+        this.departmentsCreator = departmentsCreator;
         this.logger = logger;
     }
 
@@ -36,13 +28,6 @@ public class DepartmentsController {
     @GetMapping("/departments")
     public DepartmentsPojo departments() {
         try {
-            DepartmentsCreator departmentsCreator = departmentsService.departmentsCreatorProducer()
-                    .getDepartmentsCreatorDefaultInstance(
-                            departmentsService.departmentsRepositoryProducer()
-                                    .getDepartmentsRepositoryDefaultInstance(
-                                            departmentsService.departmentProducer(),
-                                            departmentsService.departmentsProducer(),
-                                            sqlQueryCreatorService.sqlQueryCreatorFromFileString()));
             DepartmentsPojo departmentsPojo = (DepartmentsPojo) departmentsCreator.create().formForSend();
             logger.info(DepartmentsController.class, "Site request departments");
             return departmentsPojo;

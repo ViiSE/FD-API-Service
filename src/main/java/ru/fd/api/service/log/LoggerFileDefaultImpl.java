@@ -1,13 +1,11 @@
 package ru.fd.api.service.log;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.time.CurrentDateTime;
 
 import java.io.*;
 
 @Component("loggerFileDefaultImpl")
-@Scope("prototype")
 public class LoggerFileDefaultImpl implements LoggerFile {
 
     private final LogDirectory logDirectory;

@@ -1,6 +1,5 @@
 package ru.fd.api.service.log;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.time.CurrentDateTime;
 
@@ -8,7 +7,6 @@ import static ru.fd.api.service.log.LogMessageType.ERROR;
 import static ru.fd.api.service.log.LogMessageType.INFO;
 
 @Component("loggerServiceDefault")
-@Scope("prototype")
 public class LoggerServiceDefaultImpl implements LoggerService {
 
     private final LoggerFile loggerFile;

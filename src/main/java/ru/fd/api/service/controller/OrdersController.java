@@ -33,7 +33,6 @@ import ru.fd.api.service.log.LoggerService;
 public class OrdersController {
 
     private final OrdersService ordersService;
-
     private final LoggerService logger;
 
     public OrdersController(OrdersService ordersService, LoggerService logger) {

@@ -26,7 +26,6 @@ import ru.fd.api.service.repository.mapper.OrdersListChangedBalancesRowMapper;
 import java.util.List;
 
 @Repository("orderRepositoryChangedBalances")
-@Scope("prototype")
 public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void, Order> {
 
     @Autowired

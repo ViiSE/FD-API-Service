@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.creator;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.CreatorException;
@@ -25,7 +24,6 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.StatusesRepository;
 
 @Service("statusesCreatorDefault")
-@Scope("prototype")
 public class StatusesCreatorDefaultImpl implements StatusesCreator {
 
     private final StatusesRepository statusesRepository;
@@ -37,7 +35,7 @@ public class StatusesCreatorDefaultImpl implements StatusesCreator {
     @Override
     public Statuses create() throws CreatorException {
         try {
-            return statusesRepository.readStatuses();
+            return statusesRepository.read();
         } catch (RepositoryException ex) {
             throw new CreatorException(ex.getMessage(), ex.getCause());
         }

@@ -32,8 +32,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.AttributeGroupsService;
-import ru.fd.api.service.SQLQueryCreatorService;
+import ru.fd.api.service.creator.AttributeGroupsCreator;
 import ru.fd.api.service.data.AttributeGroupsPojo;
 import ru.fd.api.service.filter.APIFilter;
 
@@ -55,8 +54,7 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private AttributeGroupsService attributeGroupsService;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired private AttributeGroupsCreator attributeGroupsCreator;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -110,15 +108,7 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        AttributeGroupsPojo attrGrPojo = (AttributeGroupsPojo) attributeGroupsService.attributeGroupsCreatorProducer()
-                .getAttributeGroupsCreatorDefaultInstance(
-                        attributeGroupsService.attributeGroupsRepositoryProducer()
-                                .getAttributeGroupsRepositoryDefaultInstance(
-                                        attributeGroupsService.attributeGroupProducer(),
-                                        attributeGroupsService.attributeGroupsProducer(),
-                                        sqlQueryCreatorService.sqlQueryCreatorFromFileString()))
-                .create()
-                .formForSend();
+        AttributeGroupsPojo attrGrPojo = (AttributeGroupsPojo) attributeGroupsCreator.create().formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(attrGrPojo));
     }

@@ -4,5 +4,5 @@ import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface ProductsRepository {
-    Products readProducts() throws RepositoryException;
+    Products read() throws RepositoryException;
 }

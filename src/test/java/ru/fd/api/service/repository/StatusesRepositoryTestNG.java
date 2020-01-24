@@ -45,7 +45,7 @@ public class StatusesRepositoryTestNG {
         testBegin("StatusesRepository", "readStatuses()");
 
         try {
-            Statuses statuses = statusesRepository.readStatuses();
+            Statuses statuses = statusesRepository.read();
             System.out.println("Statuses:");
             String pojo = mapper.writeValueAsString(statuses.formForSend());
             assertTrue(pojo.contains("\"statuses\":"));

@@ -22,7 +22,6 @@ import java.util.List;
 public class ProductsController {
 
     private final ProductsService productsService;
-
     private final LoggerService logger;
 
     public ProductsController(

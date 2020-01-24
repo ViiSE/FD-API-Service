@@ -6,8 +6,5 @@ import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.repository.AttributeGroupsRepository;
 
 public interface AttributeGroupsRepositoryProducer {
-    AttributeGroupsRepository getAttributeGroupsRepositoryDefaultInstance(
-            AttributeGroupProducer attributeGroupProducer,
-            AttributeGroupsProducer attributeGroupsProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator);
+    AttributeGroupsRepository getAttributeGroupsRepositoryDefaultInstance();
 }

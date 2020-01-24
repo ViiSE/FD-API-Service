@@ -24,8 +24,8 @@ public class ProductsRepositoryWithStatusesTestImpl implements ProductsRepositor
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Statuses statuses1 = new ProductStatusesCreatorTestImpl().create();
         Statuses statuses2 = new ProductStatusesImpl(new ArrayList<>() {{

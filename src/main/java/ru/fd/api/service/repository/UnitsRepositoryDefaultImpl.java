@@ -49,7 +49,7 @@ public class UnitsRepositoryDefaultImpl implements UnitsRepository {
     }
 
     @Override
-    public Units readUnits() throws RepositoryException {
+    public Units read() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("units.sql").content(),

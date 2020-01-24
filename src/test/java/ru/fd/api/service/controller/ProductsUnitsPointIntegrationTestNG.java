@@ -11,9 +11,6 @@
 package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,16 +22,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.SQLQueryCreatorService;
-import ru.fd.api.service.UnitsService;
+import ru.fd.api.service.creator.UnitsCreator;
 import ru.fd.api.service.data.UnitsPojo;
 import ru.fd.api.service.filter.APIFilter;
+import test.util.TestUtils;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -48,8 +41,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private UnitsService unitsService;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired private UnitsCreator unitsCreator;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -67,27 +59,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
                 .addFilters(filter)
                 .build();
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMills = System.currentTimeMillis();
-        Date now = new Date(nowMills);
-
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
-        JwtBuilder jwtBuilder = Jwts.builder()
-                .setIssuedAt(now)
-                .setId(id)
-                .setIssuer(issuer)
-                .setSubject(subject)
-                .signWith(signatureAlgorithm, signingKey);
-
-        if(timeToLive >= 0) {
-            long expMills = nowMills + timeToLive;
-            Date exp = new Date(expMills);
-            jwtBuilder.setExpiration(exp);
-        }
-
-        testToken = jwtBuilder.compact();
+        testToken = TestUtils.generateTestToken(id, issuer, secret, subject, timeToLive);
 
         testBegin("ProductsAdditionalController [GET /products/units]");
         writeTestTime("ProductsAdditionalController [GET /products/units]");
@@ -103,15 +75,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        UnitsPojo unitsPojo = (UnitsPojo) unitsService.unitsCreatorProducer()
-                .getUnitsCreatorDefaultInstance(
-                        unitsService.unitsRepositoryProducer()
-                                .getUnitsRepositoryDefaultInstance(
-                                        unitsService.unitProducer(),
-                                        unitsService.unitsProducer(),
-                                        sqlQueryCreatorService.sqlQueryCreatorFromFileString()))
-                .create()
-                .formForSend();
+        UnitsPojo unitsPojo = (UnitsPojo) unitsCreator.create().formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(unitsPojo));
     }

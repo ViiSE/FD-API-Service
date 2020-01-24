@@ -1,5 +1,6 @@
 package ru.fd.api.service.creator;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Products;
@@ -17,7 +18,9 @@ public class ProductsCreatorDefaultImpl implements ProductsCreator {
     private final ProductsRepositoryProcessors prodsReposPrc;
     private final List<String> with;
 
-    public ProductsCreatorDefaultImpl(ProductsRepositoryProcessors prodsReposPrc, List<String> with) {
+    public ProductsCreatorDefaultImpl(
+            @Qualifier("productsRepositoryProcessorsSingleton") ProductsRepositoryProcessors prodsReposPrc,
+            List<String> with) {
         this.prodsReposPrc = prodsReposPrc;
         this.with = with;
     }
@@ -31,7 +34,7 @@ public class ProductsCreatorDefaultImpl implements ProductsCreator {
                 if(prodsReposPrc.processor(param) != null)
                     prRepo = (ProductsRepository) prodsReposPrc.processor(param).apply(prRepo);
 
-            return prRepo.readProducts();
+            return prRepo.read();
         } catch (RepositoryException ex) {
             throw new CreatorException(ex.getMessage(), ex.getCause());
         }

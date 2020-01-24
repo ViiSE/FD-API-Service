@@ -40,7 +40,6 @@ public class CreateOrderRepositoryProcessorImpl implements OrderRepositoryProces
     @Override
     public Object apply(Object orderObj) {
         Order order = (Order) orderObj;
-
         try {
             OrderRepository<OrderResponse, Order> orderRepository = orderRepoProducer.getOrderRepositoryDefaultInstance(
                     order,

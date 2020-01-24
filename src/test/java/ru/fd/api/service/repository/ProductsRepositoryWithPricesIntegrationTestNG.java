@@ -42,7 +42,7 @@ public class ProductsRepositoryWithPricesIntegrationTestNG extends AbstractTestN
                     priceProducer,
                     pricesProducer,
                     sqlQueryCreator)
-                    .readProducts();
+                    .read();
             assertNotNull(products, "Products is null!");
             System.out.println("DONE! [" + LocalDateTime.now() + "]");
             //System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));

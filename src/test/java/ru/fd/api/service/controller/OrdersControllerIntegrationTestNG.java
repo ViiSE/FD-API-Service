@@ -11,9 +11,6 @@
 package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,24 +23,16 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.OrdersService;
-import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.data.OrderResponsePojo;
-import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
-import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.filter.APIFilter;
-import ru.fd.api.service.log.LoggerService;
+import test.util.TestUtils;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,8 +47,6 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
 
     @Autowired private ObjectMapper objectMapper;
     @Autowired private OrdersService ordersService;
-    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
-    @Autowired private LoggerService loggerService;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -79,27 +66,7 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
                 .addFilters(filter)
                 .build();
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMills = System.currentTimeMillis();
-        Date now = new Date(nowMills);
-
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
-        JwtBuilder jwtBuilder = Jwts.builder()
-                .setIssuedAt(now)
-                .setId(id)
-                .setIssuer(issuer)
-                .setSubject(subject)
-                .signWith(signatureAlgorithm, signingKey);
-
-        if(timeToLive >= 0) {
-            long expMills = nowMills + timeToLive;
-            Date exp = new Date(expMills);
-            jwtBuilder.setExpiration(exp);
-        }
-
-        testToken = jwtBuilder.compact();
+        testToken = TestUtils.generateTestToken(id, issuer, secret, subject, timeToLive);
 
         order = ordersService.orderProducer().getOrderWithCommentInstance(
                 ordersService.orderProducer().getOrderWithCustomerInstance(

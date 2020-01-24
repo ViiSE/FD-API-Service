@@ -10,7 +10,6 @@
 
 package ru.fd.api.service.repository.processor;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.constant.OrderStatuses;
 import ru.fd.api.service.database.SQLQueryCreator;
@@ -25,7 +24,6 @@ import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
 @Component("changedBalancesRepositoryWithOrderIdProcessor")
-@Scope("prototype")
 public class ChangedBalancesRepositoryWithOrderIdProcessorImpl implements ProductsRepositoryProcessor {
 
     private final OrderRepository<Void, Order> oRepo;
@@ -73,7 +71,7 @@ public class ChangedBalancesRepositoryWithOrderIdProcessorImpl implements Produc
                     psProducer,
                     bProducer,
                     bsProducer,
-                    sqlQueryCreator).readProducts();
+                    sqlQueryCreator).read();
         } catch (RepositoryException ex) {
             return psProducer.getProductsFailedInstance(ex.getMessage());
         }

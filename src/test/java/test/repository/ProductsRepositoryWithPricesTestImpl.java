@@ -24,8 +24,8 @@ public class ProductsRepositoryWithPricesTestImpl implements ProductsRepository 
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Prices prices1 = new PricesCreatorTestImpl().createPrices();
         Prices prices2 = new PricesDefaultImpl(new ArrayList<>() {{

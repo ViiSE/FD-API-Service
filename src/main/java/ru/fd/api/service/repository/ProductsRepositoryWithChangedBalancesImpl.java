@@ -26,7 +26,6 @@ import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.mapper.ProductsChangedBalancesRowMapper;
 
 @Repository("productsRepositoryWithChangedBalances")
-@Scope("prototype")
 public class ProductsRepositoryWithChangedBalancesImpl implements ProductsRepository {
 
     @Autowired
@@ -52,7 +51,7 @@ public class ProductsRepositoryWithChangedBalancesImpl implements ProductsReposi
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("SQL_HERE").content(),

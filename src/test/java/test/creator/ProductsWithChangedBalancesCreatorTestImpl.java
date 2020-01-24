@@ -35,6 +35,6 @@ public class ProductsWithChangedBalancesCreatorTestImpl implements ProductsCreat
             add(new BalanceDefaultImpl("dep2", 20));
         }});
 
-        return new ProductWithChangedBalancesImpl("id1", balances);
+        return new ProductWithChangedBalancesImpl("id" + id, balances);
     }
 }

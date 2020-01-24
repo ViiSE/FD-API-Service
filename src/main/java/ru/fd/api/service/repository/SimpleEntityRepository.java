@@ -15,14 +15,11 @@
  *
  */
 
-package ru.fd.api.service.producer.database;
+package ru.fd.api.service.repository;
 
-import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
+import ru.fd.api.service.exception.RepositoryException;
 
-public interface SQLQueryCreatorProducer {
-    SQLQueryCreator<String, String> getSQLQueryCreatorFromFileStringInstance(
-            FDAPIServiceDirectory serviceDirectory,
-            SQLReaderProducer sqlReaderProducer,
-            SQLQueryProducer sqlQueryProducer);
+public interface SimpleEntityRepository<T, V> {
+    T read() throws RepositoryException;
+    T read(V v);
 }

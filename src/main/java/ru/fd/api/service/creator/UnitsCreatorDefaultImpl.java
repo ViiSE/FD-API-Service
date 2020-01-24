@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.creator;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.exception.CreatorException;
@@ -25,7 +24,6 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.UnitsRepository;
 
 @Service("unitsCreatorDefault")
-@Scope("prototype")
 public class UnitsCreatorDefaultImpl implements UnitsCreator {
 
     private final UnitsRepository unitsRepository;
@@ -37,7 +35,7 @@ public class UnitsCreatorDefaultImpl implements UnitsCreator {
     @Override
     public Units create() throws CreatorException {
         try {
-            return unitsRepository.readUnits();
+            return unitsRepository.read();
         } catch (RepositoryException ex) {
             throw new CreatorException(ex.getMessage(), ex.getCause());
         }

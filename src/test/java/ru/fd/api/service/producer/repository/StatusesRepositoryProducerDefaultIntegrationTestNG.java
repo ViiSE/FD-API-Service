@@ -18,6 +18,7 @@
 package ru.fd.api.service.producer.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -34,16 +35,14 @@ import static test.message.TestMessage.*;
 public class StatusesRepositoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("statusesRepositoryProducerDefault")
     private StatusesRepositoryProducer statusesRepositoryProducer;
 
     @Test
     public void getStatusesRepositoryDefaultInstance() {
         testBegin("StatusesRepositoryProducerDefault", "getStatusesRepositoryDefaultInstance()");
 
-        StatusesRepository stRepo = statusesRepositoryProducer.getStatusesRepositoryDefaultInstance(
-                null,
-                null,
-                null);
+        StatusesRepository stRepo = statusesRepositoryProducer.getStatusesRepositoryDefaultInstance();
         assertTrue(stRepo instanceof StatusesRepositoryDefaultImpl,"StatusesRepository: not a valid type!");
         System.out.println("Instance: " + stRepo);
 

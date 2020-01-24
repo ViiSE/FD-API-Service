@@ -66,7 +66,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
                             priceProducer,
                             pricesProducer,
                             sqlQueryCreator)
-                    .readProducts();
+                    .read();
             assertNotNull(balancesPricesProducts, "Products is null!");
             System.out.println("DONE! ");
         } catch (RepositoryException ex) {
@@ -99,7 +99,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
                             priceProducer,
                             pricesProducer,
                             sqlQueryCreator)
-                    .readProducts();
+                    .read();
             assertNotNull(pricesBalancesProducts, "Products is null!");
             System.out.println("DONE! ");
         } catch (RepositoryException ex) {

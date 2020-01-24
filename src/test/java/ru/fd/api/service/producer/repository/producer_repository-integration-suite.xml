@@ -8,11 +8,8 @@
             <class name="ru.fd.api.service.producer.repository.AttributeGroupsRepositoryProducerDefaultIntegrationTestNG"/>
             <class name="ru.fd.api.service.producer.repository.AttributesRepositoryProducerDefaultIntegrationTestNG"/>
             <class name="ru.fd.api.service.producer.repository.BalancesRepositoryProducerDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.producer.repository.CategoriesRepositoryProducerDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.producer.repository.DepartmentsRepositoryProducerDefaultIntegrationTestNG"/>
             <class name="ru.fd.api.service.producer.repository.ProductsRepositoryProducerDefaultIntegrationTestNG"/>
             <class name="ru.fd.api.service.producer.repository.StatusesRepositoryProducerDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.producer.repository.UnitsRepositoryProducerDefaultIntegrationTestNG"/>
         </classes>
     </test>
 

@@ -15,26 +15,28 @@
  *
  */
 
-package ru.fd.api.service.producer.repository;
+package ru.fd.api.service.producer.repository.processor;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.producer.entity.AttributeGroupProducer;
-import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
-import ru.fd.api.service.repository.AttributeGroupsRepository;
+import ru.fd.api.service.repository.processor.OrderRepositoryProcessor;
 
-@Service("attributeGroupsRepositoryProducerDefault")
-public class AttributeGroupsRepositoryProducerDefaultImpl implements AttributeGroupsRepositoryProducer {
+@Service("orderRepositoryProcessorProducerDefault")
+public class OrderRepositoryProcessorProducerDefaultImpl implements OrderRepositoryProcessorProducer {
 
     private final ApplicationContext ctx;
 
-    public AttributeGroupsRepositoryProducerDefaultImpl(ApplicationContext ctx) {
+    public OrderRepositoryProcessorProducerDefaultImpl(ApplicationContext ctx) {
         this.ctx = ctx;
     }
 
     @Override
-    public AttributeGroupsRepository getAttributeGroupsRepositoryDefaultInstance() {
-        return ctx.getBean("attributeGroupsRepositoryDefault", AttributeGroupsRepository.class);
+    public OrderRepositoryProcessor getCreateOrderRepositoryDeprecatedProcessorInstance() {
+        return ctx.getBean("createOrderRepositoryDeprecatedProcessor", OrderRepositoryProcessor.class);
+    }
+
+    @Override
+    public OrderRepositoryProcessor getCreateOrderRepositoryProcessorInstance() {
+        return ctx.getBean("createOrderRepositoryProcessor", OrderRepositoryProcessor.class);
     }
 }

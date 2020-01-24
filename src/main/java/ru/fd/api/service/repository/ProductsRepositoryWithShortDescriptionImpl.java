@@ -35,9 +35,9 @@ public class ProductsRepositoryWithShortDescriptionImpl implements ProductsRepos
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             Map<String, String> shortDescForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_short_description.sql").content(),
                     new ProductsWithShortDescriptionRowMapper());

@@ -21,5 +21,5 @@ import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface UnitsRepository {
-    Units readUnits() throws RepositoryException;
+    Units read() throws RepositoryException;
 }

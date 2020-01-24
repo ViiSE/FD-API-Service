@@ -18,6 +18,7 @@
 package ru.fd.api.service.producer.repository.processor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -34,6 +35,7 @@ import static test.message.TestMessage.*;
 public class ProductsRepositoryProcessorsProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("productsRepositoryProcessorsProducerDefault")
     private ProductsRepositoryProcessorsProducer productsRepositoryProcessorsProducer;
 
     @Test

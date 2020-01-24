@@ -18,9 +18,6 @@
 package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,16 +29,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.DepartmentsService;
+import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
-import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.filter.APIFilter;
+import test.util.TestUtils;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -55,8 +48,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private DepartmentsService departmentsService;
-    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+    @Autowired private DepartmentsCreator departmentsCreator;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -74,27 +66,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
                 .addFilters(filter)
                 .build();
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMills = System.currentTimeMillis();
-        Date now = new Date(nowMills);
-
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
-        JwtBuilder jwtBuilder = Jwts.builder()
-                .setIssuedAt(now)
-                .setId(id)
-                .setIssuer(issuer)
-                .setSubject(subject)
-                .signWith(signatureAlgorithm, signingKey);
-
-        if(timeToLive >= 0) {
-            long expMills = nowMills + timeToLive;
-            Date exp = new Date(expMills);
-            jwtBuilder.setExpiration(exp);
-        }
-
-        testToken = jwtBuilder.compact();
+        testToken = TestUtils.generateTestToken(id, issuer, secret, subject, timeToLive);
 
         testBegin("DepartmentsController");
         writeTestTime("DepartmentsController");
@@ -110,15 +82,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        DepartmentsPojo depPojo = (DepartmentsPojo) departmentsService.departmentsCreatorProducer()
-                .getDepartmentsCreatorDefaultInstance(
-                        departmentsService.departmentsRepositoryProducer()
-                                .getDepartmentsRepositoryDefaultInstance(
-                                        departmentsService.departmentProducer(),
-                                        departmentsService.departmentsProducer(),
-                                        sqlQueryCreator))
-                .create()
-                .formForSend();
+        DepartmentsPojo depPojo = (DepartmentsPojo) departmentsCreator.create().formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(depPojo));
         System.out.println("Response: " + response);

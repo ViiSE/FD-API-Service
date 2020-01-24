@@ -35,9 +35,9 @@ public class ProductsRepositoryWithFullDescriptionImpl implements ProductsReposi
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             Map<String, String> fullDescForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_full_description.sql").content(),
                     new ProductsWithFullDescriptionRowMapper());

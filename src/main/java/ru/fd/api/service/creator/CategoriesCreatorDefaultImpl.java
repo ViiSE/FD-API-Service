@@ -17,7 +17,6 @@
 
 package ru.fd.api.service.creator;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.exception.CreatorException;
@@ -25,7 +24,6 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.CategoriesRepository;
 
 @Service("categoriesCreatorDefault")
-@Scope("prototype")
 public class CategoriesCreatorDefaultImpl implements CategoriesCreator {
 
     private final CategoriesRepository categoriesRepository;

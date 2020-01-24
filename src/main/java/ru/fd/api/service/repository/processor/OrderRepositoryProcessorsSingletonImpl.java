@@ -19,11 +19,7 @@ package ru.fd.api.service.repository.processor;
 
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.constant.Processors;
-import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.producer.entity.OrderResponseProducer;
-import ru.fd.api.service.producer.entity.ProductProducer;
-import ru.fd.api.service.producer.entity.ProductsProducer;
-import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
+import ru.fd.api.service.producer.repository.processor.OrderRepositoryProcessorProducer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,23 +29,14 @@ public class OrderRepositoryProcessorsSingletonImpl implements OrderRepositoryPr
 
     private static final Map<String, OrderRepositoryProcessor> processors = new HashMap<>();
 
-    public OrderRepositoryProcessorsSingletonImpl(
-            OrderRepositoryProducer orderRepoProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator,
-            ProductProducer productProducer,
-            ProductsProducer orderProductsProducer,
-            OrderResponseProducer orderResponseProducer) {
+    public OrderRepositoryProcessorsSingletonImpl(OrderRepositoryProcessorProducer orderRepoPrcProducer) {
         if(processors.isEmpty()) {
-            processors.put(Processors.CREATE_ORDER_DEPRECATED, new CreateOrderRepositoryDeprecatedProcessorImpl(
-                    orderRepoProducer,
-                    sqlQueryCreator,
-                    productProducer,
-                    orderProductsProducer,
-                    orderResponseProducer));
-            processors.put(Processors.CREATE_ORDER, new CreateOrderRepositoryProcessorImpl(
-                    orderRepoProducer,
-                    sqlQueryCreator,
-                    orderResponseProducer));
+            processors.put(
+                    Processors.CREATE_ORDER_DEPRECATED,
+                    orderRepoPrcProducer.getCreateOrderRepositoryDeprecatedProcessorInstance());
+            processors.put(
+                    Processors.CREATE_ORDER,
+                    orderRepoPrcProducer.getCreateOrderRepositoryProcessorInstance());
         }
     }
 

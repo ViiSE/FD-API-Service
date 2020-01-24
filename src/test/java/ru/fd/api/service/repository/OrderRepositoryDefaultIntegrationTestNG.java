@@ -22,7 +22,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.OrdersService;
-import ru.fd.api.service.SQLQueryCreatorService;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
@@ -35,13 +35,14 @@ import java.util.ArrayList;
 
 import static test.message.TestMessage.*;
 
+// TODO: 24.01.2020 CREATE NOT SUPPORTED TESTS
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired private OrdersService ordersService;
     @Autowired private OrderRepositoryProducer orderRepositoryProducer;
     @Autowired private OrderResponseProducer orderResponseProducer;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
 
     private OrderRepository<OrderResponse, Order> orderRepo;
 
@@ -91,7 +92,7 @@ public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
         orderRepo = orderRepositoryProducer
                 .getOrderRepositoryDefaultInstance(
                         order,
-                        sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
+                        sqlQueryCreator,
                         orderResponseProducer);
         testBegin("OrderRepositoryDefault");
     }

@@ -20,17 +20,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.OrdersService;
-import ru.fd.api.service.SQLQueryCreatorService;
-import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static test.message.TestMessage.*;
 
@@ -64,6 +57,20 @@ public class OrderRepositoryFailedIntegrationTestNG extends AbstractTestNGSpring
         testMethod("insert()");
 
         orderRepo.insert();
+    }
+
+    @Test(priority = 3, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Cannot readAll in OrderRepositoryFailed instance")
+    public void readAll() throws RepositoryException {
+        testMethod("readAll()");
+
+        orderRepo.readAll();
+    }
+
+    @Test(priority = 4, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Cannot readFirst in OrderRepositoryFailed instance")
+    public void readFirst() throws RepositoryException {
+        testMethod("readFirst()");
+
+        orderRepo.readFirst(10);
     }
 
     @AfterMethod

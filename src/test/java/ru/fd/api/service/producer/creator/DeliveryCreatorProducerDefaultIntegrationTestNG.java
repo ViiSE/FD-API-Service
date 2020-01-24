@@ -11,6 +11,7 @@
 package ru.fd.api.service.producer.creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -29,6 +30,7 @@ import static test.message.TestMessage.*;
 public class DeliveryCreatorProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("deliveryCreatorProducerDefault")
     private DeliveryCreatorProducer deliveryCreatorProducer;
 
     @Autowired
@@ -36,7 +38,7 @@ public class DeliveryCreatorProducerDefaultIntegrationTestNG extends AbstractTes
 
     @Test
     public void getDeliveryCreatorDefaultInstance() {
-        testBegin("DeliveryCreatorProducer", "getDeliveryCreatorDefaultInstance()");
+        testBegin("DeliveryCreatorProducerDefault", "getDeliveryCreatorDefaultInstance()");
 
         DeliveryCreator delCr = deliveryCreatorProducer
                 .getDeliveryCreatorDefaultInstance(
@@ -46,7 +48,7 @@ public class DeliveryCreatorProducerDefaultIntegrationTestNG extends AbstractTes
         assertTrue(delCr instanceof DeliveryCreatorDefaultImpl, "DeliveryCreator: not a valid type!");
         System.out.println("Instance: " + delCr);
 
-        testEnd("DeliveryCreatorProducer", "getDeliveryCreatorDefaultInstance()");
+        testEnd("DeliveryCreatorProducerDefault", "getDeliveryCreatorDefaultInstance()");
     }
 
     @AfterMethod

@@ -61,7 +61,7 @@ public class ProductsRepositoryWithChangedBalancesAndOrderImpl implements Produc
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
             List<String> gids = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("order_products_gid.sql").content(),

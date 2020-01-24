@@ -21,5 +21,5 @@ import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface StatusesRepository {
-    Statuses readStatuses() throws RepositoryException;
+    Statuses read() throws RepositoryException;
 }

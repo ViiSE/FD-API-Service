@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
 
 import java.util.stream.Collectors;
 

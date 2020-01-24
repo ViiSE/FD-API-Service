@@ -19,9 +19,6 @@ package ru.fd.api.service.producer.repository;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.producer.entity.StatusProducer;
-import ru.fd.api.service.producer.entity.StatusesProducer;
 import ru.fd.api.service.repository.StatusesRepository;
 
 @Service("statusesRepositoryProducerDefault")
@@ -34,14 +31,7 @@ public class StatusesRepositoryProducerDefaultImpl implements StatusesRepository
     }
 
     @Override
-    public StatusesRepository getStatusesRepositoryDefaultInstance(
-            StatusProducer statusProducer,
-            StatusesProducer statusesProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator) {
-        return (StatusesRepository) ctx.getBean(
-                "statusesRepositoryDefault",
-                statusProducer,
-                statusesProducer,
-                sqlQueryCreator);
+    public StatusesRepository getStatusesRepositoryDefaultInstance() {
+        return ctx.getBean("statusesRepositoryDefault", StatusesRepository.class);
     }
 }

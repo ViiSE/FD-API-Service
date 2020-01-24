@@ -45,9 +45,9 @@ public class ProductsRepositoryWithBalancesImpl implements ProductsRepository {
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             Map<String, Balances> balanceForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_balances.sql").content(),
                     new ProductsWithBalancesRowMapper(balanceProducer, balancesProducer));

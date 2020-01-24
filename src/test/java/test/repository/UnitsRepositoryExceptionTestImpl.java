@@ -7,7 +7,7 @@ import ru.fd.api.service.repository.UnitsRepository;
 public class UnitsRepositoryExceptionTestImpl implements UnitsRepository {
 
     @Override
-    public Units readUnits() throws RepositoryException {
+    public Units read() throws RepositoryException {
         throw new RepositoryException("EXCEPTION! :(");
     }
 }

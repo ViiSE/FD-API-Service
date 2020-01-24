@@ -11,6 +11,7 @@
 package ru.fd.api.service.producer.creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -29,6 +30,7 @@ import static test.message.TestMessage.*;
 public class CustomerCreatorProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("customerCreatorProducerDefault")
     private CustomerCreatorProducer customerCreatorProducer;
 
     @Autowired
@@ -36,7 +38,7 @@ public class CustomerCreatorProducerDefaultIntegrationTestNG extends AbstractTes
 
     @Test
     public void getCustomerCreatorEmailOrPhoneRequiredInstance() {
-        testBegin("CustomerCreatorProducer", "getCustomerCreatorEmailOrPhoneRequiredInstance()");
+        testBegin("CustomerCreatorProducerDefault", "getCustomerCreatorEmailOrPhoneRequiredInstance()");
 
         CustomerCreator custCr = customerCreatorProducer
                 .getCustomerCreatorEmailOrPhoneRequiredInstance(
@@ -46,7 +48,7 @@ public class CustomerCreatorProducerDefaultIntegrationTestNG extends AbstractTes
         assertTrue(custCr instanceof CustomerCreatorEmailOrPhoneRequiredImpl, "CustomerCreator: not a valid type!");
         System.out.println("Instance: " + custCr);
 
-        testEnd("CustomerCreatorProducer", "getCustomerCreatorEmailOrPhoneRequiredInstance()");
+        testEnd("CustomerCreatorProducerDefault", "getCustomerCreatorEmailOrPhoneRequiredInstance()");
     }
 
     @AfterMethod

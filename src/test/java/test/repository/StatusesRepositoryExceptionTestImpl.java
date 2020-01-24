@@ -7,7 +7,7 @@ import ru.fd.api.service.repository.StatusesRepository;
 public class StatusesRepositoryExceptionTestImpl implements StatusesRepository {
 
     @Override
-    public Statuses readStatuses() throws RepositoryException {
+    public Statuses read() throws RepositoryException {
         throw new RepositoryException("EXCEPTION! :(");
     }
 }

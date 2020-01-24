@@ -21,17 +21,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fd.api.service.AttributeGroupsService;
-import ru.fd.api.service.CategoriesService;
-import ru.fd.api.service.StatusesService;
-import ru.fd.api.service.UnitsService;
 import ru.fd.api.service.creator.*;
 import ru.fd.api.service.data.*;
-import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.log.LoggerService;
-import ru.fd.api.service.producer.creator.AttributesCreatorProducer;
-import ru.fd.api.service.producer.repository.AttributesRepositoryProducer;
 
 import java.util.ArrayList;
 
@@ -39,36 +32,25 @@ import java.util.ArrayList;
 @RestController
 public class ProductsAdditionalController {
 
-    private final StatusesService statusesService;
-
-    // TODO: 21.01.2020 CREATE SERVICE
-    private final AttributesCreatorProducer attrCrProducer;
-    private final AttributesRepositoryProducer attrRepoProducer;
-
-    private final AttributeGroupsService attrGrsService;
-    private final UnitsService unitsService;
-    private final CategoriesService categoriesService;
-
-    private final SQLQueryCreator<String, String> sqlQueryCreator;
-
+    private final StatusesCreator statusesCreator;
+    private final AttributesCreator attributesCreator;
+    private final AttributeGroupsCreator attributeGroupsCreator;
+    private final UnitsCreator unitsCreator;
+    private final CategoriesCreator categoriesCreator;
     private final LoggerService logger;
 
     public ProductsAdditionalController(
-            StatusesService statusesService,
-            AttributesCreatorProducer attrCrProducer,
-            AttributesRepositoryProducer attrRepoProducer,
-            AttributeGroupsService attrGrsService,
-            UnitsService unitsService,
-            CategoriesService categoriesService,
-            SQLQueryCreator<String, String> sqlQueryCreator,
+            StatusesCreator statusesCreator,
+            AttributesCreator attributesCreator,
+            AttributeGroupsCreator attributeGroupsCreator,
+            UnitsCreator unitsCreator,
+            CategoriesCreator categoriesCreator,
             LoggerService logger) {
-        this.statusesService = statusesService;
-        this.attrCrProducer = attrCrProducer;
-        this.attrRepoProducer = attrRepoProducer;
-        this.attrGrsService = attrGrsService;
-        this.unitsService = unitsService;
-        this.categoriesService = categoriesService;
-        this.sqlQueryCreator = sqlQueryCreator;
+        this.statusesCreator = statusesCreator;
+        this.attributesCreator = attributesCreator;
+        this.attributeGroupsCreator = attributeGroupsCreator;
+        this.unitsCreator = unitsCreator;
+        this.categoriesCreator = categoriesCreator;
         this.logger = logger;
     }
 
@@ -76,12 +58,6 @@ public class ProductsAdditionalController {
     @GetMapping("/products/statuses")
     public StatusesPojo statuses() {
         try {
-            StatusesCreator statusesCreator = statusesService.statusesCreatorProducer()
-                    .getStatusesCreatorDefaultInstance(
-                            statusesService.statusesRepositoryProducer().getStatusesRepositoryDefaultInstance(
-                                    statusesService.statusProducer(),
-                                    statusesService.statusesProducer(),
-                                    sqlQueryCreator));
             StatusesPojo statusesPojo = (StatusesPojo) statusesCreator.create().formForSend();
             logger.info(ProductsAdditionalController.class, "Site request statuses");
             return statusesPojo;
@@ -95,8 +71,6 @@ public class ProductsAdditionalController {
     @GetMapping("/products/attributes")
     public AttributesPojo attributes() {
         try {
-            AttributesCreator attributesCreator = attrCrProducer.getAttributesCreatorDefaultInstance(
-                    attrRepoProducer.getAttributesRepositoryDefaultInstance());
             AttributesPojo attributesPojo = (AttributesPojo) attributesCreator.create().formForSend();
             logger.info(ProductsAdditionalController.class, "Site request attributes");
             return attributesPojo;
@@ -110,13 +84,7 @@ public class ProductsAdditionalController {
     @GetMapping("/products/attribute-groups")
     public AttributeGroupsPojo attributesGroups() {
         try {
-            AttributeGroupsCreator attributesGroupsCreator = attrGrsService.attributeGroupsCreatorProducer()
-                    .getAttributeGroupsCreatorDefaultInstance(
-                            attrGrsService.attributeGroupsRepositoryProducer().getAttributeGroupsRepositoryDefaultInstance(
-                                    attrGrsService.attributeGroupProducer(),
-                                    attrGrsService.attributeGroupsProducer(),
-                                    sqlQueryCreator));
-            AttributeGroupsPojo attributesGroupsPojo = (AttributeGroupsPojo) attributesGroupsCreator.create().formForSend();
+            AttributeGroupsPojo attributesGroupsPojo = (AttributeGroupsPojo) attributeGroupsCreator.create().formForSend();
             logger.info(ProductsAdditionalController.class, "Site request attribute groups");
             return attributesGroupsPojo;
         } catch (CreatorException ex) {
@@ -129,11 +97,6 @@ public class ProductsAdditionalController {
     @GetMapping("/products/units")
     public UnitsPojo units() {
         try {
-            UnitsCreator unitsCreator = unitsService.unitsCreatorProducer().getUnitsCreatorDefaultInstance(
-                    unitsService.unitsRepositoryProducer().getUnitsRepositoryDefaultInstance(
-                            unitsService.unitProducer(),
-                            unitsService.unitsProducer(),
-                            sqlQueryCreator));
             UnitsPojo unitsPojo = (UnitsPojo) unitsCreator.create().formForSend();
             logger.info(ProductsAdditionalController.class, "Site request units");
             return unitsPojo;
@@ -147,13 +110,6 @@ public class ProductsAdditionalController {
     @GetMapping("/products/categories")
     public CategoriesPojo categories() {
         try {
-            CategoriesCreator categoriesCreator = categoriesService.categoriesCreatorProducer()
-                    .getCategoriesCreatorDefaultInstance(
-                            categoriesService.categoriesRepositoryProducer()
-                                    .getCategoriesRepositoryDefaultInstance(
-                                            categoriesService.categoryProducer(),
-                                            categoriesService.categoriesProducer(),
-                                            sqlQueryCreator));
             CategoriesPojo categoriesPojo = (CategoriesPojo) categoriesCreator.create().formForSend();
             logger.info(ProductsAdditionalController.class, "Site request categories");
             return categoriesPojo;

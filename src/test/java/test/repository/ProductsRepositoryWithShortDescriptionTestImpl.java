@@ -19,8 +19,8 @@ public class ProductsRepositoryWithShortDescriptionTestImpl implements ProductsR
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Map<String, String> shortDescForProducts = new HashMap<>() {{
             put("id_1", "Sh desc 1");

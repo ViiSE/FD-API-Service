@@ -32,7 +32,7 @@ public class ProductsRepositoryWithFullDescriptionTestNG {
         testBegin("ProductRepositoryWithFullDescription", "readProducts()");
 
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             System.out.println("Products:");
             for(int i = 1; i < 10; i++) {
                 Product pr = products.findProductById("id_" + i);

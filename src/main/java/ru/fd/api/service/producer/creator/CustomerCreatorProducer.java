@@ -15,5 +15,7 @@ import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.producer.entity.CustomerProducer;
 
 public interface CustomerCreatorProducer {
-    CustomerCreator getCustomerCreatorEmailOrPhoneRequiredInstance(CustomerPojo customerPojo, CustomerProducer customerProducer);
+    CustomerCreator getCustomerCreatorEmailOrPhoneRequiredInstance(
+            CustomerPojo customerPojo,
+            CustomerProducer customerProducer);
 }

@@ -11,6 +11,7 @@
 package ru.fd.api.service.producer.creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -33,6 +34,7 @@ import static test.message.TestMessage.*;
 public class OrderCreatorProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("orderCreatorProducerDefault")
     private OrderCreatorProducer orderCreatorProducer;
 
     @Autowired
@@ -40,7 +42,7 @@ public class OrderCreatorProducerDefaultIntegrationTestNG extends AbstractTestNG
 
     @Test
     public void getOrderCreatorFromBodyInstance() {
-        testBegin("OrderCreatorProducer", "getOrderCreatorFromBodyInstance()");
+        testBegin("OrderCreatorProducerDefault", "getOrderCreatorFromBodyInstance()");
 
         OrderPojo orderP = new OrderPojo(1L);
         orderP.setStatus((short) 0);
@@ -56,7 +58,7 @@ public class OrderCreatorProducerDefaultIntegrationTestNG extends AbstractTestNG
         assertTrue(orderCr instanceof OrderCreatorFromBodyImpl, "OrderCreator: not a valid type!");
         System.out.println("Instance: " + orderCr);
 
-        testEnd("OrderCreatorProducer", "getOrderCreatorFromBodyInstance()");
+        testEnd("OrderCreatorProducerDefault", "getOrderCreatorFromBodyInstance()");
     }
 
     @AfterMethod

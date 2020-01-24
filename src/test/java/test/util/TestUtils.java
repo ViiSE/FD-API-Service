@@ -12,7 +12,14 @@ package test.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class TestUtils {
@@ -39,5 +46,29 @@ public class TestUtils {
                 .javaTimeModule();
 
         return objectMapper.registerModule(javaTimeModule);
+    }
+
+    public static String generateTestToken(String id, String issuer, String secret, String subject, int timeToLive) {
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        long nowMills = System.currentTimeMillis();
+        Date now = new Date(nowMills);
+
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        JwtBuilder jwtBuilder = Jwts.builder()
+                .setIssuedAt(now)
+                .setId(id)
+                .setIssuer(issuer)
+                .setSubject(subject)
+                .signWith(signatureAlgorithm, signingKey);
+
+        if(timeToLive >= 0) {
+            long expMills = nowMills + timeToLive;
+            Date exp = new Date(expMills);
+            jwtBuilder.setExpiration(exp);
+        }
+
+        return jwtBuilder.compact();
     }
 }

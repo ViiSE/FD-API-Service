@@ -45,7 +45,7 @@ public class UnitsRepositoryTestNG {
         testBegin("UnitsRepository", "readUnits()");
 
         try {
-            Units units = unitsRepository.readUnits();
+            Units units = unitsRepository.read();
             System.out.println("Units:");
             String pojo = mapper.writeValueAsString(units.formForSend());
             assertTrue(pojo.contains("\"units\":"));

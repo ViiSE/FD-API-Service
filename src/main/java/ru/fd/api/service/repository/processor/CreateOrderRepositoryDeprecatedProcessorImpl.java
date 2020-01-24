@@ -23,7 +23,6 @@ import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import ru.fd.api.service.repository.OrderRepository;
 
 @Component("createOrderRepositoryDeprecatedProcessor")
-@Scope("prototype")
 @Deprecated
 public class CreateOrderRepositoryDeprecatedProcessorImpl implements OrderRepositoryProcessor {
 

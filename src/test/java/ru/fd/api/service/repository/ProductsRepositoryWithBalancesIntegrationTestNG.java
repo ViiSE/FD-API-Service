@@ -46,7 +46,7 @@ public class ProductsRepositoryWithBalancesIntegrationTestNG extends AbstractTes
                     balanceProducer,
                     balancesProducer,
                     sqlQueryCreator)
-                    .readProducts();
+                    .read();
             assertNotNull(products, "Products is null!");
             System.out.println("DONE! ");
         } catch (RepositoryException ex) {

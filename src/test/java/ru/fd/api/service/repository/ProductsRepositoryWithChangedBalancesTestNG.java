@@ -15,6 +15,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.ProductWithChangedBalancesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 import test.repository.ProductsRepositoryWithChangedBalancesTestImpl;
@@ -36,11 +37,11 @@ public class ProductsRepositoryWithChangedBalancesTestNG {
         testBegin("ProductsRepositoryWithChangedBalances", "readProducts()");
 
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             System.out.println("Products:");
             for(int i = 1; i < 10; i++) {
-                Product pr = products.findProductById("id_" + i);
-                assertTrue(pr instanceof ProductsRepositoryWithChangedBalancesImpl, "Products is not with changed balances!");
+                Product pr = products.findProductById("id" + i);
+                assertTrue(pr instanceof ProductWithChangedBalancesImpl, "Products is not with changed balances!");
                 System.out.println(pr);
             }
         } catch (RepositoryException ex) {

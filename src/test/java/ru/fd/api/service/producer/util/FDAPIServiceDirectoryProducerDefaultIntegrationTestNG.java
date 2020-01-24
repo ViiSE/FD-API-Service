@@ -18,6 +18,7 @@
 package ru.fd.api.service.producer.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -34,16 +35,17 @@ import static test.message.TestMessage.*;
 public class FDAPIServiceDirectoryProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
+    @Qualifier("FDAPIServiceDirectoryProducerDefault")
     private FDAPIServiceDirectoryProducer fdapiServiceDirectoryProducer;
 
     @Test
     public void getFdAPIServiceCurrentDirectoryInstance() {
         testBegin("FDAPIServiceDirectoryProducerDefault", "getFdAPIServiceCurrentDirectoryInstance()");
 
-        FDAPIServiceDirectory fdapiServiceDir = fdapiServiceDirectoryProducer.getFdAPIServiceCurrentDirectoryInstance();
-        assertTrue(fdapiServiceDir instanceof FDAPIServiceCurrentDirectoryImpl,
+        FDAPIServiceDirectory fdApiServiceDir = fdapiServiceDirectoryProducer.getFdAPIServiceCurrentDirectoryInstance();
+        assertTrue(fdApiServiceDir instanceof FDAPIServiceCurrentDirectoryImpl,
                 "FDAPIServiceDirectory: not a valid type!");
-        System.out.println("Instance: " + fdapiServiceDir);
+        System.out.println("Instance: " + fdApiServiceDir);
 
         testEnd("FDAPIServiceDirectoryProducerDefault", "getFdAPIServiceCurrentDirectoryInstance()");
     }

@@ -24,8 +24,8 @@ public class ProductsRepositoryWithBalancesTestImpl implements ProductsRepositor
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
-        Products products = productsRepository.readProducts();
+    public Products read() throws RepositoryException {
+        Products products = productsRepository.read();
 
         Balances balances1 = new BalancesCreatorTestImpl().createBalances();
         Balances balances2 = new BalancesDefaultImpl(new ArrayList<>() {{

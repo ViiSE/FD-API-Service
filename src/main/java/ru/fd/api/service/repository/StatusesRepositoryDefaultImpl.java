@@ -33,7 +33,7 @@ public class StatusesRepositoryDefaultImpl implements StatusesRepository {
     }
 
     @Override
-    public Statuses readStatuses() throws RepositoryException {
+    public Statuses read() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("statuses.sql").content(),

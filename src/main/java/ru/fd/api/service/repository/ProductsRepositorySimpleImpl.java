@@ -27,7 +27,7 @@ public class ProductsRepositorySimpleImpl implements ProductsRepository {
     }
 
     @Override
-    public Products readProducts() throws RepositoryException {
+    public Products read() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_simple.sql").content(),

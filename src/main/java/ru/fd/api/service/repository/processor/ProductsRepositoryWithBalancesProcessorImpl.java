@@ -10,7 +10,6 @@ import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.ProductsRepository;
 
 @Component("productsRepositoryWithBalancesProcessor")
-@Scope("prototype")
 public class ProductsRepositoryWithBalancesProcessorImpl implements ProductsRepositoryProcessor {
 
     private final ProductsRepositoryProducer prodsRepoProducer;

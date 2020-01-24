@@ -17,6 +17,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.constant.Processors;
 import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
+import ru.fd.api.service.producer.repository.processor.OrderRepositoryProcessorProducer;
+import ru.fd.api.service.producer.repository.processor.OrderRepositoryProcessorProducerDefaultImpl;
+import test.producer.repository.OrderRepositoryProcessorProducerTestImpl;
 import test.producer.repository.OrderRepositoryProducerTestImpl;
 
 import static org.testng.Assert.assertNotNull;
@@ -29,23 +32,28 @@ public class OrderRepositoryProcessorsSingletonTestNG {
 
     @BeforeClass
     public void setUpClass() {
-        OrderRepositoryProducer orderRepoProd = new OrderRepositoryProducerTestImpl();
-        orderRepoProcessors = new OrderRepositoryProcessorsSingletonImpl(
-                orderRepoProd,
-                null,
-                null,
-                null,
-                null);
+        OrderRepositoryProcessorProducer orderRepoProd = new OrderRepositoryProcessorProducerTestImpl();
+        orderRepoProcessors = new OrderRepositoryProcessorsSingletonImpl(orderRepoProd);
         testBegin("OrderRepositoryProcessorsSingleton");
+    }
+
+    @Test
+    public void processor_createOrderDeprecated() {
+        testMethod("processor() ['create order __DEPRECATED__']");
+
+        OrderRepositoryProcessor processor = orderRepoProcessors.processor(Processors.CREATE_ORDER_DEPRECATED);
+        assertNotNull(processor, "Simple processor is null!");
+        assertTrue(processor instanceof CreateOrderRepositoryDeprecatedProcessorImpl, "Processor is not instanceof create order __DEPRECATED__!");
+        System.out.println("Simple processor: " + processor);
     }
 
     @Test
     public void processor_createOrder() {
         testMethod("processor() ['create order']");
 
-        OrderRepositoryProcessor processor = orderRepoProcessors.processor(Processors.CREATE_ORDER_DEPRECATED);
+        OrderRepositoryProcessor processor = orderRepoProcessors.processor(Processors.CREATE_ORDER);
         assertNotNull(processor, "Simple processor is null!");
-        assertTrue(processor instanceof CreateOrderRepositoryDeprecatedProcessorImpl, "Processor is not instanceof create order!");
+        assertTrue(processor instanceof CreateOrderRepositoryProcessorImpl, "Processor is not instanceof create order!");
         System.out.println("Simple processor: " + processor);
     }
 

@@ -19,7 +19,7 @@ import test.creator.ProductsWithChangedBalancesCreatorTestImpl;
 public class ProductsRepositoryWithChangedBalancesTestImpl implements ProductsRepository {
 
     @Override
-    public Products readProducts() {
+    public Products read() {
         ProductsCreator productsCreator = new ProductsWithChangedBalancesCreatorTestImpl();
         try {
             return productsCreator.create();

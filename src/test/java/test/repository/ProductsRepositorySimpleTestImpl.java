@@ -9,7 +9,7 @@ import test.creator.ProductsCreatorTestImpl;
 public class ProductsRepositorySimpleTestImpl implements ProductsRepository {
 
     @Override
-    public Products readProducts() {
+    public Products read() {
         ProductsCreator productsCreator = new ProductsCreatorTestImpl();
         try {
             return productsCreator.create();

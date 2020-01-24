@@ -42,7 +42,7 @@ public class DeliveryPojo {
             "<b>0</b> - с 9 до 14,\n" +
             "<b>1</b> - с 14 до 19", position = 5, required = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Short deliveryTimeId;
+    private Short deliveryTimeId = -1;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(example = "2020-01-13", notes = "Дата доставки (для типа <b>1</b>)", position = 6, required = true)
@@ -55,15 +55,15 @@ public class DeliveryPojo {
             @JsonProperty("address") String address) {
         this.type = Objects.requireNonNullElse(type, (short) -1);
         this.cityId = Objects.requireNonNullElse(cityId, -1);
-        this.address = address;
+        this.address = Objects.requireNonNullElse(address, "");
     }
 
     public Short getType() {
-        return type;
+        return type == null ? -1 : type;
     }
 
     public Integer getCityId() {
-        return cityId;
+        return cityId == null ? -1 : cityId;
     }
 
     public String getAddress() {
@@ -79,7 +79,7 @@ public class DeliveryPojo {
     }
 
     public LocalDate getDeliveryDate() {
-        return deliveryDate == null ? LocalDate.MIN : deliveryDate;
+        return deliveryDate == null ? LocalDate.of(1, 1, 1) : deliveryDate;
     }
 
     public void setDepartmentId(String departmentId) {

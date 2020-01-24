@@ -13,6 +13,7 @@ package ru.fd.api.service.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -21,11 +22,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.SQLQueryCreatorService;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.OrderProducer;
-import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
 import test.util.TestUtils;
 
 import java.util.List;
@@ -35,20 +33,14 @@ import static test.message.TestMessage.*;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class OrderRepositoryChangedBalancesIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired private OrderRepositoryProducer orderRepositoryProducer;
-    @Autowired private OrderProducer orderProducer;
-    @Autowired private SQLQueryCreatorService sqlQueryCreatorService;
+    @Autowired
+    @Qualifier("orderRepositoryChangedBalances")
+    private OrderRepository<Void, Order> orderRepo;
 
     private final ObjectMapper objectMapper = TestUtils.objectMapperWithJavaTimeModule();
 
-    private OrderRepository<Void, Order> orderRepo;
-
     @BeforeClass
     public void setUpClass() {
-        orderRepo = orderRepositoryProducer
-                .getOrderRepositoryChangedBalancesInstance(
-                        sqlQueryCreatorService.sqlQueryCreatorFromFileString(),
-                        orderProducer);
         testBegin("OrderRepositoryChangedBalancesIntegration");
     }
 
@@ -67,7 +59,7 @@ public class OrderRepositoryChangedBalancesIntegrationTestNG extends AbstractTes
         System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(order.formForSend()));
     }
 
-    @Test(priority = 3, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Not supported yet.")
+    @Test(priority = 3)
     public void readAll() throws RepositoryException, JsonProcessingException {
         testMethod("readAll()");
 
@@ -77,7 +69,7 @@ public class OrderRepositoryChangedBalancesIntegrationTestNG extends AbstractTes
             System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(order.formForSend()));
     }
 
-    @Test(priority = 4, expectedExceptions = RepositoryException.class, expectedExceptionsMessageRegExp = "Not supported yet.")
+    @Test(priority = 4)
     public void readFirst() throws RepositoryException, JsonProcessingException {
         testMethod("readFirst()");
 

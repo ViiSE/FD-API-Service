@@ -26,7 +26,9 @@ public class CustomerCreatorProducerDefaultImpl implements CustomerCreatorProduc
     }
 
     @Override
-    public CustomerCreator getCustomerCreatorEmailOrPhoneRequiredInstance(CustomerPojo customerPojo, CustomerProducer customerProducer) {
+    public CustomerCreator getCustomerCreatorEmailOrPhoneRequiredInstance(
+            CustomerPojo customerPojo,
+            CustomerProducer customerProducer) {
         return (CustomerCreator) ctx.getBean("customerCreatorEmailOrPhoneRequired", customerPojo, customerProducer);
     }
 }

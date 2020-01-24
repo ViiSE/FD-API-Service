@@ -59,7 +59,7 @@ public class ProductsRepositoryWithChangedBalancesIntegrationTestNG extends Abst
         testBegin("ProductsRepositoryWithChangedBalancesIntegration", "readProducts()");
 
         try {
-            Products products = productsRepository.readProducts();
+            Products products = productsRepository.read();
             assertNotNull(products, "Products is null!");
             System.out.println("DONE! ");
         } catch (RepositoryException ex) {
