@@ -17,16 +17,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderProductsGidsRowMapper implements RowMapper<List<String>> {
+public class OrderProductsGidsRowMapper implements RowMapper<String> {
 
     @Override
-    public List<String> mapRow(ResultSet rs, int i) throws SQLException {
-        List<String> gids = new ArrayList<>();
-        do {
-            String gid = rs.getString("GID").trim();
-            gids.add(gid);
-        } while (rs.next());
-
-        return gids;
+    public String mapRow(ResultSet rs, int i) throws SQLException {
+        return rs.getString("GID").trim();
     }
 }

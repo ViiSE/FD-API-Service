@@ -33,6 +33,10 @@ public class CustomerWithPhoneNumberImpl implements Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public String phoneNumber() {
+        return phoneNumber;
+    }
+
     @Override
     public Object formForSend() {
         CustomerPojo customerPojo = (CustomerPojo) customer.formForSend();

@@ -43,7 +43,7 @@ public class CustomerCreatorEmailOrPhoneRequiredImpl implements CustomerCreator 
 
         checkPhoneAndEmail();
 
-        return customerProducer.getCustomerFromCompanyImpl(
+        return customerProducer.getCustomerFromCompanyInstance(
                 customerProducer.getCustomerWithNameInstance(
                         customerProducer.getCustomerWithEmailInstance(
                                 customerProducer.getCustomerWithPhoneNumberInstance(

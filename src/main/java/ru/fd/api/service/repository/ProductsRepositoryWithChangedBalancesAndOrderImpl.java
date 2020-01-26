@@ -63,28 +63,25 @@ public class ProductsRepositoryWithChangedBalancesAndOrderImpl implements Produc
     @Override
     public Products read() throws RepositoryException {
         try {
-            List<String> gids = jdbcTemplate.queryForObject(
+            List<String> gids = jdbcTemplate.query(
                     sqlQueryCreator.create("order_products_gid.sql").content(),
                     new Object[] {order.id()}, new OrderProductsGidsRowMapper());
 
             // TODO: 23.01.2020 WRITE SQL
             StringBuilder sqlB = new StringBuilder(sqlQueryCreator.create("SQL_HERE").content());
 
-            if(gids != null) {
-                sqlB.append(" WHERE CHAR_TO_UUID(t.GID) = ").append(gids.get(0));
-                for(int i = 1; i < gids.size(); i++)
-                    sqlB.append(" AND CHAR_TO_UUID(t.GID) = ").append(gids.get(i));
-                String sql = sqlB.append(" ORDER BY 2").toString();
+            sqlB.append(" WHERE CHAR_TO_UUID(t.GID) = ").append(gids.get(0));
+            for(int i = 1; i < gids.size(); i++)
+                sqlB.append(" AND CHAR_TO_UUID(t.GID) = ").append(gids.get(i));
+            String sql = sqlB.append(" ORDER BY 2").toString();
 
-                return jdbcTemplate.queryForObject(
-                        sql,
-                        new ProductsChangedBalancesRowMapper(
-                                productProducer,
-                                productsProducer,
-                                balanceProducer,
-                                balancesProducer));
-            } else
-                throw new RepositoryException("List of id's is null!");
+            return jdbcTemplate.queryForObject(
+                    sql,
+                    new ProductsChangedBalancesRowMapper(
+                            productProducer,
+                            productsProducer,
+                            balanceProducer,
+                            balancesProducer));
         } catch (CreatorException | DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

@@ -71,7 +71,7 @@ public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
                                                                 "100"),
                                                         (short) 0),
                                                 LocalDate.now())),
-                                ordersService.customerProducer().getCustomerFromCompanyImpl(
+                                ordersService.customerProducer().getCustomerFromCompanyInstance(
                                         ordersService.customerProducer().getCustomerWithNameInstance(
                                                 ordersService.customerProducer().getCustomerWithEmailInstance(
                                                         ordersService.customerProducer().getCustomerWithPhoneNumberInstance(

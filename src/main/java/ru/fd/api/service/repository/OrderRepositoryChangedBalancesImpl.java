@@ -59,7 +59,7 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
     @Override
     public List<Order> readAll() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            return jdbcTemplate.query(
                     sqlQueryCreator.create("orders_statuses.sql").content(),
                     new OrdersListChangedBalancesRowMapper(orderProducer));
         } catch (DataAccessException | CreatorException ex) {
@@ -71,7 +71,7 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
     public List<Order> readFirst(int sliceSize) throws RepositoryException {
         try {
             String source = sqlQueryCreator.create("orders_statuses_first.sql").content();
-            return jdbcTemplate.queryForObject(
+            return jdbcTemplate.query(
                     source.replaceAll("#SLICE_SIZE#", String.valueOf(sliceSize)),
                     new OrdersListChangedBalancesRowMapper(orderProducer));
         } catch (DataAccessException | CreatorException ex) {

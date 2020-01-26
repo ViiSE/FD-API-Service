@@ -24,5 +24,6 @@ public interface CustomerProducer {
     Customer getCustomerWithNameInstance(Customer customer, String name);
     Customer getCustomerWithEmailInstance(Customer customer, String email);
     Customer getCustomerWithPhoneNumberInstance(Customer customer, String phoneNumber);
-    Customer getCustomerFromCompanyImpl(Customer customer, String inn, String kpp);
+    Customer getCustomerFromCompanyInstance(Customer customer, String inn, String kpp);
+    Customer getCustomerWithNotifiedInstance(Customer customer, short notified, long orderId);
 }

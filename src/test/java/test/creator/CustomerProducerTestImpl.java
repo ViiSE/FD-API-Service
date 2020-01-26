@@ -36,7 +36,12 @@ public class CustomerProducerTestImpl implements CustomerProducer {
     }
 
     @Override
-    public Customer getCustomerFromCompanyImpl(Customer customer, String inn, String kpp) {
+    public Customer getCustomerFromCompanyInstance(Customer customer, String inn, String kpp) {
         return new CustomerFromCompanyImpl(customer, inn, kpp);
+    }
+
+    @Override
+    public Customer getCustomerWithNotifiedInstance(Customer customer, short notified, long orderId) {
+        return new CustomerWithNotified(customer, notified, orderId);
     }
 }

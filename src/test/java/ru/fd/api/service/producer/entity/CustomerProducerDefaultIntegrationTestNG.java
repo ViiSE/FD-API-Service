@@ -83,7 +83,7 @@ public class CustomerProducerDefaultIntegrationTestNG extends AbstractTestNGSpri
     public void getCustomerFromCompanyInstance(String inn, String kpp) {
         testMethod("getCustomerFromCompanyInstance()");
 
-        Customer customer = customerProducer.getCustomerFromCompanyImpl(customerSimple, inn, kpp);
+        Customer customer = customerProducer.getCustomerFromCompanyInstance(customerSimple, inn, kpp);
 
         assertTrue(customer instanceof CustomerFromCompanyImpl, "Customer: not a valid type!");
         System.out.println("Instance: " + customer);

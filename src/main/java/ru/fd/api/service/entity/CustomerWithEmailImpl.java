@@ -33,6 +33,10 @@ public class CustomerWithEmailImpl implements Customer {
         this.email = email;
     }
 
+    public String email() {
+        return email;
+    }
+
     @Override
     public Object formForSend() {
         CustomerPojo customerPojo = (CustomerPojo) customer.formForSend();

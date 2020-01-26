@@ -51,7 +51,12 @@ public class CustomerProducerDefaultImpl implements CustomerProducer {
     }
 
     @Override
-    public Customer getCustomerFromCompanyImpl(Customer customer, String inn, String kpp) {
+    public Customer getCustomerFromCompanyInstance(Customer customer, String inn, String kpp) {
         return (Customer) ctx.getBean("customerFromCompany", customer, inn, kpp);
+    }
+
+    @Override
+    public Customer getCustomerWithNotifiedInstance(Customer customer, short notified, long orderId) {
+        return (Customer) ctx.getBean("customerWithNotified", customer, notified, orderId);
     }
 }

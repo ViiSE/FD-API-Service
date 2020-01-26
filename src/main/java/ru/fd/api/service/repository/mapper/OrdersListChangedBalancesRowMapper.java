@@ -16,10 +16,8 @@ import ru.fd.api.service.producer.entity.OrderProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class OrdersListChangedBalancesRowMapper implements RowMapper<List<Order>> {
+public class OrdersListChangedBalancesRowMapper implements RowMapper<Order> {
 
     private final OrderProducer orderProducer;
 
@@ -28,13 +26,9 @@ public class OrdersListChangedBalancesRowMapper implements RowMapper<List<Order>
     }
 
     @Override
-    public List<Order> mapRow(ResultSet rs, int i) throws SQLException {
-        List<Order> orders = new ArrayList<>();
-        do {
-            long id = rs.getLong("ID_SITE");
-            short status = rs.getShort("STATUS");
-            orders.add(orderProducer.getOrderSimpleInstance(id, status));
-        } while(rs.next());
-        return orders;
+    public Order mapRow(ResultSet rs, int i) throws SQLException {
+        long id = rs.getLong("ID_SITE");
+        short status = rs.getShort("STATUS");
+        return orderProducer.getOrderSimpleInstance(id, status);
     }
 }
