@@ -71,8 +71,9 @@ public class ProductsRepositoryWithChangedBalancesAndOrderImpl implements Produc
             StringBuilder sqlB = new StringBuilder(sqlQueryCreator.create("SQL_HERE").content());
 
             if(gids != null) {
-                for (String gid : gids)
-                    sqlB.append(" AND UUID_TO_CHAR(t.GID) = ").append(gid);
+                sqlB.append(" WHERE CHAR_TO_UUID(t.GID) = ").append(gids.get(0));
+                for(int i = 1; i < gids.size(); i++)
+                    sqlB.append(" AND CHAR_TO_UUID(t.GID) = ").append(gids.get(i));
                 String sql = sqlB.append(" ORDER BY 2").toString();
 
                 return jdbcTemplate.queryForObject(

@@ -98,7 +98,6 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<OrderResponse
             return orderResponseProducer.getOrderResponseWithMessageInstance(
                     orderResponseProducer.getOrderResponseSimpleInstance(orderPojo.getId(), OrderStatuses.NOT_PROCESSED),
                     "OK");
-
         } catch (CreatorException | DataAccessException ex) {
             String exMsg = ex.getMessage();
             String msg = "SQL Exception";
