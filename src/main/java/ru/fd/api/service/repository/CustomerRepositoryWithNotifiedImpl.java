@@ -66,8 +66,8 @@ public class CustomerRepositoryWithNotifiedImpl implements CustomerRepository {
                     new BatchPreparedStatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps, int i) throws SQLException {
-                            ps.setLong(1, customersWN.get(i).orderId());
-                            ps.setShort(2, Notifications.IS_NOTIFIED);
+                            ps.setShort(1, Notifications.IS_NOTIFIED);
+                            ps.setLong(2, customersWN.get(i).orderId());
                         }
 
                         @Override

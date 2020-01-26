@@ -10,10 +10,12 @@
 
 package ru.fd.api.service.entity;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.constant.Notifications;
 
 @Component("customerWithNotified")
+@Scope("prototype")
 public class CustomerWithNotified implements Customer {
 
     private final Customer customer;
@@ -36,6 +38,6 @@ public class CustomerWithNotified implements Customer {
 
     @Override
     public Object formForSend() {
-        return null;
+        return customer.formForSend();
     }
 }
