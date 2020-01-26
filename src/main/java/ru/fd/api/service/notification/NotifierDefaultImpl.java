@@ -11,9 +11,8 @@
 package ru.fd.api.service.notification;
 
 import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.entity.Customer;
-import ru.fd.api.service.entity.CustomerWithEmailImpl;
-import ru.fd.api.service.entity.CustomerWithPhoneNumberImpl;
 
 import java.util.List;
 
@@ -36,9 +35,11 @@ public class NotifierDefaultImpl implements Notifier<Customer> {
     @Override
     public void notify(List<Customer> consumers) {
         for(Customer consumer: consumers) {
-            if(consumer instanceof CustomerWithEmailImpl)
+            CustomerPojo customerPojo = (CustomerPojo) consumer.formForSend();
+            if(!customerPojo.getEmail().isEmpty())
                 emailService.notify(consumer);
-            else if(consumer instanceof CustomerWithPhoneNumberImpl)
+
+            if(!customerPojo.getPhoneNumber().isEmpty())
                 smsService.notify(consumer);
         }
 

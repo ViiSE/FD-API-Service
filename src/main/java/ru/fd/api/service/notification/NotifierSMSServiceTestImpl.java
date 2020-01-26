@@ -12,6 +12,7 @@ package ru.fd.api.service.notification;
 
 
 import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.entity.Customer;
 import ru.fd.api.service.entity.CustomerWithPhoneNumberImpl;
 
@@ -20,7 +21,7 @@ public class NotifierSMSServiceTestImpl implements NotifierSMSService<Customer> 
 
     @Override
     public void notify(Customer consumer) {
-        CustomerWithPhoneNumberImpl customer = (CustomerWithPhoneNumberImpl) consumer;
-        System.out.println("Send to phone number " + customer.phoneNumber());
+        CustomerPojo customerPojo = (CustomerPojo) consumer.formForSend();
+        System.out.println("Send to phone number " + customerPojo.getPhoneNumber());
     }
 }

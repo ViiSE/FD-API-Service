@@ -11,6 +11,7 @@
 package ru.fd.api.service.notification;
 
 import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.entity.Customer;
 import ru.fd.api.service.entity.CustomerWithEmailImpl;
 
@@ -19,7 +20,7 @@ public class NotifierEmailServiceTestImpl implements NotifierEmailService<Custom
 
     @Override
     public void notify(Customer consumer) {
-        CustomerWithEmailImpl customer = (CustomerWithEmailImpl) consumer;
-        System.out.println("Send to email " + customer.email());
+        CustomerPojo customerPojo = (CustomerPojo) consumer.formForSend();
+        System.out.println("Send to email " + customerPojo.getEmail());
     }
 }
