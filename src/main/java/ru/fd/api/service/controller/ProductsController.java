@@ -60,7 +60,7 @@ public class ProductsController {
         }
     }
 
-    @ApiOperation(value = "[!!НЕДОСТУПНО!!!] Выгружает товары с измененными остатками")
+    @ApiOperation(value = "Выгружает товары с измененными остатками (ТЕСТОВАЯ ВЕРСИЯ)")
     @GetMapping("/products/balances/changes")
     public ProductsChangedBalancesPojo changedBalances(
             @ApiParam(value = "При указании параметра <code><b>order_id</code></b> метод вернет изменения остатков " +
@@ -73,7 +73,7 @@ public class ProductsController {
             ProductsCreator productsCreator = productsService.productsCreatorProducer()
                     .getProductsWithChangedBalancesCreatorInstance(
                             productsService.productsRepositoryProcessorsProducer()
-                                    .getProductsRepositoryProcessorsSingletonImpl(),
+                                    .getProductsChangedBalancesRepositoryProcessorsSingletonImpl(),
                             orderId);
 
             ProductsChangedBalancesPojo products = (ProductsChangedBalancesPojo) productsCreator.create().formForSend();
