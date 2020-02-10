@@ -55,6 +55,10 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<OrderResponse
     public OrderResponse insert() throws RepositoryException {
         try {
             OrderPojo orderPojo = (OrderPojo) order.formForSend();
+
+            byte[] depId = orderPojo.getDelivery().getDepartmentId() != null
+                    ? orderPojo.getDelivery().getDepartmentId().getBytes("windows-1251")
+                    : null;
             jdbcTemplate.update(
                     sqlQueryCreator.create("order_create.sql").content(),
                     orderPojo.getId(),
@@ -67,7 +71,7 @@ public class OrderRepositoryDefaultImpl implements OrderRepository<OrderResponse
                     orderPojo.getDelivery().getCityId(),
                     orderPojo.getDelivery().getType(),
                     orderPojo.getDelivery().getAddress().getBytes("windows-1251"),
-                    orderPojo.getDelivery().getDepartmentId().getBytes("windows-1251"),
+                    depId,
                     orderPojo.getDelivery().getDeliveryTimeId(),
                     orderPojo.getDelivery().getDeliveryDate(),
                     orderPojo.getPayTypeId(),

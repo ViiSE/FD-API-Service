@@ -36,7 +36,7 @@ public class DeliveryPojo {
 
     @ApiModelProperty(notes = "GID подразделения доставки (для типа <b>0</b>)", position = 4, required = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String departmentId = "00000000-0000-0000-0000-000000000000";
+    private String departmentId;
 
     @ApiModelProperty(notes = "ID периода времени доставки заказа (для типа <b>1</b>). Возможные значения:\n" +
             "<b>0</b> - с 9 до 14,\n" +
@@ -71,7 +71,7 @@ public class DeliveryPojo {
     }
 
     public String getDepartmentId() {
-        return departmentId == null ? "" : departmentId;
+        return departmentId;
     }
 
     public Short getDeliveryTimeId() {
