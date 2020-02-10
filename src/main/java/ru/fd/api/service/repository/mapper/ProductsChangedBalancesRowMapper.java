@@ -56,7 +56,7 @@ public class ProductsChangedBalancesRowMapper implements RowMapper<Products> {
                 products.add(productProducer
                         .getProductWithChangedBalancesInstance(
                                 mainId,
-                                balancesProducer.getBalancesDefaultInstance(balances)));
+                                balancesProducer.getBalancesDefaultInstance(new ArrayList<>(balances))));
                 mainId = id;
                 balances.clear();
             }
