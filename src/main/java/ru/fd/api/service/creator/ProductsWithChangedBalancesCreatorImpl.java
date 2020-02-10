@@ -34,9 +34,9 @@ public class ProductsWithChangedBalancesCreatorImpl implements ProductsCreator {
     public Products create() throws CreatorException {
         Products products;
         if(orderId == -1)
-            products = (Products) prRepoPrc.processor(Processors.CHANGED_BALANCES).apply(orderId);
+            products = (Products) prRepoPrc.processor(Processors.CHANGED_BALANCES).apply("nothing");
         else
-            products = (Products) prRepoPrc.processor(Processors.CHANGED_BALANCES_WITH_ORDER_ID).apply("nothing");
+            products = (Products) prRepoPrc.processor(Processors.CHANGED_BALANCES_WITH_ORDER_ID).apply(orderId);
 
         if(products instanceof ProductsFailedImpl)
             throw new CreatorException(products.formForSend().toString());

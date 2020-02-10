@@ -2,7 +2,9 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.ProductChangedBalancesPojo;
 import ru.fd.api.service.data.ProductPojo;
+import ru.fd.api.service.data.ProductsChangedBalancesPojo;
 import ru.fd.api.service.data.ProductsPojo;
 import ru.fd.api.service.producer.entity.ProductProducer;
 
@@ -57,12 +59,24 @@ public class ProductsDefaultImpl implements Products {
         } catch (ClassNotFoundException ignore) {}
     }
 
+    // FIXME: 28.01.2020 CREATE IMPL INSTEAD IF-ELSE
     @Override
     public Object formForSend() {
-        List<ProductPojo> productPojos = products.stream()
-                .map(product -> (ProductPojo) product.formForSend())
-                .collect(Collectors.toList());
-        return new ProductsPojo(productPojos);
+        if(!products.isEmpty()) {
+            if(products.get(0) instanceof ProductWithChangedBalancesImpl) {
+                List<ProductChangedBalancesPojo> productPojos = products.stream()
+                        .map(product -> (ProductChangedBalancesPojo) product.formForSend())
+                        .collect(Collectors.toList());
+                return new ProductsChangedBalancesPojo(productPojos);
+            } else {
+                List<ProductPojo> productPojos = products.stream()
+                        .map(product -> (ProductPojo) product.formForSend())
+                        .collect(Collectors.toList());
+                return new ProductsPojo(productPojos);
+            }
+        }
+
+        return new ProductsPojo(new ArrayList<>());
     }
 
     @Override

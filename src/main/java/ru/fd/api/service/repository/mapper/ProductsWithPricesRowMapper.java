@@ -42,6 +42,8 @@ public class ProductsWithPricesRowMapper implements RowMapper<Map<String, Prices
             prices.add(priceProducer.getPriceDefaultInstance(department_id, value));
         } while(rs.next());
 
+        pricesMap.put(id, pricesProducer.getPricesDefaultInstance(new ArrayList<>(prices)));
+
         return pricesMap;
     }
 

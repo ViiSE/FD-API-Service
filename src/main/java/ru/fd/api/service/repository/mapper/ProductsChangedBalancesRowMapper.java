@@ -68,6 +68,11 @@ public class ProductsChangedBalancesRowMapper implements RowMapper<Products> {
             balances.add(balance);
         } while (rs.next());
 
+        products.add(productProducer
+                .getProductWithChangedBalancesInstance(
+                        mainId,
+                        balancesProducer.getBalancesDefaultInstance(balances)));
+
         return productsProducer.getProductsDefaultInstance(productProducer, products);
     }
 }

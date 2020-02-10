@@ -14,7 +14,6 @@ package ru.fd.api.service.notification;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.entity.Customer;
-import ru.fd.api.service.entity.CustomerWithPhoneNumberImpl;
 
 @Component("notifierSMSServiceTest")
 public class NotifierSMSServiceTestImpl implements NotifierSMSService<Customer> {

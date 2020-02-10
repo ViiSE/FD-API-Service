@@ -42,6 +42,6 @@ public class CustomerProducerTestImpl implements CustomerProducer {
 
     @Override
     public Customer getCustomerWithNotifiedInstance(Customer customer, short notified, long orderId) {
-        return new CustomerWithNotified(customer, notified, orderId);
+        return null;
     }
 }

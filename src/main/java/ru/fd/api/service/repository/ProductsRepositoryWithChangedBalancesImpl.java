@@ -54,7 +54,7 @@ public class ProductsRepositoryWithChangedBalancesImpl implements ProductsReposi
     public Products read() throws RepositoryException {
         try {
             return jdbcTemplate.queryForObject(
-                    sqlQueryCreator.create("SQL_HERE").content(),
+                    sqlQueryCreator.create("products_with_changed_balances.sql").content(),
                     new ProductsChangedBalancesRowMapper(
                             productProducer,
                             productsProducer,

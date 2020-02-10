@@ -35,7 +35,7 @@ public class NotificationsScheduler {
     @Async
     @Scheduled(fixedDelay = 5000, initialDelay = 20000)
     public void a() {
-        System.out.println("Checked...");
+//        System.out.println("Checked...");
 
         List<Customer> customers = notificationResolver.consumers();
         if(!customers.isEmpty()) {

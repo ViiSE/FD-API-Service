@@ -17,7 +17,10 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Customer;
+import ru.fd.api.service.entity.Delivery;
+import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.Products;
 
 import java.time.LocalDateTime;
 

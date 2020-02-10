@@ -42,6 +42,8 @@ public class ProductsWithBalancesRowMapper implements RowMapper<Map<String, Bala
             balances.add(balanceProducer.getBalanceDefaultInstance(department_id, quantity));
         } while(rs.next());
 
+        balancesMap.put(id, balancesProducer.getBalancesDefaultInstance(new ArrayList<>(balances)));
+
         return balancesMap;
     }
 }

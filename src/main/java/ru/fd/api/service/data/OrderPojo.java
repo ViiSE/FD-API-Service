@@ -11,6 +11,7 @@
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -52,6 +53,9 @@ public class OrderPojo {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(notes = "Список товаров заказа", position = 8, required = true)
     private List<ProductOrderPojo> products;
+
+    @JsonIgnore
+    private long pk;
 
     // TODO: 20.01.2020 FUTURE
 //    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -149,5 +153,15 @@ public class OrderPojo {
 
     public void setStatus(Short status) {
         this.status = status;
+    }
+
+    @JsonIgnore
+    public void setPk(long pk) {
+        this.pk = pk;
+    }
+
+    @JsonIgnore
+    public long getPk() {
+        return pk;
     }
 }
