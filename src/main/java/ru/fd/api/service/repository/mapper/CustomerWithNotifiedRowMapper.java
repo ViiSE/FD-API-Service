@@ -11,12 +11,14 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Customer;
 import ru.fd.api.service.producer.entity.CustomerProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component("customerWithNotifiedRowMapper")
 public class CustomerWithNotifiedRowMapper implements RowMapper<Customer> {
 
     private final CustomerProducer customerProducer;

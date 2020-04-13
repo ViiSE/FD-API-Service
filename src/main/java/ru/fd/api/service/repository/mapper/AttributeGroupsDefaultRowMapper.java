@@ -1,12 +1,14 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component("attributeGroupsDefaultRowMapper")
 public class AttributeGroupsDefaultRowMapper implements RowMapper<AttributeGroups> {
 
     private final AttributeGroupsProducer attributeGroupsProducer;

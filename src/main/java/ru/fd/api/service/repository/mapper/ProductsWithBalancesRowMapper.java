@@ -1,6 +1,7 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Balance;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.producer.entity.BalanceProducer;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component("productsWithBalancesRowMapper")
 public class ProductsWithBalancesRowMapper implements RowMapper<Map<String, Balances>> {
 
     private final BalanceProducer balanceProducer;

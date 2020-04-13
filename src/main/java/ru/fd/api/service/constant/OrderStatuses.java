@@ -18,4 +18,5 @@ public class OrderStatuses {
     public static final short CANCELLED = 4;
     public static final short COMPLETED = 5;
     public static final short INTERNAL_SERVER_ERROR = 500;
+    public static final short BAD_REQUEST = 400;
 }

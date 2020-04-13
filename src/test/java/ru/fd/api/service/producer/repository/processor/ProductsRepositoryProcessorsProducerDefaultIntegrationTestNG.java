@@ -26,7 +26,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
-import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsSingletonImpl;
+import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -44,7 +44,7 @@ public class ProductsRepositoryProcessorsProducerDefaultIntegrationTestNG extend
 
         ProductsRepositoryProcessors prRepoPros = productsRepositoryProcessorsProducer
                 .getProductsRepositoryProcessorsSingletonImpl();
-        assertTrue(prRepoPros instanceof ProductsRepositoryProcessorsSingletonImpl,
+        assertTrue(prRepoPros instanceof ProductsRepositoryProcessorsImpl,
                 "ProductsRepositoryProcessors: not a valid type!");
         System.out.println("Instance: " + prRepoPros);
 

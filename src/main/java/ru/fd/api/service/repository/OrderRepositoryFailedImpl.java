@@ -41,7 +41,7 @@ public class OrderRepositoryFailedImpl implements OrderRepository<Void, OrderRes
     public OrderResponse read(long id) {
         return orderResponseProducer.getOrderResponseWithExceptionMessageInstance(
                 orderResponseProducer.getOrderResponseWithMessageInstance(
-                        orderResponseProducer.getOrderResponseSimpleInstance(id, (short) 500),
+                        orderResponseProducer.getOrderResponseSimpleInstance(id, (short) 400),
                         exception.getMessageForSend()),
                 exception.getMessage());
     }

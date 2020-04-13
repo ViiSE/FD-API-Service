@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -103,11 +104,7 @@ public class OrdersController {
                     "<code><b>order_response{id}</b></code>, и статуса заказа " +
                     "<code><b>order_response{status}</b></code>." +
                     "\n___" +
-                    "\n<b><i>При создании нового заказа указывать</i></b> <code><b>order{status}</b></code> <b><i>не обязательно!</b></i>") //+
-//                    "\n___" +
-//                    "\n<i>Примечание: В данной реализации сайт должен после создания заказа вызвать <b>GET</b> метод " +
-//                    "<code><b>/products/changes/balances</b> для получения товаров с измененными остатками. (см. " +
-//                    "<code><b>Products Controller<code></b></i>)")
+                    "\n<b><i>При создании нового заказа указывать</i></b> <code><b>order{status}</b></code> <b><i>не обязательно!</b></i>")
             @RequestBody OrderPojo orderPojo) {
         try {
             Order order = ordersService.orderCreatorProducer()
@@ -120,7 +117,7 @@ public class OrdersController {
 
             OrderResponsePojo orderResponsePojo = (OrderResponsePojo) orderResponse.formForSend();
 
-            if(orderResponsePojo.getStatus() == OrderStatuses.INTERNAL_SERVER_ERROR) {
+            if(orderResponsePojo.getStatus() == OrderStatuses.BAD_REQUEST) {
                 logger.error(DepartmentsController.class, orderResponsePojo.getExMessage());
                 throw new CreateOrderException(orderResponsePojo.getMessage());
             } else {

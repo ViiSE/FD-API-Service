@@ -18,12 +18,14 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.producer.entity.OrderResponseProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component("orderResponseSimpleRowMapper")
 public class OrderResponseSimpleRowMapper implements RowMapper<OrderResponse> {
 
     private final long id;

@@ -19,7 +19,7 @@ public class ProductsCreatorDefaultImpl implements ProductsCreator {
     private final List<String> with;
 
     public ProductsCreatorDefaultImpl(
-            @Qualifier("productsRepositoryProcessorsSingleton") ProductsRepositoryProcessors prodsReposPrc,
+            @Qualifier("productsRepositoryProcessors") ProductsRepositoryProcessors prodsReposPrc,
             List<String> with) {
         this.prodsReposPrc = prodsReposPrc;
         this.with = with;

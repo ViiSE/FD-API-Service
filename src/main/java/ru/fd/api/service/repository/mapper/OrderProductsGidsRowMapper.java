@@ -11,12 +11,14 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component("orderProductsGidsRowMapper")
 public class OrderProductsGidsRowMapper implements RowMapper<String> {
 
     @Override

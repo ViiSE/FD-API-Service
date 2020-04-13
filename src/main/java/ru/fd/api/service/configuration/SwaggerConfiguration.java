@@ -48,21 +48,9 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("ru.fd.api.service.controller"))
                 .paths(PathSelectors.any())
                 .build()
-//                .globalOperationParameters(operationParameters())
                 .securityContexts(Collections.singletonList(securityContext()))
                 .securitySchemes(Collections.singletonList(apiKeyAuthScheme()));
     }
-
-//    private List<Parameter> operationParameters() {
-//        List<Parameter> headers = new ArrayList<>();
-//        headers.add(new ParameterBuilder().name("Authorization")
-//                .description("Необходим API токен. Форма Authorization: Bearer <токен>")
-//                .modelRef(new ModelRef("string")).parameterType("header")
-//                .defaultValue("Bearer <Введите токен здесь>")
-//                .required(true).build());
-//
-//        return headers;
-//    }
 
     private static SecurityScheme apiKeyAuthScheme() {
         return new ApiKey("Bearer", "Authorization", "header");

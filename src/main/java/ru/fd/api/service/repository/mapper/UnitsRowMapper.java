@@ -18,6 +18,7 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Unit;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.producer.entity.UnitProducer;
@@ -28,12 +29,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnitsDefaultRowMapper implements RowMapper<Units> {
+@Component("unitsRowMapper")
+public class UnitsRowMapper implements RowMapper<Units> {
 
     private final UnitProducer unitProducer;
     private final UnitsProducer unitsProducer;
 
-    public UnitsDefaultRowMapper(UnitProducer unitProducer, UnitsProducer unitsProducer) {
+    public UnitsRowMapper(UnitProducer unitProducer, UnitsProducer unitsProducer) {
         this.unitProducer = unitProducer;
         this.unitsProducer = unitsProducer;
     }

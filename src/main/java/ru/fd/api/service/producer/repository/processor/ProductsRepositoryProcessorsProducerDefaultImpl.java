@@ -19,9 +19,6 @@ package ru.fd.api.service.producer.repository.processor;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.producer.entity.*;
-import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
 
 @Service("productsRepositoryProcessorsProducerDefault")
@@ -35,7 +32,7 @@ public class ProductsRepositoryProcessorsProducerDefaultImpl implements Products
 
     @Override
     public ProductsRepositoryProcessors getProductsRepositoryProcessorsSingletonImpl() {
-        return ctx.getBean("productsRepositoryProcessorsSingleton", ProductsRepositoryProcessors.class);
+        return ctx.getBean("productsRepositoryProcessors", ProductsRepositoryProcessors.class);
     }
 
     @Override

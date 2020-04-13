@@ -29,7 +29,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import ru.fd.api.service.repository.processor.ProductsRepositoryProcessors;
-import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsSingletonImpl;
+import ru.fd.api.service.repository.processor.ProductsRepositoryProcessorsImpl;
 import test.producer.entity.ProductProducerTestImpl;
 import test.producer.repository.ProductsRepositoryProducerExceptionTestImpl;
 import test.producer.repository.ProductsRepositoryProducerTestImpl;
@@ -109,7 +109,7 @@ public class ProductsCreatorTestNG {
         ProductsRepositoryProducer productsRepoProducer = new ProductsRepositoryProducerTestImpl();
         ProductProducer productProducer = new ProductProducerTestImpl();
         ProductsRepositoryProcessors repoProcessors =
-                new ProductsRepositoryProcessorsSingletonImpl(
+                new ProductsRepositoryProcessorsImpl(
                         productsRepoProducer,
                         productProducer,
                         null,

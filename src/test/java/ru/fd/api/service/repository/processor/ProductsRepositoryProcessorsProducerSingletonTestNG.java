@@ -39,7 +39,7 @@ public class ProductsRepositoryProcessorsProducerSingletonTestNG {
     public void setUpClass() {
         ProductsRepositoryProducer prRepoProducer = new ProductsRepositoryProducerTestImpl();
         ProductProducer productProducer = new ProductProducerTestImpl();
-        prRepoProcessors = new ProductsRepositoryProcessorsSingletonImpl(
+        prRepoProcessors = new ProductsRepositoryProcessorsImpl(
                 prRepoProducer,
                 productProducer,
                 null,

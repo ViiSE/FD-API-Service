@@ -1,12 +1,14 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.producer.entity.BalancesProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component("balancesDefaultRowMapper")
 public class BalancesDefaultRowMapper implements RowMapper<Balances> {
 
     private final BalancesProducer balancesProducer;

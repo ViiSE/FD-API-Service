@@ -27,7 +27,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
-import ru.fd.api.service.repository.mapper.UnitsDefaultRowMapper;
+import ru.fd.api.service.repository.mapper.UnitsRowMapper;
 
 @Repository("unitsRepositoryDefault")
 public class UnitsRepositoryDefaultImpl implements UnitsRepository {
@@ -53,7 +53,7 @@ public class UnitsRepositoryDefaultImpl implements UnitsRepository {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("units.sql").content(),
-                    new UnitsDefaultRowMapper(unitProducer, unitsProducer));
+                    new UnitsRowMapper(unitProducer, unitsProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

@@ -1,17 +1,19 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.producer.entity.StatusesProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StatusesDefaultRowMapper implements RowMapper<Statuses> {
+@Component("statusesRowMapper")
+public class StatusesRowMapper implements RowMapper<Statuses> {
 
     private final StatusesProducer statusesProducer;
 
-    public StatusesDefaultRowMapper(StatusesProducer statusesProducer) {
+    public StatusesRowMapper(StatusesProducer statusesProducer) {
         this.statusesProducer = statusesProducer;
     }
 

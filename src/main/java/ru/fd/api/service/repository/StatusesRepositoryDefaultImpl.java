@@ -10,7 +10,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.StatusProducer;
 import ru.fd.api.service.producer.entity.StatusesProducer;
-import ru.fd.api.service.repository.mapper.StatusesDefaultRowMapper;
+import ru.fd.api.service.repository.mapper.StatusesRowMapper;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("statusesRepositoryDefault")
@@ -37,7 +37,7 @@ public class StatusesRepositoryDefaultImpl implements StatusesRepository {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("statuses.sql").content(),
-                    new StatusesDefaultRowMapper(/*statusProducer,*/ statusesProducer));
+                    new StatusesRowMapper(/*statusProducer,*/ statusesProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex.getCause());
         }

@@ -8,12 +8,12 @@ import ru.fd.api.service.producer.repository.ProductsRepositoryProducer;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("productsRepositoryProcessorsSingleton")
-public class ProductsRepositoryProcessorsSingletonImpl implements ProductsRepositoryProcessors  {
+@Service("productsRepositoryProcessors")
+public class ProductsRepositoryProcessorsImpl implements ProductsRepositoryProcessors  {
 
     private static final Map<String, ProductsRepositoryProcessor> processors = new HashMap<>();
 
-    public ProductsRepositoryProcessorsSingletonImpl(
+    public ProductsRepositoryProcessorsImpl(
             ProductsRepositoryProducer prodsRepoProducer,
             ProductProducer prodProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
