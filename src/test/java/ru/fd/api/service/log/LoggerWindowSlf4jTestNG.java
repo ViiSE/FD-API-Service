@@ -5,7 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.time.CurrentDateTime;
-import test.producer.time.CurrentDateTimeProducerTestImpl;
+import ru.fd.api.service.time.CurrentDateTimeImpl;
 
 import static test.message.TestMessage.printTestTime;
 import static test.message.TestMessage.testBegin;
@@ -18,7 +18,7 @@ public class LoggerWindowSlf4jTestNG {
     @BeforeClass
     public void setUpClass() {
         loggerWindow = new LoggerWindowSlf4jImpl();
-        curDateTime = new CurrentDateTimeProducerTestImpl().getCurrentDateTimeDefaultInstance();
+        curDateTime = new CurrentDateTimeImpl();
         testBegin("LoggerWindowSlf4j", "printLog()");
     }
 

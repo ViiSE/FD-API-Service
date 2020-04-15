@@ -7,8 +7,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 import ru.fd.api.service.time.CurrentDateTime;
+import ru.fd.api.service.time.CurrentDateTimeImpl;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
-import test.producer.time.CurrentDateTimeProducerTestImpl;
 
 import static test.message.TestMessage.*;
 
@@ -22,7 +22,7 @@ public class LoggerServiceDefaultTestNG {
         LogDirectory logDirectory = new LogDirectoryTestImpl(dirProducer);
         LoggerFile loggerFile = new LoggerFileImpl(logDirectory);
         LoggerWindow loggerWindow = new LoggerWindowSlf4jImpl();
-        CurrentDateTime curDateTime = new CurrentDateTimeProducerTestImpl().getCurrentDateTimeDefaultInstance();
+        CurrentDateTime curDateTime = new CurrentDateTimeImpl();
         loggerServer = new LoggerServiceImpl(loggerFile, loggerWindow, curDateTime);
 
         testBegin("LoggerServiceDefault");
