@@ -26,7 +26,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Unit;
-import ru.fd.api.service.entity.UnitDefaultImpl;
+import ru.fd.api.service.entity.UnitImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -42,8 +42,8 @@ public class UnitProducerDefaultIntegrationTestNG extends AbstractTestNGSpringCo
     public void getUnitDefaultInstance(String id, String name) {
         testBegin("UnitProducerDefault", "getUnitDefaultInstance()");
 
-        Unit unit = unitProducer.getUnitDefaultInstance(id, name);
-        assertTrue(unit instanceof UnitDefaultImpl, "Unit: not a valid type!");
+        Unit unit = unitProducer.getUnitInstance(id, name);
+        assertTrue(unit instanceof UnitImpl, "Unit: not a valid type!");
         System.out.println("Instance: " + unit);
 
         testEnd("UnitProducerDefault", "getUnitDefaultInstance()");

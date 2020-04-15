@@ -9,9 +9,9 @@ import ru.fd.api.service.entity.ProductWithStatusesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
-import test.producer.entity.ProductProducerTestImpl;
-import test.repository.ProductsRepositorySimpleTestImpl;
-import test.repository.ProductsRepositoryWithStatusesTestImpl;
+import ru.fd.api.service.producer.entity.test.ProductProducerTestImpl;
+import ru.fd.api.service.repository.test.ProductsRepositorySimpleTestImpl;
+import ru.fd.api.service.repository.test.ProductsRepositoryWithStatusesTestImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

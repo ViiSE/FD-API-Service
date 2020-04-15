@@ -33,5 +33,4 @@ public interface OrderProducer {
     Order getOrderWithPayTypeIdInstance(Order order, short payTypeId);
     Order getOrderWithCommentInstance(Order order, String comment);
     Order getOrderWithProductsInstance(Order order, Products products);
-    Order getOrderEmptyInstance();
 }

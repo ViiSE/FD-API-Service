@@ -27,7 +27,7 @@ public class PriceDefaultTestNG {
         assertFalse(departmentId.isEmpty(), "Department ID is empty!");
         assertFalse(value < 0f, "Value is less than 0!");
 
-        price = new PriceDefaultImpl(departmentId, value);
+        price = new PriceImpl(departmentId, value);
         assertNotNull(price, "Price is null!");
 
         this.departmentId = departmentId;

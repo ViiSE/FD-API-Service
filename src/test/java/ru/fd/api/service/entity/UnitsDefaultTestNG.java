@@ -33,10 +33,10 @@ public class UnitsDefaultTestNG {
         assertNotNull(name2, "Unit name cannot be null!");
         assertFalse(name2.isEmpty(), "Unit name is empty!");
 
-        Unit unit1 = new UnitDefaultImpl(unitId1, name1);
-        Unit unit2 = new UnitDefaultImpl(unitId2, name2);
+        Unit unit1 = new UnitImpl(unitId1, name1);
+        Unit unit2 = new UnitImpl(unitId2, name2);
 
-        units = new UnitsDefaultImpl(new ArrayList<>() {{ add(unit1); add(unit2); }});
+        units = new UnitsImpl(new ArrayList<>() {{ add(unit1); add(unit2); }});
         assertNotNull(units, "Units is null!");
     }
 

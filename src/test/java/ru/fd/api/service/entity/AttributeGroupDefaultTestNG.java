@@ -29,7 +29,7 @@ public class AttributeGroupDefaultTestNG {
         assertNotNull(name, "Name cannot be null!");
         assertFalse(name.isEmpty(), "Name is empty!");
 
-        attributeGroup = new AttributeGroupDefaultImpl(attributeGroupId, name);
+        attributeGroup = new AttributeGroupImpl(attributeGroupId, name);
         assertNotNull(attributeGroup, "Attribute group is null!");
 
         this.attributeGroupId = attributeGroupId;

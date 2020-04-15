@@ -17,7 +17,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.data.OrderPojo;
-import test.creator.CustomerCreatorTestImpl;
 import test.util.TestUtils;
 
 import static org.testng.Assert.assertEquals;
@@ -36,7 +35,16 @@ public class OrderWithCustomerTestNG {
     public void setUpClass(long id, short status) {
         this.id = id;
         this.status = status;
-        this.customer = new CustomerCreatorTestImpl().create();
+        this.customer = new CustomerFromCompanyImpl(
+                new CustomerWithPhoneNumberImpl(
+                        new CustomerWithEmailImpl(
+                                new CustomerWithNameImpl(
+                                        new CustomerSimpleImpl((short) 0),
+                                        "John Doe"),
+                                "example@example.com"),
+                        "85551111111"),
+                "2323313",
+                "4676546");
 
         order = new OrderWithCustomerImpl(new OrderSimpleImpl(id, status), customer);
     }

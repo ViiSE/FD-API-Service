@@ -33,10 +33,10 @@ public class CategoriesDefaultTestNG {
         assertNotNull(name2, "Category name cannot be null!");
         assertFalse(name2.isEmpty(), "Category name is empty!");
 
-        Category category1 = new CategoryDefaultImpl(categoryId1, name1);
-        Category category2 = new CategoryDefaultImpl(categoryId2, name2);
+        Category category1 = new CategoryImpl(categoryId1, name1);
+        Category category2 = new CategoryImpl(categoryId2, name2);
 
-        categories = new CategoriesDefaultImpl(new ArrayList<>() {{ add(category1); add(category2); }});
+        categories = new CategoriesImpl(new ArrayList<>() {{ add(category1); add(category2); }});
         assertNotNull(categories, "Categories is null!");
     }
 

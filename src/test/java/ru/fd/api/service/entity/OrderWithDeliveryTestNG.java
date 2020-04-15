@@ -17,9 +17,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.DeliveryPojo;
 import ru.fd.api.service.data.OrderPojo;
-import ru.fd.api.service.exception.CreatorException;
-import test.creator.DeliveryCreatorTestImpl;
 import test.util.TestUtils;
+
+import java.time.LocalDate;
 
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.testBegin;
@@ -37,7 +37,16 @@ public class OrderWithDeliveryTestNG {
     public void setUpClass(long id, short status) {
         this.id = id;
         this.status = status;
-        this.delivery = new DeliveryCreatorTestImpl().create();
+        this.delivery = new DeliveryWithDateImpl(
+                new DeliveryWithTimeIdImpl(
+                        new DeliveryWithDepartmentIdImpl(
+                                new DeliverySimpleImpl(
+                                        (short) 0,
+                                        1,
+                                        "st. Example, 404"),
+                                "dep_1"),
+                        (short) 0),
+                LocalDate.now());
 
         order = new OrderWithDeliveryImpl(new OrderSimpleImpl(id, status), delivery);
     }

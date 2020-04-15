@@ -22,6 +22,7 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -32,9 +33,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.creator.AttributeGroupsCreator;
 import ru.fd.api.service.data.AttributeGroupsPojo;
+import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.filter.APIFilter;
+import ru.fd.api.service.process.Process;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
@@ -54,7 +56,10 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private AttributeGroupsCreator attributeGroupsCreator;
+
+    @Autowired
+    @Qualifier("psAttributeGroups")
+    private Process<Sendable, Void> process;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -108,7 +113,7 @@ public class ProductsAttributeGroupsPointIntegrationTestNG extends AbstractTestN
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        AttributeGroupsPojo attrGrPojo = (AttributeGroupsPojo) attributeGroupsCreator.create().formForSend();
+        AttributeGroupsPojo attrGrPojo = (AttributeGroupsPojo) process.answer(null).formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(attrGrPojo));
     }

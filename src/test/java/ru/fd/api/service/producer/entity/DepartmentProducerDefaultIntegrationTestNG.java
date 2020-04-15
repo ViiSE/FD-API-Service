@@ -26,7 +26,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Department;
-import ru.fd.api.service.entity.DepartmentDefaultImpl;
+import ru.fd.api.service.entity.DepartmentImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -42,8 +42,8 @@ public class DepartmentProducerDefaultIntegrationTestNG extends AbstractTestNGSp
     public void getDepartmentDefaultInstance(String id, String name) {
         testBegin("DepartmentProducerDefault", "getDepartmentDefaultInstance()");
 
-        Department department = departmentProducer.getDepartmentDefaultInstance(id, name);
-        assertTrue(department instanceof DepartmentDefaultImpl, "Department: not a valid type!");
+        Department department = departmentProducer.getDepartmentInstance(id, name);
+        assertTrue(department instanceof DepartmentImpl, "Department: not a valid type!");
         System.out.println("Instance: " + department);
 
         testEnd("DepartmentProducerDefault", "getDepartmentDefaultInstance()");

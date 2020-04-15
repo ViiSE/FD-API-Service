@@ -19,6 +19,7 @@ package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -29,9 +30,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.creator.DepartmentsCreator;
 import ru.fd.api.service.data.DepartmentsPojo;
+import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.filter.APIFilter;
+import ru.fd.api.service.process.Process;
 import test.util.TestUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -48,7 +50,10 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private DepartmentsCreator departmentsCreator;
+
+    @Autowired
+    @Qualifier("psDepartments")
+    private Process<Sendable, Void> process;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -82,7 +87,7 @@ public class DepartmentsControllerIntegrationTestNG extends AbstractTestNGSpring
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        DepartmentsPojo depPojo = (DepartmentsPojo) departmentsCreator.create().formForSend();
+        DepartmentsPojo depPojo = (DepartmentsPojo) process.answer(null).formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(depPojo));
         System.out.println("Response: " + response);

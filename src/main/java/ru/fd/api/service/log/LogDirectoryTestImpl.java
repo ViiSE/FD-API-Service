@@ -15,8 +15,8 @@
  */
 package ru.fd.api.service.log;
 
-import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
+import ru.fd.api.service.os.FDAPIServiceDirectory;
+import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 
 import java.io.File;
 

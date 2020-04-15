@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Units;
-import ru.fd.api.service.entity.UnitsDefaultImpl;
+import ru.fd.api.service.entity.UnitsImpl;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class UnitsProducerDefaultIntegrationTestNG extends AbstractTestNGSpringC
     public void getUnitDefaultInstance() {
         testBegin("UnitsProducerDefault", "getUnitsDefaultInstance()");
 
-        Units units = unitsProducer.getUnitsDefaultInstance(new ArrayList<>());
-        assertTrue(units instanceof UnitsDefaultImpl, "Unit: not a valid type!");
+        Units units = unitsProducer.getUnitsInstance(new ArrayList<>());
+        assertTrue(units instanceof UnitsImpl, "Unit: not a valid type!");
         System.out.println("Instance: " + units);
 
         testEnd("UnitsProducerDefault", "getUnitsDefaultInstance()");

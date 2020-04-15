@@ -21,5 +21,5 @@ import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface CategoriesRepository {
-    Categories readCategories() throws RepositoryException;
+    Categories read() throws RepositoryException;
 }

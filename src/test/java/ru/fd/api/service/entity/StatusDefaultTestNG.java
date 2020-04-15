@@ -28,7 +28,7 @@ public class StatusDefaultTestNG {
         assertNotNull(name, "Status name cannot be null!");
         assertFalse(name.isEmpty(), "Status name is empty!");
 
-        status = new StatusDefaultImpl(statusId, name);
+        status = new StatusImpl(statusId, name);
         assertNotNull(status, "Status is null!");
 
         this.statusId = statusId;

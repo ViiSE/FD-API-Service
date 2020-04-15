@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.AttributeGroups;
-import ru.fd.api.service.entity.AttributeGroupsDefaultImpl;
+import ru.fd.api.service.entity.AttributeGroupsImpl;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class AttributeGroupsProducerDefaultIntegrationTestNG extends AbstractTes
     public void getAttributeGroupsDefaultInstance() {
         testBegin("AttributeGroupsProducerDefault", "getAttributeGroupsDefaultInstance()");
 
-        AttributeGroups attrGr = attributeGroupsProducer.getAttributeGroupsDefaultInstance(new ArrayList<>());
-        assertTrue(attrGr instanceof AttributeGroupsDefaultImpl, "AttributeGroups: not a valid type!");
+        AttributeGroups attrGr = attributeGroupsProducer.getAttributeGroupsInstance(new ArrayList<>());
+        assertTrue(attrGr instanceof AttributeGroupsImpl, "AttributeGroups: not a valid type!");
         System.out.println("Instance: " + attrGr);
 
         testEnd("AttributeGroupsProducerDefault", "getAttributeGroupsDefaultInstance()");

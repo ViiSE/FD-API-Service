@@ -16,7 +16,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.OrderPojo;
-import ru.fd.api.service.exception.CreatorException;
 import test.util.TestUtils;
 
 import java.time.LocalDateTime;

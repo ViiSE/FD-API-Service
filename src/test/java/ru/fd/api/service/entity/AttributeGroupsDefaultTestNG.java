@@ -33,10 +33,10 @@ public class AttributeGroupsDefaultTestNG {
         assertNotNull(name2, "Attribute group name cannot be null!");
         assertFalse(name2.isEmpty(), "Attribute group name is empty!");
 
-        AttributeGroup attributeGroup1 = new AttributeGroupDefaultImpl(attributeGroupsId1, name1);
-        AttributeGroup attributeGroup2 = new AttributeGroupDefaultImpl(attributeGroupsId2, name2);
+        AttributeGroup attributeGroup1 = new AttributeGroupImpl(attributeGroupsId1, name1);
+        AttributeGroup attributeGroup2 = new AttributeGroupImpl(attributeGroupsId2, name2);
 
-        attributeGroups = new AttributeGroupsDefaultImpl(new ArrayList<>() {{ add(attributeGroup1); add(attributeGroup2); }});
+        attributeGroups = new AttributeGroupsImpl(new ArrayList<>() {{ add(attributeGroup1); add(attributeGroup2); }});
         assertNotNull(attributeGroups, "AttributeGroups is null!");
     }
 

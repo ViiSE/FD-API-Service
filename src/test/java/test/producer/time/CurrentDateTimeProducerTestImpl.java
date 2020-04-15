@@ -19,12 +19,12 @@ package test.producer.time;
 
 import ru.fd.api.service.producer.time.CurrentDateTimeProducer;
 import ru.fd.api.service.time.CurrentDateTime;
-import ru.fd.api.service.time.CurrentDateTimeDefaultImpl;
+import ru.fd.api.service.time.CurrentDateTimeImpl;
 
 public class CurrentDateTimeProducerTestImpl implements CurrentDateTimeProducer {
 
     @Override
     public CurrentDateTime getCurrentDateTimeDefaultInstance() {
-        return new CurrentDateTimeDefaultImpl();
+        return new CurrentDateTimeImpl();
     }
 }

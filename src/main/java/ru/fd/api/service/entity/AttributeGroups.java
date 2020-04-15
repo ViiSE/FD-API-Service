@@ -17,6 +17,6 @@
 
 package ru.fd.api.service.entity;
 
-public interface AttributeGroups {
+public interface AttributeGroups extends Sendable {
     Object formForSend();
 }

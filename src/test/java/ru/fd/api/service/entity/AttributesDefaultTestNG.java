@@ -38,10 +38,10 @@ public class AttributesDefaultTestNG {
         assertNotNull(name2, "Name cannot be null!");
         assertFalse(name2.isEmpty(), "Name ID is empty!");
 
-        Attribute attribute1 = new AttributeDefaultImpl(attributeId1, groupId1, name1);
-        Attribute attribute2 = new AttributeDefaultImpl(attributeId2, groupId2, name2);
+        Attribute attribute1 = new AttributeImpl(attributeId1, groupId1, name1);
+        Attribute attribute2 = new AttributeImpl(attributeId2, groupId2, name2);
 
-        attributes = new AttributesDefaultImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});
+        attributes = new AttributesImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});
         assertNotNull(attributes, "Attributes is null!");
     }
 

@@ -22,7 +22,7 @@ import ru.fd.api.service.exception.RepositoryException;
 import java.util.List;
 
 public interface OrderRepository<T, V> {
-    T insert() throws RepositoryException;
+    T insert(V order) throws RepositoryException;
     V read(long id) throws RepositoryException;
     List<V> readAll() throws RepositoryException;
     List<V> readFirst(int sliceSize) throws RepositoryException;

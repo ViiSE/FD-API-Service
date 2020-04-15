@@ -20,5 +20,5 @@ package ru.fd.api.service.producer.entity;
 import ru.fd.api.service.entity.Status;
 
 public interface StatusProducer {
-    Status getStatusDefaultInstance(String id, String name);
+    Status getStatusInstance(String id, String name);
 }

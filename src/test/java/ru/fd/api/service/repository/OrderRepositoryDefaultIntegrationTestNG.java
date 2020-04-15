@@ -1,11 +1,17 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ * Copyright 2020 ViiSE
  *
- *  Licensed under the FD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  To read the license text, please contact: viise@outlook.com
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Author: ViiSE.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package ru.fd.api.service.repository;
@@ -21,13 +27,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.OrdersService;
-import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.producer.entity.OrderResponseProducer;
-import ru.fd.api.service.producer.repository.OrderRepositoryProducer;
+import ru.fd.api.service.producer.entity.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,61 +42,56 @@ import static test.message.TestMessage.*;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired private OrdersService ordersService;
-    @Autowired private OrderRepositoryProducer orderRepositoryProducer;
-    @Autowired private OrderResponseProducer orderResponseProducer;
-    @Autowired private SQLQueryCreator<String, String> sqlQueryCreator;
+    @Autowired private OrderProducer oP;
+    @Autowired private DeliveryProducer dP;
+    @Autowired private CustomerProducer cP;
+    @Autowired private ProductsProducer psP;
+    @Autowired private ProductProducer pP;
+    @Autowired private OrderRepository<OrderResponse, Order> orderRepo;
 
-    private OrderRepository<OrderResponse, Order> orderRepo;
+    private Order order;
 
     @BeforeClass
     public void setUpClass() {
-        Order order = ordersService.orderProducer().getOrderWithCommentInstance(
-                ordersService.orderProducer().getOrderWithProductsInstance(
-                        ordersService.orderProducer().getOrderWithCustomerInstance(
-                                ordersService.orderProducer().getOrderWithDeliveryInstance(
-                                        ordersService.orderProducer().getOrderWithDateTimeInstance(
-                                                ordersService.orderProducer().getOrderWithPayTypeIdInstance(
-                                                        ordersService.orderProducer().getOrderWithCityIdInstance(
-                                                                ordersService.orderProducer().getOrderSimpleInstance(
+        order = oP.getOrderWithCommentInstance(
+                oP.getOrderWithProductsInstance(
+                        oP.getOrderWithCustomerInstance(
+                                oP.getOrderWithDeliveryInstance(
+                                        oP.getOrderWithDateTimeInstance(
+                                                oP.getOrderWithPayTypeIdInstance(
+                                                        oP.getOrderWithCityIdInstance(
+                                                                oP.getOrderSimpleInstance(
                                                                         0,
                                                                         (short) 0),
                                                                 0),
                                                         (short) 0),
                                                 LocalDateTime.now()),
-                                        ordersService.deliveryProducer().getDeliveryWithDateInstance(
-                                                ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
-                                                        ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
-                                                                ordersService.deliveryProducer().getDeliverySimpleInstance(
+                                        dP.getDeliveryWithDateInstance(
+                                                dP.getDeliveryWithTimeIdInstance(
+                                                        dP.getDeliveryWithDepartmentIdInstance(
+                                                                dP.getDeliverySimpleInstance(
                                                                         (short) 0,
                                                                         101,
-                                                                        "ул. Ленинградская, 145Б"),
+                                                                        "ул. Пушкина, 145Б"),
                                                                 "100"),
                                                         (short) 0),
                                                 LocalDate.now())),
-                                ordersService.customerProducer().getCustomerFromCompanyInstance(
-                                        ordersService.customerProducer().getCustomerWithNameInstance(
-                                                ordersService.customerProducer().getCustomerWithEmailInstance(
-                                                        ordersService.customerProducer().getCustomerWithPhoneNumberInstance(
-                                                                ordersService.customerProducer()
-                                                                        .getCustomerSimpleInstance((short) 0),
-                                                                "89098238724"),
+                                cP.getCustomerFromCompanyInstance(
+                                        cP.getCustomerWithNameInstance(
+                                                cP.getCustomerWithEmailInstance(
+                                                        cP.getCustomerWithPhoneNumberInstance(
+                                                                cP.getCustomerSimpleInstance((short) 0),
+                                                                "85551111111"),
                                                         "example@example.com"),
                                                 "John Doe"),
                                         "22505",
                                         "43122")),
-                        ordersService.productsProducer().getOrderProductsDefaultInstance(
+                        psP.getOrderProductsDefaultInstance(
                                 new ArrayList<>() {{
-                                    add(ordersService.productProducer().getOrderProductSimpleInstance("id1", 10));
-                                    add(ordersService.productProducer().getOrderProductSimpleInstance("id2", 20));
+                                    add(pP.getOrderProductSimpleInstance("id1", 10));
+                                    add(pP.getOrderProductSimpleInstance("id2", 20));
                                 }})),
                 "Коментарий");
-
-        orderRepo = orderRepositoryProducer
-                .getOrderRepositoryDefaultInstance(
-                        order,
-                        sqlQueryCreator,
-                        orderResponseProducer);
         testBegin("OrderRepositoryDefault");
     }
 
@@ -101,7 +99,7 @@ public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void insert() throws RepositoryException, JsonProcessingException {
         testMethod("insert()");
 
-        OrderResponse orderResp = orderRepo.insert();
+        OrderResponse orderResp = orderRepo.insert(order);
         System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(orderResp.formForSend()));
     }
 

@@ -12,6 +12,7 @@ package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -22,9 +23,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.creator.UnitsCreator;
 import ru.fd.api.service.data.UnitsPojo;
+import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.filter.APIFilter;
+import ru.fd.api.service.process.Process;
 import test.util.TestUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -41,7 +43,10 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private UnitsCreator unitsCreator;
+
+    @Autowired
+    @Qualifier("psUnits")
+    private Process<Sendable, Void> process;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -75,7 +80,7 @@ public class ProductsUnitsPointIntegrationTestNG extends AbstractTestNGSpringCon
                         .header("Authorization", "Bearer " + testToken))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        UnitsPojo unitsPojo = (UnitsPojo) unitsCreator.create().formForSend();
+        UnitsPojo unitsPojo = (UnitsPojo) process.answer(null).formForSend();
 
         assertEquals(response, objectMapper.writeValueAsString(unitsPojo));
     }

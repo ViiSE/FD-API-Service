@@ -1,18 +1,34 @@
+/*
+ * Copyright 2019 ViiSE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.fd.api.service.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fd.api.service.ProductsService;
-import ru.fd.api.service.creator.ProductsCreator;
 import ru.fd.api.service.data.ProductsChangedBalancesPojo;
 import ru.fd.api.service.data.ProductsPojo;
-import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.log.LoggerService;
+import ru.fd.api.service.entity.Products;
+import ru.fd.api.service.exception.ProcessException;
+import ru.fd.api.service.process.Process;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +37,18 @@ import java.util.List;
 @RestController
 public class ProductsController {
 
-    private final ProductsService productsService;
-    private final LoggerService logger;
+    private final Process<Products, List<String>> chain;
+    private final Process<Products, Void> processCBalanceAll;
+    private final Process<Products, Long> processCBalanceOrder;
+
 
     public ProductsController(
-            ProductsService productsService,
-            LoggerService logger) {
-        this.productsService = productsService;
-        this.logger = logger;
+            @Qualifier("psChainLgProducts") Process<Products, List<String>> chain,
+            @Qualifier("psLgChangedBalances") Process<Products, Void> processCBalanceAll,
+            @Qualifier("psLgChangedBalancesWithOrder") Process<Products, Long> processCBalanceOrder) {
+        this.chain = chain;
+        this.processCBalanceAll = processCBalanceAll;
+        this.processCBalanceOrder = processCBalanceOrder;
     }
 
     @ApiOperation(value = "Выгружает все товары")
@@ -46,16 +66,8 @@ public class ProductsController {
         try {
             if(with == null)
                 with = new ArrayList<>();
-            ProductsCreator productsCreator = productsService.productsCreatorProducer()
-                    .getProductsCreatorDefaultInstance(
-                            productsService.productsRepositoryProcessorsProducer()
-                                    .getProductsRepositoryProcessorsSingletonImpl(),
-                            with);
-            ProductsPojo productsPojo = (ProductsPojo) productsCreator.create().formForSend();
-            logger.info(ProductsController.class, "Site request products with " + with.toString());
-            return productsPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (ProductsPojo) chain.answer(with).formForSend();
+        } catch (ProcessException ex) {
             return new ProductsPojo(new ArrayList<>());
         }
     }
@@ -70,17 +82,11 @@ public class ProductsController {
                     "\n<i>Примечание. Метод может иметь задержку, начиная от 500 мс.</i>", example = "1")
             @RequestParam(name = "order_id", defaultValue = "-1") long orderId) {
         try {
-            ProductsCreator productsCreator = productsService.productsCreatorProducer()
-                    .getProductsWithChangedBalancesCreatorInstance(
-                            productsService.productsRepositoryProcessorsProducer()
-                                    .getProductsChangedBalancesRepositoryProcessorsSingletonImpl(),
-                            orderId);
-
-            ProductsChangedBalancesPojo products = (ProductsChangedBalancesPojo) productsCreator.create().formForSend();
-            logger.info(ProductsController.class, "Site request product balances changes: order_id=" + orderId);
-            return products;
-        } catch (CreatorException ex) {
-            logger.error(ProductsController.class, ex.getMessage() + "<CAUSE>: " + ex.getCause());
+            if(orderId == -1)
+                return (ProductsChangedBalancesPojo) processCBalanceAll.answer(null).formForSend();
+            else
+                return (ProductsChangedBalancesPojo) processCBalanceOrder.answer(orderId).formForSend();
+        } catch (ProcessException ex) {
             return new ProductsChangedBalancesPojo(new ArrayList<>());
         }
     }

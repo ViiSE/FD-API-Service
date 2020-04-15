@@ -38,7 +38,7 @@ public class CurrentDateTimeDefaultTestNG {
 
     @BeforeClass
     public void setUpClass() {
-        currentDateTime = new CurrentDateTimeDefaultImpl();
+        currentDateTime = new CurrentDateTimeImpl();
         testBegin("CurrentDateTimeDefault");
     }
 

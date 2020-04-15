@@ -21,10 +21,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fd.api.service.creator.*;
+import ru.fd.api.service.constant.AdditionalProducts;
 import ru.fd.api.service.data.*;
-import ru.fd.api.service.exception.CreatorException;
-import ru.fd.api.service.log.LoggerService;
+import ru.fd.api.service.entity.Sendable;
+import ru.fd.api.service.exception.ProcessException;
+import ru.fd.api.service.process.Processes;
 
 import java.util.ArrayList;
 
@@ -32,37 +33,18 @@ import java.util.ArrayList;
 @RestController
 public class ProductsAdditionalController {
 
-    private final StatusesCreator statusesCreator;
-    private final AttributesCreator attributesCreator;
-    private final AttributeGroupsCreator attributeGroupsCreator;
-    private final UnitsCreator unitsCreator;
-    private final CategoriesCreator categoriesCreator;
-    private final LoggerService logger;
+    private final Processes<Sendable, Void> processes;
 
-    public ProductsAdditionalController(
-            StatusesCreator statusesCreator,
-            AttributesCreator attributesCreator,
-            AttributeGroupsCreator attributeGroupsCreator,
-            UnitsCreator unitsCreator,
-            CategoriesCreator categoriesCreator,
-            LoggerService logger) {
-        this.statusesCreator = statusesCreator;
-        this.attributesCreator = attributesCreator;
-        this.attributeGroupsCreator = attributeGroupsCreator;
-        this.unitsCreator = unitsCreator;
-        this.categoriesCreator = categoriesCreator;
-        this.logger = logger;
+    public ProductsAdditionalController(Processes<Sendable, Void> processes) {
+        this.processes = processes;
     }
 
     @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные статусы товаров")
     @GetMapping("/products/statuses")
     public StatusesPojo statuses() {
         try {
-            StatusesPojo statusesPojo = (StatusesPojo) statusesCreator.create().formForSend();
-            logger.info(ProductsAdditionalController.class, "Site request statuses");
-            return statusesPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsAdditionalController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (StatusesPojo) processes.process(AdditionalProducts.STATUSES).answer(null).formForSend();
+        } catch (ProcessException ex) {
             return new StatusesPojo(new ArrayList<>());
         }
     }
@@ -71,11 +53,8 @@ public class ProductsAdditionalController {
     @GetMapping("/products/attributes")
     public AttributesPojo attributes() {
         try {
-            AttributesPojo attributesPojo = (AttributesPojo) attributesCreator.create().formForSend();
-            logger.info(ProductsAdditionalController.class, "Site request attributes");
-            return attributesPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsAdditionalController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (AttributesPojo) processes.process(AdditionalProducts.ATTRIBUTES).answer(null).formForSend();
+        } catch (ProcessException ex) {
             return new AttributesPojo(new ArrayList<>());
         }
     }
@@ -84,11 +63,8 @@ public class ProductsAdditionalController {
     @GetMapping("/products/attribute-groups")
     public AttributeGroupsPojo attributesGroups() {
         try {
-            AttributeGroupsPojo attributesGroupsPojo = (AttributeGroupsPojo) attributeGroupsCreator.create().formForSend();
-            logger.info(ProductsAdditionalController.class, "Site request attribute groups");
-            return attributesGroupsPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsAdditionalController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (AttributeGroupsPojo) processes.process(AdditionalProducts.ATTRIBUTE_GROUPS).answer(null).formForSend();
+        } catch (ProcessException ex) {
             return new AttributeGroupsPojo(new ArrayList<>());
         }
     }
@@ -97,11 +73,8 @@ public class ProductsAdditionalController {
     @GetMapping("/products/units")
     public UnitsPojo units() {
         try {
-            UnitsPojo unitsPojo = (UnitsPojo) unitsCreator.create().formForSend();
-            logger.info(ProductsAdditionalController.class, "Site request units");
-            return unitsPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsAdditionalController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (UnitsPojo) processes.process(AdditionalProducts.UNITS).answer(null).formForSend();
+        } catch (ProcessException ex) {
             return new UnitsPojo(new ArrayList<>());
         }
     }
@@ -110,11 +83,8 @@ public class ProductsAdditionalController {
     @GetMapping("/products/categories")
     public CategoriesPojo categories() {
         try {
-            CategoriesPojo categoriesPojo = (CategoriesPojo) categoriesCreator.create().formForSend();
-            logger.info(ProductsAdditionalController.class, "Site request categories");
-            return categoriesPojo;
-        } catch (CreatorException ex) {
-            logger.error(ProductsAdditionalController.class, ex.getMessage() + " <CAUSE>: " + ex.getCause());
+            return (CategoriesPojo) processes.process(AdditionalProducts.CATEGORIES).answer(null).formForSend();
+        } catch (ProcessException ex) {
             return new CategoriesPojo(new ArrayList<>());
         }
     }

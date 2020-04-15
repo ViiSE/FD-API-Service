@@ -18,7 +18,7 @@
 package ru.fd.api.service.producer.database;
 
 import ru.fd.api.service.database.SQLReader;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
+import ru.fd.api.service.os.FDAPIServiceDirectory;
 
 public interface SQLReaderProducer {
     SQLReader<String> getSQLReaderFromFileStringInstance(

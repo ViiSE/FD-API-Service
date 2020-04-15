@@ -19,7 +19,7 @@ import static test.message.TestMessage.*;
 public class UnitsRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    @Qualifier("unitsRepositoryDefault")
+    @Qualifier("unitsRepository")
     private UnitsRepository unitsRepository;
 
     @BeforeClass

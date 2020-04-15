@@ -17,7 +17,6 @@
                 </methods>
             </class>
             <class name="ru.fd.api.service.repository.ProductsRepositoryWithChangedBalancesIntegrationTestNG"/>
-            <class name="ru.fd.api.service.repository.OrderRepositoryFailedIntegrationTestNG"/>
 <!--            <class name="ru.fd.api.service.repository.OrderRepositoryDefaultIntegrationTestNG"/>-->
 <!--            <class name="ru.fd.api.service.repository.OrderRepositoryChangedBalancesIntegrationTestNG"/>-->
 <!--            <class name="ru.fd.api.service.repository.OrderRepositoryDefaultIntegrationTestNG"/>-->

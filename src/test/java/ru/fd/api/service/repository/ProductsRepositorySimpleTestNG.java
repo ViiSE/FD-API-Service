@@ -8,7 +8,7 @@ import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.ProductSimpleImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
-import test.repository.ProductsRepositorySimpleTestImpl;
+import ru.fd.api.service.repository.test.ProductsRepositorySimpleTestImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

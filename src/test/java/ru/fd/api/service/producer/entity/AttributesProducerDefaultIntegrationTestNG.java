@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Attributes;
-import ru.fd.api.service.entity.AttributesDefaultImpl;
+import ru.fd.api.service.entity.AttributesImpl;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class AttributesProducerDefaultIntegrationTestNG extends AbstractTestNGSp
     public void getAttributesDefaultInstance() {
         testBegin("AttributesProducerDefault", "getAttributesDefaultInstance()");
 
-        Attributes attr = attributesProducer.getAttributesDefaultInstance(new ArrayList<>());
-        assertTrue(attr instanceof AttributesDefaultImpl, "Attributes: not a valid type!");
+        Attributes attr = attributesProducer.getAttributesInstance(new ArrayList<>());
+        assertTrue(attr instanceof AttributesImpl, "Attributes: not a valid type!");
         System.out.println("Instance: " + attr);
 
         testEnd("AttributesProducerDefault", "getAttributesDefaultInstance()");

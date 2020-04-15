@@ -28,7 +28,7 @@ public class ProductAttributeDefaultTestNG {
         assertNotNull(value, "Value cannot be null!");
         assertFalse(value.isEmpty(), "Value is empty!");
 
-        attribute = new ProductAttributeDefaultImpl(attributeId, value);
+        attribute = new ProductAttributeImpl(attributeId, value);
         assertNotNull(attribute, "Attribute is null!");
 
         this.attributeId = attributeId;

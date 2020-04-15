@@ -33,7 +33,7 @@ public class AttributeDefaultTestNG {
         assertNotNull(name, "Name cannot be null!");
         assertFalse(name.isEmpty(), "Name is empty!");
 
-        attribute = new AttributeDefaultImpl(attributeId, groupId, name);
+        attribute = new AttributeImpl(attributeId, groupId, name);
         assertNotNull(attribute, "Attribute is null!");
 
         this.attributeId = attributeId;

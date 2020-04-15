@@ -1,18 +1,21 @@
 /*
- *  Copyright 2020 FD Company. All rights reserved.
+ * Copyright 2019 ViiSE
  *
- *  Licensed under the FD License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  To read the license text, please contact: viise@outlook.com
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Author: ViiSE.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package ru.fd.api.service.scheduler;
 
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Customer;
 import ru.fd.api.service.notification.NotificationResolver;
@@ -21,7 +24,7 @@ import ru.fd.api.service.notification.Notifier;
 import java.util.List;
 
 @Component("notificationsScheduler")
-@EnableAsync
+//@EnableAsync
 public class NotificationsScheduler {
 
     private final NotificationResolver<Customer> notificationResolver;
@@ -32,8 +35,8 @@ public class NotificationsScheduler {
         this.notifier = notifier;
     }
 
-    @Async
-    @Scheduled(fixedDelay = 5000, initialDelay = 20000)
+//    @Async
+//    @Scheduled(fixedDelay = 5000, initialDelay = 20000)
     public void a() {
 //        System.out.println("Checked...");
 

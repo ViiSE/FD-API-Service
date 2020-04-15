@@ -20,8 +20,8 @@ package ru.fd.api.service.database;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.exception.ReaderException;
+import ru.fd.api.service.os.FDAPIServiceDirectory;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
 
 import java.io.BufferedReader;
 import java.io.File;

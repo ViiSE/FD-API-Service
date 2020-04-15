@@ -16,7 +16,7 @@
 package test.message;
 
 import org.testng.ITestResult;
-import ru.fd.api.service.time.CurrentDateTimeDefaultImpl;
+import ru.fd.api.service.time.CurrentDateTimeImpl;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -86,11 +86,11 @@ public class TestMessage {
     }
 
     public static void beginWriteTestTime() {
-        writeToFile(new CurrentDateTimeDefaultImpl().dateTimeWithDot() + " - TEST BEGIN");
+        writeToFile(new CurrentDateTimeImpl().dateTimeWithDot() + " - TEST BEGIN");
     }
 
     public static void endWriteTestTime() {
-        writeToFile(new CurrentDateTimeDefaultImpl().dateTimeWithDot() + " - TEST END");
+        writeToFile(new CurrentDateTimeImpl().dateTimeWithDot() + " - TEST END");
     }
 
     public static void writeTestTime(String className) {

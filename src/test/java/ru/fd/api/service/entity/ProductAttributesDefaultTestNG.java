@@ -33,10 +33,10 @@ public class ProductAttributesDefaultTestNG {
         assertNotNull(value2, "Value cannot be null!");
         assertFalse(value2.isEmpty(), "Value is empty!");
 
-        ProductAttribute attribute1 = new ProductAttributeDefaultImpl(attributeId1, value1);
-        ProductAttribute attribute2 = new ProductAttributeDefaultImpl(attributeId2, value2);
+        ProductAttribute attribute1 = new ProductAttributeImpl(attributeId1, value1);
+        ProductAttribute attribute2 = new ProductAttributeImpl(attributeId2, value2);
 
-        attributes = new ProductAttributesDefaultImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});
+        attributes = new ProductAttributesImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});
         assertNotNull(attributes, "Attributes is null!");
     }
 

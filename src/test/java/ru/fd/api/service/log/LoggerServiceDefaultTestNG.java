@@ -5,12 +5,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
+import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 import ru.fd.api.service.time.CurrentDateTime;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 import test.producer.time.CurrentDateTimeProducerTestImpl;
-
-import java.io.IOException;
 
 import static test.message.TestMessage.*;
 
@@ -22,10 +20,10 @@ public class LoggerServiceDefaultTestNG {
     public void setUpClass() {
         FDAPIServiceDirectoryProducer dirProducer = new FDAPIServiceDirectoryProducerTestImpl();
         LogDirectory logDirectory = new LogDirectoryTestImpl(dirProducer);
-        LoggerFile loggerFile = new LoggerFileDefaultImpl(logDirectory);
+        LoggerFile loggerFile = new LoggerFileImpl(logDirectory);
         LoggerWindow loggerWindow = new LoggerWindowSlf4jImpl();
         CurrentDateTime curDateTime = new CurrentDateTimeProducerTestImpl().getCurrentDateTimeDefaultInstance();
-        loggerServer = new LoggerServiceDefaultImpl(loggerFile, loggerWindow, curDateTime);
+        loggerServer = new LoggerServiceImpl(loggerFile, loggerWindow, curDateTime);
 
         testBegin("LoggerServiceDefault");
     }

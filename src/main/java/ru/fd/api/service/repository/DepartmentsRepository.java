@@ -21,5 +21,5 @@ import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface DepartmentsRepository {
-    Departments readDepartments() throws RepositoryException;
+    Departments read() throws RepositoryException;
 }

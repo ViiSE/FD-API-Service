@@ -25,7 +25,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.exception.RepositoryException;
-import test.repository.CategoriesRepositoryTestImpl;
+import ru.fd.api.service.repository.test.CategoriesRepositoryTestImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -45,7 +45,7 @@ public class CategoriesRepositoryTestNG {
         testBegin("CategoriesRepository", "readCategories()");
 
         try {
-            Categories categories = categoriesRepository.readCategories();
+            Categories categories = categoriesRepository.read();
             System.out.println("Categories:");
             String pojo = mapper.writeValueAsString(categories.formForSend());
             assertTrue(pojo.contains("\"categories\":"));

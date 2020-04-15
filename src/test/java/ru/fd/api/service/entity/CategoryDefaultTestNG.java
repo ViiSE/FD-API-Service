@@ -29,7 +29,7 @@ public class CategoryDefaultTestNG {
         assertNotNull(name, "Category name cannot be null!");
         assertFalse(name.isEmpty(), "Category name is empty!");
 
-        category = new CategoryDefaultImpl(categoryId, name);
+        category = new CategoryImpl(categoryId, name);
         assertNotNull(category, "Category is null!");
 
         this.categoryId = categoryId;

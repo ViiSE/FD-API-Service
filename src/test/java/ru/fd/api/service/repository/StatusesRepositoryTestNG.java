@@ -25,7 +25,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.RepositoryException;
-import test.repository.StatusesRepositoryTestImpl;
+import ru.fd.api.service.repository.test.StatusesRepositoryTestImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

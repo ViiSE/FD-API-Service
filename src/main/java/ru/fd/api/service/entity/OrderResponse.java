@@ -17,7 +17,7 @@
 
 package ru.fd.api.service.entity;
 
-public interface OrderResponse {
+public interface OrderResponse extends Sendable {
     Object formForSend();
     short status();
     long id();

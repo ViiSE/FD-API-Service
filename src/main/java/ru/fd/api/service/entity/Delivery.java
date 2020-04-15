@@ -17,6 +17,6 @@
 
 package ru.fd.api.service.entity;
 
-public interface Delivery {
+public interface Delivery extends Sendable {
     Object formForSend();
 }

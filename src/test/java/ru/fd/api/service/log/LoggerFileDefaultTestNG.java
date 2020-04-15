@@ -5,7 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
+import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 import ru.fd.api.service.time.CurrentDateTime;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 import test.producer.time.CurrentDateTimeProducerTestImpl;
@@ -28,7 +28,7 @@ public class LoggerFileDefaultTestNG {
     public void setUpClass() {
         FDAPIServiceDirectoryProducer dirProducer = new FDAPIServiceDirectoryProducerTestImpl();
         logDirectory = new LogDirectoryTestImpl(dirProducer);
-        loggerFile = new LoggerFileDefaultImpl(logDirectory);
+        loggerFile = new LoggerFileImpl(logDirectory);
         curDateTime = new CurrentDateTimeProducerTestImpl().getCurrentDateTimeDefaultInstance();
 
         testBegin("LoggerFileDefault");
@@ -70,7 +70,7 @@ public class LoggerFileDefaultTestNG {
         testMethod("writeLogFile() [directory not found]");
 
         LogDirectory logDirectory = new LogDirectoryExceptionTestImpl();
-        LoggerFile exLoggerFile = new LoggerFileDefaultImpl(logDirectory);
+        LoggerFile exLoggerFile = new LoggerFileImpl(logDirectory);
         exLoggerFile.writeLogFile(LogMessageType.INFO.stringValue(), curDateTime, "Exception!");
     }
 

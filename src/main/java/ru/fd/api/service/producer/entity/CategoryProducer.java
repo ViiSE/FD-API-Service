@@ -20,5 +20,5 @@ package ru.fd.api.service.producer.entity;
 import ru.fd.api.service.entity.Category;
 
 public interface CategoryProducer {
-    Category getCategoryDefaultInstance(String categoryId, String name);
+    Category getCategoryInstance(String categoryId, String name);
 }

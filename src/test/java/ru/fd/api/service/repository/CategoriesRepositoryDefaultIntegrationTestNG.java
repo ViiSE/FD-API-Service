@@ -21,7 +21,7 @@ import static test.message.TestMessage.*;
 public class CategoriesRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    @Qualifier("categoriesRepositoryDefault")
+    @Qualifier("categoriesRepository")
     private CategoriesRepository categoriesRepository;
 
     @BeforeClass
@@ -34,7 +34,7 @@ public class CategoriesRepositoryDefaultIntegrationTestNG extends AbstractTestNG
         testBegin("CategoriesRepositoryDefaultIntegration", "readCategories()");
 
         try {
-            Categories categories = categoriesRepository.readCategories();
+            Categories categories = categoriesRepository.read();
             assertNotNull(categories, "Categories is null!");
             System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(categories.formForSend()));
             System.out.println("DONE!");

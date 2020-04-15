@@ -28,7 +28,7 @@ public class UnitDefaultTestNG {
         assertNotNull(name, "Unit name cannot be null!");
         assertFalse(name.isEmpty(), "Unit name is empty!");
 
-        unit = new UnitDefaultImpl(unitId, name);
+        unit = new UnitImpl(unitId, name);
         assertNotNull(unit, "Unit is null!");
 
         this.unitId = unitId;

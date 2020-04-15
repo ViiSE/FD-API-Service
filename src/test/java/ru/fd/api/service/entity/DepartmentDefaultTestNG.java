@@ -29,7 +29,7 @@ public class DepartmentDefaultTestNG {
         assertNotNull(name, "Name cannot be null!");
         assertFalse(name.isEmpty(), "Name is empty!");
 
-        department = new DepartmentDefaultImpl(departmentId, name);
+        department = new DepartmentImpl(departmentId, name);
         assertNotNull(department, "Department is null!");
 
         this.departmentId = departmentId;

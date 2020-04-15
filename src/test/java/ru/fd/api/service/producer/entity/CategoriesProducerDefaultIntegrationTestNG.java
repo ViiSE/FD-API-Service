@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Categories;
-import ru.fd.api.service.entity.CategoriesDefaultImpl;
+import ru.fd.api.service.entity.CategoriesImpl;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class CategoriesProducerDefaultIntegrationTestNG extends AbstractTestNGSp
     public void getCategoriesDefaultInstance() {
         testBegin("CategoriesProducerDefault", "getCategoriesDefaultInstance()");
 
-        Categories cats = categoriesProducer.getCategoriesDefaultInstance(new ArrayList<>());
-        assertTrue(cats instanceof CategoriesDefaultImpl, "Categories: not a valid type!");
+        Categories cats = categoriesProducer.getCategoriesInstance(new ArrayList<>());
+        assertTrue(cats instanceof CategoriesImpl, "Categories: not a valid type!");
         System.out.println("Instance: " + cats);
 
         testEnd("CategoriesProducerDefault", "getCategoriesDefaultInstance()");

@@ -20,7 +20,6 @@ package ru.fd.api.service.entity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.OrderResponsePojo;
-import ru.fd.api.service.data.ProductsOrderPojo;
 
 @Component("orderResponseWithProducts")
 @Scope("prototype")

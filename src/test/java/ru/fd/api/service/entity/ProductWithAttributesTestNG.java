@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 ViiSE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.fd.api.service.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,8 +24,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.ProductPojo;
 import ru.fd.api.service.exception.CreatorException;
-import test.creator.AttributesCreatorTestImpl;
-import test.creator.ProductCreatorTestImpl;
+import ru.fd.api.service.process.test.PsProductTestImpl;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -22,7 +39,7 @@ public class ProductWithAttributesTestNG {
 
     @BeforeClass
     public void setUpClass() {
-        product = new ProductCreatorTestImpl().createProduct();
+        product = new PsProductTestImpl().answer(null);
         assertNotNull(product, "Product is null!");
     }
 
@@ -30,7 +47,10 @@ public class ProductWithAttributesTestNG {
     public void formForSend() throws JsonProcessingException, CreatorException {
         testBegin("ProductWithAttributes", "formForSend()");
 
-        Attributes attributes = new AttributesCreatorTestImpl().create();
+        Attributes attributes = new ProductAttributesImpl(
+                new ArrayList<>() {{
+                    add(new ProductAttributeImpl("attr_1", "value attr 1"));
+                    add(new ProductAttributeImpl("attr_2", "value attr 2")); }});
         product = new ProductWithAttributesImpl(product, attributes);
         assertNotNull(product, "Product with attributes is null!");
 

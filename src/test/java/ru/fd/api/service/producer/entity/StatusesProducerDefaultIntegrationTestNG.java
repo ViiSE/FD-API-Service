@@ -24,7 +24,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.StatusDefaultImpl;
+import ru.fd.api.service.entity.StatusImpl;
 import ru.fd.api.service.entity.Statuses;
 
 import java.util.ArrayList;
@@ -42,8 +42,8 @@ public class StatusesProducerDefaultIntegrationTestNG extends AbstractTestNGSpri
     public void getStatusesDefaultInstance() {
         testBegin("StatusesProducerDefault", "getStatusesDefaultInstance()");
 
-        Statuses st = statusesProducer.getStatusesDefaultInstance(new ArrayList<>());
-        assertTrue(st instanceof StatusDefaultImpl, "Statuses: not a valid type!");
+        Statuses st = statusesProducer.getStatusesInstance(new ArrayList<>());
+        assertTrue(st instanceof StatusImpl, "Statuses: not a valid type!");
         System.out.println("Instance: " + st);
 
         testEnd("StatusesProducerDefault", "getStatusesDefaultInstance()");

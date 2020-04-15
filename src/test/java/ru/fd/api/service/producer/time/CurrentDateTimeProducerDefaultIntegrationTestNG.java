@@ -26,7 +26,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.time.CurrentDateTime;
-import ru.fd.api.service.time.CurrentDateTimeDefaultImpl;
+import ru.fd.api.service.time.CurrentDateTimeImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -43,7 +43,7 @@ public class CurrentDateTimeProducerDefaultIntegrationTestNG extends AbstractTes
         testBegin("CurrentDateTimeProducerDefault", "getCurrentDateTimeDefaultInstance()");
 
         CurrentDateTime curDT = currentDateTimeProducer.getCurrentDateTimeDefaultInstance();
-        assertTrue(curDT instanceof CurrentDateTimeDefaultImpl,"CurrentDateTime: not a valid type!");
+        assertTrue(curDT instanceof CurrentDateTimeImpl,"CurrentDateTime: not a valid type!");
         System.out.println("Instance: " + curDT);
 
         testEnd("CurrentDateTimeProducerDefault", "getCurrentDateTimeDefaultInstance()");

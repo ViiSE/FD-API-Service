@@ -33,10 +33,10 @@ public class StatusesDefaultTestNG {
         assertNotNull(name2, "Status name cannot be null!");
         assertFalse(name2.isEmpty(), "Status name is empty!");
 
-        Status status1 = new StatusDefaultImpl(statusId1, name1);
-        Status status2 = new StatusDefaultImpl(statusId2, name2);
+        Status status1 = new StatusImpl(statusId1, name1);
+        Status status2 = new StatusImpl(statusId2, name2);
 
-        statuses = new StatusesDefaultImpl(new ArrayList<>() {{ add(status1); add(status2); }});
+        statuses = new StatusesImpl(new ArrayList<>() {{ add(status1); add(status2); }});
         assertNotNull(statuses, "Statuses is null!");
     }
 

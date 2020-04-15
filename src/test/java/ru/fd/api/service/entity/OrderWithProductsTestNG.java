@@ -17,8 +17,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.data.ProductsOrderPojo;
-import test.creator.OrderProductsCreatorTest;
 import test.util.TestUtils;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.testBegin;
@@ -36,7 +37,10 @@ public class OrderWithProductsTestNG {
     public void setUpClass(long id, short status) {
         this.id = id;
         this.status = status;
-        orderProducts = new OrderProductsCreatorTest().create();
+        orderProducts = new OrderProductsImpl(new ArrayList<>() {{
+            add(new OrderProductSimpleImpl("id1", 5));
+            add(new OrderProductSimpleImpl("id2", 10));
+        }});
 
         order = new OrderWithProductsImpl(new OrderSimpleImpl(id, status), orderProducts);
     }

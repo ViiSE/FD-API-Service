@@ -31,10 +31,10 @@ public class PricesDefaultTestNG {
         assertFalse(departmentId2.isEmpty(), "Department ID is empty!");
         assertFalse(value2 < 0f, "Value is less than 0!");
 
-        Price price1 = new PriceDefaultImpl(departmentId1, value1);
-        Price price2 = new PriceDefaultImpl(departmentId2, value2);
+        Price price1 = new PriceImpl(departmentId1, value1);
+        Price price2 = new PriceImpl(departmentId2, value2);
 
-        prices = new PricesDefaultImpl(new ArrayList<>() {{ add(price1); add(price2); }});
+        prices = new PricesImpl(new ArrayList<>() {{ add(price1); add(price2); }});
         assertNotNull(prices, "Prices is null!");
     }
 

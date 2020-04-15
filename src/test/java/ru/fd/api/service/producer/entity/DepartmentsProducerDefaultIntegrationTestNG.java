@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Departments;
-import ru.fd.api.service.entity.DepartmentsDefaultImpl;
+import ru.fd.api.service.entity.DepartmentsImpl;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class DepartmentsProducerDefaultIntegrationTestNG extends AbstractTestNGS
     public void getDepartmentsDefaultInstance() {
         testBegin("DepartmentsProducerDefault", "getDepartmentsDefaultInstance()");
 
-        Departments deps = departmentsProducer.getDepartmentsDefaultInstance(new ArrayList<>());
-        assertTrue(deps instanceof DepartmentsDefaultImpl, "Departments: not a valid type!");
+        Departments deps = departmentsProducer.getDepartmentsInstance(new ArrayList<>());
+        assertTrue(deps instanceof DepartmentsImpl, "Departments: not a valid type!");
         System.out.println("Instance: " + deps);
 
         testEnd("DepartmentsProducerDefault", "getDepartmentsDefaultInstance()");

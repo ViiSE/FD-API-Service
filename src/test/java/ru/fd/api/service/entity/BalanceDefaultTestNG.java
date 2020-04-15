@@ -27,7 +27,7 @@ public class BalanceDefaultTestNG {
         assertFalse(departmentId.isEmpty(), "Department ID is empty!");
         assertFalse(quantity < 0, "Quantity is less than 0!");
 
-        balance = new BalanceDefaultImpl(departmentId, quantity);
+        balance = new BalanceImpl(departmentId, quantity);
         assertNotNull(balance, "Balance is null!");
 
         this.departmentId = departmentId;

@@ -17,6 +17,6 @@
 
 package ru.fd.api.service.entity;
 
-public interface Customer {
+public interface Customer extends Sendable {
     Object formForSend();
 }

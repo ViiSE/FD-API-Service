@@ -19,7 +19,7 @@ import static test.message.TestMessage.*;
 public class DepartmentsRepositoryDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    @Qualifier("departmentsRepositoryDefault")
+    @Qualifier("departmentsRepository")
     private DepartmentsRepository departmentsRepository;
 
     @BeforeClass
@@ -32,7 +32,7 @@ public class DepartmentsRepositoryDefaultIntegrationTestNG extends AbstractTestN
         testBegin("DepartmentsRepositoryDefaultIntegration", "readDepartments()");
 
         try {
-            Departments departments = departmentsRepository.readDepartments();
+            Departments departments = departmentsRepository.read();
             assertNotNull(departments, "Departments is null!");
             System.out.println("DONE!");
         } catch (RepositoryException ex) {

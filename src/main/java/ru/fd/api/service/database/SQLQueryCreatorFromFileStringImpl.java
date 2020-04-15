@@ -20,9 +20,9 @@ package ru.fd.api.service.database;
 import org.springframework.stereotype.Service;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.ReaderException;
+import ru.fd.api.service.os.FDAPIServiceDirectory;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
 import ru.fd.api.service.producer.database.SQLReaderProducer;
-import ru.fd.api.service.util.FDAPIServiceDirectory;
 
 @Service("sqlQueryCreatorFromFileString")
 public class SQLQueryCreatorFromFileStringImpl implements SQLQueryCreator<String, String> {

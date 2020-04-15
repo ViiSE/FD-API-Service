@@ -21,5 +21,5 @@ import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.exception.RepositoryException;
 
 public interface AttributesRepository {
-    Attributes readAttributes() throws RepositoryException;
+    Attributes read() throws RepositoryException;
 }

@@ -31,10 +31,10 @@ public class BalancesDefaultTestNG {
         assertFalse(departmentId2.isEmpty(), "Department ID is empty!");
         assertFalse(quantity2 < 0, "Quantity is less than 0!");
 
-        Balance balance1 = new BalanceDefaultImpl(departmentId1, quantity1);
-        Balance balance2 = new BalanceDefaultImpl(departmentId2, quantity2);
+        Balance balance1 = new BalanceImpl(departmentId1, quantity1);
+        Balance balance2 = new BalanceImpl(departmentId2, quantity2);
 
-        balances = new BalancesDefaultImpl(new ArrayList<>() {{ add(balance1); add(balance2); }});
+        balances = new BalancesImpl(new ArrayList<>() {{ add(balance1); add(balance2); }});
         assertNotNull(balances, "Balances is null!");
     }
 

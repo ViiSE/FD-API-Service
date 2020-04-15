@@ -49,8 +49,8 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
             String id, String categoryId, String vendorId, String unitId, String name, short tax, String articul, String code) {
         testMethod("getProductSimpleInstance()");
 
-        product = productProducer.getProductDefaultInstance(id, categoryId, vendorId, unitId, name, tax, articul, code);
-        assertTrue(product instanceof ProductDefaultImpl, "Product: not a valid type!");
+        product = productProducer.getProductInstance(id, categoryId, vendorId, unitId, name, tax, articul, code);
+        assertTrue(product instanceof ProductImpl, "Product: not a valid type!");
         System.out.println("Instance: " + product);
     }
 
@@ -58,7 +58,7 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void getProductWithAttributesInstance() {
         testMethod("getProductWithAttributesInstance()");
 
-        Product prWA = productProducer.getProductWithAttributesInstance(product, new AttributesDefaultImpl(new ArrayList<>()));
+        Product prWA = productProducer.getProductWithAttributesInstance(product, new AttributesImpl(new ArrayList<>()));
         assertTrue(prWA instanceof ProductWithAttributesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prWA);
     }
@@ -67,7 +67,7 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void getProductWithBalancesInstance() {
         testMethod("getProductWithBalancesInstance()");
 
-        Product prB = productProducer.getProductWithBalancesInstance(product, new BalancesDefaultImpl(new ArrayList<>()));
+        Product prB = productProducer.getProductWithBalancesInstance(product, new BalancesImpl(new ArrayList<>()));
         assertTrue(prB instanceof ProductWithBalancesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prB);
     }
@@ -94,7 +94,7 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void getProductWithPricesInstance() {
         testMethod("getProductWithPricesInstance()");
 
-        Product prPr = productProducer.getProductWithPricesInstance(product, new PricesDefaultImpl(new ArrayList<>()));
+        Product prPr = productProducer.getProductWithPricesInstance(product, new PricesImpl(new ArrayList<>()));
         assertTrue(prPr instanceof ProductWithPricesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prPr);
     }
@@ -103,7 +103,7 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void getProductWithStatusesInstance() {
         testMethod("getProductWithStatusesInstance()");
 
-        Product prSt = productProducer.getProductWithStatusesInstance(product, new StatusesDefaultImpl(new ArrayList<>()));
+        Product prSt = productProducer.getProductWithStatusesInstance(product, new StatusesImpl(new ArrayList<>()));
         assertTrue(prSt instanceof ProductWithStatusesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prSt);
     }
@@ -112,7 +112,7 @@ public class ProductProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
     public void getProductWithChangedBalancesInstance() {
         testMethod("getProductWithChangedBalancesInstance()");
 
-        Product prSt = productProducer.getProductWithChangedBalancesInstance(product.id(), new BalancesDefaultImpl(new ArrayList<>()));
+        Product prSt = productProducer.getProductWithChangedBalancesInstance(product.id(), new BalancesImpl(new ArrayList<>()));
         assertTrue(prSt instanceof ProductWithChangedBalancesImpl, "Product: not a valid type!");
         System.out.println("Instance: " + prSt);
     }

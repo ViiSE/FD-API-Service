@@ -43,7 +43,7 @@ public class OrderProductsDefaultTestNG {
         assertFalse(quantity1 <= 0, "Quantity is less or equals than 0!");
         assertFalse(quantity2 <= 0, "Quantity is less or equals than 0!");
 
-        orderProducts = new OrderProductsDefaultImpl(new ArrayList<>() {{
+        orderProducts = new OrderProductsImpl(new ArrayList<>() {{
             add(new OrderProductSimpleImpl(id1, quantity1));
             add(new OrderProductSimpleImpl(id2, quantity2));
         }});

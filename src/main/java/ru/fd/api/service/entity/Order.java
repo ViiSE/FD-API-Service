@@ -17,7 +17,7 @@
 
 package ru.fd.api.service.entity;
 
-public interface Order {
+public interface Order extends Sendable {
     Object formForSend();
     long id();
     short status();

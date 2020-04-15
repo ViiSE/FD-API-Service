@@ -4,7 +4,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.producer.util.FDAPIServiceDirectoryProducer;
+import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 
 import static org.testng.Assert.assertNotNull;
@@ -17,7 +17,7 @@ public class LogDirectoryDefaultTestNG {
     @BeforeClass
     public void setUpClass() {
         FDAPIServiceDirectoryProducer dirProducer = new FDAPIServiceDirectoryProducerTestImpl();
-        logDirectory = new LogDirectoryDefaultImpl(dirProducer);
+        logDirectory = new LogDirectoryImpl(dirProducer);
 
     }
 

@@ -33,10 +33,10 @@ public class DepartmentsDefaultTestNG {
         assertNotNull(name2, "Department name cannot be null!");
         assertFalse(name2.isEmpty(), "Department name is empty!");
 
-        Department department1 = new DepartmentDefaultImpl(departmentId1, name1);
-        Department department2 = new DepartmentDefaultImpl(departmentId2, name2);
+        Department department1 = new DepartmentImpl(departmentId1, name1);
+        Department department2 = new DepartmentImpl(departmentId2, name2);
 
-        departments = new DepartmentsDefaultImpl(new ArrayList<>() {{ add(department1); add(department2); }});
+        departments = new DepartmentsImpl(new ArrayList<>() {{ add(department1); add(department2); }});
         assertNotNull(departments, "Departments is null!");
     }
 

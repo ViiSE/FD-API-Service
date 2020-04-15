@@ -12,6 +12,7 @@ package ru.fd.api.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -22,10 +23,13 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.OrdersService;
+import ru.fd.api.service.data.OrderPojo;
 import ru.fd.api.service.data.OrderResponsePojo;
 import ru.fd.api.service.entity.Order;
+import ru.fd.api.service.entity.OrderResponse;
 import ru.fd.api.service.filter.APIFilter;
+import ru.fd.api.service.process.Process;
+import ru.fd.api.service.producer.entity.*;
 import test.util.TestUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -46,7 +50,15 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
     @Autowired private APIFilter filter;
 
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private OrdersService ordersService;
+    @Autowired private OrderProducer oPr;
+    @Autowired private DeliveryProducer dPr;
+    @Autowired private CustomerProducer cPr;
+    @Autowired private ProductProducer pPr;
+    @Autowired private ProductsProducer psPr;
+
+    @Autowired
+    @Qualifier("psChainCreateOrder")
+    private Process<OrderResponse, OrderPojo> ordersService;
 
     @Value("${fd.api.service.jwt-id}")      private String id;
     @Value("${fd.api.service.jwt-issuer}")  private String issuer;
@@ -68,36 +80,35 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
 
         testToken = TestUtils.generateTestToken(id, issuer, secret, subject, timeToLive);
 
-        order = ordersService.orderProducer().getOrderWithCommentInstance(
-                ordersService.orderProducer().getOrderWithCustomerInstance(
-                        ordersService.orderProducer().getOrderWithDeliveryInstance(
-                                ordersService.orderProducer().getOrderWithCityIdInstance(
-                                        ordersService.orderProducer().getOrderWithPayTypeIdInstance(
-                                                ordersService.orderProducer().getOrderWithDateTimeInstance(
-                                                        ordersService.orderProducer().getOrderSimpleInstance(
+        order = oPr.getOrderWithCommentInstance(
+                oPr.getOrderWithCustomerInstance(
+                        oPr.getOrderWithDeliveryInstance(
+                                oPr.getOrderWithCityIdInstance(
+                                        oPr.getOrderWithPayTypeIdInstance(
+                                                oPr.getOrderWithDateTimeInstance(
+                                                        oPr.getOrderSimpleInstance(
                                                                 1L,
                                                                 (short) 0),
                                                         LocalDateTime.now()),
                                                 (short) 0),
                                         101),
-                                ordersService.deliveryProducer().getDeliveryWithDateInstance(
-                                        ordersService.deliveryProducer().getDeliveryWithTimeIdInstance(
-                                                ordersService.deliveryProducer().getDeliveryWithDepartmentIdInstance(
-                                                        ordersService.deliveryProducer()
-                                                                .getDeliverySimpleInstance(
-                                                                        (short) 0,
-                                                                        101,
-                                                                        "ул. Ленинградская, 145Б"),
+                                dPr.getDeliveryWithDateInstance(
+                                        dPr.getDeliveryWithTimeIdInstance(
+                                                dPr.getDeliveryWithDepartmentIdInstance(
+                                                        dPr.getDeliverySimpleInstance(
+                                                                (short) 0,
+                                                                101,
+                                                                "ул. Пушкина, 145Б"),
                                                         "100"),
                                                 (short) 0),
                                         LocalDate.now())),
-                        ordersService.customerProducer().getCustomerFromCompanyInstance(
-                                ordersService.customerProducer().getCustomerWithNameInstance(
-                                        ordersService.customerProducer().getCustomerWithEmailInstance(
-                                                ordersService.customerProducer().getCustomerWithPhoneNumberInstance(
-                                                        ordersService.customerProducer()
-                                                                .getCustomerSimpleInstance((short) 0),
-                                                        "89098238724"),
+                        cPr.getCustomerFromCompanyInstance(
+                                cPr.getCustomerWithNameInstance(
+                                        cPr.getCustomerWithEmailInstance(
+                                                cPr.getCustomerWithPhoneNumberInstance(
+                                                        cPr.getCustomerSimpleInstance(
+                                                                (short) 0),
+                                                        "85053452314"),
                                                 "example@example.com"),
                                         "John Doe"),
                                 "22505",
@@ -134,12 +145,12 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
     void whenValidToken_andOrderIsCorrect_thenReturns200WithContent() throws Exception {
         testMethod("orders() [when valid token and order is correct then returns 200 with content]");
 
-        order = ordersService.orderProducer().getOrderWithProductsInstance(
+        order = oPr.getOrderWithProductsInstance(
                 order,
-                ordersService.productsProducer().getOrderProductsDefaultInstance(
+                psPr.getOrderProductsDefaultInstance(
                         new ArrayList<>() {{
-                            add(ordersService.productProducer().getOrderProductSimpleInstance("id1", 10));
-                            add(ordersService.productProducer().getOrderProductSimpleInstance("id2", 20));
+                            add(pPr.getOrderProductSimpleInstance("id1", 10));
+                            add(pPr.getOrderProductSimpleInstance("id2", 20));
                         }}));
 
         String response = mockMvc.perform(

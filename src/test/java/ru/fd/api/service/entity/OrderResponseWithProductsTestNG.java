@@ -17,8 +17,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.OrderResponsePojo;
-import ru.fd.api.service.data.ProductOrderPojo;
-import ru.fd.api.service.data.ProductsOrderPojo;
 
 import java.util.ArrayList;
 
@@ -32,10 +30,10 @@ public class OrderResponseWithProductsTestNG {
     private short status;
     private long id;
 
-    private String opId1;
-    private String opId2;
-    private int opq1;
-    private int opq2;
+//    private String opId1;
+//    private String opId2;
+//    private int opq1;
+//    private int opq2;
 
     @BeforeClass
     @Parameters({"id", "status", "opId1", "opId2", "opq1", "opq2"})
@@ -48,7 +46,7 @@ public class OrderResponseWithProductsTestNG {
         assertFalse(opq1 <= 0, "OrderProduct quantity is less or equals than 0!");
         assertFalse(opq2 <= 0, "OrderProduct quantity is less or equals than 0!");
 
-        Products orderProducts = new OrderProductsDefaultImpl(new ArrayList<>() {{
+        Products orderProducts = new OrderProductsImpl(new ArrayList<>() {{
             add(new OrderProductSimpleImpl(opId1, opq1));
             add(new OrderProductSimpleImpl(opId2, opq2));
         }});
@@ -56,11 +54,11 @@ public class OrderResponseWithProductsTestNG {
         this.id = id;
         this.status = status;
 
-        this.opId1 = opId1;
-        this.opId2 = opId2;
+//        this.opId1 = opId1;
+//        this.opId2 = opId2;
 
-        this.opq1 = opq1;
-        this.opq2 = opq2;
+//        this.opq1 = opq1;
+//        this.opq2 = opq2;
 
         orderResponse = new OrderResponseWithProductsImpl(
                 new OrderResponseSimpleImpl(id, status),

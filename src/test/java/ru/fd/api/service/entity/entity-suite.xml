@@ -179,11 +179,11 @@
             </class>
             <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="phoneNumber" value="89091111111"/>
+                <parameter name="phoneNumber" value="85551111111"/>
             </class>
             <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="phoneNumber" value="89091111111"/>
+                <parameter name="phoneNumber" value="85551111111"/>
             </class>
             <class name="ru.fd.api.service.entity.DeliverySimpleTestNG">
                 <parameter name="type" value="1"/>
