@@ -31,6 +31,7 @@ import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
 import ru.fd.api.service.repository.mapper.RmProductsWithPricesImpl;
+import ru.fd.api.service.repository.mapper.RseProductsWithPricesImpl;
 
 import java.util.Map;
 
@@ -60,9 +61,9 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepositoryDecor
     @Override
     public Products read(Products products) throws RepositoryException {
           try {
-              Map<String, Prices> pricesForProducts = jdbcTemplate.queryForObject(
+              Map<String, Prices> pricesForProducts = jdbcTemplate.query(
                       sqlQueryCreator.create("products_with_prices.sql").content(),
-                      new RmProductsWithPricesImpl(
+                      new RseProductsWithPricesImpl(
                               prProd,
                               prsProd));
 
