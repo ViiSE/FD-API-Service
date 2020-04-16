@@ -30,7 +30,6 @@ import ru.fd.api.service.producer.entity.PriceProducer;
 import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsWithPricesImpl;
 import ru.fd.api.service.repository.mapper.RseProductsWithPricesImpl;
 
 import java.util.Map;

@@ -18,7 +18,6 @@ package ru.fd.api.service.repository.mapper;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Price;
 import ru.fd.api.service.entity.Prices;
 import ru.fd.api.service.producer.entity.PriceProducer;
@@ -47,7 +46,7 @@ public class RseProductsWithPricesImpl implements ResultSetExtractor<Map<String,
         Map<String, Prices> pricesMap = new HashMap<>();
         String id = "";
         List<Price> prices = new ArrayList<>();
-        do {
+        while(rs.next()) {
             if(id.isEmpty())
                 id = rs.getString("GID_TOVAR").trim();
             if(!id.equals(rs.getString("GID_TOVAR"))) {
@@ -59,7 +58,7 @@ public class RseProductsWithPricesImpl implements ResultSetExtractor<Map<String,
             String department_id = rs.getString("GID_DEP").trim();
             float value = rs.getInt("PRICE");
             prices.add(priceProducer.getPriceInstance(department_id, value));
-        } while(rs.next());
+        }
 
         pricesMap.put(id, pricesProducer.getPricesInstance(new ArrayList<>(prices)));
 
