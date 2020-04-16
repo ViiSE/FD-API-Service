@@ -27,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Component("sqlReaderFromFile")
 @Scope("prototype")
@@ -47,7 +48,7 @@ public class SQLReaderFromFileImpl implements SQLReader<String> {
         StringBuilder content = new StringBuilder();
 
         File file = new File(serviceDirectory.directory() + "sql" + File.separator + filename);
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             String st;
             while ((st = br.readLine()) != null)
                 content.append(st).append("\n");
