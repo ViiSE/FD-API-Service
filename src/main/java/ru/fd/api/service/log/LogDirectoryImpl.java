@@ -17,7 +17,6 @@ package ru.fd.api.service.log;
 
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.os.FDAPIServiceDirectory;
-import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 
 import java.io.File;
 
@@ -29,15 +28,14 @@ import java.io.File;
 public class LogDirectoryImpl implements LogDirectory {
 
     private static final String logDirectoryName = "logs";
-    private final FDAPIServiceDirectoryProducer fdAPIServiceDirProducer;
+    private final FDAPIServiceDirectory currentDir;
 
-    public LogDirectoryImpl(FDAPIServiceDirectoryProducer fdAPIServiceDirProducer) {
-        this.fdAPIServiceDirProducer = fdAPIServiceDirProducer;
+    public LogDirectoryImpl(FDAPIServiceDirectory currentDir) {
+        this.currentDir = currentDir;
     }
 
     @Override
     public String directory() {
-        FDAPIServiceDirectory currentDir = fdAPIServiceDirProducer.getFdAPIServiceCurrentDirectoryInstance();
         return currentDir.directory() + logDirectoryName + File.separator;
     }
 }

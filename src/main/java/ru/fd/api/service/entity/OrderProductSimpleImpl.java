@@ -27,10 +27,12 @@ public class OrderProductSimpleImpl implements Product {
 
     private final String id;
     private final int quantity;
+    private final float sumPrice;
 
-    public OrderProductSimpleImpl(String id, int quantity) {
+    public OrderProductSimpleImpl(String id, int quantity, float sumPrice) {
         this.id = id;
         this.quantity = quantity;
+        this.sumPrice = sumPrice;
     }
 
     @Override
@@ -45,6 +47,6 @@ public class OrderProductSimpleImpl implements Product {
 
     @Override
     public Object formForSend() {
-        return new ProductOrderPojo(id, quantity);
+        return new ProductOrderPojo(id, quantity, sumPrice);
     }
 }

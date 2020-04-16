@@ -20,6 +20,7 @@ package ru.fd.api.service.process;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.DeliveryPojo;
 import ru.fd.api.service.entity.Delivery;
+import ru.fd.api.service.exception.CreateOrderBadRequestException;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.producer.entity.DeliveryProducer;
 
@@ -53,30 +54,45 @@ public class PsDeliveryImpl implements Process<Delivery, DeliveryPojo> {
     private void checkDelivery(DeliveryPojo deliveryPojo) throws ProcessException {
         // TODO: 16.01.2020 CREATE CHECKER INTERFACE
 
-        if(deliveryPojo == null)
-            throw new ProcessException("Delivery required");
+        if(deliveryPojo == null) {
+            String message = "Delivery required";
+            throw new ProcessException(message, new CreateOrderBadRequestException(message));
+        }
 
-        if(deliveryPojo.getType() != 0 && deliveryPojo.getType() != 1)
-            throw new ProcessException("Delivery: unknown type");
+        if(deliveryPojo.getType() != 0 && deliveryPojo.getType() != 1) {
+            String message = "Delivery: unknown type";
+            throw new ProcessException(message, new CreateOrderBadRequestException(message));
+        }
 
-        if(deliveryPojo.getCityId() < 0)
-            throw new ProcessException("Delivery: city id required");
+        if(deliveryPojo.getCityId() < 0) {
+            String message = "Delivery: city id required";
+            throw new ProcessException(message, new CreateOrderBadRequestException(message));
+        }
 
         if(deliveryPojo.getType() == 0) {
-            if (deliveryPojo.getDepartmentId() == null)
-                throw new ProcessException("Delivery: department id required");
+            if (deliveryPojo.getDepartmentId() == null) {
+                String message = "Delivery: department id required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
 
-            if (deliveryPojo.getDepartmentId().isEmpty())
-                    throw new ProcessException("Delivery: department id required");
+            if (deliveryPojo.getDepartmentId().isEmpty()) {
+                String message = "Delivery: department id required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
         } else if(deliveryPojo.getType() == 1) {
-            if(deliveryPojo.getAddress().isEmpty())
-                throw new ProcessException("Delivery: address required");
+            if(deliveryPojo.getAddress().isEmpty()) {
+                String message = "Delivery: address required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
 
-            if (deliveryPojo.getDeliveryDate().equals(LocalDate.of(1, 1, 1)))
-                throw new ProcessException("Delivery: delivery date required");
+            if (deliveryPojo.getDeliveryDate().equals(LocalDate.of(1, 1, 1))) {
+                String message = "Delivery: delivery date required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
 
             if(deliveryPojo.getDeliveryTimeId() != 0 && deliveryPojo.getDeliveryTimeId() != 1) {
-                throw new ProcessException("Delivery: unknown delivery time id");
+                String message = "Delivery: unknown delivery time id";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
             }
         }
     }

@@ -32,13 +32,17 @@ public class ProductOrderPojo {
     private final String id;
     @ApiModelProperty(notes = "Количество товара", position = 2, required = true)
     private final int quantity;
+    @ApiModelProperty(notes = "Сумма товаров по ценам интернет-магазина", position = 3, required = true)
+    private final float sumPrice;
 
     @JsonCreator
     public ProductOrderPojo(
             @JsonProperty("id") String id,
-            @JsonProperty("quantity") int quantity) {
+            @JsonProperty("quantity") int quantity,
+            @JsonProperty("sum_price") float sumPrice) {
         this.id = id;
         this.quantity = quantity;
+        this.sumPrice = sumPrice;
     }
 
     public String getId() {
@@ -47,5 +51,10 @@ public class ProductOrderPojo {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @JsonProperty("sum_price")
+    public float getSumPrice() {
+        return sumPrice;
     }
 }

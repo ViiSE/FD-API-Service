@@ -16,7 +16,6 @@
 package ru.fd.api.service.log;
 
 import ru.fd.api.service.os.FDAPIServiceDirectory;
-import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 
 import java.io.File;
 
@@ -27,15 +26,14 @@ import java.io.File;
 public class LogDirectoryTestImpl implements LogDirectory {
 
     private static final String logDirectoryName = "logs";
-    private final FDAPIServiceDirectoryProducer fdAPIServiceDirProducer;
+    private final FDAPIServiceDirectory currentDir;
 
-    public LogDirectoryTestImpl(FDAPIServiceDirectoryProducer fdAPIServiceDirProducer) {
-        this.fdAPIServiceDirProducer = fdAPIServiceDirProducer;
+    public LogDirectoryTestImpl(FDAPIServiceDirectory currentDir) {
+        this.currentDir = currentDir;
     }
 
     @Override
     public String directory() {
-        FDAPIServiceDirectory currentDir = fdAPIServiceDirProducer.getFdAPIServiceCurrentDirectoryInstance();
         return currentDir.directory() + "/src/test/resources/" + logDirectoryName + File.separator;
     }
 }

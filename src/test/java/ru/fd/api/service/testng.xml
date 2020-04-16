@@ -12,13 +12,15 @@
         <suite-file path="repository/repository-suite.xml"/>
         <suite-file path="time/time-suite.xml"/>
         <suite-file path="os/os-suite.xml"/>
+        <suite-file path="database/database-suite.xml"/>
+        <suite-file path="repository/repository-suite.xml"/>
+
 
         <!--            Integration tests     -->
-        <suite-file path="repository/repository-integration-suite.xml"/>
-        <suite-file path="producer/time/producer_time-integration-suite.xml"/>
-        <suite-file path="producer/os/producer_os-integration-suite.xml"/>
+<!--        <suite-file path="repository/repository-integration-suite.xml"/>-->
         <suite-file path="producer/entity/producer_entity-integration-suite.xml"/>
-        <suite-file path="controller/controller-suite.xml"/>
+<!--        <suite-file path="controller/controller-suite.xml"/>-->
+
 
         <!--    End     -->
         <suite-file path="end.xml"/>

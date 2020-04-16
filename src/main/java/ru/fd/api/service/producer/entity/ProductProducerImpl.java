@@ -75,7 +75,7 @@ public class ProductProducerImpl implements ProductProducer {
     }
 
     @Override
-    public Product getOrderProductSimpleInstance(String id, int quantity) {
-        return (Product) ctx.getBean("orderProductSimple", id, quantity);
+    public Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice) {
+        return (Product) ctx.getBean("orderProductSimple", id, quantity, sumPrice);
     }
 }

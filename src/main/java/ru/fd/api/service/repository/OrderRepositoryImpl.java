@@ -91,6 +91,7 @@ public class OrderRepositoryImpl implements OrderRepository<OrderResponse, Order
                             ps.setInt(2, orderPojo.getProducts().get(i).getQuantity());
                             ps.setShort(3, (short) 0);
                             ps.setLong(4, orderPK);
+                            ps.setFloat(5, orderPojo.getProducts().get(i).getSumPrice());
                         }
 
                         @Override

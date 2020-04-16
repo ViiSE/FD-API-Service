@@ -137,6 +137,7 @@
             <class name="ru.fd.api.service.entity.OrderProductSimpleTestNG">
                 <parameter name="id" value="id_1"/>
                 <parameter name="quantity" value="1"/>
+                <parameter name="sumPrice" value="50.00"/>
             </class>
             <class name="ru.fd.api.service.entity.OrderResponseSimpleTestNG">
                 <parameter name="id" value="1"/>
@@ -179,11 +180,7 @@
             </class>
             <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
                 <parameter name="type" value="1"/>
-                <parameter name="phoneNumber" value="85551111111"/>
-            </class>
-            <class name="ru.fd.api.service.entity.CustomerWithPhoneNumberTestNG">
-                <parameter name="type" value="1"/>
-                <parameter name="phoneNumber" value="85551111111"/>
+                <parameter name="phoneNumber" value="84951111111"/>
             </class>
             <class name="ru.fd.api.service.entity.DeliverySimpleTestNG">
                 <parameter name="type" value="1"/>

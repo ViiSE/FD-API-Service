@@ -46,7 +46,8 @@ public class PsOrderProductsImpl implements Process<Products, OrderPojo> {
                         .map(product -> productProducer
                                 .getOrderProductSimpleInstance(
                                         product.getId(),
-                                        product.getQuantity()))
+                                        product.getQuantity(),
+                                        product.getSumPrice()))
                         .collect(Collectors.toList()));
     }
 }

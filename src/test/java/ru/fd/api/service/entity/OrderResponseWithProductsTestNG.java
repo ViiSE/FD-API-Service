@@ -47,8 +47,8 @@ public class OrderResponseWithProductsTestNG {
         assertFalse(opq2 <= 0, "OrderProduct quantity is less or equals than 0!");
 
         Products orderProducts = new OrderProductsImpl(new ArrayList<>() {{
-            add(new OrderProductSimpleImpl(opId1, opq1));
-            add(new OrderProductSimpleImpl(opId2, opq2));
+            add(new OrderProductSimpleImpl(opId1, opq1, 10.99f));
+            add(new OrderProductSimpleImpl(opId2, opq2, 10.99f));
         }});
 
         this.id = id;

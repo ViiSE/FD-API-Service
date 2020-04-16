@@ -5,10 +5,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
+import ru.fd.api.service.os.FDAPIServiceCurrentDirectoryImpl;
 import ru.fd.api.service.time.CurrentDateTime;
 import ru.fd.api.service.time.CurrentDateTimeImpl;
-import test.producer.FDAPIServiceDirectoryProducerTestImpl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,8 +25,7 @@ public class LoggerFileDefaultTestNG {
 
     @BeforeClass
     public void setUpClass() {
-        FDAPIServiceDirectoryProducer dirProducer = new FDAPIServiceDirectoryProducerTestImpl();
-        logDirectory = new LogDirectoryTestImpl(dirProducer);
+        logDirectory = new LogDirectoryTestImpl(new FDAPIServiceCurrentDirectoryImpl());
         loggerFile = new LoggerFileImpl(logDirectory);
         curDateTime = new CurrentDateTimeImpl();
 

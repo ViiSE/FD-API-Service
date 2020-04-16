@@ -97,8 +97,9 @@ public class OrdersController {
                     "допустимые символы." +
                     "\nСписок товаров заказа <code><b>order{products[]}</b></code> не может быть пустым, иначе API " +
                     "пришлет ответ со статусом <code><b>400</b></code> и соответствующим сообщением. Каждый товар в " +
-                    "списке должен иметь GID товара <code><b>order{products[product{id}]}</b></code> и количество " +
-                    "этого заказанного товара <code><b>order{products[product{quantity}]}</b></code>." +
+                    "списке должен иметь GID товара <code><b>order{products[product{id}]}</b></code>, количество " +
+                    "этого заказанного товара <code><b>order{products[product{quantity}]}</b></code>, и сумму в ценах " +
+                    "интернет-магазина <code><b>order{products[product{sum_price}]}</b></code>." +
                     "\nВ случае успешного создания заказа (статус HTTP <code><b>200</b></code>) ответ будет состоять " +
                     "из сообщения <code><b>order_response{message}</b></code>, id заказа сайта " +
                     "<code><b>order_response{id}</b></code>, и статуса заказа " +

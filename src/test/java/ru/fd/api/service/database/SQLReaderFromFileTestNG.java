@@ -24,9 +24,9 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.exception.ReaderException;
+import ru.fd.api.service.os.FDAPIServiceDirectory;
 import ru.fd.api.service.producer.database.SQLQueryProducer;
 import ru.fd.api.service.producer.database.SQLReaderProducer;
-import ru.fd.api.service.producer.os.FDAPIServiceDirectoryProducer;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
@@ -35,7 +35,7 @@ import static test.message.TestMessage.*;
 @SpringBootTest(classes = ApiServiceApplication.class)
 public class SQLReaderFromFileTestNG extends AbstractTestNGSpringContextTests {
 
-    @Autowired private FDAPIServiceDirectoryProducer fdapiServiceDirectoryProducer;
+    @Autowired private FDAPIServiceDirectory fdapiServiceDirectory;
     @Autowired private SQLReaderProducer sqlReaderProducer;
     @Autowired private SQLQueryProducer sqlQueryProducer;
 
@@ -47,7 +47,7 @@ public class SQLReaderFromFileTestNG extends AbstractTestNGSpringContextTests {
     private SQLReader<String> createSQLReader(String filename) {
         SQLReader<String> sqlReader =
                 sqlReaderProducer.getSQLReaderFromFileStringInstance(
-                        fdapiServiceDirectoryProducer.getFdAPIServiceCurrentDirectoryInstance(),
+                        fdapiServiceDirectory,
                         sqlQueryProducer,
                         filename);
         assertNotNull(sqlReader, "SQLReader is null!");

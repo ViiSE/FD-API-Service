@@ -69,7 +69,7 @@ public class ProductProducerTestImpl implements ProductProducer {
     }
 
     @Override
-    public Product getOrderProductSimpleInstance(String id, int quantity) {
-        return new OrderProductSimpleImpl(id, quantity);
+    public Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice) {
+        return new OrderProductSimpleImpl(id, quantity, sumPrice);
     }
 }

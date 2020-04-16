@@ -27,8 +27,8 @@ public class PsOrderProductsTestImpl implements Process<Products, Void> {
 
     public Products answer(Void v) {
         return new OrderProductsImpl(new ArrayList<>() {{
-            add(new OrderProductSimpleImpl("id1", 5));
-            add(new OrderProductSimpleImpl("id2", 10));
+            add(new OrderProductSimpleImpl("id1", 5, 10.00f));
+            add(new OrderProductSimpleImpl("id2", 10, 12.50f));
         }});
     }
 }

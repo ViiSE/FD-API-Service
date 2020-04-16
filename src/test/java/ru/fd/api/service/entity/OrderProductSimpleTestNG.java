@@ -26,19 +26,22 @@ public class OrderProductSimpleTestNG {
 
     private String id;
     private int quantity;
+    private float sumPrice;
 
     @BeforeClass
-    @Parameters({"id", "quantity"})
-    public void setUpClass(String id, int quantity) {
+    @Parameters({"id", "quantity", "sumPrice"})
+    public void setUpClass(String id, int quantity, float sumPrice) {
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
         assertFalse(quantity <= 0, "Quantity is less or equals than 0!");
+        assertFalse(sumPrice < 0.f, "Sum price is less than 0!");
 
         this.id = id;
         this.quantity = quantity;
+        this.sumPrice = sumPrice;
 
-        product = new OrderProductSimpleImpl(id, quantity);
+        product = new OrderProductSimpleImpl(id, quantity, sumPrice);
         assertNotNull(product, "Product is null!");
 
         testBegin("OrderProductSimple");
@@ -52,6 +55,7 @@ public class OrderProductSimpleTestNG {
         assertNotNull(orderProductPojo, "ProductPojo is null!");
         assertEquals(orderProductPojo.getId(), id);
         assertEquals(orderProductPojo.getQuantity(), quantity);
+        assertEquals(orderProductPojo.getSumPrice(), sumPrice);
         System.out.println(mapper.writeValueAsString(orderProductPojo));
     }
 

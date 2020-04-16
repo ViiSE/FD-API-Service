@@ -88,8 +88,8 @@ public class OrderRepositoryDefaultIntegrationTestNG extends AbstractTestNGSprin
                                         "43122")),
                         psP.getOrderProductsDefaultInstance(
                                 new ArrayList<>() {{
-                                    add(pP.getOrderProductSimpleInstance("id1", 10));
-                                    add(pP.getOrderProductSimpleInstance("id2", 20));
+                                    add(pP.getOrderProductSimpleInstance("id1", 10, 10.50f));
+                                    add(pP.getOrderProductSimpleInstance("id2", 20, 50.99f));
                                 }})),
                 "Коментарий");
         testBegin("OrderRepositoryDefault");

@@ -38,8 +38,8 @@ public class OrderWithProductsTestNG {
         this.id = id;
         this.status = status;
         orderProducts = new OrderProductsImpl(new ArrayList<>() {{
-            add(new OrderProductSimpleImpl("id1", 5));
-            add(new OrderProductSimpleImpl("id2", 10));
+            add(new OrderProductSimpleImpl("id1", 5, 10.99f));
+            add(new OrderProductSimpleImpl("id2", 10, 10.99f));
         }});
 
         order = new OrderWithProductsImpl(new OrderSimpleImpl(id, status), orderProducts);

@@ -30,5 +30,5 @@ public interface ProductProducer {
     Product getProductWithShortDescriptionInstance(Product product, String shortDescription);
     Product getProductWithFullDescriptionInstance(Product product, String fullDescription);
     Product getProductWithChangedBalancesInstance(String id, Balances balances);
-    Product getOrderProductSimpleInstance(String id, int quantity);
+    Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice);
 }

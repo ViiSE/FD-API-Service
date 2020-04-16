@@ -19,6 +19,7 @@ package ru.fd.api.service.process;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.CustomerPojo;
 import ru.fd.api.service.entity.Customer;
+import ru.fd.api.service.exception.CreateOrderBadRequestException;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.producer.entity.CustomerProducer;
 
@@ -51,8 +52,10 @@ public class PsCustomerEmailOrPhoneReqImpl implements Process<Customer, Customer
 
     private void checkPhoneAndEmail(CustomerPojo customerPojo) throws ProcessException {
         if(!checkPhone(customerPojo))
-            if(!checkEmail(customerPojo))
-                throw new ProcessException("Phone number or email required");
+            if(!checkEmail(customerPojo)) {
+                String message = "Phone number or email required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
     }
 
     private boolean checkPhone(CustomerPojo customerPojo) {
@@ -65,18 +68,26 @@ public class PsCustomerEmailOrPhoneReqImpl implements Process<Customer, Customer
 
     private void checkCustomer(CustomerPojo customerPojo) throws ProcessException {
         // TODO: 16.01.2020 NEW INTERFACE FOR CHECKER
-        if(customerPojo == null)
-            throw new ProcessException("Customer required");
+        if(customerPojo == null) {
+            String message = "Customer required";
+            throw new ProcessException("Customer required", new CreateOrderBadRequestException(message));
+        }
 
-        if(customerPojo.getType() != 0 && customerPojo.getType() != 1)
-            throw new ProcessException("Customer: Type required");
+        if(customerPojo.getType() != 0 && customerPojo.getType() != 1) {
+            String message = "Customer: Type required";
+            throw new ProcessException(message ,new CreateOrderBadRequestException(message));
+        }
 
         if(customerPojo.getType() == 1) {
-            if(customerPojo.getInn().isEmpty())
-                throw new ProcessException("Customer: Inn required");
+            if(customerPojo.getInn().isEmpty()) {
+                String message = "Customer: Inn required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
 
-            if(customerPojo.getKpp().isEmpty())
-                throw new ProcessException("Customer: Kpp required");
+            if(customerPojo.getKpp().isEmpty()) {
+                String message = "Customer: Kpp required";
+                throw new ProcessException(message, new CreateOrderBadRequestException(message));
+            }
         }
     }
 }

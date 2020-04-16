@@ -149,8 +149,8 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
                 order,
                 psPr.getOrderProductsDefaultInstance(
                         new ArrayList<>() {{
-                            add(pPr.getOrderProductSimpleInstance("id1", 10));
-                            add(pPr.getOrderProductSimpleInstance("id2", 20));
+                            add(pPr.getOrderProductSimpleInstance("id1", 10, 10.99f));
+                            add(pPr.getOrderProductSimpleInstance("id2", 20, 400.99f));
                         }}));
 
         String response = mockMvc.perform(
