@@ -22,22 +22,32 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.ProductSimpleImpl;
 import ru.fd.api.service.entity.Products;
+import ru.fd.api.service.entity.ProductsImpl;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.ProductProducer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository("productsRepositorySimple")
 public class ProductsRepositorySimpleImpl implements ProductsRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Products> rmProd;
+    private final RowMapper<Product> rmProd;
+    private final ProductProducer productProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public ProductsRepositorySimpleImpl(
             JdbcTemplate jdbcTemplate,
-            @Qualifier("rmProductsSimple") RowMapper<Products> rmProd,
+            ProductProducer productProducer,
+            @Qualifier("rmProductSimple") RowMapper<Product> rmProd,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
+        this.productProducer = productProducer;
         this.rmProd = rmProd;
         this.sqlQueryCreator = sqlQueryCreator;
     }
@@ -45,9 +55,18 @@ public class ProductsRepositorySimpleImpl implements ProductsRepository {
     @Override
     public Products read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Product> products = jdbcTemplate.query(
                     sqlQueryCreator.create("products_simple.sql").content(),
                     rmProd);
+            int key = 0;
+            List<Product> sProducts = new ArrayList<>();
+            for(Product product: products) {
+                sProducts.add(new ProductSimpleImpl(
+                        product,
+                        key));
+                key++;
+            }
+            return new ProductsImpl(productProducer, sProducts);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }
