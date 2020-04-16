@@ -18,27 +18,32 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.StatusProducer;
+import ru.fd.api.service.producer.entity.StatusesProducer;
+import ru.fd.api.service.repository.mapper.RmStatusesImpl;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("statusesRepository")
 public class StatusesRepositoryImpl implements StatusesRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Statuses> rmStats;
+    private final StatusProducer statProd;
+    private final StatusesProducer statsProd;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public StatusesRepositoryImpl(
             JdbcTemplate jdbcTemplate,
-            RowMapper<Statuses> rmStats,
+            StatusProducer statProd,
+            StatusesProducer statsProd,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
-        this.rmStats = rmStats;
+        this.statProd = statProd;
+        this.statsProd = statsProd;
         this.sqlQueryCreator = sqlQueryCreator;
     }
 
@@ -47,7 +52,9 @@ public class StatusesRepositoryImpl implements StatusesRepository {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("statuses.sql").content(),
-                    rmStats);
+                    new RmStatusesImpl(
+                            statsProd,
+                            statProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

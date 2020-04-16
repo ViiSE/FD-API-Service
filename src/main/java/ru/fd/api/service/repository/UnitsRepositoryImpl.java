@@ -19,26 +19,31 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.UnitProducer;
+import ru.fd.api.service.producer.entity.UnitsProducer;
+import ru.fd.api.service.repository.mapper.RmUnitsImpl;
 
 @Repository("unitsRepository")
 public class UnitsRepositoryImpl implements UnitsRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Units> rmUnits;
+    private final UnitProducer uProd;
+    private final UnitsProducer usProd;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public UnitsRepositoryImpl(
             JdbcTemplate jdbcTemplate,
-            RowMapper<Units> rmUnits,
+            UnitProducer uProd,
+            UnitsProducer usProd,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
-        this.rmUnits = rmUnits;
+        this.uProd = uProd;
+        this.usProd = usProd;
         this.sqlQueryCreator = sqlQueryCreator;
     }
 
@@ -47,7 +52,9 @@ public class UnitsRepositoryImpl implements UnitsRepository {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("units.sql").content(),
-                    rmUnits);
+                    new RmUnitsImpl(
+                            uProd,
+                            usProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

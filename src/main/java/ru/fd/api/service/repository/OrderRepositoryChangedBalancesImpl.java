@@ -16,15 +16,16 @@
 
 package ru.fd.api.service.repository;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.OrderProducer;
+import ru.fd.api.service.repository.mapper.RmOrderChangedBalancesImpl;
+import ru.fd.api.service.repository.mapper.RmOrdersListChangedBalancesImpl;
 
 import java.util.List;
 
@@ -33,18 +34,15 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
 
     private final JdbcTemplate jdbcTemplate;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Order> rmCbOrder;
-    private final RowMapper<Order> rmCbListOrder;
+    private final OrderProducer oProd;
 
     public OrderRepositoryChangedBalancesImpl(
             JdbcTemplate jdbcTemplate,
             SQLQueryCreator<String, String> sqlQueryCreator,
-            @Qualifier("rmOrderChangedBalances") RowMapper<Order> rmCbOrder,
-            @Qualifier("rmOrdersListChangedBalances") RowMapper<Order> rmCbListOrder) {
+            OrderProducer oProd) {
         this.jdbcTemplate = jdbcTemplate;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmCbOrder = rmCbOrder;
-        this.rmCbListOrder = rmCbListOrder;
+        this.oProd = oProd;
     }
 
     @Override
@@ -58,7 +56,8 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("order_status.sql").content(),
                     new Object[] {id},
-                    rmCbOrder);
+                    new RmOrderChangedBalancesImpl(
+                            oProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage());
         }
@@ -69,7 +68,7 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
         try {
             return jdbcTemplate.query(
                     sqlQueryCreator.create("orders_statuses.sql").content(),
-                    rmCbListOrder);
+                    new RmOrdersListChangedBalancesImpl(oProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage());
         }
@@ -81,7 +80,7 @@ public class OrderRepositoryChangedBalancesImpl implements OrderRepository<Void,
             String source = sqlQueryCreator.create("orders_statuses_first.sql").content();
             return jdbcTemplate.query(
                     source.replaceAll("#SLICE_SIZE#", String.valueOf(sliceSize)),
-                    rmCbListOrder);
+                    new RmOrdersListChangedBalancesImpl(oProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage());
         }

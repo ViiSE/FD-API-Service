@@ -16,30 +16,42 @@
 
 package ru.fd.api.service.repository;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.BalanceProducer;
+import ru.fd.api.service.producer.entity.BalancesProducer;
+import ru.fd.api.service.producer.entity.ProductProducer;
+import ru.fd.api.service.producer.entity.ProductsProducer;
+import ru.fd.api.service.repository.mapper.RmProductsChangedBalancesImpl;
 
 @Repository("productsRepositoryWithChangedBalances")
 public class ProductsRepositoryWithChangedBalancesImpl implements ProductsRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Products> rmProducts;
+    private final ProductProducer pProd;
+    private final ProductsProducer psProd;
+    private final BalanceProducer bProd;
+    private final BalancesProducer bsProd;
 
     public ProductsRepositoryWithChangedBalancesImpl(
             JdbcTemplate jdbcTemplate,
             SQLQueryCreator<String, String> sqlQueryCreator,
-            @Qualifier("rmProductsChangedBalances") RowMapper<Products> rmProducts) {
+            ProductProducer pProd,
+            ProductsProducer psProd,
+            BalanceProducer bProd,
+            BalancesProducer bsProd) {
         this.jdbcTemplate = jdbcTemplate;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmProducts = rmProducts;
+        this.pProd = pProd;
+        this.psProd = psProd;
+        this.bProd = bProd;
+        this.bsProd = bsProd;
     }
 
     @Override
@@ -47,7 +59,11 @@ public class ProductsRepositoryWithChangedBalancesImpl implements ProductsReposi
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_changed_balances.sql").content(),
-                    rmProducts);
+                    new RmProductsChangedBalancesImpl(
+                            pProd,
+                            psProd,
+                            bProd,
+                            bsProd));
         } catch (CreatorException | DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

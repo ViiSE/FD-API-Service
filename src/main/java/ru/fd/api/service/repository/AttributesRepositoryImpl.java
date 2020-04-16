@@ -19,27 +19,30 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.AttributesProducer;
+import ru.fd.api.service.repository.mapper.RmAttributesImpl;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("attributesRepository")
 public class AttributesRepositoryImpl implements AttributesRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Attributes> rmAttrs;
+    private final AttributesProducer attrsProducer;
 
-    public AttributesRepositoryImpl(JdbcTemplate jdbcTemplate, RowMapper<Attributes> rmAttrs) {
+    public AttributesRepositoryImpl(JdbcTemplate jdbcTemplate, AttributesProducer attrsProducer) {
         this.jdbcTemplate = jdbcTemplate;
-        this.rmAttrs = rmAttrs;
+        this.attrsProducer = attrsProducer;
     }
 
     @Override
     public Attributes read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject("SQL HERE", rmAttrs);
+            return jdbcTemplate.queryForObject(
+                    "SQL HERE",
+                    new RmAttributesImpl(attrsProducer));
         } catch (DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

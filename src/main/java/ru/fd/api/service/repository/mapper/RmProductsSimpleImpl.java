@@ -17,7 +17,6 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.entity.ProductsImpl;
@@ -28,7 +27,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("rmProductsSimple")
+//@Component("rmProductsSimple")
 public class RmProductsSimpleImpl implements RowMapper<Products> {
 
     private final ProductProducer productProducer;

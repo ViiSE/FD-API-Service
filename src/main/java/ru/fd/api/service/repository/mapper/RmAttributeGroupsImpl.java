@@ -17,7 +17,6 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
@@ -25,7 +24,7 @@ import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component("rmAttributeGroups")
+//@Component("rmAttributeGroups")
 public class RmAttributeGroupsImpl implements RowMapper<AttributeGroups> {
 
     private final AttributeGroupsProducer attributeGroupsProducer;

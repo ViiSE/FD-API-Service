@@ -17,14 +17,13 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Order;
 import ru.fd.api.service.producer.entity.OrderProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component("rmOrderChangedBalances")
+//@Component("rmOrderChangedBalances")
 public class RmOrderChangedBalancesImpl implements RowMapper<Order> {
 
     private final OrderProducer orderProducer;

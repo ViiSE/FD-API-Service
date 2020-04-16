@@ -17,7 +17,6 @@
 package ru.fd.api.service.repository.test;
 
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.process.test.PsProductsTestImpl;
 import ru.fd.api.service.process.test.PsProductsWithChangedBalancesTestImpl;
 import ru.fd.api.service.repository.ProductsRepository;
 

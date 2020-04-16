@@ -17,14 +17,13 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Attributes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-@Component("rmProductsWithAttributes")
+//@Component("rmProductsWithAttributes")
 public class RmProductsWithAttributesImpl implements RowMapper<Map<String, Attributes>> {
 
     @Override

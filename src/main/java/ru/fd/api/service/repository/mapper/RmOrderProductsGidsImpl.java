@@ -17,12 +17,11 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component("rmOrderProductsGids")
+//@Component("rmOrderProductsGids")
 public class RmOrderProductsGidsImpl implements RowMapper<String> {
 
     @Override

@@ -19,27 +19,32 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.CategoriesProducer;
+import ru.fd.api.service.producer.entity.CategoryProducer;
+import ru.fd.api.service.repository.mapper.RmCategoriesImpl;
 
 @Repository("categoriesRepository")
 public class CategoriesRepositoryImpl implements CategoriesRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Categories> rmCat;
+    private final CategoryProducer catProd;
+    private final CategoriesProducer catsProd;
 
     public CategoriesRepositoryImpl(
             JdbcTemplate jdbcTemplate,
             SQLQueryCreator<String, String> sqlQueryCreator,
-            RowMapper<Categories> rmCat) {
+            CategoryProducer catProd,
+            CategoriesProducer catsProd) {
         this.jdbcTemplate = jdbcTemplate;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmCat = rmCat;
+        this.catProd = catProd;
+        this.catsProd = catsProd;
     }
 
     @Override
@@ -47,7 +52,7 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("categories.sql").content(),
-                    rmCat);
+                    new RmCategoriesImpl(catProd, catsProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

@@ -17,13 +17,12 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-@Component("rmProductsWithShortDescription")
+//@Component("rmProductsWithShortDescription")
 public class RmProductsWithShortDescriptionImpl implements RowMapper<Map<String, String>> {
 
     @Override

@@ -19,27 +19,32 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.AttributeGroupProducer;
+import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
+import ru.fd.api.service.repository.mapper.RmAttributeGroupsImpl;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("attributeGroupsRepository")
 public class AttributeGroupsRepositoryImpl implements AttributeGroupsRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<AttributeGroups> rmAttrGroups;
+    private final AttributeGroupsProducer attrGrsProducer;
+    private final AttributeGroupProducer attrGrProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public AttributeGroupsRepositoryImpl(
             JdbcTemplate jdbcTemplate,
-            RowMapper<AttributeGroups> rmAttrGroups,
+            AttributeGroupsProducer attrGrsProducer,
+            AttributeGroupProducer attrGrProducer,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
-        this.rmAttrGroups = rmAttrGroups;
+        this.attrGrsProducer = attrGrsProducer;
+        this.attrGrProducer = attrGrProducer;
         this.sqlQueryCreator = sqlQueryCreator;
     }
 
@@ -48,7 +53,7 @@ public class AttributeGroupsRepositoryImpl implements AttributeGroupsRepository 
         try {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("attribute_groups.sql").content(),
-                    rmAttrGroups);
+                    new RmAttributeGroupsImpl(attrGrsProducer, attrGrProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

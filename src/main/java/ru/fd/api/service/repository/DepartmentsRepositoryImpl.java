@@ -18,26 +18,31 @@ package ru.fd.api.service.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.DepartmentProducer;
+import ru.fd.api.service.producer.entity.DepartmentsProducer;
+import ru.fd.api.service.repository.mapper.RmDepartmentsImpl;
 
 @Repository("departmentsRepository")
 public class DepartmentsRepositoryImpl implements DepartmentsRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Departments> rmDep;
+    private final DepartmentProducer depProd;
+    private final DepartmentsProducer depsProd;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public DepartmentsRepositoryImpl(
             JdbcTemplate jdbcTemplate,
-            RowMapper<Departments> rmDep,
+            DepartmentProducer depProd,
+            DepartmentsProducer depsProd,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
-        this.rmDep = rmDep;
+        this.depProd = depProd;
+        this.depsProd = depsProd;
         this.sqlQueryCreator = sqlQueryCreator;
     }
 
@@ -47,7 +52,9 @@ public class DepartmentsRepositoryImpl implements DepartmentsRepository {
             return jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("departments.sql")
                             .content(),
-                    rmDep);
+                    new RmDepartmentsImpl(
+                            depProd,
+                            depsProd));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }
