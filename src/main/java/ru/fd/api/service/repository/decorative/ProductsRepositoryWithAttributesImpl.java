@@ -27,6 +27,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
+import ru.fd.api.service.repository.mapper.RmProductsWithAttributesImpl;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -37,17 +38,14 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepositoryD
     private final JdbcTemplate jdbcTemplate;
     private final ProductProducer productProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Map<String, Attributes>> rmProducts;
 
     public ProductsRepositoryWithAttributesImpl(
             JdbcTemplate jdbcTemplate,
             ProductProducer productProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator,
-            RowMapper<Map<String, Attributes>> rmProducts) {
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
         this.productProducer = productProducer;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmProducts = rmProducts;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepositoryD
         try {
             Map<String, Attributes> attrForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_attr.sql").content(),
-                    rmProducts);
+                    new RmProductsWithAttributesImpl());
 
             if (attrForProducts != null) {
                 products.forEach(product ->

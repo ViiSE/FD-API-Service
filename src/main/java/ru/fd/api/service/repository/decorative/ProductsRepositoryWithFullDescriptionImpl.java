@@ -16,9 +16,7 @@
 
 package ru.fd.api.service.repository.decorative;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Product;
@@ -27,6 +25,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
+import ru.fd.api.service.repository.mapper.RmProductsWithFullDescriptionImpl;
 
 import java.util.Map;
 
@@ -36,17 +35,14 @@ public class ProductsRepositoryWithFullDescriptionImpl implements ProductsReposi
     private final JdbcTemplate jdbcTemplate;
     private final ProductProducer productProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Map<String, String>> rmProducts;
 
     public ProductsRepositoryWithFullDescriptionImpl(
             JdbcTemplate jdbcTemplate,
             ProductProducer productProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator,
-            @Qualifier("rmProductsWithFullDescription") RowMapper<Map<String, String>> rmProducts) {
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
         this.productProducer = productProducer;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmProducts = rmProducts;
     }
 
     @Override
@@ -54,7 +50,7 @@ public class ProductsRepositoryWithFullDescriptionImpl implements ProductsReposi
         try {
             Map<String, String> fullDescForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_full_description.sql").content(),
-                    rmProducts);
+                    new RmProductsWithFullDescriptionImpl());
             if (fullDescForProducts != null) {
                 fullDescForProducts.forEach((id, fullDesc) -> {
                     Product product = products.findProductById(id);

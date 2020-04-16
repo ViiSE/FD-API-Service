@@ -17,7 +17,6 @@
 package ru.fd.api.service.repository.decorative;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Product;
@@ -28,6 +27,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
+import ru.fd.api.service.repository.mapper.RmProductsWithStatusesImpl;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -38,17 +38,14 @@ public class ProductsRepositoryWithStatusesImpl implements ProductsRepositoryDec
     private final JdbcTemplate jdbcTemplate;
     private final ProductProducer productProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Map<String, Statuses>> rmProducts;
 
     public ProductsRepositoryWithStatusesImpl(
             JdbcTemplate jdbcTemplate,
             ProductProducer productProducer,
-            SQLQueryCreator<String, String> sqlQueryCreator,
-            RowMapper<Map<String, Statuses>> rmProducts) {
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
         this.productProducer = productProducer;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmProducts = rmProducts;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class ProductsRepositoryWithStatusesImpl implements ProductsRepositoryDec
         try {
             Map<String, Statuses> statusesForProducts = jdbcTemplate.queryForObject(
                     sqlQueryCreator.create("products_with_statuses.sql").content(),
-                    rmProducts);
+                    new RmProductsWithStatusesImpl());
             if(statusesForProducts != null)
                 for(Product product: products) {
                     products.decorateProduct(

@@ -18,7 +18,6 @@ package ru.fd.api.service.repository.decorative;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Prices;
@@ -27,8 +26,11 @@ import ru.fd.api.service.entity.ProductWithPricesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.PriceProducer;
+import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
+import ru.fd.api.service.repository.mapper.RmProductsWithPricesImpl;
 
 import java.util.Map;
 
@@ -38,17 +40,21 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepositoryDecor
     private final JdbcTemplate jdbcTemplate;
     private final ProductProducer productProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
-    private final RowMapper<Map<String, Prices>> rmProducts;
+    private final PriceProducer prProd;
+    private final PricesProducer prsProd;
+
 
     public ProductsRepositoryWithPricesImpl(
             JdbcTemplate jdbcTemplate,
             ProductProducer productProducer,
             SQLQueryCreator<String, String> sqlQueryCreator,
-            RowMapper<Map<String, Prices>> rmProducts) {
+            PriceProducer prProd,
+            PricesProducer prsProd) {
         this.jdbcTemplate = jdbcTemplate;
         this.productProducer = productProducer;
         this.sqlQueryCreator = sqlQueryCreator;
-        this.rmProducts = rmProducts;
+        this.prProd = prProd;
+        this.prsProd = prsProd;
     }
 
     @Override
@@ -56,7 +62,9 @@ public class ProductsRepositoryWithPricesImpl implements ProductsRepositoryDecor
           try {
               Map<String, Prices> pricesForProducts = jdbcTemplate.queryForObject(
                       sqlQueryCreator.create("products_with_prices.sql").content(),
-                      rmProducts);
+                      new RmProductsWithPricesImpl(
+                              prProd,
+                              prsProd));
 
               if(pricesForProducts != null)
                   for(Product product: products) {
