@@ -55,7 +55,7 @@ public class RseProductsWithPricesImpl implements ResultSetExtractor<Map<String,
             }
 
             String department_id = rs.getString("GID_DEP").trim();
-            float value = rs.getInt("PRICE");
+            float value = rs.getFloat("PRICE");
             prices.add(priceProducer.getPriceInstance(department_id, value));
         }
 
