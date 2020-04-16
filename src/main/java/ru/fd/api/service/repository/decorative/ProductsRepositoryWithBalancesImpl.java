@@ -28,7 +28,7 @@ import ru.fd.api.service.producer.entity.BalanceProducer;
 import ru.fd.api.service.producer.entity.BalancesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsWithBalancesImpl;
+import ru.fd.api.service.repository.mapper.RseProductsWithBalancesImpl;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -58,9 +58,9 @@ public class ProductsRepositoryWithBalancesImpl implements ProductsRepositoryDec
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            Map<String, Balances> balanceForProducts = jdbcTemplate.queryForObject(
+            Map<String, Balances> balanceForProducts = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_balances.sql").content(),
-                    new RmProductsWithBalancesImpl(
+                    new RseProductsWithBalancesImpl(
                             bProd,
                             bsProd));
             if(balanceForProducts != null)
