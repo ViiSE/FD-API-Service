@@ -16,25 +16,18 @@
 
 package ru.fd.api.service.repository.mapper;
 
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import ru.fd.api.service.entity.Attributes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
-//@Component("rmProductsWithAttributes")
-public class RmProductsWithAttributesImpl implements RowMapper<Map<String, Attributes>> {
+public class RmProductsWithAttributesImpl implements ResultSetExtractor<Map<String, Attributes>> {
 
     @Override
-    public Map<String, Attributes> mapRow(ResultSet rs, int i) throws SQLException {
-//        List<Product> products = new ArrayList<>();
-//        while(rs.next()) {
-//            String id = rs.getString("GID");
-//            String ...
-//            products.add(...);//new ProductDefaultImpl());
-//        }
-        //return new ProductsDefaultImpl(products);
+    public Map<String, Attributes> extractData(ResultSet rs) throws SQLException, DataAccessException {
         return null;
     }
 }

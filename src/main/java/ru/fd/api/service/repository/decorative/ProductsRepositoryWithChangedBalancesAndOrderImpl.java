@@ -29,7 +29,7 @@ import ru.fd.api.service.producer.entity.BalancesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsChangedBalancesImpl;
+import ru.fd.api.service.repository.mapper.RseProductsChangedBalancesImpl;
 
 @Repository("productsRepositoryWithChangedBalancesAndOrder")
 public class ProductsRepositoryWithChangedBalancesAndOrderImpl implements ProductsRepositoryDecorative<Order> {
@@ -57,10 +57,10 @@ public class ProductsRepositoryWithChangedBalancesAndOrderImpl implements Produc
     @Override
     public Products read(Order order) throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            return jdbcTemplate.query(
                     sqlQueryCreator.create("order_products_with_changed_balances.sql").content(),
                     new Object[] {order.id()},
-                    new RmProductsChangedBalancesImpl(
+                    new RseProductsChangedBalancesImpl(
                             pProd,
                             psProd,
                             bProd,

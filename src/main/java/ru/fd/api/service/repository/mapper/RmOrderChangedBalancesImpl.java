@@ -23,7 +23,6 @@ import ru.fd.api.service.producer.entity.OrderProducer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Component("rmOrderChangedBalances")
 public class RmOrderChangedBalancesImpl implements RowMapper<Order> {
 
     private final OrderProducer orderProducer;

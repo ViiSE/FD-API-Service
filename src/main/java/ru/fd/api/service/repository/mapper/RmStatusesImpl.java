@@ -17,21 +17,17 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Statuses;
+import ru.fd.api.service.entity.Status;
 import ru.fd.api.service.producer.entity.StatusProducer;
-import ru.fd.api.service.producer.entity.StatusesProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Component("rmStatuses")
-public class RmStatusesImpl implements RowMapper<Statuses> {
+public class RmStatusesImpl implements RowMapper<Status> {
 
-    private final StatusesProducer statusesProducer;
     private final StatusProducer statusProducer;
 
-    public RmStatusesImpl(StatusesProducer statusesProducer, StatusProducer statusProducer) {
-        this.statusesProducer = statusesProducer;
+    public RmStatusesImpl(StatusProducer statusProducer) {
         this.statusProducer = statusProducer;
     }
 
@@ -42,7 +38,7 @@ public class RmStatusesImpl implements RowMapper<Statuses> {
 //    }
 
     @Override
-    public Statuses mapRow(ResultSet rs, int i) throws SQLException {
+    public Status mapRow(ResultSet rs, int i) throws SQLException {
 //        List<Product> products = new ArrayList<>();
 //        while(rs.next()) {
 //            String id = rs.getString("TOVAR.GID");

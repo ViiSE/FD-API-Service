@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Component("rmProductsWithPrices")
 public class RseProductsWithPricesImpl implements ResultSetExtractor<Map<String, Prices>> {
 
     private final PriceProducer priceProducer;

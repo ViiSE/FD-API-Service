@@ -27,7 +27,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsWithStatusesImpl;
+import ru.fd.api.service.repository.mapper.RseProductsWithStatusesImpl;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -51,9 +51,9 @@ public class ProductsRepositoryWithStatusesImpl implements ProductsRepositoryDec
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            Map<String, Statuses> statusesForProducts = jdbcTemplate.queryForObject(
+            Map<String, Statuses> statusesForProducts = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_statuses.sql").content(),
-                    new RmProductsWithStatusesImpl());
+                    new RseProductsWithStatusesImpl());
             if(statusesForProducts != null)
                 for(Product product: products) {
                     products.decorateProduct(

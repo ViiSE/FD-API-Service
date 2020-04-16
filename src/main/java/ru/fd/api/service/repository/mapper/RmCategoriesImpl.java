@@ -17,36 +17,24 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Categories;
 import ru.fd.api.service.entity.Category;
-import ru.fd.api.service.producer.entity.CategoriesProducer;
 import ru.fd.api.service.producer.entity.CategoryProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-//@Component("rmCategories")
-public class RmCategoriesImpl implements RowMapper<Categories> {
+public class RmCategoriesImpl implements RowMapper<Category> {
 
     private final CategoryProducer categoryProducer;
-    private final CategoriesProducer categoriesProducer;
 
-    public RmCategoriesImpl(CategoryProducer categoryProducer, CategoriesProducer categoriesProducer) {
+    public RmCategoriesImpl(CategoryProducer categoryProducer) {
         this.categoryProducer = categoryProducer;
-        this.categoriesProducer = categoriesProducer;
     }
 
     @Override
-    public Categories mapRow(ResultSet rs, int i) throws SQLException {
-        List<Category> categories = new ArrayList<>();
-        do {
-            String id = rs.getString("catID").trim();
-            String name = rs.getString("catName").trim();
-
-            categories.add(categoryProducer.getCategoryInstance(id, name));
-        } while(rs.next());
-        return categoriesProducer.getCategoriesInstance(categories);
+    public Category mapRow(ResultSet rs, int i) throws SQLException {
+        String id = rs.getString("catID").trim();
+        String name = rs.getString("catName").trim();
+        return categoryProducer.getCategoryInstance(id, name);
     }
 }

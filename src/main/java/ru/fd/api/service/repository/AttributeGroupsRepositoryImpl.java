@@ -21,12 +21,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.AttributeGroup;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import ru.fd.api.service.repository.mapper.RmAttributeGroupsImpl;
+
+import java.util.List;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("attributeGroupsRepository")
@@ -51,9 +54,10 @@ public class AttributeGroupsRepositoryImpl implements AttributeGroupsRepository 
     @Override
     public AttributeGroups read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<AttributeGroup> attributeGroups = jdbcTemplate.query(
                     sqlQueryCreator.create("attribute_groups.sql").content(),
-                    new RmAttributeGroupsImpl(attrGrsProducer, attrGrProducer));
+                    new RmAttributeGroupsImpl(attrGrProducer));
+            return attrGrsProducer.getAttributeGroupsInstance(attributeGroups);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

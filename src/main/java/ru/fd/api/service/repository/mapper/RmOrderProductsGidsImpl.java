@@ -21,7 +21,6 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Component("rmOrderProductsGids")
 public class RmOrderProductsGidsImpl implements RowMapper<String> {
 
     @Override

@@ -20,12 +20,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Status;
 import ru.fd.api.service.entity.Statuses;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.StatusProducer;
 import ru.fd.api.service.producer.entity.StatusesProducer;
 import ru.fd.api.service.repository.mapper.RmStatusesImpl;
+
+import java.util.List;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("statusesRepository")
@@ -50,11 +53,10 @@ public class StatusesRepositoryImpl implements StatusesRepository {
     @Override
     public Statuses read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Status> statuses = jdbcTemplate.query(
                     sqlQueryCreator.create("statuses.sql").content(),
-                    new RmStatusesImpl(
-                            statsProd,
-                            statProd));
+                    new RmStatusesImpl(statProd));
+            return statsProd.getStatusesInstance(statuses);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

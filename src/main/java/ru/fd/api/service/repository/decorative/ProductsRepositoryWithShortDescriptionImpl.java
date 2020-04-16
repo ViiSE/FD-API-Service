@@ -25,7 +25,7 @@ import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsWithShortDescriptionImpl;
+import ru.fd.api.service.repository.mapper.RseProductsWithShortDescriptionImpl;
 
 import java.util.Map;
 
@@ -48,9 +48,9 @@ public class ProductsRepositoryWithShortDescriptionImpl implements ProductsRepos
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            Map<String, String> shortDescForProducts = jdbcTemplate.queryForObject(
+            Map<String, String> shortDescForProducts = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_short_description.sql").content(),
-                    new RmProductsWithShortDescriptionImpl());
+                    new RseProductsWithShortDescriptionImpl());
             if (shortDescForProducts != null) {
                 shortDescForProducts.forEach((id, shortDesc) -> {
                     Product product = products.findProductById(id);

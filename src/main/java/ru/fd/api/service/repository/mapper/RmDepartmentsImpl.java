@@ -27,26 +27,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component("rmDepartments")
-public class RmDepartmentsImpl implements RowMapper<Departments> {
+public class RmDepartmentsImpl implements RowMapper<Department> {
 
     private final DepartmentProducer departmentProducer;
-    private final DepartmentsProducer departmentsProducer;
 
-    public RmDepartmentsImpl(DepartmentProducer departmentProducer, DepartmentsProducer departmentsProducer) {
+    public RmDepartmentsImpl(DepartmentProducer departmentProducer) {
         this.departmentProducer = departmentProducer;
-        this.departmentsProducer = departmentsProducer;
     }
 
     @Override
-    public Departments mapRow(ResultSet rs, int i) throws SQLException {
-        List<Department> departments = new ArrayList<>();
-        do {
-            String id = rs.getString("GID").trim();
-            String name = rs.getString("NAME").trim();
-
-            departments.add(departmentProducer.getDepartmentInstance(id, name));
-        } while(rs.next());
-        return departmentsProducer.getDepartmentsInstance(departments);
+    public Department mapRow(ResultSet rs, int i) throws SQLException {
+        String id = rs.getString("GID").trim();
+        String name = rs.getString("NAME").trim();
+        return departmentProducer.getDepartmentInstance(id, name);
     }
 }

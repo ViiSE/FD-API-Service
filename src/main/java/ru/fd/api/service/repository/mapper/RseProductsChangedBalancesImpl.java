@@ -16,7 +16,8 @@
 
 package ru.fd.api.service.repository.mapper;
 
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import ru.fd.api.service.entity.Balance;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
@@ -30,15 +31,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component("rmProductsChangedBalances")
-public class RmProductsChangedBalancesImpl implements RowMapper<Products> {
+public class RseProductsChangedBalancesImpl implements ResultSetExtractor<Products> {
 
     private final ProductProducer productProducer;
     private final ProductsProducer productsProducer;
     private final BalanceProducer balanceProducer;
     private final BalancesProducer balancesProducer;
 
-    public RmProductsChangedBalancesImpl(
+    public RseProductsChangedBalancesImpl(
             ProductProducer productProducer,
             ProductsProducer productsProducer,
             BalanceProducer balanceProducer,
@@ -50,11 +50,11 @@ public class RmProductsChangedBalancesImpl implements RowMapper<Products> {
     }
 
     @Override
-    public Products mapRow(ResultSet rs, int i) throws SQLException {
+    public Products extractData(ResultSet rs) throws SQLException, DataAccessException {
         List<Product> products = new ArrayList<>();
         List<Balance> balances = new ArrayList<>();
         String mainId = "";
-        do {
+        while (rs.next()) {
             String id = rs.getString("GID_TOVAR").trim();
 
             if(mainId.isEmpty()) {
@@ -73,7 +73,7 @@ public class RmProductsChangedBalancesImpl implements RowMapper<Products> {
 
             Balance balance = balanceProducer.getBalanceInstance(departmentId, quantity);
             balances.add(balance);
-        } while (rs.next());
+        }
 
         products.add(productProducer
                 .getProductWithChangedBalancesInstance(

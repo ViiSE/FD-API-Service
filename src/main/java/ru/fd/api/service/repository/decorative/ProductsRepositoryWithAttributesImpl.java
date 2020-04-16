@@ -50,7 +50,7 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepositoryD
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            Map<String, Attributes> attrForProducts = jdbcTemplate.queryForObject(
+            Map<String, Attributes> attrForProducts = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_attr.sql").content(),
                     new RmProductsWithAttributesImpl());
 

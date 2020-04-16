@@ -21,12 +21,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Unit;
 import ru.fd.api.service.entity.Units;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.UnitProducer;
 import ru.fd.api.service.producer.entity.UnitsProducer;
 import ru.fd.api.service.repository.mapper.RmUnitsImpl;
+
+import java.util.List;
 
 @Repository("unitsRepository")
 public class UnitsRepositoryImpl implements UnitsRepository {
@@ -50,11 +53,10 @@ public class UnitsRepositoryImpl implements UnitsRepository {
     @Override
     public Units read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Unit> units = jdbcTemplate.query(
                     sqlQueryCreator.create("units.sql").content(),
-                    new RmUnitsImpl(
-                            uProd,
-                            usProd));
+                    new RmUnitsImpl(uProd));
+            return usProd.getUnitsInstance(units);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

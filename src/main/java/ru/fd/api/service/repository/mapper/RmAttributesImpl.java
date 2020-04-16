@@ -17,29 +17,15 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Attributes;
-import ru.fd.api.service.producer.entity.AttributesProducer;
+import ru.fd.api.service.entity.Attribute;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Component("rmAttributes")
-public class RmAttributesImpl implements RowMapper<Attributes> {
-
-    private final AttributesProducer attributesProducer;
-
-    public RmAttributesImpl(AttributesProducer attributesProducer) {
-        this.attributesProducer = attributesProducer;
-    }
-
-    //    private final ProductProducer productProducer;
-
-//    public ProductsSimpleRowMapper(ProductProducer productProducer) {
-//        this.productProducer = productProducer;
-//    }
+public class RmAttributesImpl implements RowMapper<Attribute> {
 
     @Override
-    public Attributes mapRow(ResultSet rs, int i) throws SQLException {
+    public Attribute mapRow(ResultSet rs, int i) throws SQLException {
 //        List<Product> products = new ArrayList<>();
 //        while(rs.next()) {
 //            String id = rs.getString("TOVAR.GID");

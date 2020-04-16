@@ -22,11 +22,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Categories;
+import ru.fd.api.service.entity.Category;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.CategoriesProducer;
 import ru.fd.api.service.producer.entity.CategoryProducer;
 import ru.fd.api.service.repository.mapper.RmCategoriesImpl;
+
+import java.util.List;
 
 @Repository("categoriesRepository")
 public class CategoriesRepositoryImpl implements CategoriesRepository {
@@ -50,9 +53,10 @@ public class CategoriesRepositoryImpl implements CategoriesRepository {
     @Override
     public Categories read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Category> categories = jdbcTemplate.query(
                     sqlQueryCreator.create("categories.sql").content(),
-                    new RmCategoriesImpl(catProd, catsProd));
+                    new RmCategoriesImpl(catProd));
+            return catsProd.getCategoriesInstance(categories);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

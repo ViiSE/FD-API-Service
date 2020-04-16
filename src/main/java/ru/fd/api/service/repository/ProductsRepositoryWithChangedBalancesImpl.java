@@ -27,7 +27,7 @@ import ru.fd.api.service.producer.entity.BalanceProducer;
 import ru.fd.api.service.producer.entity.BalancesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
-import ru.fd.api.service.repository.mapper.RmProductsChangedBalancesImpl;
+import ru.fd.api.service.repository.mapper.RseProductsChangedBalancesImpl;
 
 @Repository("productsRepositoryWithChangedBalances")
 public class ProductsRepositoryWithChangedBalancesImpl implements ProductsRepository {
@@ -57,9 +57,9 @@ public class ProductsRepositoryWithChangedBalancesImpl implements ProductsReposi
     @Override
     public Products read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            return jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_changed_balances.sql").content(),
-                    new RmProductsChangedBalancesImpl(
+                    new RseProductsChangedBalancesImpl(
                             pProd,
                             psProd,
                             bProd,

@@ -27,7 +27,7 @@ import ru.fd.api.service.entity.ProductsImpl;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.ProductProducer;
-import ru.fd.api.service.repository.mapper.RmProductSimpleImpl;
+import ru.fd.api.service.repository.mapper.RmProductsSimpleImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ProductsRepositorySimpleImpl implements ProductsRepository {
         try {
             List<Product> products = jdbcTemplate.query(
                     sqlQueryCreator.create("products_simple.sql").content(),
-                    new RmProductSimpleImpl(productProducer));
+                    new RmProductsSimpleImpl(productProducer));
             int key = 0;
             List<Product> sProducts = new ArrayList<>();
             for(Product product: products) {

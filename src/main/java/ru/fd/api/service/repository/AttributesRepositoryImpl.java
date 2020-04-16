@@ -20,10 +20,13 @@ package ru.fd.api.service.repository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.entity.Attribute;
 import ru.fd.api.service.entity.Attributes;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.AttributesProducer;
 import ru.fd.api.service.repository.mapper.RmAttributesImpl;
+
+import java.util.List;
 
 // TODO: 23.01.2020 CREATE SQL
 @Repository("attributesRepository")
@@ -40,9 +43,10 @@ public class AttributesRepositoryImpl implements AttributesRepository {
     @Override
     public Attributes read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Attribute> attributes = jdbcTemplate.query(
                     "SQL HERE",
-                    new RmAttributesImpl(attrsProducer));
+                    new RmAttributesImpl());
+            return attrsProducer.getAttributesInstance(attributes);
         } catch (DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

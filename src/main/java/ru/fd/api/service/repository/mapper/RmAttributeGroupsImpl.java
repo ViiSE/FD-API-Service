@@ -17,6 +17,7 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
+import ru.fd.api.service.entity.AttributeGroup;
 import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
 import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
@@ -24,27 +25,16 @@ import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Component("rmAttributeGroups")
-public class RmAttributeGroupsImpl implements RowMapper<AttributeGroups> {
+public class RmAttributeGroupsImpl implements RowMapper<AttributeGroup> {
 
-    private final AttributeGroupsProducer attributeGroupsProducer;
     private final AttributeGroupProducer attributeGroupProducer;
 
-    public RmAttributeGroupsImpl(
-            AttributeGroupsProducer attributeGroupsProducer,
-            AttributeGroupProducer attributeGroupProducer) {
-        this.attributeGroupsProducer = attributeGroupsProducer;
+    public RmAttributeGroupsImpl(AttributeGroupProducer attributeGroupProducer) {
         this.attributeGroupProducer = attributeGroupProducer;
     }
 
-    //    private final ProductProducer productProducer;
-
-//    public ProductsSimpleRowMapper(ProductProducer productProducer) {
-//        this.productProducer = productProducer;
-//    }
-
     @Override
-    public AttributeGroups mapRow(ResultSet rs, int i) throws SQLException {
+    public AttributeGroup mapRow(ResultSet rs, int i) throws SQLException {
 //        List<Product> products = new ArrayList<>();
 //        while(rs.next()) {
 //            String id = rs.getString("TOVAR.GID");

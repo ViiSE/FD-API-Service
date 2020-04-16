@@ -20,12 +20,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Department;
 import ru.fd.api.service.entity.Departments;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.DepartmentProducer;
 import ru.fd.api.service.producer.entity.DepartmentsProducer;
 import ru.fd.api.service.repository.mapper.RmDepartmentsImpl;
+
+import java.util.List;
 
 @Repository("departmentsRepository")
 public class DepartmentsRepositoryImpl implements DepartmentsRepository {
@@ -49,12 +52,11 @@ public class DepartmentsRepositoryImpl implements DepartmentsRepository {
     @Override
     public Departments read() throws RepositoryException {
         try {
-            return jdbcTemplate.queryForObject(
+            List<Department> departments = jdbcTemplate.query(
                     sqlQueryCreator.create("departments.sql")
                             .content(),
-                    new RmDepartmentsImpl(
-                            depProd,
-                            depsProd));
+                    new RmDepartmentsImpl(depProd));
+            return depsProd.getDepartmentsInstance(departments);
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }
