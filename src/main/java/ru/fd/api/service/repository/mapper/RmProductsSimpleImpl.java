@@ -18,6 +18,7 @@ package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.ProductWithCodeAvardaImpl;
 import ru.fd.api.service.producer.entity.ProductProducer;
 
 import java.sql.ResultSet;
@@ -41,15 +42,18 @@ public class RmProductsSimpleImpl implements RowMapper<Product> {
         short tax = rs.getShort("TAX");
         String articul = "";
         String code = rs.getString("tIdent").trim();
+        String codeAvarda = rs.getString("codeAvarda").trim();
 
-        return productProducer.getProductInstance(
-                id,
-                categoryId,
-                vendorId,
-                unitId,
-                name,
-                tax,
-                articul,
-                code);
+        return new ProductWithCodeAvardaImpl(
+                productProducer.getProductInstance(
+                        id,
+                        categoryId,
+                        vendorId,
+                        unitId,
+                        name,
+                        tax,
+                        articul,
+                        code),
+                codeAvarda);
     }
 }

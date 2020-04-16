@@ -49,6 +49,8 @@ public class ProductPojo {
     private String fullDescription = "";
     @ApiModelProperty(notes = "Краткое описание товара (по умолчанию пустое значение)", position = 10)
     private String shortDescription = "";
+    @ApiModelProperty(notes = "Код Avarda", position = 11)
+    private String codeAvarda;
     @ApiModelProperty(notes = "Цены", position = 1)
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
     @ApiModelProperty(notes = "Статусы", position = 1)
@@ -168,5 +170,13 @@ public class ProductPojo {
 
     public List<ProductAttributePojo> getAttributes() {
         return attributes != null ? attributes.getAttributes() : null;
+    }
+
+    public void setCodeAvarda(String codeAvarda) {
+        this.codeAvarda = codeAvarda;
+    }
+
+    public String getCodeAvarda() {
+        return codeAvarda;
     }
 }
