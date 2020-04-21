@@ -18,9 +18,7 @@ package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.AttributeGroup;
-import ru.fd.api.service.entity.AttributeGroups;
 import ru.fd.api.service.producer.entity.AttributeGroupProducer;
-import ru.fd.api.service.producer.entity.AttributeGroupsProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

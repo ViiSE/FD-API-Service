@@ -17,24 +17,27 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Department;
-import ru.fd.api.service.producer.entity.DepartmentProducer;
+import ru.fd.api.service.entity.Vendor;
+import ru.fd.api.service.producer.entity.VendorProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RmDepartmentsImpl implements RowMapper<Department> {
+public class RmVendorsImpl implements RowMapper<Vendor> {
 
-    private final DepartmentProducer departmentProducer;
+    private final VendorProducer vendorProducer;
 
-    public RmDepartmentsImpl(DepartmentProducer departmentProducer) {
-        this.departmentProducer = departmentProducer;
+    public RmVendorsImpl(VendorProducer vendorProducer) {
+        this.vendorProducer = vendorProducer;
     }
 
     @Override
-    public Department mapRow(ResultSet rs, int i) throws SQLException {
+    public Vendor mapRow(ResultSet rs, int i) throws SQLException {
         String id = rs.getString("GID").trim();
         String name = rs.getString("NAME").trim();
-        return departmentProducer.getDepartmentInstance(id, name);
+        String codeAvarda = rs.getString("codeAvarda").trim();
+        return vendorProducer.getVendorWithCodeAvardaInstance(
+                vendorProducer.getVendorInstance(id, name),
+                codeAvarda);
     }
 }
