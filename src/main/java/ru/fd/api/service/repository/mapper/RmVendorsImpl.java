@@ -33,9 +33,9 @@ public class RmVendorsImpl implements RowMapper<Vendor> {
 
     @Override
     public Vendor mapRow(ResultSet rs, int i) throws SQLException {
-        String id = rs.getString("GID").trim();
-        String name = rs.getString("NAME").trim();
-        String codeAvarda = rs.getString("codeAvarda").trim();
+        String id = rs.getString("gidMaker").trim();
+        String name = rs.getString("nMaker").trim();
+        String codeAvarda = rs.getString("code_avarda").trim();
         return vendorProducer.getVendorWithCodeAvardaInstance(
                 vendorProducer.getVendorInstance(id, name),
                 codeAvarda);
