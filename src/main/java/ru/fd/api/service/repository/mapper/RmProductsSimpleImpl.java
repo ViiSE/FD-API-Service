@@ -57,7 +57,7 @@ public class RmProductsSimpleImpl implements RowMapper<Product> {
                             tax,
                             articul,
                             code),
-                    codeAvarda),
-                countryId);
+                        countryId),
+                codeAvarda);
     }
 }
