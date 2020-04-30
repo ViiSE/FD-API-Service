@@ -19,6 +19,7 @@ package ru.fd.api.service.repository.mapper;
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.ProductWithCodeAvardaImpl;
+import ru.fd.api.service.entity.ProductWithCountryImpl;
 import ru.fd.api.service.producer.entity.ProductProducer;
 
 import java.sql.ResultSet;
@@ -37,6 +38,7 @@ public class RmProductsSimpleImpl implements RowMapper<Product> {
         String id = rs.getString("GIDTovar").trim();
         String categoryId = rs.getString("idCategory").trim();
         String vendorId = rs.getString("GIDMaker").trim();
+        String countryId = rs.getString("GIDCountry");
         String unitId = rs.getString("OKEI").trim();
         String name = rs.getString("tName").trim().replaceFirst("\\. ", "");
         short tax = rs.getShort("TAX");
@@ -45,15 +47,17 @@ public class RmProductsSimpleImpl implements RowMapper<Product> {
         String codeAvarda = rs.getString("codeAvarda").trim();
 
         return new ProductWithCodeAvardaImpl(
-                productProducer.getProductInstance(
-                        id,
-                        categoryId,
-                        vendorId,
-                        unitId,
-                        name,
-                        tax,
-                        articul,
-                        code),
-                codeAvarda);
+                new ProductWithCountryImpl(
+                        productProducer.getProductInstance(
+                                id,
+                            categoryId,
+                            vendorId,
+                            unitId,
+                            name,
+                            tax,
+                            articul,
+                            code),
+                    codeAvarda),
+                countryId);
     }
 }

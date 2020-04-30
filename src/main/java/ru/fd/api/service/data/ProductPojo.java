@@ -35,29 +35,31 @@ public class ProductPojo {
     private String categoryId;
     @ApiModelProperty(notes = "GID производителя", position = 3)
     private String vendorId;
-    @ApiModelProperty(notes = "GID единицы измерения", position = 4)
+    @ApiModelProperty(notes = "GID страны", position = 4)
+    private String countryId;
+    @ApiModelProperty(notes = "GID единицы измерения", position = 5)
     private String unitId;
-    @ApiModelProperty(notes = "Ставка НДС", position = 5)
+    @ApiModelProperty(notes = "Ставка НДС", position = 6)
     private short tax;
-    @ApiModelProperty(notes = "Артикул", position = 6)
+    @ApiModelProperty(notes = "Артикул", position = 7)
     private String articul = "";
-    @ApiModelProperty(notes = "Код товара в FD", position = 7)
+    @ApiModelProperty(notes = "Код товара в FD", position = 8)
     private String code;
-    @ApiModelProperty(notes = "Наименование", position = 8)
+    @ApiModelProperty(notes = "Наименование", position = 9)
     private String name;
-    @ApiModelProperty(notes = "Полное описание товара (по умолчанию пустое значение)", position = 9)
+    @ApiModelProperty(notes = "Полное описание товара (по умолчанию пустое значение)", position = 10)
     private String fullDescription = "";
-    @ApiModelProperty(notes = "Краткое описание товара (по умолчанию пустое значение)", position = 10)
+    @ApiModelProperty(notes = "Краткое описание товара (по умолчанию пустое значение)", position = 11)
     private String shortDescription = "";
-    @ApiModelProperty(notes = "Код Avarda", position = 11)
+    @ApiModelProperty(notes = "Код Avarda", position = 12)
     private String codeAvarda;
-    @ApiModelProperty(notes = "Цены", position = 1)
+    @ApiModelProperty(notes = "Цены", position = 13)
     @JsonInclude(JsonInclude.Include.NON_NULL) private PricesPojo prices;
-    @ApiModelProperty(notes = "Статусы", position = 1)
+    @ApiModelProperty(notes = "Статусы", position = 14)
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductStatusesPojo statuses;
-    @ApiModelProperty(notes = "Остатки", position = 1)
+    @ApiModelProperty(notes = "Остатки", position = 15)
     @JsonInclude(JsonInclude.Include.NON_NULL) private BalancesPojo balances;
-    @ApiModelProperty(notes = "Атрибуты", position = 1)
+    @ApiModelProperty(notes = "Атрибуты", position = 16)
     @JsonInclude(JsonInclude.Include.NON_NULL) private ProductAttributesPojo attributes;
 
     public void setId(String id) {
@@ -178,5 +180,13 @@ public class ProductPojo {
 
     public String getCodeAvarda() {
         return codeAvarda;
+    }
+
+    public void setCountryId(String countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getCountryId() {
+        return countryId;
     }
 }
