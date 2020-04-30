@@ -45,7 +45,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
 
     @Test(priority = 1)
     public void readProducts_firstBalancesThenPrices() {
-        testMethod( "readProducts() [first balances then prices]");
+        testMethod( "read() [first balances then prices]");
 
         try {
             balancesPricesProducts = repoProductsWithPrices.read(
@@ -61,7 +61,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
 
     @Test(priority = 2)
     public void readProducts_firstPricesThenBalances() {
-        testMethod( "readProducts() [first prices then balances]");
+        testMethod( "read() [first prices then balances]");
 
         try {
             pricesBalancesProducts = repoProductsWithBalances.read(
@@ -77,7 +77,7 @@ public class ProductsRepositoryWithBalancesAndPricesIntegrationTestNG extends Ab
 
     @Test(priority = 3, suiteName = "readProducts_firstBalancesThenPricesEqualsFirstPricesThenBalances")
     public void readProducts_firstBalancesThenPricesEqualsFirstPricesThenBalances() throws JsonProcessingException {
-        testMethod( "readProducts() [{first balances then prices} equals {first prices then balances}]");
+        testMethod( "read() [{first balances then prices} equals {first prices then balances}]");
 
         ObjectMapper mapper = new ObjectMapper();
 

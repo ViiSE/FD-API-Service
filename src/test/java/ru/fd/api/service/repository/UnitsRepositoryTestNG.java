@@ -42,7 +42,7 @@ public class UnitsRepositoryTestNG {
 
     @Test
     public void readUnits() throws JsonProcessingException {
-        testBegin("UnitsRepository", "readUnits()");
+        testBegin("UnitsRepository", "read()");
 
         try {
             Units units = unitsRepository.read();
@@ -54,7 +54,7 @@ public class UnitsRepositoryTestNG {
             catchMessage(ex);
         }
 
-        testEnd("UnitsRepository", "readUnits()");
+        testEnd("UnitsRepository", "read()");
     }
 
     @AfterMethod

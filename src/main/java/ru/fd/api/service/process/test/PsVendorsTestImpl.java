@@ -21,10 +21,10 @@ import ru.fd.api.service.process.Process;
 
 import java.util.ArrayList;
 
-public class PsVendorsTestImpl implements Process<Sendable, Void> {
+public class PsVendorsTestImpl implements Process<Vendors, Void> {
 
     @Override
-    public Sendable answer(Void v) {
+    public Vendors answer(Void v) {
         Vendor vendor1 = new VendorWithCodeAvardaImpl(
                 new VendorImpl("ven1", "Vendor 1"),
                 "ca1");

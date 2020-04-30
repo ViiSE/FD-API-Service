@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Sendable;
+import ru.fd.api.service.entity.Vendors;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.process.test.PsVendorsTestImpl;
 
@@ -29,7 +30,7 @@ public class PsVendorsTestNG {
 
     @Test
     public void answer() throws ProcessException, JsonProcessingException {
-        Process<Sendable, Void> pr = new PsVendorsTestImpl();
+        Process<Vendors, Void> pr = new PsVendorsTestImpl();
         Sendable vendors = pr.answer(null);
         assertNotNull(vendors, "Vendors is null!");
         String print = new ObjectMapper()

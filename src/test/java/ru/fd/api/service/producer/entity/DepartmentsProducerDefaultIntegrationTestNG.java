@@ -40,13 +40,13 @@ public class DepartmentsProducerDefaultIntegrationTestNG extends AbstractTestNGS
 
     @Test
     public void getDepartmentsDefaultInstance() {
-        testBegin("DepartmentsProducerDefault", "getDepartmentsDefaultInstance()");
+        testBegin("DepartmentsProducer", "getDepartmentsInstance()");
 
         Departments deps = departmentsProducer.getDepartmentsInstance(new ArrayList<>());
         assertTrue(deps instanceof DepartmentsImpl, "Departments: not a valid type!");
         System.out.println("Instance: " + deps);
 
-        testEnd("DepartmentsProducerDefault", "getDepartmentsDefaultInstance()");
+        testEnd("DepartmentsProducer", "getDepartmentsInstance()");
     }
 
     @AfterMethod

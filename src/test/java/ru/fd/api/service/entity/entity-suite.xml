@@ -35,11 +35,11 @@
                 <parameter name="attributeId2" value="attr_222"/>
                 <parameter name="value2" value="attr 2"/>
             </class>
-            <class name="ru.fd.api.service.entity.BalanceDefaultTestNG">
+            <class name="ru.fd.api.service.entity.BalanceTestNG">
                 <parameter name="departmentId" value="1114354232"/>
                 <parameter name="quantity" value="10"/>
             </class>
-            <class name="ru.fd.api.service.entity.BalancesDefaultTestNG">
+            <class name="ru.fd.api.service.entity.BalancesTestNG">
                 <parameter name="departmentId1" value="11123544534"/>
                 <parameter name="quantity1" value="15"/>
                 <parameter name="departmentId2" value="2224345241"/>
@@ -62,22 +62,22 @@
             <class name="ru.fd.api.service.entity.ProductWithFullDescriptionTestNG"/>
             <class name="ru.fd.api.service.entity.ProductWithShortDescriptionTestNG"/>
             <class name="ru.fd.api.service.entity.ProductsDefaultTestNG"/>
-            <class name="ru.fd.api.service.entity.DepartmentDefaultTestNG">
+            <class name="ru.fd.api.service.entity.DepartmentTestNG">
                 <parameter name="departmentId" value="dep_1"/>
                 <parameter name="name" value="Default Department"/>
             </class>
-            <class name="ru.fd.api.service.entity.DepartmentsDefaultTestNG">
+            <class name="ru.fd.api.service.entity.DepartmentsTestNG">
                 <parameter name="departmentId1" value="dep_1"/>
                 <parameter name="name1" value="Department 1"/>
                 <parameter name="departmentId2" value="dep_2"/>
                 <parameter name="name2" value="Department 2"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributeDefaultTestNG">
+            <class name="ru.fd.api.service.entity.AttributeTestNG">
                 <parameter name="attributeId" value="attr_1"/>
                 <parameter name="name" value="Attribute 1"/>
                 <parameter name="groupId" value="gr_1"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributesDefaultTestNG">
+            <class name="ru.fd.api.service.entity.AttributesTestNG">
                 <parameter name="attributeId1" value="attr_1"/>
                 <parameter name="name1" value="Attribute 1"/>
                 <parameter name="groupId1" value="gr_1"/>
@@ -85,21 +85,21 @@
                 <parameter name="name2" value="Attribute 2"/>
                 <parameter name="groupId2" value="gr_2"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributeGroupDefaultTestNG">
+            <class name="ru.fd.api.service.entity.AttributeGroupTestNG">
                 <parameter name="attributeGroupId" value="attr_gr_1"/>
                 <parameter name="name" value="AttributeGroup 1"/>
             </class>
-            <class name="ru.fd.api.service.entity.AttributeGroupsDefaultTestNG">
+            <class name="ru.fd.api.service.entity.AttributeGroupsTestNG">
                 <parameter name="attributeGroupId1" value="attr_gr_1"/>
                 <parameter name="name1" value="Attribute 1"/>
                 <parameter name="attributeGroupId2" value="attr_gr_2"/>
                 <parameter name="name2" value="Attribute 2"/>
             </class>
-            <class name="ru.fd.api.service.entity.CategoryDefaultTestNG">
+            <class name="ru.fd.api.service.entity.CategoryTestNG">
                 <parameter name="categoryId" value="cat_1"/>
                 <parameter name="name" value="Category 1"/>
             </class>
-            <class name="ru.fd.api.service.entity.CategoriesDefaultTestNG">
+            <class name="ru.fd.api.service.entity.CategoriesTestNG">
                 <parameter name="categoryId1" value="cat_1"/>
                 <parameter name="name1" value="Category 1"/>
                 <parameter name="categoryId2" value="cat_2"/>

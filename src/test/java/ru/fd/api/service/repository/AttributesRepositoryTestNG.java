@@ -41,7 +41,7 @@ public class AttributesRepositoryTestNG {
 
     @Test
     public void readProducts() throws JsonProcessingException {
-        testBegin("AttributesRepository", "readAttributes()");
+        testBegin("AttributesRepository", "read()");
 
         try {
             Attributes attributes = attributesRepository.read();
@@ -53,7 +53,7 @@ public class AttributesRepositoryTestNG {
             catchMessage(ex);
         }
 
-        testEnd("AttributesRepository", "readAttributes()");
+        testEnd("AttributesRepository", "read()");
     }
 
     @AfterMethod

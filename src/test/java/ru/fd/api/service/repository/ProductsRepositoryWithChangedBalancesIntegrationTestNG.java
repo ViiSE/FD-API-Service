@@ -39,7 +39,7 @@ public class ProductsRepositoryWithChangedBalancesIntegrationTestNG extends Abst
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositoryWithChangedBalancesIntegration", "readProducts()");
+        testBegin("ProductsRepositoryWithChangedBalancesIntegration", "read()");
 
         try {
             Products products = pRepo.read();
@@ -49,7 +49,7 @@ public class ProductsRepositoryWithChangedBalancesIntegrationTestNG extends Abst
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositoryWithChangedBalancesIntegration", "readProducts()");
+        testEnd("ProductsRepositoryWithChangedBalancesIntegration", "read()");
     }
 
     @AfterMethod

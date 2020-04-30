@@ -46,7 +46,7 @@ public class ProductsRepositoryWithChangedBalancesAndOrderIntegrationTestNG exte
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositoryWithChangedBalancesAndOrderIntegration", "readProducts()");
+        testBegin("ProductsRepositoryWithChangedBalancesAndOrderIntegration", "read()");
 
         try {
             Products products = pRepo.read(order);
@@ -56,7 +56,7 @@ public class ProductsRepositoryWithChangedBalancesAndOrderIntegrationTestNG exte
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositoryWithChangedBalancesAndOrderIntegration", "readProducts()");
+        testEnd("ProductsRepositoryWithChangedBalancesAndOrderIntegration", "read()");
     }
 
     @AfterMethod

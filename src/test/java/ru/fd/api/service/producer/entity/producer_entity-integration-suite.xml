@@ -5,11 +5,11 @@
 
     <test name="ProducerEntitySuiteIntegrationTest">
         <classes>
-            <class name="ru.fd.api.service.producer.entity.BalanceProducerDefaultIntegrationTestNG">
+            <class name="ru.fd.api.service.producer.entity.BalanceProducerIntegrationTestNG">
                 <parameter name="departmentId" value="dep_1"/>
                 <parameter name="quantity" value="10"/>
             </class>
-            <class name="ru.fd.api.service.producer.entity.ProductProducerDefaultIntegrationTestNG">
+            <class name="ru.fd.api.service.producer.entity.ProductProducerIntegrationTestNG">
                 <parameter name="id" value="1"/>
                 <parameter name="categoryId" value="cat_1"/>
                 <parameter name="vendorId" value="ven_1"/>
@@ -19,15 +19,15 @@
                 <parameter name="articul" value="art_1"/>
                 <parameter name="code" value="c_1"/>
             </class>
-            <class name="ru.fd.api.service.producer.entity.UnitProducerDefaultIntegrationTestNG">
+            <class name="ru.fd.api.service.producer.entity.UnitProducerIntegrationTestNG">
                 <parameter name="id" value="un_1"/>
                 <parameter name="name" value="unit_1"/>
             </class>
-            <class name="ru.fd.api.service.producer.entity.DepartmentProducerDefaultIntegrationTestNG">
+            <class name="ru.fd.api.service.producer.entity.DepartmentProducerIntegrationTestNG">
                 <parameter name="id" value="dep_1"/>
                 <parameter name="name" value="department_1"/>
             </class>
-            <class name="ru.fd.api.service.producer.entity.CustomerProducerDefaultIntegrationTestNG">
+            <class name="ru.fd.api.service.producer.entity.CustomerProducerIntegrationTestNG">
                 <parameter name="type" value="0"/>
                 <parameter name="phoneNumber" value="89091111111"/>
                 <parameter name="email" value="example@example.com"/>
@@ -35,6 +35,20 @@
                 <parameter name="inn" value="1212123412"/>
                 <parameter name="kpp" value="4534543"/>
             </class>
+            <class name="ru.fd.api.service.producer.entity.CountryProducerIntegrationTestNG">
+                <parameter name="id" value="c1"/>
+                <parameter name="name" value="Country 1"/>
+            </class>
+            <class name="ru.fd.api.service.producer.entity.VendorProducerIntegrationTestNG">
+                <parameter name="id" value="ven1"/>
+                <parameter name="name" value="Vendor 1"/>
+                <parameter name="codeAvarda" value="22505"/>
+            </class>
+
+            <class name="ru.fd.api.service.producer.entity.UnitsProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.DepartmentsProducerDefaultIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.CountriesProducerDefaultIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.VendorsProducerDefaultIntegrationTestNG"/>
         </classes>
     </test>
 

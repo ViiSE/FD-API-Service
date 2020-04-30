@@ -42,7 +42,7 @@ public class CategoriesRepositoryTestNG {
 
     @Test
     public void readProducts() throws JsonProcessingException {
-        testBegin("CategoriesRepository", "readCategories()");
+        testBegin("CategoriesRepository", "read()");
 
         try {
             Categories categories = categoriesRepository.read();
@@ -54,7 +54,7 @@ public class CategoriesRepositoryTestNG {
             catchMessage(ex);
         }
 
-        testEnd("CategoriesRepository", "readCategories()");
+        testEnd("CategoriesRepository", "read()");
     }
 
     @AfterMethod

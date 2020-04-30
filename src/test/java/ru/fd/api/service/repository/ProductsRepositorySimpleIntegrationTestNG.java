@@ -29,7 +29,7 @@ public class ProductsRepositorySimpleIntegrationTestNG extends AbstractTestNGSpr
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositorySimpleIntegration", "readProducts()");
+        testBegin("ProductsRepositorySimpleIntegration", "read()");
 
         try {
             Products products = productsRepository.read();
@@ -39,7 +39,7 @@ public class ProductsRepositorySimpleIntegrationTestNG extends AbstractTestNGSpr
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositorySimpleIntegration", "readProducts()");
+        testEnd("ProductsRepositorySimpleIntegration", "read()");
     }
 
     @AfterMethod

@@ -29,7 +29,7 @@ public class ProductsRepositoryWithPricesIntegrationTestNG extends AbstractTestN
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositoryWithPricesIntegration", "readProducts() [" + LocalDateTime.now() + "]");
+        testBegin("ProductsRepositoryWithPricesIntegration", "read() [" + LocalDateTime.now() + "]");
 
         try {
             Products products = pRepoWithPrices.read(pRepo.read());
@@ -40,7 +40,7 @@ public class ProductsRepositoryWithPricesIntegrationTestNG extends AbstractTestN
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositoryWithPricesIntegration", "readProducts() [" + LocalDateTime.now() + "]");
+        testEnd("ProductsRepositoryWithPricesIntegration", "read() [" + LocalDateTime.now() + "]");
     }
 
     @AfterMethod

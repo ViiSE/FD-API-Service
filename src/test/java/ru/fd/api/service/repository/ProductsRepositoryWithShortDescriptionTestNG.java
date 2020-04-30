@@ -29,7 +29,7 @@ public class ProductsRepositoryWithShortDescriptionTestNG {
 
     @Test
     public void readProducts() {
-        testBegin("ProductRepositoryWithShortDescription", "readProducts()");
+        testBegin("ProductRepositoryWithShortDescription", "read()");
 
         try {
             Products products = productsRepository.read();
@@ -42,7 +42,7 @@ public class ProductsRepositoryWithShortDescriptionTestNG {
         } catch (RepositoryException ex) {
             catchMessage(ex);
         }
-        testEnd("ProductRepositoryWithShortDescription", "readProducts()");
+        testEnd("ProductRepositoryWithShortDescription", "read()");
     }
 
     @AfterMethod

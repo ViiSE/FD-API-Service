@@ -33,7 +33,7 @@ public class ProductsRepositoryWithBalancesIntegrationTestNG extends AbstractTes
 
     @Test
     public void readProducts() {
-        testBegin("ProductsRepositoryWithBalancesIntegration", "readProducts()");
+        testBegin("ProductsRepositoryWithBalancesIntegration", "read()");
 
         try {
             Products products = repoProductsWithBalances.read(
@@ -44,7 +44,7 @@ public class ProductsRepositoryWithBalancesIntegrationTestNG extends AbstractTes
             catchMessage(ex);
         }
 
-        testEnd("ProductsRepositoryWithBalancesIntegration", "readProducts()");
+        testEnd("ProductsRepositoryWithBalancesIntegration", "read()");
     }
 
     @AfterMethod

@@ -20,6 +20,8 @@
             <class name="ru.fd.api.service.repository.DepartmentsRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.StatusesRepositoryTestNG"/>
             <class name="ru.fd.api.service.repository.UnitsRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.CountriesRepositoryTestNG"/>
+            <class name="ru.fd.api.service.repository.VendorsRepositoryTestNG"/>
         </classes>
     </test>
 
