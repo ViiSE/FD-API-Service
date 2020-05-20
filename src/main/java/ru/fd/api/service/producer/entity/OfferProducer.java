@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,16 @@
 
 package ru.fd.api.service.producer.entity;
 
-import ru.fd.api.service.entity.Price;
+import ru.fd.api.service.entity.DateOffer;
+import ru.fd.api.service.entity.Department;
+import ru.fd.api.service.entity.Offer;
 
-public interface PriceProducer {
-    Price getPriceInstance(String departmentId, float value);
-    Price getPriceOfferInstance(float originalValue, float offerValue);
+import java.util.List;
+
+public interface OfferProducer {
+    Offer getOfferSimpleInstance(long offerId);
+    Offer getOfferWithNameInstance(Offer offer, String name);
+    Offer getOfferWithDateOfferInstance(Offer offer, DateOffer dateOffer);
+    Offer getOfferWithDepartmentsInstance(Offer offer, List<Department> departments);
+    Offer getOfferWithRawDepartmentsListIdInstance(Offer offer, String rawDepartmentsListId);
 }

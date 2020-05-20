@@ -5,7 +5,7 @@
 
     <test name="EntitySuiteProductsTest">
         <classes>
-            <class name="ru.fd.api.service.entity.PriceDefaultTestNG">
+            <class name="ru.fd.api.service.entity.PriceTestNG">
                 <parameter name="departmentId" value="123"/>
                 <parameter name="value" value="120.54"/>
             </class>
@@ -128,6 +128,60 @@
                 <parameter name="name1" value="Unit 1"/>
                 <parameter name="unitId2" value="unit_2"/>
                 <parameter name="name2" value="Unit 2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.PriceOfferTestNG">
+                <parameter name="origValue" value="20.50"/>
+                <parameter name="offerValue" value="10.50"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DateOfferStartsAtTestNG"/>
+            <class name="ru.fd.api.service.entity.DateOfferFinishesAtTestNG"/>
+            <class name="ru.fd.api.service.entity.DepartmentWithIdTestNG">
+                <parameter name="departmentId" value="depId"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OfferSimpleTestNG">
+                <parameter name="offerId" value="100"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OfferWithDateOfferTestNG">
+                <parameter name="offerId" value="100"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OfferWithDepartmentsTestNG">
+                <parameter name="offerId" value="100"/>
+                <parameter name="depId1" value="depId1"/>
+                <parameter name="depId2" value="depId2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OfferWithNameTestNG">
+                <parameter name="offerId" value="100"/>
+                <parameter name="name" value="Department 1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.OffersTestNG">
+                <parameter name="offerId1" value="100"/>
+                <parameter name="offerId2" value="200"/>
+                <parameter name="name1" value="Department 1"/>
+                <parameter name="name2" value="Department 2"/>
+                <parameter name="depId1" value="depId1"/>
+                <parameter name="depId2" value="depId2"/>
+            </class>
+            <class name="ru.fd.api.service.entity.ProductOfferWithIdTestNG">
+                <parameter name="id" value="prodId1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.ProductOfferWithOfferIdTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="offerId" value="100"/>
+            </class>
+            <class name="ru.fd.api.service.entity.ProductOfferWithOfferPriceTestNG">
+                <parameter name="id" value="1"/>
+                <parameter name="origValue" value="100.50"/>
+                <parameter name="offerValue" value="99.99"/>
+            </class>
+            <class name="ru.fd.api.service.entity.ProductsOfferTestNG">
+                <parameter name="id1" value="1"/>
+                <parameter name="id2" value="2"/>
+                <parameter name="offerId1" value="100"/>
+                <parameter name="offerId2" value="200"/>
+                <parameter name="origValue1" value="100.50"/>
+                <parameter name="origValue2" value="500.99"/>
+                <parameter name="offerValue1" value="99.99"/>
+                <parameter name="offerValue2" value="5.00"/>
             </class>
         </classes>
     </test>

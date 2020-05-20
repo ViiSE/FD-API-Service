@@ -34,4 +34,9 @@ public class DepartmentProducerImpl implements DepartmentProducer {
     public Department getDepartmentInstance(String departmentId, String name) {
         return (Department) ctx.getBean("department", departmentId, name);
     }
+
+    @Override
+    public Department getDepartmentWithIdInstance(String departmentId) {
+        return (Department) ctx.getBean("departmentWithId", departmentId);
+    }
 }

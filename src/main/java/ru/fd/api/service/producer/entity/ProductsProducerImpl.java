@@ -42,4 +42,9 @@ public class ProductsProducerImpl implements ProductsProducer {
     public Products getProductsDefaultInstance(ProductProducer productProducer, List<Product> products) {
         return (Products) ctx.getBean("products", productProducer, products);
     }
+
+    @Override
+    public Products getProductsOfferInstance(List<Product> products) {
+        return (Products) ctx.getBean("productsOffer", products);
+    }
 }

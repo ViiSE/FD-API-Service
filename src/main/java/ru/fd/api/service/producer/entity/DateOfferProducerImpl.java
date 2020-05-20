@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,24 +18,26 @@ package ru.fd.api.service.producer.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.fd.api.service.entity.Price;
+import ru.fd.api.service.entity.DateOffer;
 
-@Service("priceProducer")
-public class PriceProducerImpl implements PriceProducer {
+import java.time.LocalDateTime;
+
+@Service("dateOfferProducer")
+public class DateOfferProducerImpl implements DateOfferProducer {
 
     private final ApplicationContext ctx;
 
-    public PriceProducerImpl(ApplicationContext ctx) {
+    public DateOfferProducerImpl(ApplicationContext ctx) {
         this.ctx = ctx;
     }
 
     @Override
-    public Price getPriceInstance(String departmentId, float value) {
-        return (Price) ctx.getBean("price", departmentId, value);
+    public DateOffer getDateOfferStartsAtInstance(LocalDateTime startsAt) {
+        return (DateOffer) ctx.getBean("dateOfferStartsAt", startsAt);
     }
 
     @Override
-    public Price getPriceOfferInstance(float originalValue, float offerValue) {
-        return (Price) ctx.getBean("priceOffer", originalValue, offerValue);
+    public DateOffer getDateOfferFinishesAtInstance(DateOffer dateOffer, LocalDateTime finishesAt) {
+        return (DateOffer) ctx.getBean("dateOfferFinishesAt", dateOffer, finishesAt);
     }
 }

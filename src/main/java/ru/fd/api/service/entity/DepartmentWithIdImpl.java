@@ -14,11 +14,24 @@
  * limitations under the License.
  */
 
-package ru.fd.api.service.producer.entity;
+package ru.fd.api.service.entity;
 
-import ru.fd.api.service.entity.Price;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import ru.fd.api.service.data.DepartmentPojo;
 
-public interface PriceProducer {
-    Price getPriceInstance(String departmentId, float value);
-    Price getPriceOfferInstance(float originalValue, float offerValue);
+@Component("departmentWithId")
+@Scope("prototype")
+public class DepartmentWithIdImpl implements Department {
+
+    private final String departmentId;
+
+    public DepartmentWithIdImpl(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    @Override
+    public Object formForSend() {
+        return new DepartmentPojo(departmentId, null);
+    }
 }

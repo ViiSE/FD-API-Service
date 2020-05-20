@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,37 +17,27 @@
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Department", description = "Подразделение")
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DepartmentPojo {
+import java.util.List;
 
-    @ApiModelProperty(notes = "GID подразделения", position = 1)
-    private final String id;
-    @ApiModelProperty(notes = "Имя подразделения", position = 2)
-    private final String name;
+@ApiModel(value = "ProductsOffer", description = "Товары, участвующие в акции")
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class ProductsOfferPojo {
+
+    @ApiModelProperty(notes = "Список товаров", position = 1)
+    private final List<ProductOfferPojo> products;
 
     @JsonCreator
-    public DepartmentPojo(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public ProductsOfferPojo(@JsonProperty("products") List<ProductOfferPojo> products) {
+        this.products = products;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getName() {
-        return name;
+    public List<ProductOfferPojo> getProducts() {
+        return products;
     }
 }

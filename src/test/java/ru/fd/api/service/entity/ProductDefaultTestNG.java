@@ -63,7 +63,7 @@ public class ProductDefaultTestNG {
         this.articul = articul;
         this.code = code;
 
-        testBegin("ProductSimple");
+        testBegin(ProductImpl.class);
     }
 
     @Test
@@ -97,6 +97,6 @@ public class ProductDefaultTestNG {
 
     @AfterClass
     public void teardownClass() {
-        testEnd("ProductSimple");
+        testEnd(ProductImpl.class);
     }
 }

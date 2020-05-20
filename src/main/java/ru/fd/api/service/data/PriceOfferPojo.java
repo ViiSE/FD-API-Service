@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,30 +24,28 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Department", description = "Подразделение")
+@ApiModel(value = "PriceOffer", description = "Цена товара, участвующего в акции")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DepartmentPojo {
+public class PriceOfferPojo {
 
-    @ApiModelProperty(notes = "GID подразделения", position = 1)
-    private final String id;
-    @ApiModelProperty(notes = "Имя подразделения", position = 2)
-    private final String name;
+    @ApiModelProperty(notes = "Цена до акции", position = 1)
+    private final float originalValue;
+    @ApiModelProperty(notes = "Цена после акции", position = 2)
+    private final float offerValue;
 
     @JsonCreator
-    public DepartmentPojo(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public PriceOfferPojo(
+            @JsonProperty("original_value") float originalValue,
+            @JsonProperty("offer_value") float offerValue) {
+        this.originalValue = originalValue;
+        this.offerValue = offerValue;
     }
 
-    public String getId() {
-        return id;
+    public float getOfferValue() {
+        return offerValue;
     }
 
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getName() {
-        return name;
+    public float getOriginalValue() {
+        return originalValue;
     }
 }

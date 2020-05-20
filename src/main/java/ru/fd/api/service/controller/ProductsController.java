@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.fd.api.service.data.ProductsChangedBalancesPojo;
+import ru.fd.api.service.data.ProductsOfferPojo;
 import ru.fd.api.service.data.ProductsPojo;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.ProcessException;
@@ -40,15 +41,18 @@ public class ProductsController {
     private final Process<Products, List<String>> chain;
     private final Process<Products, Void> processCBalanceAll;
     private final Process<Products, Long> processCBalanceOrder;
+    private final Process<Products, Void> processProductsOffer;
 
 
     public ProductsController(
             @Qualifier("psChainLgProducts") Process<Products, List<String>> chain,
             @Qualifier("psLgChangedBalances") Process<Products, Void> processCBalanceAll,
-            @Qualifier("psLgChangedBalancesWithOrder") Process<Products, Long> processCBalanceOrder) {
+            @Qualifier("psLgChangedBalancesWithOrder") Process<Products, Long> processCBalanceOrder,
+            @Qualifier("psLgProductsOffer") Process<Products, Void> processProductsOffer) {
         this.chain = chain;
         this.processCBalanceAll = processCBalanceAll;
         this.processCBalanceOrder = processCBalanceOrder;
+        this.processProductsOffer = processProductsOffer;
     }
 
     @ApiOperation(value = "Выгружает все товары")
@@ -88,6 +92,16 @@ public class ProductsController {
                 return (ProductsChangedBalancesPojo) processCBalanceOrder.answer(orderId).formForSend();
         } catch (ProcessException ex) {
             return new ProductsChangedBalancesPojo(new ArrayList<>());
+        }
+    }
+
+    @ApiOperation(value = "Выгружает товары, участвующие в акции")
+    @GetMapping("/products/offers")
+    public ProductsOfferPojo productsOffer() {
+        try {
+            return (ProductsOfferPojo) processProductsOffer.answer(null).formForSend();
+        } catch (ProcessException ex) {
+            return new ProductsOfferPojo(new ArrayList<>());
         }
     }
 }

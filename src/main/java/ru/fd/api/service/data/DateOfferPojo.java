@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,38 +16,35 @@
 
 package ru.fd.api.service.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Department", description = "Подразделение")
+import java.time.LocalDateTime;
+
+@ApiModel(value = "DateOffer", description = "Дата акции")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DepartmentPojo {
+public class DateOfferPojo {
 
-    @ApiModelProperty(notes = "GID подразделения", position = 1)
-    private final String id;
-    @ApiModelProperty(notes = "Имя подразделения", position = 2)
-    private final String name;
+    @ApiModelProperty(example = "2020-01-13 00:45:36", notes = "Дата и время начала акции (yyyy-MM-dd HH:mm:ss)", position = 1)
+    private LocalDateTime startsAt;
+    @ApiModelProperty(example = "2020-01-13 00:45:36", notes = "Дата и время окончания акции (yyyy-MM-dd HH:mm:ss)", position = 2)
+    private LocalDateTime finishesAt;
 
-    @JsonCreator
-    public DepartmentPojo(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public void setStartsAt(LocalDateTime startsAt) {
+        this.startsAt = startsAt;
     }
 
-    public String getId() {
-        return id;
+    public void setFinishesAt(LocalDateTime finishesAt) {
+        this.finishesAt = finishesAt;
     }
 
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getName() {
-        return name;
+    public LocalDateTime getStartsAt() {
+        return startsAt;
+    }
+
+    public LocalDateTime getFinishesAt() {
+        return finishesAt;
     }
 }

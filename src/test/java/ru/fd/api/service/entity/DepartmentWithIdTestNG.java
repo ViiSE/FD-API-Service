@@ -7,44 +7,40 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.PricePojo;
+import ru.fd.api.service.data.DepartmentPojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class PriceDefaultTestNG {
+public class DepartmentWithIdTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private Price price;
+    private Department department;
 
     private String departmentId;
-    private float value;
 
     @BeforeClass
-    @Parameters({"departmentId", "value"})
-    public void setUpClass(String departmentId, float value) {
+    @Parameters({"departmentId"})
+    public void setUpClass(String departmentId) {
         assertNotNull(departmentId, "Department ID cannot be null!");
         assertFalse(departmentId.isEmpty(), "Department ID is empty!");
-        assertFalse(value < 0f, "Value is less than 0!");
 
-        price = new PriceImpl(departmentId, value);
-        assertNotNull(price, "Price is null!");
+        department = new DepartmentWithIdImpl(departmentId);
+        assertNotNull(department, "Department is null!");
 
         this.departmentId = departmentId;
-        this.value = value;
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin("PriceDefault", "formForSend()");
+        testBegin(DepartmentWithIdImpl.class, "formForSend()");
 
-        PricePojo pricePojo = (PricePojo) price.formForSend();
-        assertNotNull(pricePojo, "PricePojo is null!");
-        assertEquals(pricePojo.getDepartmentId(), departmentId);
-        assertEquals(pricePojo.getValue(), value);
-        System.out.println(mapper.writeValueAsString(pricePojo));
+        DepartmentPojo departmentPojo = (DepartmentPojo) department.formForSend();
+        assertNotNull(departmentPojo, "DepartmentPojo is null!");
+        assertEquals(departmentPojo.getId(), departmentId);
+        System.out.println(mapper.writeValueAsString(departmentPojo));
 
-        testEnd("PriceDefault", "formForSend()");
+        testEnd(DepartmentWithIdImpl.class, "formForSend()");
     }
 
     @AfterMethod

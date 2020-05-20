@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-package ru.fd.api.service.producer.entity;
+package ru.fd.api.service.entity;
 
-import ru.fd.api.service.entity.Price;
-
-public interface PriceProducer {
-    Price getPriceInstance(String departmentId, float value);
-    Price getPriceOfferInstance(float originalValue, float offerValue);
+public interface Offers extends Sendable {
+    Object formForSend();
 }

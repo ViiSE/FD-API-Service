@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package ru.fd.api.service.producer.entity;
+package ru.fd.api.service.repository;
 
-import ru.fd.api.service.entity.Price;
+import ru.fd.api.service.entity.Offers;
+import ru.fd.api.service.exception.RepositoryException;
 
-public interface PriceProducer {
-    Price getPriceInstance(String departmentId, float value);
-    Price getPriceOfferInstance(float originalValue, float offerValue);
+public interface OffersRepository {
+    Offers read() throws RepositoryException;
 }

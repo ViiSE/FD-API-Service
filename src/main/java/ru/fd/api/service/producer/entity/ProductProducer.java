@@ -31,4 +31,8 @@ public interface ProductProducer {
     Product getProductWithFullDescriptionInstance(Product product, String fullDescription);
     Product getProductWithChangedBalancesInstance(String id, Balances balances);
     Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice);
+
+    Product getProductOfferWithIdInstance(String id);
+    Product getProductOfferWithOfferIdInstance(Product product, long offerId);
+    Product getProductOfferWithOfferPriceInstance(Product product, Price price);
 }

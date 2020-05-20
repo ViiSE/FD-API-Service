@@ -72,4 +72,19 @@ public class ProductProducerTestImpl implements ProductProducer {
     public Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice) {
         return new OrderProductSimpleImpl(id, quantity, sumPrice);
     }
+
+    @Override
+    public Product getProductOfferWithIdInstance(String id) {
+        return new ProductOfferWithIdImpl(id);
+    }
+
+    @Override
+    public Product getProductOfferWithOfferIdInstance(Product product, long offerId) {
+        return new ProductOfferWithOfferIdImpl(product, offerId);
+    }
+
+    @Override
+    public Product getProductOfferWithOfferPriceInstance(Product product, Price price) {
+        return new ProductOfferWithOfferPriceImpl(product, price);
+    }
 }

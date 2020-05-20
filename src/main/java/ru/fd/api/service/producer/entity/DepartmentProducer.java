@@ -21,4 +21,5 @@ import ru.fd.api.service.entity.Department;
 
 public interface DepartmentProducer {
     Department getDepartmentInstance(String departmentId, String name);
+    Department getDepartmentWithIdInstance(String departmentId);
 }

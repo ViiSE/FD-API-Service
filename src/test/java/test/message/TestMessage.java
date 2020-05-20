@@ -38,7 +38,7 @@ public class TestMessage {
             public String toString() { return "END"; }
         }
     }
-    
+
     private static void printTestMessage(String className, String methodName, IDENTIFY identify) {
         System.out.println("-----------------------------------------------");
         System.out.println(className +  ". Method:" + methodName + ". Test " + identify.toString());
@@ -55,21 +55,37 @@ public class TestMessage {
         System.out.println("[Method: " + methodName + "]");
         System.out.println("-----------------------------------------------");
     }
-    
+
     public static void testBegin(String className, String methodName) {
         printTestMessage(className, methodName, IDENTIFY.BEGIN);
+    }
+
+    public static void testBegin(Class<?> clazz, String methodName) {
+        printTestMessage(clazz.getSimpleName(), methodName, IDENTIFY.BEGIN);
     }
 
     public static void testBegin(String className) {
         printTestMessage(className, IDENTIFY.BEGIN);
     }
 
+    public static void testBegin(Class<?> clazz) {
+        printTestMessage(clazz.getSimpleName(), IDENTIFY.BEGIN);
+    }
+
     public static void testEnd(String className, String methodName) {
         printTestMessage(className, methodName, IDENTIFY.END);
     }
 
+    public static void testEnd(Class<?> clazz, String methodName) {
+        printTestMessage(clazz.getSimpleName(), methodName, IDENTIFY.END);
+    }
+
     public static void testEnd(String className) {
         printTestMessage(className, IDENTIFY.END);
+    }
+
+    public static void testEnd(Class<?> clazz) {
+        printTestMessage(clazz.getSimpleName(), IDENTIFY.END);
     }
 
     public static void testMethod(String methodName) {

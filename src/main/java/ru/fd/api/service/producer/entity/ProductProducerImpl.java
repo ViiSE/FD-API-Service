@@ -78,4 +78,19 @@ public class ProductProducerImpl implements ProductProducer {
     public Product getOrderProductSimpleInstance(String id, int quantity, float sumPrice) {
         return (Product) ctx.getBean("orderProductSimple", id, quantity, sumPrice);
     }
+
+    @Override
+    public Product getProductOfferWithIdInstance(String id) {
+        return (Product) ctx.getBean("productOfferWithId", id);
+    }
+
+    @Override
+    public Product getProductOfferWithOfferIdInstance(Product product, long offerId) {
+        return (Product) ctx.getBean("productOfferWithOfferId", product, offerId);
+    }
+
+    @Override
+    public Product getProductOfferWithOfferPriceInstance(Product product, Price price) {
+        return (Product) ctx.getBean("productOfferWithOfferPrice", product, price);
+    }
 }

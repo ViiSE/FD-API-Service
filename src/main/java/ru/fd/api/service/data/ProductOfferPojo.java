@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,38 +16,47 @@
 
 package ru.fd.api.service.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Department", description = "Подразделение")
+import java.util.List;
+
+@ApiModel(value = "ProductOffer", description = "Товар, участвующий в акции")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DepartmentPojo {
+public class ProductOfferPojo {
 
-    @ApiModelProperty(notes = "GID подразделения", position = 1)
-    private final String id;
-    @ApiModelProperty(notes = "Имя подразделения", position = 2)
-    private final String name;
+    @ApiModelProperty(notes = "GID товара", position = 1)
+    private String id;
+    @ApiModelProperty(notes = "Цена", position = 2)
+    private PriceOfferPojo price;
+    @ApiModelProperty(notes = "ID акции", position = 3)
+    private long offerId;
 
-    @JsonCreator
-    public DepartmentPojo(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
+    public void setId(String id) {
         this.id = id;
-        this.name = name;
+    }
+
+    public void setPrice(PriceOfferPojo price) {
+        this.price = price;
+    }
+
+    public void setOfferId(long offerId) {
+        this.offerId = offerId;
     }
 
     public String getId() {
         return id;
     }
 
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getName() {
-        return name;
+    public PriceOfferPojo getPrice() {
+        return price;
+    }
+
+    public long getOfferId() {
+        return offerId;
     }
 }
