@@ -18,17 +18,16 @@ public class AttributeTestNG {
     private Attribute attribute;
 
     private String attributeId;
-    private String groupId;
+    private long groupId;
     private String name;
 
     @BeforeClass
     @Parameters({"attributeId", "groupId", "name"})
-    public void setUpClass(String attributeId, String groupId, String name) {
+    public void setUpClass(String attributeId, long groupId, String name) {
         assertNotNull(attributeId, "Attribute ID cannot be null!");
         assertFalse(attributeId.isEmpty(), "Attribute ID is empty!");
 
-        assertNotNull(groupId, "Group ID cannot be null!");
-        assertFalse(groupId.isEmpty(), "Group ID is empty!");
+        assertFalse(groupId < 0L, "Group ID is less than 0!");
 
         assertNotNull(name, "Name cannot be null!");
         assertFalse(name.isEmpty(), "Name is empty!");

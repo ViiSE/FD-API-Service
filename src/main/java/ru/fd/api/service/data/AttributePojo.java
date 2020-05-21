@@ -17,6 +17,7 @@
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -29,15 +30,18 @@ public class AttributePojo {
 
     @ApiModelProperty(notes = "GID атрибута", position = 1)
     private final String id;
-    @ApiModelProperty(notes = "GID группы атрибута", position = 2)
-    private final String groupId;
+    @ApiModelProperty(notes = "ID группы атрибута", position = 2)
+    private final long groupId;
     @ApiModelProperty(notes = "Название атрибута", position = 3)
     private final String name;
+    @ApiModelProperty(notes = "Код аварда", position = 3)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String codeAvarda;
 
     @JsonCreator
     public AttributePojo(
             @JsonProperty("id") String id,
-            @JsonProperty("group_id") String groupId,
+            @JsonProperty("group_id") long groupId,
             @JsonProperty("name") String name) {
         this.id = id;
         this.groupId = groupId;
@@ -48,11 +52,19 @@ public class AttributePojo {
         return id;
     }
 
-    public String getGroupId() {
+    public long getGroupId() {
         return groupId;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setCodeAvarda(String codeAvarda) {
+        this.codeAvarda = codeAvarda;
+    }
+
+    public String getCodeAvarda() {
+        return codeAvarda;
     }
 }

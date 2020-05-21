@@ -20,22 +20,22 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.AttributePojo;
 
-@Component("attribute")
+@Component("attributeWithCodeAvarda")
 @Scope("prototype")
-public class AttributeImpl implements Attribute {
+public class AttributeWithCodeAvardaImpl implements Attribute {
 
-    private final String attributeId;
-    private final long groupId;
-    private final String name;
+    private final Attribute attribute;
+    private final String codeAvarda;
 
-    public AttributeImpl(String attributeId, long groupId, String name) {
-        this.attributeId = attributeId;
-        this.groupId = groupId;
-        this.name = name;
+    public AttributeWithCodeAvardaImpl(Attribute attribute, String codeAvarda) {
+        this.attribute = attribute;
+        this.codeAvarda = codeAvarda;
     }
 
     @Override
     public Object formForSend() {
-        return new AttributePojo(attributeId, groupId, name);
+        AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
+        attributePojo.setCodeAvarda(codeAvarda);
+        return attributePojo;
     }
 }

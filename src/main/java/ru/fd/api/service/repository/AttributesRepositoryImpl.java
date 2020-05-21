@@ -20,9 +20,12 @@ package ru.fd.api.service.repository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Attribute;
 import ru.fd.api.service.entity.Attributes;
+import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.AttributeProducer;
 import ru.fd.api.service.producer.entity.AttributesProducer;
 import ru.fd.api.service.repository.mapper.RmAttributesImpl;
 
@@ -34,20 +37,28 @@ public class AttributesRepositoryImpl implements AttributesRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final AttributesProducer attrsProducer;
+    private final AttributeProducer attrProducer;
+    private final SQLQueryCreator<String, String> sqlQueryCreator;
 
-    public AttributesRepositoryImpl(JdbcTemplate jdbcTemplate, AttributesProducer attrsProducer) {
+    public AttributesRepositoryImpl(
+            JdbcTemplate jdbcTemplate,
+            AttributesProducer attrsProducer,
+            AttributeProducer attrProducer,
+            SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
         this.attrsProducer = attrsProducer;
+        this.attrProducer = attrProducer;
+        this.sqlQueryCreator = sqlQueryCreator;
     }
 
     @Override
     public Attributes read() throws RepositoryException {
         try {
             List<Attribute> attributes = jdbcTemplate.query(
-                    "SQL HERE",
-                    new RmAttributesImpl());
+                    sqlQueryCreator.create("attributes.sql").content(),
+                    new RmAttributesImpl(attrProducer));
             return attrsProducer.getAttributesInstance(attributes);
-        } catch (DataAccessException ex) {
+        } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }
     }

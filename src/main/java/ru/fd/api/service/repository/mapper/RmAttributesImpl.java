@@ -18,38 +18,27 @@ package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import ru.fd.api.service.entity.Attribute;
+import ru.fd.api.service.producer.entity.AttributeProducer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RmAttributesImpl implements RowMapper<Attribute> {
 
+    private final AttributeProducer attributeProducer;
+
+    public RmAttributesImpl(AttributeProducer attributeProducer) {
+        this.attributeProducer = attributeProducer;
+    }
+
     @Override
     public Attribute mapRow(ResultSet rs, int i) throws SQLException {
-//        List<Product> products = new ArrayList<>();
-//        while(rs.next()) {
-//            String id = rs.getString("TOVAR.GID");
-//            String categoryId = rs.getString("DIRECTMAIN.IDENT");
-//            String vendorId = rs.getString("MAKER.GID");
-//            String unitId = rs.getString("OKEI");
-//            String name = rs.getString("TOVAR.NAME");
-//            short tax = rs.getShort("TAX");
-//            String articul = "";
-//            String code = rs.getString("TOVAR.GID");
-//            boolean noReturn = rs.getBoolean("NO_RETURN");
-//
-//            products.add(productProducer.getProductProducerDefaultInstance(
-//                    id,
-//                    categoryId,
-//                    vendorId,
-//                    unitId,
-//                    name,
-//                    tax,
-//                    articul,
-//                    code,
-//                    noReturn));
-//        }
-//        return new ProductsDefaultImpl(products);
-        return null;
+        String id = rs.getString("GID").trim();
+        String name = rs.getString("name").trim();
+        long groupId = rs.getLong("grp");
+        String codeAvarda = rs.getString("codeAvarda").trim();
+        return attributeProducer.getAttributeWithCodeAvardaInstance(
+                attributeProducer.getAttributeInstance(id, groupId, name),
+                codeAvarda);
     }
 }
