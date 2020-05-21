@@ -49,7 +49,7 @@ public class ProductsAdditionalController {
         }
     }
 
-    @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные атрибуты товаров")
+    @ApiOperation(value = "Выгружает все возможные атрибуты товаров")
     @GetMapping("/products/attributes")
     public AttributesPojo attributes() {
         try {
