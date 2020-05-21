@@ -59,7 +59,7 @@ public class ProductsAdditionalController {
         }
     }
 
-    @ApiOperation(value = "[!!!НЕДОСТУПНО!!!] Выгружает все возможные группы атрибутов товаров")
+    @ApiOperation(value = "Выгружает все возможные группы атрибутов товаров")
     @GetMapping("/products/attribute-groups")
     public AttributeGroupsPojo attributesGroups() {
         try {

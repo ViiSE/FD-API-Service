@@ -27,20 +27,20 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AttributeGroupPojo {
 
-    @ApiModelProperty(notes = "GID группы атрибутов", position = 1)
-    private final String id;
+    @ApiModelProperty(notes = "ID группы атрибутов", position = 1)
+    private final long id;
     @ApiModelProperty(notes = "Название группы атрибутов", position = 2)
     private final String name;
 
     @JsonCreator
     public AttributeGroupPojo(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") long id,
             @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 

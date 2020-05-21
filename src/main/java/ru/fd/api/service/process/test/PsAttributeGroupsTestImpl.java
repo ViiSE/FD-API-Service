@@ -28,8 +28,8 @@ public class PsAttributeGroupsTestImpl implements Process<AttributeGroups, Void>
 
     @Override
     public AttributeGroups answer(Void v) {
-        AttributeGroup attGr1 = new AttributeGroupImpl("attr_gr_1", "Attribute group 1");
-        AttributeGroup attGr2 = new AttributeGroupImpl("attr_gr_2", "Attribute group 2");
+        AttributeGroup attGr1 = new AttributeGroupImpl(1L, "Attribute group 1");
+        AttributeGroup attGr2 = new AttributeGroupImpl(2L, "Attribute group 2");
         return new AttributeGroupsImpl(new ArrayList<>() {{ add(attGr1); add(attGr2); }});
     }
 }

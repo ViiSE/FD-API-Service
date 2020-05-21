@@ -33,30 +33,8 @@ public class RmAttributeGroupsImpl implements RowMapper<AttributeGroup> {
 
     @Override
     public AttributeGroup mapRow(ResultSet rs, int i) throws SQLException {
-//        List<Product> products = new ArrayList<>();
-//        while(rs.next()) {
-//            String id = rs.getString("TOVAR.GID");
-//            String categoryId = rs.getString("DIRECTMAIN.IDENT");
-//            String vendorId = rs.getString("MAKER.GID");
-//            String unitId = rs.getString("OKEI");
-//            String name = rs.getString("TOVAR.NAME");
-//            short tax = rs.getShort("TAX");
-//            String articul = "";
-//            String code = rs.getString("TOVAR.GID");
-//            boolean noReturn = rs.getBoolean("NO_RETURN");
-//
-//            products.add(productProducer.getProductProducerDefaultInstance(
-//                    id,
-//                    categoryId,
-//                    vendorId,
-//                    unitId,
-//                    name,
-//                    tax,
-//                    articul,
-//                    code,
-//                    noReturn));
-//        }
-//        return new ProductsDefaultImpl(products);
-        return null;
+        long id = rs.getLong("KOD");
+        String name = rs.getString("NAME").trim();
+        return attributeGroupProducer.getAttributeGroupInstance(id, name);
     }
 }

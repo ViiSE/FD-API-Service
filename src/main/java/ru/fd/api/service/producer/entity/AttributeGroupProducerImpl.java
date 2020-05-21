@@ -31,7 +31,7 @@ public class AttributeGroupProducerImpl implements AttributeGroupProducer {
     }
 
     @Override
-    public AttributeGroup getAttributeGroupInstance(String attributeGroupId, String name) {
-        return (AttributeGroup) ctx.getBean("attributeGroup", attributeGroupId, name);
+    public AttributeGroup getAttributeGroupInstance(long id, String name) {
+        return (AttributeGroup) ctx.getBean("attributeGroup", id, name);
     }
 }

@@ -20,5 +20,5 @@ package ru.fd.api.service.producer.entity;
 import ru.fd.api.service.entity.AttributeGroup;
 
 public interface AttributeGroupProducer {
-    AttributeGroup getAttributeGroupInstance(String attributeGroupId, String name);
+    AttributeGroup getAttributeGroupInstance(long id, String name);
 }

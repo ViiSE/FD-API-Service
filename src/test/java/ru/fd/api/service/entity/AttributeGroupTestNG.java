@@ -17,14 +17,13 @@ public class AttributeGroupTestNG {
     private final ObjectMapper mapper = new ObjectMapper();
     private AttributeGroup attributeGroup;
 
-    private String attributeGroupId;
+    private long attributeGroupId;
     private String name;
 
     @BeforeClass
     @Parameters({"attributeGroupId", "name"})
-    public void setUpClass(String attributeGroupId, String name) {
-        assertNotNull(attributeGroupId, "Attribute group ID cannot be null!");
-        assertFalse(attributeGroupId.isEmpty(), "Attribute group ID is empty!");
+    public void setUpClass(long attributeGroupId, String name) {
+        assertNotNull(attributeGroupId < 0, "Attribute group ID is less than 0!");
 
         assertNotNull(name, "Name cannot be null!");
         assertFalse(name.isEmpty(), "Name is empty!");

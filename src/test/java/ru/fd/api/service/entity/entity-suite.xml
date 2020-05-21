@@ -75,24 +75,24 @@
             <class name="ru.fd.api.service.entity.AttributeTestNG">
                 <parameter name="attributeId" value="attr_1"/>
                 <parameter name="name" value="Attribute 1"/>
-                <parameter name="groupId" value="gr_1"/>
+                <parameter name="groupId" value="1"/>
             </class>
             <class name="ru.fd.api.service.entity.AttributesTestNG">
                 <parameter name="attributeId1" value="attr_1"/>
                 <parameter name="name1" value="Attribute 1"/>
-                <parameter name="groupId1" value="gr_1"/>
+                <parameter name="groupId1" value="1"/>
                 <parameter name="attributeId2" value="attr_2"/>
                 <parameter name="name2" value="Attribute 2"/>
-                <parameter name="groupId2" value="gr_2"/>
+                <parameter name="groupId2" value="2"/>
             </class>
             <class name="ru.fd.api.service.entity.AttributeGroupTestNG">
-                <parameter name="attributeGroupId" value="attr_gr_1"/>
+                <parameter name="attributeGroupId" value="1"/>
                 <parameter name="name" value="AttributeGroup 1"/>
             </class>
             <class name="ru.fd.api.service.entity.AttributeGroupsTestNG">
-                <parameter name="attributeGroupId1" value="attr_gr_1"/>
+                <parameter name="attributeGroupId1" value="1"/>
                 <parameter name="name1" value="Attribute 1"/>
-                <parameter name="attributeGroupId2" value="attr_gr_2"/>
+                <parameter name="attributeGroupId2" value="2"/>
                 <parameter name="name2" value="Attribute 2"/>
             </class>
             <class name="ru.fd.api.service.entity.CategoryTestNG">
