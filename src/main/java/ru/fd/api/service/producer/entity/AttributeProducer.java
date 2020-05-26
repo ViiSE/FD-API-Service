@@ -21,4 +21,5 @@ import ru.fd.api.service.entity.Attribute;
 public interface AttributeProducer {
     Attribute getAttributeInstance(String id, long groupId, String name);
     Attribute getAttributeWithCodeAvardaInstance(Attribute attribute, String codeAvarda);
+    Attribute getAttributeSimpleInstance(String id, String value);
 }

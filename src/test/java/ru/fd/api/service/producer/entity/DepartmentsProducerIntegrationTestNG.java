@@ -22,30 +22,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Departments;
+import ru.fd.api.service.entity.DepartmentsImpl;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class CountryProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class DepartmentsProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private CountryProducer countryProducer;
+    private DepartmentsProducer departmentsProducer;
 
     @Test
-    @Parameters({"id", "name"})
-    public void getCountryInstance(String id, String name) {
-        testBegin(CountryProducerImpl.class, "getCountryInstance()");
+    public void getDepartmentsInstance() {
+        testBegin(DepartmentsProducer.class, "getDepartmentsInstance()");
 
-        Country country = countryProducer.getCountryInstance(id, name);
-        assertTrue(country instanceof CountryImpl, "Country: not a valid type!");
-        System.out.println("Instance: " + country);
+        Departments deps = departmentsProducer.getDepartmentsInstance(new ArrayList<>());
+        assertTrue(deps instanceof DepartmentsImpl, "Departments: not a valid type!");
+        System.out.println("Instance: " + deps);
 
-        testEnd(CountryProducerImpl.class, "getCountryInstance()");
+        testEnd(DepartmentsProducer.class, "getDepartmentsInstance()");
     }
 
     @AfterMethod

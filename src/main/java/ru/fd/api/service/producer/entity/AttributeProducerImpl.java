@@ -38,4 +38,9 @@ public class AttributeProducerImpl implements AttributeProducer {
     public Attribute getAttributeWithCodeAvardaInstance(Attribute attribute, String codeAvarda) {
         return (Attribute) ctx.getBean("attributeWithCodeAvarda", attribute, codeAvarda);
     }
+
+    @Override
+    public Attribute getAttributeSimpleInstance(String id, String value) {
+        return (Attribute) ctx.getBean("attributeSimple", id, value);
+    }
 }

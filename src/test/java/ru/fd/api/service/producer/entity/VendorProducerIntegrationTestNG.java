@@ -21,9 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Vendor;
 import ru.fd.api.service.entity.VendorImpl;
@@ -38,34 +36,40 @@ public class VendorProducerIntegrationTestNG extends AbstractTestNGSpringContext
     @Autowired
     private VendorProducer vendorProducer;
 
+    @BeforeClass
+    public void setUpClass() {
+        testBegin(VendorProducerImpl.class);
+    }
+
     @Test
     @Parameters({"id", "name"})
     public void getVendorInstance(String id, String name) {
-        testBegin("VendorProducer", "getVendorInstance()");
+        testMethod("getVendorInstance()");
 
         Vendor vendor = vendorProducer.getVendorInstance(id, name);
         assertTrue(vendor instanceof VendorImpl, "Vendor: not a valid type!");
         System.out.println("Instance: " + vendor);
-
-        testEnd("VendorProducer", "getVendorInstance()");
     }
 
     @Test
     @Parameters({"id", "name", "codeAvarda"})
     public void getVendorWithCodeAvardaInstance(String id, String name, String codeAvarda) {
-        testBegin("VendorProducer", "getVendorWithCodeAvardaInstance()");
+        testMethod("getVendorWithCodeAvardaInstance()");
 
         Vendor vendor = vendorProducer.getVendorWithCodeAvardaInstance(
                 vendorProducer.getVendorInstance(id, name),
                 codeAvarda);
         assertTrue(vendor instanceof VendorWithCodeAvardaImpl, "Vendor: not a valid type!");
         System.out.println("Instance: " + vendor);
-
-        testEnd("VendorProducer", "getVendorWithCodeAvardaInstance()");
     }
 
     @AfterMethod
     public void getRunTime(ITestResult tr) {
         printTestTime(tr);
+    }
+
+    @AfterClass
+    public void shutdownClass() {
+        testEnd(VendorProducerImpl.class);
     }
 }

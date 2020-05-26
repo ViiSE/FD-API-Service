@@ -39,14 +39,14 @@ public class CategoriesProducerIntegrationTestNG extends AbstractTestNGSpringCon
     private CategoriesProducer categoriesProducer;
 
     @Test
-    public void getCategoriesDefaultInstance() {
-        testBegin("CategoriesProducer", "getCategoriesInstance()");
+    public void getCategoriesInstance() {
+        testBegin(CategoriesProducerImpl.class, "getCategoriesInstance()");
 
         Categories cats = categoriesProducer.getCategoriesInstance(new ArrayList<>());
         assertTrue(cats instanceof CategoriesImpl, "Categories: not a valid type!");
         System.out.println("Instance: " + cats);
 
-        testEnd("CategoriesProducer", "getCategoriesInstance()");
+        testEnd(CategoriesProducerImpl.class, "getCategoriesInstance()");
     }
 
     @AfterMethod

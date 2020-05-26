@@ -25,27 +25,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Balances;
+import ru.fd.api.service.entity.BalancesImpl;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class CountryProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class BalancesProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private CountryProducer countryProducer;
+    private BalancesProducer balancesProducer;
 
     @Test
-    @Parameters({"id", "name"})
-    public void getCountryInstance(String id, String name) {
-        testBegin(CountryProducerImpl.class, "getCountryInstance()");
+    public void getBalancesInstance() {
+        testBegin(BalancesProducerImpl.class, "getBalancesInstance()");
 
-        Country country = countryProducer.getCountryInstance(id, name);
-        assertTrue(country instanceof CountryImpl, "Country: not a valid type!");
-        System.out.println("Instance: " + country);
+        Balances balances = balancesProducer.getBalancesInstance(new ArrayList<>());
+        assertTrue(balances instanceof BalancesImpl, "Balances: not a valid type!");
+        System.out.println("Instance: " + balances);
 
-        testEnd(CountryProducerImpl.class, "getCountryInstance()");
+        testEnd(BalancesProducerImpl.class, "getBalancesInstance()");
     }
 
     @AfterMethod

@@ -22,30 +22,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Status;
+import ru.fd.api.service.entity.StatusImpl;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class CountryProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class StatusProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private CountryProducer countryProducer;
+    private StatusProducer statusProducer;
 
     @Test
-    @Parameters({"id", "name"})
-    public void getCountryInstance(String id, String name) {
-        testBegin(CountryProducerImpl.class, "getCountryInstance()");
+    public void getStatusInstance() {
+        testBegin(StatusProducerImpl.class, "getStatusInstance()");
 
-        Country country = countryProducer.getCountryInstance(id, name);
-        assertTrue(country instanceof CountryImpl, "Country: not a valid type!");
-        System.out.println("Instance: " + country);
+        Status st = statusProducer.getStatusInstance("id", "stat");
+        assertTrue(st instanceof StatusImpl, "Status: not a valid type!");
+        System.out.println("Instance: " + st);
 
-        testEnd(CountryProducerImpl.class, "getCountryInstance()");
+        testEnd(StatusProducerImpl.class, "getStatusInstance()");
     }
 
     @AfterMethod

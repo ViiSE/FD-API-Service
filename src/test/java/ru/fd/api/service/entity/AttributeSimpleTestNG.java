@@ -12,46 +12,42 @@ import ru.fd.api.service.data.AttributePojo;
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class AttributeTestNG {
+public class AttributeSimpleTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Attribute attribute;
 
     private String attributeId;
-    private Long groupId;
-    private String name;
+    private String value;
 
     @BeforeClass
-    @Parameters({"attributeId", "groupId", "name"})
-    public void setUpClass(String attributeId, long groupId, String name) {
+    @Parameters({"attributeId", "value"})
+    public void setUpClass(String attributeId, String value) {
         assertNotNull(attributeId, "Attribute ID cannot be null!");
         assertFalse(attributeId.isEmpty(), "Attribute ID is empty!");
 
-        assertFalse(groupId < 0L, "Group ID is less than 0!");
+        assertNotNull(value, "Value cannot be null!");
+        assertFalse(value.isEmpty(), "Value is empty!");
 
-        assertNotNull(name, "Name cannot be null!");
-        assertFalse(name.isEmpty(), "Name is empty!");
 
-        attribute = new AttributeImpl(attributeId, groupId, name);
+        attribute = new AttributeSimpleImpl(attributeId, value);
         assertNotNull(attribute, "Attribute is null!");
 
         this.attributeId = attributeId;
-        this.groupId = groupId;
-        this.name = name;
+        this.value = value;
     }
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin(AttributeImpl.class, "formForSend()");
+        testBegin(AttributeSimpleImpl.class, "formForSend()");
 
         AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
         assertNotNull(attributePojo, "AttributePojo is null!");
         assertEquals(attributePojo.getId(), attributeId);
-        assertEquals(attributePojo.getGroupId(), groupId);
-        assertEquals(attributePojo.getName(), name);
+        assertEquals(attributePojo.getValue(), value);
         System.out.println(mapper.writeValueAsString(attributePojo));
 
-        testEnd(AttributeImpl.class, "formForSend()");
+        testEnd(AttributeSimpleImpl.class, "formForSend()");
     }
 
     @AfterMethod

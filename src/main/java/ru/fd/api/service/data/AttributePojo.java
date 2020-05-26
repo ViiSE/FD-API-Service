@@ -29,35 +29,50 @@ import io.swagger.annotations.ApiModelProperty;
 public class AttributePojo {
 
     @ApiModelProperty(notes = "GID атрибута", position = 1)
-    private final String id;
+    private String id;
     @ApiModelProperty(notes = "ID группы атрибута", position = 2)
-    private final long groupId;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long groupId;
     @ApiModelProperty(notes = "Название атрибута", position = 3)
-    private final String name;
-    @ApiModelProperty(notes = "Код аварда", position = 3)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String name;
+    @ApiModelProperty(notes = "Значение атрибута", position = 4)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String value;
+    @ApiModelProperty(notes = "Код аварда", position = 5)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String codeAvarda;
-
-    @JsonCreator
-    public AttributePojo(
-            @JsonProperty("id") String id,
-            @JsonProperty("group_id") long groupId,
-            @JsonProperty("name") String name) {
-        this.id = id;
-        this.groupId = groupId;
-        this.name = name;
-    }
 
     public String getId() {
         return id;
     }
 
-    public long getGroupId() {
+    public Long getGroupId() {
         return groupId;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public void setCodeAvarda(String codeAvarda) {

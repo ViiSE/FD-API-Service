@@ -39,14 +39,14 @@ public class BalanceProducerIntegrationTestNG extends AbstractTestNGSpringContex
 
     @Test
     @Parameters({"departmentId", "quantity"})
-    public void getBalanceDefaultInstance(String departmentId, int quantity) {
-        testBegin("BalanceProducerDefault", "getBalanceDefaultInstance()");
+    public void getBalanceInstance(String departmentId, int quantity) {
+        testBegin(BalanceProducerImpl.class, "getBalanceInstance()");
 
         Balance balance = balanceProducer.getBalanceInstance(departmentId, quantity);
         assertTrue(balance instanceof BalanceImpl, "Balance: not a valid type!");
         System.out.println("Instance: " + balance);
 
-        testEnd("BalanceProducerDefault", "getBalanceDefaultInstance()");
+        testEnd(BalanceProducerImpl.class, "getBalanceInstance()");
     }
 
     @AfterMethod

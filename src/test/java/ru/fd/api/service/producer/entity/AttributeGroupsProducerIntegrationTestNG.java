@@ -39,7 +39,7 @@ public class AttributeGroupsProducerIntegrationTestNG extends AbstractTestNGSpri
     private AttributeGroupsProducer attributeGroupsProducer;
 
     @Test
-    public void getAttributeGroupsDefaultInstance() {
+    public void getAttributeGroupsInstance() {
         testBegin("AttributeGroupsProducer", "getAttributeGroupsInstance()");
 
         AttributeGroups attrGr = attributeGroupsProducer.getAttributeGroupsInstance(new ArrayList<>());

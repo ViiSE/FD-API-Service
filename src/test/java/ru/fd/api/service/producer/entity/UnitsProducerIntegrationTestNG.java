@@ -39,14 +39,14 @@ public class UnitsProducerIntegrationTestNG extends AbstractTestNGSpringContextT
     private UnitsProducer unitsProducer;
 
     @Test
-    public void getUnitDefaultInstance() {
-        testBegin("UnitsProducer", "getUnitsInstance()");
+    public void getUnitsInstance() {
+        testBegin(UnitsProducerImpl.class, "getUnitsInstance()");
 
         Units units = unitsProducer.getUnitsInstance(new ArrayList<>());
         assertTrue(units instanceof UnitsImpl, "Unit: not a valid type!");
         System.out.println("Instance: " + units);
 
-        testEnd("UnitsProducer", "getUnitsInstance()");
+        testEnd(UnitsProducerImpl.class, "getUnitsInstance()");
     }
 
     @AfterMethod

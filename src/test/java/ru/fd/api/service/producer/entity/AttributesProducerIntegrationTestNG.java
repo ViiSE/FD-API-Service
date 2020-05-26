@@ -39,7 +39,7 @@ public class AttributesProducerIntegrationTestNG extends AbstractTestNGSpringCon
     private AttributesProducer attributesProducer;
 
     @Test
-    public void getAttributesDefaultInstance() {
+    public void getAttributesInstance() {
         testBegin("AttributesProducer", "getAttributesInstance()");
 
         Attributes attr = attributesProducer.getAttributesInstance(new ArrayList<>());

@@ -24,8 +24,10 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Departments;
-import ru.fd.api.service.entity.DepartmentsImpl;
+import ru.fd.api.service.entity.Categories;
+import ru.fd.api.service.entity.CategoriesImpl;
+import ru.fd.api.service.entity.Category;
+import ru.fd.api.service.entity.CategoryImpl;
 
 import java.util.ArrayList;
 
@@ -33,20 +35,20 @@ import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class DepartmentsProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class CategoryProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private DepartmentsProducer departmentsProducer;
+    private CategoryProducer categoryProducer;
 
     @Test
-    public void getDepartmentsDefaultInstance() {
-        testBegin("DepartmentsProducer", "getDepartmentsInstance()");
+    public void getCategoriesInstance() {
+        testBegin(CategoryProducerImpl.class, "getCategoryInstance()");
 
-        Departments deps = departmentsProducer.getDepartmentsInstance(new ArrayList<>());
-        assertTrue(deps instanceof DepartmentsImpl, "Departments: not a valid type!");
-        System.out.println("Instance: " + deps);
+        Category cat = categoryProducer.getCategoryInstance("id", "cat");
+        assertTrue(cat instanceof CategoryImpl, "Category: not a valid type!");
+        System.out.println("Instance: " + cat);
 
-        testEnd("DepartmentsProducer", "getDepartmentsInstance()");
+        testEnd(CategoryProducerImpl.class, "getCategoryInstance()");
     }
 
     @AfterMethod

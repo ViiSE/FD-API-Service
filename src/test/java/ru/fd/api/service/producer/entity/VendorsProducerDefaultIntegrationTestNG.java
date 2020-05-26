@@ -24,8 +24,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Departments;
-import ru.fd.api.service.entity.DepartmentsImpl;
 import ru.fd.api.service.entity.Vendors;
 import ru.fd.api.service.entity.VendorsImpl;
 
@@ -42,13 +40,13 @@ public class VendorsProducerDefaultIntegrationTestNG extends AbstractTestNGSprin
 
     @Test
     public void getVendorsInstance() {
-        testBegin("VendorsProducer", "getVendorsInstance()");
+        testBegin(VendorsProducerImpl.class, "getVendorsInstance()");
 
         Vendors vendors = vendorsProducer.getVendorsInstance(new ArrayList<>());
         assertTrue(vendors instanceof VendorsImpl, "Vendors: not a valid type!");
         System.out.println("Instance: " + vendors);
 
-        testEnd("VendorsProducer", "getVendorsInstance()");
+        testEnd(VendorsProducerImpl.class, "getVendorsInstance()");
     }
 
     @AfterMethod

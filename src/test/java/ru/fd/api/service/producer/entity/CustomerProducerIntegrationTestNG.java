@@ -31,7 +31,7 @@ public class CustomerProducerIntegrationTestNG extends AbstractTestNGSpringConte
 
     @BeforeClass
     public void setUpClass() {
-        testBegin("CustomerInstance");
+        testBegin(CustomerProducerImpl.class);
     }
 
     @Test(priority = 1)
@@ -96,6 +96,6 @@ public class CustomerProducerIntegrationTestNG extends AbstractTestNGSpringConte
 
     @AfterClass
     public void shutdownClass() {
-        testEnd("CustomerInstance");
+        testEnd(CustomerProducerImpl.class);
     }
 }

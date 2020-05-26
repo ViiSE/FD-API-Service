@@ -39,14 +39,14 @@ public class StatusesProducerIntegrationTestNG extends AbstractTestNGSpringConte
     private StatusesProducer statusesProducer;
 
     @Test
-    public void getStatusesDefaultInstance() {
-        testBegin("StatusesProducer", "getStatusesInstance()");
+    public void getStatusesInstance() {
+        testBegin(StatusesProducer.class, "getStatusesInstance()");
 
         Statuses st = statusesProducer.getStatusesInstance(new ArrayList<>());
         assertTrue(st instanceof StatusImpl, "Statuses: not a valid type!");
         System.out.println("Instance: " + st);
 
-        testEnd("StatusesProducer", "getStatusesInstance()");
+        testEnd(StatusesProducer.class, "getStatusesInstance()");
     }
 
     @AfterMethod

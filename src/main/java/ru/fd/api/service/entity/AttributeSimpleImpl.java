@@ -20,26 +20,23 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.data.AttributePojo;
 
-@Component("attribute")
+@Component("attributeSimple")
 @Scope("prototype")
-public class AttributeImpl implements Attribute {
+public class AttributeSimpleImpl implements Attribute {
 
     private final String attributeId;
-    private final long groupId;
-    private final String name;
+    private final String value;
 
-    public AttributeImpl(String attributeId, long groupId, String name) {
+    public AttributeSimpleImpl(String attributeId, String value) {
         this.attributeId = attributeId;
-        this.groupId = groupId;
-        this.name = name;
+        this.value = value;
     }
 
     @Override
     public Object formForSend() {
         AttributePojo attrPojo = new AttributePojo();
         attrPojo.setId(attributeId);
-        attrPojo.setGroupId(groupId);
-        attrPojo.setName(name);
+        attrPojo.setValue(value);
         return attrPojo;
     }
 }

@@ -77,6 +77,10 @@
                 <parameter name="name" value="Attribute 1"/>
                 <parameter name="groupId" value="1"/>
             </class>
+            <class name="ru.fd.api.service.entity.AttributeSimpleTestNG">
+                <parameter name="attributeId" value="attr_1"/>
+                <parameter name="value" value="value 1"/>
+            </class>
             <class name="ru.fd.api.service.entity.AttributesTestNG">
                 <parameter name="attributeId1" value="attr_1"/>
                 <parameter name="name1" value="Attribute 1"/>

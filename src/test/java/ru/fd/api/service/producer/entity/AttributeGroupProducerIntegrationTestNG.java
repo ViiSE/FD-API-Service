@@ -24,8 +24,10 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Countries;
-import ru.fd.api.service.entity.CountriesImpl;
+import ru.fd.api.service.entity.AttributeGroup;
+import ru.fd.api.service.entity.AttributeGroupImpl;
+import ru.fd.api.service.entity.AttributeGroups;
+import ru.fd.api.service.entity.AttributeGroupsImpl;
 
 import java.util.ArrayList;
 
@@ -33,20 +35,20 @@ import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class CountriesProducerDefaultIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class AttributeGroupProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private CountriesProducer countriesProducer;
+    private AttributeGroupProducer attributeGroupProducer;
 
     @Test
-    public void getCountriesInstance() {
-        testBegin("CountriesProducer", "getCountriesInstance()");
+    public void getAttributeGroupsInstance() {
+        testBegin(AttributeGroupProducerImpl.class, "getAttributeGroupsInstance()");
 
-        Countries countries = countriesProducer.getCountriesInstance(new ArrayList<>());
-        assertTrue(countries instanceof CountriesImpl, "Countries: not a valid type!");
-        System.out.println("Instance: " + countries);
+        AttributeGroup attrGr = attributeGroupProducer.getAttributeGroupInstance(1L, "attrGroup");
+        assertTrue(attrGr instanceof AttributeGroupImpl, "AttributeGroup: not a valid type!");
+        System.out.println("Instance: " + attrGr);
 
-        testEnd("CountriesProducer", "getCountriesInstance()");
+        testEnd(AttributeGroupProducerImpl.class, "getAttributeGroupsInstance()");
     }
 
     @AfterMethod

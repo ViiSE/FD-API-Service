@@ -45,9 +45,15 @@
                 <parameter name="codeAvarda" value="22505"/>
             </class>
 
+            <class name="ru.fd.api.service.producer.entity.AttributeGroupProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.AttributeProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.BalancesProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.CategoryProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.StatusProducerIntegrationTestNG"/>
+
             <class name="ru.fd.api.service.producer.entity.UnitsProducerIntegrationTestNG"/>
-            <class name="ru.fd.api.service.producer.entity.DepartmentsProducerDefaultIntegrationTestNG"/>
-            <class name="ru.fd.api.service.producer.entity.CountriesProducerDefaultIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.DepartmentsProducerIntegrationTestNG"/>
+            <class name="ru.fd.api.service.producer.entity.CountriesProducerIntegrationTestNG"/>
             <class name="ru.fd.api.service.producer.entity.VendorsProducerDefaultIntegrationTestNG"/>
         </classes>
     </test>

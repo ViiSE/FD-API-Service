@@ -40,7 +40,7 @@ public class ProductProducerIntegrationTestNG extends AbstractTestNGSpringContex
 
     @BeforeClass
     public void setUpClass() {
-        testBegin("ProductProducer");
+        testBegin(ProductProducerImpl.class);
     }
 
     @Test(priority = 1)
@@ -124,6 +124,6 @@ public class ProductProducerIntegrationTestNG extends AbstractTestNGSpringContex
 
     @AfterClass
     public void teardownClass() {
-        testEnd("ProductProducer");
+        testEnd(ProductProducerImpl.class);
     }
 }

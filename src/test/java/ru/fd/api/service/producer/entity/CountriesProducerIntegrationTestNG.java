@@ -22,30 +22,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Countries;
+import ru.fd.api.service.entity.CountriesImpl;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = ApiServiceApplication.class)
-public class CountryProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
+public class CountriesProducerIntegrationTestNG extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private CountryProducer countryProducer;
+    private CountriesProducer countriesProducer;
 
     @Test
-    @Parameters({"id", "name"})
-    public void getCountryInstance(String id, String name) {
-        testBegin(CountryProducerImpl.class, "getCountryInstance()");
+    public void getCountriesInstance() {
+        testBegin(CountriesProducerImpl.class, "getCountriesInstance()");
 
-        Country country = countryProducer.getCountryInstance(id, name);
-        assertTrue(country instanceof CountryImpl, "Country: not a valid type!");
-        System.out.println("Instance: " + country);
+        Countries countries = countriesProducer.getCountriesInstance(new ArrayList<>());
+        assertTrue(countries instanceof CountriesImpl, "Countries: not a valid type!");
+        System.out.println("Instance: " + countries);
 
-        testEnd(CountryProducerImpl.class, "getCountryInstance()");
+        testEnd(CountriesProducerImpl.class, "getCountriesInstance()");
     }
 
     @AfterMethod

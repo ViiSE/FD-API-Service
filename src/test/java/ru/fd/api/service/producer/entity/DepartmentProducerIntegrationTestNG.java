@@ -39,14 +39,14 @@ public class DepartmentProducerIntegrationTestNG extends AbstractTestNGSpringCon
 
     @Test
     @Parameters({"id", "name"})
-    public void getDepartmentDefaultInstance(String id, String name) {
-        testBegin("DepartmentProducer", "getDepartmentInstance()");
+    public void getDepartmentInstance(String id, String name) {
+        testBegin(DepartmentProducerImpl.class, "getDepartmentInstance()");
 
         Department department = departmentProducer.getDepartmentInstance(id, name);
         assertTrue(department instanceof DepartmentImpl, "Department: not a valid type!");
         System.out.println("Instance: " + department);
 
-        testEnd("DepartmentProducer", "getDepartmentInstance()");
+        testEnd(DepartmentProducerImpl.class, "getDepartmentInstance()");
     }
 
     @AfterMethod
