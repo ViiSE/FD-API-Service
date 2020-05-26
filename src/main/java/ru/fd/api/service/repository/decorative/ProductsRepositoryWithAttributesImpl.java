@@ -71,7 +71,7 @@ public class ProductsRepositoryWithAttributesImpl implements ProductsRepositoryD
                                     product,
                                     attributeForProducts.getOrDefault(
                                             product.id(),
-                                            attrsProd.getAttributesInstance(new ArrayList<>()))));
+                                            attrsProd.getProductsAttributesInstance(new ArrayList<>()))));
 
                 }
 
