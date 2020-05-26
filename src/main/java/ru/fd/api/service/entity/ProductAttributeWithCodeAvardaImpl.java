@@ -18,25 +18,24 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.AttributePojo;
+import ru.fd.api.service.data.ProductAttributePojo;
 
-@Component("attributeSimple")
+@Component("productAttributeWithCodeAvarda")
 @Scope("prototype")
-public class AttributeSimpleImpl implements Attribute {
+public class ProductAttributeWithCodeAvardaImpl implements Attribute {
 
-    private final String attributeId;
-    private final String value;
+    private final Attribute attribute;
+    private final String codeAvarda;
 
-    public AttributeSimpleImpl(String attributeId, String value) {
-        this.attributeId = attributeId;
-        this.value = value;
+    public ProductAttributeWithCodeAvardaImpl(Attribute attribute, String codeAvarda) {
+        this.attribute = attribute;
+        this.codeAvarda = codeAvarda;
     }
 
     @Override
     public Object formForSend() {
-        AttributePojo attrPojo = new AttributePojo();
-        attrPojo.setId(attributeId);
-        attrPojo.setValue(value);
-        return attrPojo;
+        ProductAttributePojo productAttributePojo = (ProductAttributePojo) attribute.formForSend();
+        productAttributePojo.setCodeAvarda(codeAvarda);
+        return productAttributePojo;
     }
 }

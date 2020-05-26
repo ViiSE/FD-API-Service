@@ -22,7 +22,6 @@ import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.fd.api.service.data.DepartmentsPojo;
 import ru.fd.api.service.data.OffersPojo;
 import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.exception.ProcessException;

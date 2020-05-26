@@ -19,10 +19,8 @@ package ru.fd.api.service.process;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.repository.OffersRepository;
 import ru.fd.api.service.repository.ProductsRepository;
 
 @Component("psProductsOffer")

@@ -27,8 +27,6 @@ import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.Status;
 import ru.fd.api.service.entity.StatusImpl;
 
-import java.util.ArrayList;
-
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 

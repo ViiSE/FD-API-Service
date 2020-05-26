@@ -7,11 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.DateOfferPojo;
 import ru.fd.api.service.data.OfferPojo;
 import test.util.TestUtils;
-
-import java.time.LocalDateTime;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;

@@ -57,12 +57,12 @@ public class RseProductsWithAttributesImpl implements ResultSetExtractor<Map<Str
             String attr_id = rs.getString("GID_ATTR").trim();
             String value = rs.getString("ATTR_VALUE").trim();
             String codeAvarda = rs.getString("CODE_AVARDA").trim();
-            attributes.add(attrProd.getAttributeWithCodeAvardaInstance(
-                    attrProd.getAttributeSimpleInstance(attr_id, value),
+            attributes.add(attrProd.getProductAttributeWithCodeAvardaInstance(
+                    attrProd.getProductAttributeInstance(attr_id, value),
                     codeAvarda));
         }
 
-        attrsMap.put(id, attrsProd.getAttributesInstance(new ArrayList<>(attributes)));
+        attrsMap.put(id, attrsProd.getProductsAttributesInstance(new ArrayList<>(attributes)));
 
         return attrsMap;
     }

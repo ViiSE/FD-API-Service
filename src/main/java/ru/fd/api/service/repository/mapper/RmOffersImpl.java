@@ -17,7 +17,6 @@
 package ru.fd.api.service.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.fd.api.service.entity.Department;
 import ru.fd.api.service.entity.Offer;
 import ru.fd.api.service.producer.entity.DateOfferProducer;
 import ru.fd.api.service.producer.entity.DepartmentProducer;
@@ -26,9 +25,6 @@ import ru.fd.api.service.producer.entity.OfferProducer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RmOffersImpl implements RowMapper<Offer> {
 

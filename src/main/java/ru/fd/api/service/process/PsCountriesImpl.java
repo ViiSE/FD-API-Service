@@ -21,7 +21,6 @@ import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.CountriesRepository;
-import ru.fd.api.service.repository.VendorsRepository;
 
 @Component("psCountries")
 public class PsCountriesImpl implements Process<Sendable, Void> {

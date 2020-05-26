@@ -36,4 +36,9 @@ public class AttributesProducerImpl implements AttributesProducer {
     public Attributes getAttributesInstance(List<Attribute> attributes) {
         return (Attributes) ctx.getBean("attributes", attributes);
     }
+
+    @Override
+    public Attributes getProductsAttributesInstance(List<Attribute> attributes) {
+        return (Attributes) ctx.getBean("productAttributes", attributes);
+    }
 }

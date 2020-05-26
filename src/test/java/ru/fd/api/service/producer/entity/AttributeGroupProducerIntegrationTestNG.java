@@ -26,10 +26,6 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.AttributeGroup;
 import ru.fd.api.service.entity.AttributeGroupImpl;
-import ru.fd.api.service.entity.AttributeGroups;
-import ru.fd.api.service.entity.AttributeGroupsImpl;
-
-import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

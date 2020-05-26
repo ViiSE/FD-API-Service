@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.data.ProductOfferPojo;
-import ru.fd.api.service.data.ProductPojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;

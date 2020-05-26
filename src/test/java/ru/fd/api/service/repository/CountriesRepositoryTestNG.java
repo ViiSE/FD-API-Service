@@ -24,10 +24,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.fd.api.service.entity.Countries;
-import ru.fd.api.service.entity.Vendors;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.repository.test.CountriesRepositoryTestImpl;
-import ru.fd.api.service.repository.test.VendorsRepositoryTestImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

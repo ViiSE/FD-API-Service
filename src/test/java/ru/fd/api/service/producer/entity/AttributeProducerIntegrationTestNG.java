@@ -28,8 +28,6 @@ import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
 import ru.fd.api.service.entity.*;
 
-import java.util.ArrayList;
-
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
@@ -54,11 +52,22 @@ public class AttributeProducerIntegrationTestNG extends AbstractTestNGSpringCont
     }
 
     @Test
-    public void getAttributeSimpleInstance() {
-        testMethod("getAttributeSimpleInstance");
+    public void getProductAttributeInstance() {
+        testMethod("getProductAttributeInstance");
 
-        Attribute attr = attributeProducer.getAttributeSimpleInstance("1", "value");
-        assertTrue(attr instanceof AttributeSimpleImpl, "Attribute: not a valid type!");
+        Attribute attr = attributeProducer.getProductAttributeInstance("1", "value");
+        assertTrue(attr instanceof ProductAttributeImpl, "Attribute: not a valid type!");
+        System.out.println("Instance: " + attr);
+    }
+
+    @Test
+    public void getProductAttributeWithCodeAvardaInstance() {
+        testMethod("getProductAttributeWithCodeAvardaInstance");
+
+        Attribute attr = attributeProducer.getProductAttributeWithCodeAvardaInstance(
+                attributeProducer.getProductAttributeInstance("1", "value"),
+                "codeAvarda");
+        assertTrue(attr instanceof ProductAttributeWithCodeAvardaImpl, "Attribute: not a valid type!");
         System.out.println("Instance: " + attr);
     }
 
@@ -67,9 +76,9 @@ public class AttributeProducerIntegrationTestNG extends AbstractTestNGSpringCont
         testMethod("getAttributeWithCodeAvardaInstance");
 
         Attribute attr = attributeProducer.getAttributeWithCodeAvardaInstance(
-                attributeProducer.getAttributeSimpleInstance("1", "value"),
+                attributeProducer.getAttributeInstance("1", 2L, "attr"),
                 "codeAvarda");
-        assertTrue(attr instanceof AttributeWithCodeAvardaImpl, "Attribute: not a valid type!");
+        assertTrue(attr instanceof ProductAttributeWithCodeAvardaImpl, "Attribute: not a valid type!");
         System.out.println("Instance: " + attr);
     }
 

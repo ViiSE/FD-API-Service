@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.data.PriceOfferPojo;
-import ru.fd.api.service.data.PricePojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;

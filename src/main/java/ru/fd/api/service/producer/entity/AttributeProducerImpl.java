@@ -40,7 +40,12 @@ public class AttributeProducerImpl implements AttributeProducer {
     }
 
     @Override
-    public Attribute getAttributeSimpleInstance(String id, String value) {
-        return (Attribute) ctx.getBean("attributeSimple", id, value);
+    public Attribute getProductAttributeInstance(String id, String value) {
+        return (Attribute) ctx.getBean("productAttribute", id, value);
+    }
+
+    @Override
+    public Attribute getProductAttributeWithCodeAvardaInstance(Attribute attribute, String codeAvarda) {
+        return (Attribute) ctx.getBean("productAttributeWithCodeAvarda", attribute, codeAvarda);
     }
 }

@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import ru.fd.api.service.entity.Sendable;
 import ru.fd.api.service.exception.ProcessException;
 import ru.fd.api.service.exception.RepositoryException;
-import ru.fd.api.service.repository.DepartmentsRepository;
 import ru.fd.api.service.repository.OffersRepository;
 
 @Component("psOffers")

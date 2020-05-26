@@ -7,13 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.*;
-import test.util.JavaTimeModuleUtils;
-import test.util.TestUtils;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import ru.fd.api.service.data.BalancePojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;

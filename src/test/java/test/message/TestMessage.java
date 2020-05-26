@@ -18,7 +18,10 @@ package test.message;
 import org.testng.ITestResult;
 import ru.fd.api.service.time.CurrentDateTimeImpl;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

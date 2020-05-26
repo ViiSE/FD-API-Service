@@ -24,8 +24,6 @@ import ru.fd.api.service.entity.OrderSimpleImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.RepositoryException;
 
-import javax.persistence.Access;
-
 import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.*;
 

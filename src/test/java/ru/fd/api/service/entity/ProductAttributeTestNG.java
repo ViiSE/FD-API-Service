@@ -7,15 +7,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import ru.fd.api.service.data.AttributePojo;
+import ru.fd.api.service.data.ProductAttributePojo;
 
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class AttributeSimpleTestNG {
+public class ProductAttributeTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private Attribute attribute;
+    private ProductAttribute attribute;
 
     private String attributeId;
     private String value;
@@ -25,12 +25,10 @@ public class AttributeSimpleTestNG {
     public void setUpClass(String attributeId, String value) {
         assertNotNull(attributeId, "Attribute ID cannot be null!");
         assertFalse(attributeId.isEmpty(), "Attribute ID is empty!");
-
         assertNotNull(value, "Value cannot be null!");
         assertFalse(value.isEmpty(), "Value is empty!");
 
-
-        attribute = new AttributeSimpleImpl(attributeId, value);
+        attribute = new ProductAttributeImpl(attributeId, value);
         assertNotNull(attribute, "Attribute is null!");
 
         this.attributeId = attributeId;
@@ -39,15 +37,15 @@ public class AttributeSimpleTestNG {
 
     @Test
     public void formForSend() throws JsonProcessingException {
-        testBegin(AttributeSimpleImpl.class, "formForSend()");
+        testBegin(ProductAttributeImpl.class, "formForSend()");
 
-        AttributePojo attributePojo = (AttributePojo) attribute.formForSend();
+        ProductAttributePojo attributePojo = (ProductAttributePojo) attribute.formForSend();
         assertNotNull(attributePojo, "AttributePojo is null!");
-        assertEquals(attributePojo.getId(), attributeId);
+        assertEquals(attributePojo.getAttributeId(), attributeId);
         assertEquals(attributePojo.getValue(), value);
         System.out.println(mapper.writeValueAsString(attributePojo));
 
-        testEnd(AttributeSimpleImpl.class, "formForSend()");
+        testEnd(ProductAttributeImpl.class, "formForSend()");
     }
 
     @AfterMethod

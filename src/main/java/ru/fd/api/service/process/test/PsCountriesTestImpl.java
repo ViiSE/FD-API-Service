@@ -16,7 +16,10 @@
 
 package ru.fd.api.service.process.test;
 
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Countries;
+import ru.fd.api.service.entity.CountriesImpl;
+import ru.fd.api.service.entity.Country;
+import ru.fd.api.service.entity.CountryImpl;
 import ru.fd.api.service.process.Process;
 
 import java.util.ArrayList;

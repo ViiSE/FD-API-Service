@@ -24,12 +24,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Categories;
-import ru.fd.api.service.entity.CategoriesImpl;
 import ru.fd.api.service.entity.Category;
 import ru.fd.api.service.entity.CategoryImpl;
-
-import java.util.ArrayList;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

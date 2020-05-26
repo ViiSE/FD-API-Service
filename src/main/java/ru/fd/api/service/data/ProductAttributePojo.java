@@ -17,6 +17,7 @@
 package ru.fd.api.service.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -31,6 +32,9 @@ public class ProductAttributePojo {
     private final String attributeId;
     @ApiModelProperty(notes = "Значение атрибута", position = 2)
     private final String value;
+    @ApiModelProperty(notes = "Код аварда", position = 3)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String codeAvarda;
 
     @JsonCreator
     public ProductAttributePojo(
@@ -46,5 +50,13 @@ public class ProductAttributePojo {
 
     public String getValue() {
         return value;
+    }
+
+    public String getCodeAvarda() {
+        return codeAvarda;
+    }
+
+    public void setCodeAvarda(String codeAvarda) {
+        this.codeAvarda = codeAvarda;
     }
 }

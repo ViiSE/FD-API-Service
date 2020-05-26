@@ -25,7 +25,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.*;
+import ru.fd.api.service.entity.Country;
+import ru.fd.api.service.entity.CountryImpl;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;

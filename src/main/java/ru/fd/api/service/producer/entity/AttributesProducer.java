@@ -23,4 +23,5 @@ import java.util.List;
 
 public interface AttributesProducer {
     Attributes getAttributesInstance(List<Attribute> attributes);
+    Attributes getProductsAttributesInstance(List<Attribute> attributes);
 }
