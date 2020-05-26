@@ -63,7 +63,7 @@ public class ProductsController {
                     "\n<span style=\"margin-left:2em\"><b>balances</b> - остатки товара," +
                     "\n<span style=\"margin-left:2em\"><b>prices</b> - цены товара,</span>" +
                     "\n<span style=\"margin-left:2em\">[!!!НЕДОСТУПНО!!!] <b>statuses</b> - статусы товара,</span>" +
-                    "\n<span style=\"margin-left:2em\">[!!!НЕДОСТУПНО!!!] <b>attributes</b> - атрибуты товара</span>" +
+                    "\n<span style=\"margin-left:2em\"><b>attributes</b> - атрибуты товара</span>" +
                     "\nНесуществующие зависимости, указанные в запросе, будут проигнорированы.\n___" +
                     "\n<i>Примечание: Выгружаемый товар без зависимости</i> <b>prices</b> <i>может иметь нулевую цену.</i>")
             @RequestParam(required = false) List<String> with) {
