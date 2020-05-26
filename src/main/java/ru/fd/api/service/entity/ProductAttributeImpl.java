@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import ru.fd.api.service.data.ProductAttributePojo;
 
 @Component("productAttribute")
 @Scope("prototype")
-public class ProductAttributeImpl implements ProductAttribute {
+public class ProductAttributeImpl implements Attribute {
 
     private final String attributeId;
     private final String value;

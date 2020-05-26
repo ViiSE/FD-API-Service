@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 @Scope("prototype")
 public class ProductAttributesImpl implements Attributes {
 
-    private final List<ProductAttribute> attributes;
+    private final List<Attribute> attributes;
 
-    public ProductAttributesImpl(List<ProductAttribute> attributes) {
+    public ProductAttributesImpl(List<Attribute> attributes) {
         this.attributes = attributes;
     }
 

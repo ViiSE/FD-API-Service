@@ -78,7 +78,7 @@ public class AttributeProducerIntegrationTestNG extends AbstractTestNGSpringCont
         Attribute attr = attributeProducer.getAttributeWithCodeAvardaInstance(
                 attributeProducer.getAttributeInstance("1", 2L, "attr"),
                 "codeAvarda");
-        assertTrue(attr instanceof ProductAttributeWithCodeAvardaImpl, "Attribute: not a valid type!");
+        assertTrue(attr instanceof AttributeWithCodeAvardaImpl, "Attribute: not a valid type!");
         System.out.println("Instance: " + attr);
     }
 

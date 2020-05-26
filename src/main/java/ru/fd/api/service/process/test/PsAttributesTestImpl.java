@@ -16,8 +16,8 @@
 
 package ru.fd.api.service.process.test;
 
+import ru.fd.api.service.entity.Attribute;
 import ru.fd.api.service.entity.Attributes;
-import ru.fd.api.service.entity.ProductAttribute;
 import ru.fd.api.service.entity.ProductAttributeImpl;
 import ru.fd.api.service.entity.ProductAttributesImpl;
 import ru.fd.api.service.process.Process;
@@ -28,8 +28,8 @@ public class PsAttributesTestImpl implements Process<Attributes, Void> {
 
     @Override
     public Attributes answer(Void v) {
-        ProductAttribute attribute1 = new ProductAttributeImpl("attr_1", "value attr 1");
-        ProductAttribute attribute2 = new ProductAttributeImpl("attr_2", "value attr 2");
+        Attribute attribute1 = new ProductAttributeImpl("attr_1", "value attr 1");
+        Attribute attribute2 = new ProductAttributeImpl("attr_2", "value attr 2");
         return new ProductAttributesImpl(new ArrayList<>() {{ add(attribute1); add(attribute2); }});
     }
 }

@@ -15,7 +15,7 @@ import static test.message.TestMessage.*;
 public class ProductAttributeTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
-    private ProductAttribute attribute;
+    private Attribute attribute;
 
     private String attributeId;
     private String value;
