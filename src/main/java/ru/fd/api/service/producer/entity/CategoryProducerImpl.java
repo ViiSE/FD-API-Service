@@ -34,4 +34,9 @@ public class CategoryProducerImpl implements CategoryProducer {
     public Category getCategoryInstance(String categoryId, String name) {
         return (Category) ctx.getBean("category", categoryId, name);
     }
+
+    @Override
+    public Category getCategoryWithParentIdInstance(Category category, String parentId) {
+        return (Category) ctx.getBean("categoryWithParentId", category, parentId);
+    }
 }

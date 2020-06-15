@@ -35,6 +35,9 @@ public class RmCategoriesImpl implements RowMapper<Category> {
     public Category mapRow(ResultSet rs, int i) throws SQLException {
         String id = rs.getString("catID").trim();
         String name = rs.getString("catName").trim();
-        return categoryProducer.getCategoryInstance(id, name);
+        String parentId = rs.getString("owner").trim();
+        return categoryProducer.getCategoryWithParentIdInstance(
+                categoryProducer.getCategoryInstance(id, name),
+                parentId);
     }
 }

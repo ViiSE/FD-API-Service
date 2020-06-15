@@ -21,4 +21,5 @@ import ru.fd.api.service.entity.Category;
 
 public interface CategoryProducer {
     Category getCategoryInstance(String categoryId, String name);
+    Category getCategoryWithParentIdInstance(Category category, String parentId);
 }

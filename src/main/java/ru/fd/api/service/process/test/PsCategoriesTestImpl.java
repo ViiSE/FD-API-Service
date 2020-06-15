@@ -16,10 +16,7 @@
 
 package ru.fd.api.service.process.test;
 
-import ru.fd.api.service.entity.Categories;
-import ru.fd.api.service.entity.CategoriesImpl;
-import ru.fd.api.service.entity.Category;
-import ru.fd.api.service.entity.CategoryImpl;
+import ru.fd.api.service.entity.*;
 import ru.fd.api.service.process.Process;
 
 import java.util.ArrayList;
@@ -28,8 +25,12 @@ public class PsCategoriesTestImpl implements Process<Categories, Void> {
 
     @Override
     public Categories answer(Void v) {
-        Category category1 = new CategoryImpl("cat_1", "Category 1");
-        Category category2 = new CategoryImpl("cat_2", "Category 2");
+        Category category1 = new CategoryWithParentIdImpl(
+                new CategoryImpl("cat_01", "Category 1"),
+                "cat_0");
+        Category category2 = new CategoryWithParentIdImpl(
+                new CategoryImpl("cat_0", "Category 0"),
+                "");
         return new CategoriesImpl(new ArrayList<>() {{ add(category1); add(category2); }});
 
     }

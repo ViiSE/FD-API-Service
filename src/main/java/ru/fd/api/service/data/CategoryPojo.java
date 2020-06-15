@@ -27,10 +27,12 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class CategoryPojo {
 
-    @ApiModelProperty(notes = "GID категории товаров", position = 1)
+    @ApiModelProperty(notes = "ID категории товаров", position = 1)
     private final String id;
     @ApiModelProperty(notes = "Название категории товаров", position = 2)
     private final String name;
+    @ApiModelProperty(notes = "ID родительской категории", position = 3)
+    private String parentId;
 
     @JsonCreator
     public CategoryPojo(
@@ -46,5 +48,13 @@ public class CategoryPojo {
 
     public String getName() {
         return name;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentId() {
+        return parentId;
     }
 }

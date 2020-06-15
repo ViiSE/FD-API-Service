@@ -99,6 +99,11 @@
                 <parameter name="categoryId" value="cat_1"/>
                 <parameter name="name" value="Category 1"/>
             </class>
+            <class name="ru.fd.api.service.entity.CategoryWithParentIdTestNG">
+                <parameter name="categoryId" value="cat_01"/>
+                <parameter name="name" value="Category 1"/>
+                <parameter name="parentId" value="cat_0"/>
+            </class>
             <class name="ru.fd.api.service.entity.CategoriesTestNG">
                 <parameter name="categoryId1" value="cat_1"/>
                 <parameter name="name1" value="Category 1"/>
