@@ -28,9 +28,10 @@ import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.DescriptionProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RmProductsWithDescriptionImpl;
+import ru.fd.api.service.repository.mapper.RseProductsWithDescriptionImpl;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("productsRepositoryWithDescription")
 public class ProductsRepositoryWithDescriptionImpl implements ProductsRepositoryDecorative<Products> {
@@ -54,20 +55,28 @@ public class ProductsRepositoryWithDescriptionImpl implements ProductsRepository
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            List<Description> descList = jdbcTemplate.query(
+            Map<String, Description> descMap = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_description.sql").content(),
-                    new RmProductsWithDescriptionImpl(descriptionProducer));
-            for(Description description: descList) {
-                DescriptionPojo descPojo = (DescriptionPojo) description.formForSend();
-                String id = descPojo.getProductId();
-                Product product = products.findProductById(id);
-                if (product != null)
-                    products.decorateProduct(id,
+                    new RseProductsWithDescriptionImpl(descriptionProducer));
+
+            if(descMap != null) {
+                for (Product product : products) {
+                    DescriptionPojo descPojo = (DescriptionPojo) descMap
+                            .getOrDefault(
+                                    product.id(),
+                                    descriptionProducer.getDescriptionFullInstance(
+                                            descriptionProducer.getDescriptionShortInstance(""),
+                                            ""))
+                            .formForSend();
+
+                    products.decorateProduct(
+                            product.key(),
                             productProducer.getProductWithFullDescriptionInstance(
                                     productProducer.getProductWithShortDescriptionInstance(
                                             product,
                                             descPojo.getShortDescription()),
                                     descPojo.getFullDescription()));
+                }
             }
 
             return products;

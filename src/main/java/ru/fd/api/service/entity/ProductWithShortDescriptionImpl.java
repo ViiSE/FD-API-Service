@@ -45,7 +45,7 @@ public class ProductWithShortDescriptionImpl implements Product {
     @Override
     public Object formForSend() {
         ProductPojo productPojo = (ProductPojo) product.formForSend();
-        productPojo.setShortDescription(shortDescription == null ? "" : shortDescription);
+        productPojo.setShortDescription(shortDescription);
         return productPojo;
     }
 }
