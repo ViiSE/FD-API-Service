@@ -48,9 +48,9 @@ public class ProductPojo {
     @ApiModelProperty(notes = "Наименование", position = 9)
     private String name;
     @ApiModelProperty(notes = "Полное описание товара", position = 10)
-    private String fullDescription;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private String fullDescription;
     @ApiModelProperty(notes = "Краткое описание товара", position = 11)
-    private String shortDescription;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private String shortDescription;
     @ApiModelProperty(notes = "Код Avarda", position = 12)
     private String codeAvarda;
     @ApiModelProperty(notes = "Цены", position = 13)
