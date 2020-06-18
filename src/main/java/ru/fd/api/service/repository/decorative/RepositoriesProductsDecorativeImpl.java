@@ -33,8 +33,7 @@ public class RepositoriesProductsDecorativeImpl implements Repositories<Products
         reposMap.put("balances", producer.productsRepoWithBalancesInstance());
         reposMap.put("prices", producer.productsRepoWithPricesInstance());
         reposMap.put("statuses", producer.productsRepoWithStatsInstance());
-        reposMap.put("short_description", producer.productsRepoWithShortDescInstance());
-        reposMap.put("full_description", producer.productsRepoWithFullDescInstance());
+        reposMap.put("descriptions", producer.productsRepoWithDescriptionInstance());
     }
 
     @Override

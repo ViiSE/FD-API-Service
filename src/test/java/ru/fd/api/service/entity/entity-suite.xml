@@ -124,6 +124,17 @@
                 <parameter name="statusId2" value="stat_2"/>
                 <parameter name="name2" value="Status 2"/>
             </class>
+            <class name="ru.fd.api.service.entity.DescriptionShortTestNG">
+                <parameter name="shortDescription" value="Short description"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DescriptionFullTestNG">
+                <parameter name="shortDescription" value="Short description"/>
+                <parameter name="fullDescription" value="Full description"/>
+            </class>
+            <class name="ru.fd.api.service.entity.DescriptionWithProductIdTestNG">
+                <parameter name="shortDescription" value="Short description"/>
+                <parameter name="productId" value="12312312"/>
+            </class>
             <class name="ru.fd.api.service.entity.UnitDefaultTestNG">
                 <parameter name="unitId" value="unit_1"/>
                 <parameter name="name" value="Unit 1"/>

@@ -58,20 +58,6 @@ public class ProductWithFullDescriptionTestNG {
     }
 
     @Test
-    public void formForSend_fullDescriptionIsNull() throws JsonProcessingException {
-        product = new ProductWithFullDescriptionImpl(product, null);
-        assertNotNull(product, "Product with full description is null!");
-
-        ProductPojo productPojo = (ProductPojo) product.formForSend();
-        assertNotNull(productPojo, "ProductPojo is null!");
-        assertTrue(productPojo.getFullDescription().isEmpty());
-
-        String sendForForm = mapper.writeValueAsString(productPojo);
-        assertTrue(sendForForm.contains("\"full_description\":\"\""));
-        System.out.println(sendForForm);
-    }
-
-    @Test
     public void formForSend_fullDescriptionIsEmpty() throws JsonProcessingException {
         product = new ProductWithFullDescriptionImpl(product, "");
         assertNotNull(product, "Product with full description is null!");

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 ViiSE
+ * Copyright 2020 ViiSE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-package ru.fd.api.service.repository.mapper;
+package ru.fd.api.service.producer.entity;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import ru.fd.api.service.entity.Description;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
-
-public class RseProductsWithShortDescriptionImpl implements ResultSetExtractor<Map<String, String>> {
-
-    @Override
-    public Map<String, String> extractData(ResultSet rs) throws SQLException, DataAccessException {
-        return null;
-    }
+public interface DescriptionProducer {
+    Description getDescriptionShortInstance(String description);
+    Description getDescriptionFullInstance(Description description, String fullDescription);
+    Description getDescriptionWithProductIdInstance(Description description, String productId);
 }

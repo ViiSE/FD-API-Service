@@ -38,16 +38,12 @@ public class ProductsRepositoryDecorativeProducer {
         return ctx.getBean("productsRepositoryWithBalances", ProductsRepositoryWithBalancesImpl.class);
     }
 
-    public ProductsRepositoryDecorative<Products> productsRepoWithFullDescInstance() {
-        return ctx.getBean("productsRepositoryWithFullDescription", ProductsRepositoryWithFullDescriptionImpl.class);
-    }
-
     public ProductsRepositoryDecorative<Products> productsRepoWithPricesInstance() {
         return ctx.getBean("productsRepositoryWithPrices", ProductsRepositoryWithPricesImpl.class);
     }
 
-    public ProductsRepositoryDecorative<Products> productsRepoWithShortDescInstance() {
-        return ctx.getBean("productsRepositoryWithShortDescription", ProductsRepositoryWithShortDescriptionImpl.class);
+    public ProductsRepositoryDecorative<Products> productsRepoWithDescriptionInstance() {
+        return ctx.getBean("productsRepositoryWithDescription", ProductsRepositoryWithDescriptionImpl.class);
     }
 
     public ProductsRepositoryDecorative<Products> productsRepoWithStatsInstance() {

@@ -19,6 +19,11 @@
                 <parameter name="articul" value="art_1"/>
                 <parameter name="code" value="c_1"/>
             </class>
+            <class name="ru.fd.api.service.producer.entity.DescriptionProducerIntegrationTestNG">
+                <parameter name="shortDescription" value="sd"/>
+                <parameter name="fullDescription" value="fd"/>
+                <parameter name="productId" value="1"/>
+            </class>
             <class name="ru.fd.api.service.producer.entity.UnitProducerIntegrationTestNG">
                 <parameter name="id" value="un_1"/>
                 <parameter name="name" value="unit_1"/>

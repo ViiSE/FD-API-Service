@@ -18,46 +18,58 @@ package ru.fd.api.service.repository.decorative;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.fd.api.service.data.DescriptionPojo;
 import ru.fd.api.service.database.SQLQueryCreator;
+import ru.fd.api.service.entity.Description;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
+import ru.fd.api.service.producer.entity.DescriptionProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
-import ru.fd.api.service.repository.mapper.RseProductsWithFullDescriptionImpl;
+import ru.fd.api.service.repository.mapper.RmProductsWithDescriptionImpl;
 
-import java.util.Map;
+import java.util.List;
 
-@Repository("productsRepositoryWithFullDescription")
-public class ProductsRepositoryWithFullDescriptionImpl implements ProductsRepositoryDecorative<Products> {
+@Repository("productsRepositoryWithDescription")
+public class ProductsRepositoryWithDescriptionImpl implements ProductsRepositoryDecorative<Products> {
 
     private final JdbcTemplate jdbcTemplate;
     private final ProductProducer productProducer;
+    private final DescriptionProducer descriptionProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
-    public ProductsRepositoryWithFullDescriptionImpl(
+    public ProductsRepositoryWithDescriptionImpl(
             JdbcTemplate jdbcTemplate,
             ProductProducer productProducer,
+            DescriptionProducer descriptionProducer,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
         this.productProducer = productProducer;
+        this.descriptionProducer = descriptionProducer;
         this.sqlQueryCreator = sqlQueryCreator;
     }
 
     @Override
     public Products read(Products products) throws RepositoryException {
         try {
-            Map<String, String> fullDescForProducts = jdbcTemplate.query(
-                    sqlQueryCreator.create("products_with_full_description.sql").content(),
-                    new RseProductsWithFullDescriptionImpl());
-            if (fullDescForProducts != null) {
-                fullDescForProducts.forEach((id, fullDesc) -> {
-                    Product product = products.findProductById(id);
-                    if (product != null)
-                        products.decorateProduct(id, productProducer.getProductWithFullDescriptionInstance(product, fullDesc));
-                });
+            List<Description> descList = jdbcTemplate.query(
+                    sqlQueryCreator.create("products_with_description.sql").content(),
+                    new RmProductsWithDescriptionImpl(descriptionProducer));
+            for(Description description: descList) {
+                DescriptionPojo descPojo = (DescriptionPojo) description.formForSend();
+                String id = descPojo.getProductId();
+                Product product = products.findProductById(id);
+                if (product != null)
+                    products.decorateProduct(id,
+                            productProducer.getProductWithFullDescriptionInstance(
+                                    productProducer.getProductWithShortDescriptionInstance(
+                                            product,
+                                            descPojo.getShortDescription()),
+                                    descPojo.getFullDescription()));
             }
+
             return products;
         } catch (CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);

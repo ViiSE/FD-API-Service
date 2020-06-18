@@ -47,10 +47,10 @@ public class ProductPojo {
     private String code;
     @ApiModelProperty(notes = "Наименование", position = 9)
     private String name;
-    @ApiModelProperty(notes = "Полное описание товара (по умолчанию пустое значение)", position = 10)
-    private String fullDescription = "";
-    @ApiModelProperty(notes = "Краткое описание товара (по умолчанию пустое значение)", position = 11)
-    private String shortDescription = "";
+    @ApiModelProperty(notes = "Полное описание товара", position = 10)
+    private String fullDescription;
+    @ApiModelProperty(notes = "Краткое описание товара", position = 11)
+    private String shortDescription;
     @ApiModelProperty(notes = "Код Avarda", position = 12)
     private String codeAvarda;
     @ApiModelProperty(notes = "Цены", position = 13)
@@ -95,11 +95,11 @@ public class ProductPojo {
     }
 
     public void setFullDescription(String fullDescription) {
-        this.fullDescription = Objects.requireNonNullElse(fullDescription, "");
+        this.fullDescription = fullDescription;
     }
 
     public void setShortDescription(String shortDescription) {
-        this.shortDescription = Objects.requireNonNullElse(shortDescription, "");
+        this.shortDescription = shortDescription;
     }
 
     public void setPrices(PricesPojo prices) {

@@ -58,27 +58,13 @@ public class ProductWithShortDescriptionTestNG {
     }
 
     @Test
-    public void formForSend_shortDescriptionIsNull() throws JsonProcessingException {
-        product = new ProductWithShortDescriptionImpl(product, null);
-        assertNotNull(product, "Product with short description is null!");
-
-        ProductPojo productPojo = (ProductPojo) product.formForSend();
-        assertNotNull(productPojo, "ProductPojo is null!");
-        assertTrue(productPojo.getShortDescription().isEmpty());
-
-        String sendForForm = mapper.writeValueAsString(productPojo);
-        assertTrue(sendForForm.contains("\"short_description\":\"\""));
-        System.out.println(sendForForm);
-    }
-
-    @Test
     public void formForSend_shortDescriptionIsEmpty() throws JsonProcessingException {
         product = new ProductWithShortDescriptionImpl(product, "");
         assertNotNull(product, "Product with short description is null!");
 
         ProductPojo productPojo = (ProductPojo) product.formForSend();
         assertNotNull(productPojo, "ProductPojo is null!");
-        assertTrue(productPojo.getFullDescription().isEmpty());
+        assertTrue(productPojo.getShortDescription().isEmpty());
 
         String sendForForm = mapper.writeValueAsString(productPojo);
         assertTrue(sendForForm.contains("\"short_description\":\"\""));
