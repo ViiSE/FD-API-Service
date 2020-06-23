@@ -154,6 +154,11 @@
             <class name="ru.fd.api.service.entity.DepartmentWithIdTestNG">
                 <parameter name="departmentId" value="depId"/>
             </class>
+            <class name="ru.fd.api.service.entity.DepartmentWithAddressTestNG">
+                <parameter name="departmentId" value="depId"/>
+                <parameter name="name" value="Department"/>
+                <parameter name="address" value="Addr1"/>
+            </class>
             <class name="ru.fd.api.service.entity.OfferSimpleTestNG">
                 <parameter name="offerId" value="100"/>
             </class>

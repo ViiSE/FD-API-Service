@@ -35,6 +35,9 @@ public class RmDepartmentsImpl implements RowMapper<Department> {
     public Department mapRow(ResultSet rs, int i) throws SQLException {
         String id = rs.getString("GID").trim();
         String name = rs.getString("NAME").trim();
-        return departmentProducer.getDepartmentInstance(id, name);
+        String address = rs.getString("ADDRESS").trim();
+        return departmentProducer.getDepartmentWithAddressInstance(
+                departmentProducer.getDepartmentInstance(id, name),
+                address);
     }
 }

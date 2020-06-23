@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RseProductsWithDescriptionImpl implements ResultSetExtractor<Map<String,Description>> {
+public class RseProductsWithDescriptionImpl implements ResultSetExtractor<Map<String, Description>> {
 
     private final DescriptionProducer descriptionProducer;
 
@@ -42,9 +42,12 @@ public class RseProductsWithDescriptionImpl implements ResultSetExtractor<Map<St
             String shortDescription = rs.getString("short_description").trim();
             String fullDescription = rs.getString("full_description").trim();
 
-            descMap.put(id, descriptionProducer.getDescriptionFullInstance(
-                    descriptionProducer.getDescriptionShortInstance(shortDescription),
-                    fullDescription));
+            Description description = descriptionProducer
+                    .getDescriptionFullInstance(descriptionProducer
+                                    .getDescriptionShortInstance(shortDescription),
+                            fullDescription);
+
+            descMap.put(id, description);
         }
         return descMap;
     }

@@ -33,6 +33,8 @@ public class DepartmentPojo {
     private final String id;
     @ApiModelProperty(notes = "Имя подразделения", position = 2)
     private final String name;
+    @ApiModelProperty(notes = "Адрес подразделения", position = 3)
+    private String address;
 
     @JsonCreator
     public DepartmentPojo(
@@ -49,5 +51,13 @@ public class DepartmentPojo {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public String getName() {
         return name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? "" : address;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

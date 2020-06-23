@@ -30,7 +30,6 @@ import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
 import ru.fd.api.service.repository.mapper.RseProductsWithDescriptionImpl;
 
-import java.util.List;
 import java.util.Map;
 
 @Repository("productsRepositoryWithDescription")

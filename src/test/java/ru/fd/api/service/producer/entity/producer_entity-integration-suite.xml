@@ -31,6 +31,7 @@
             <class name="ru.fd.api.service.producer.entity.DepartmentProducerIntegrationTestNG">
                 <parameter name="id" value="dep_1"/>
                 <parameter name="name" value="department_1"/>
+                <parameter name="address" value="street"/>
             </class>
             <class name="ru.fd.api.service.producer.entity.CustomerProducerIntegrationTestNG">
                 <parameter name="type" value="0"/>

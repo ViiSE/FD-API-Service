@@ -21,12 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import ru.fd.api.service.ApiServiceApplication;
-import ru.fd.api.service.entity.Department;
-import ru.fd.api.service.entity.DepartmentImpl;
+import ru.fd.api.service.entity.*;
 
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
@@ -37,16 +34,46 @@ public class DepartmentProducerIntegrationTestNG extends AbstractTestNGSpringCon
     @Autowired
     private DepartmentProducer departmentProducer;
 
+    @AfterClass
+    public void afterClass() {
+        testBegin(DepartmentProducerImpl.class);
+    }
+
     @Test
     @Parameters({"id", "name"})
     public void getDepartmentInstance(String id, String name) {
-        testBegin(DepartmentProducerImpl.class, "getDepartmentInstance()");
+        testMethod("getDepartmentInstance()");
 
         Department department = departmentProducer.getDepartmentInstance(id, name);
         assertTrue(department instanceof DepartmentImpl, "Department: not a valid type!");
         System.out.println("Instance: " + department);
+    }
 
-        testEnd(DepartmentProducerImpl.class, "getDepartmentInstance()");
+    @Test
+    @Parameters({"id"})
+    public void getDepartmentWithIdInstance(String id) {
+        testMethod("getDepartmentWithIdInstance()");
+
+        Department department = departmentProducer.getDepartmentWithIdInstance(id);
+        assertTrue(department instanceof DepartmentWithIdImpl, "Department: not a valid type!");
+        System.out.println("Instance: " + department);
+    }
+
+    @Test
+    @Parameters({"id", "address"})
+    public void getDepartmentWithAddressInstance(String id, String address) {
+        testMethod("getDepartmentWithAddressInstance()");
+
+        Department department = departmentProducer.getDepartmentWithAddressInstance(
+                departmentProducer.getDepartmentWithIdInstance(id),
+                address);
+        assertTrue(department instanceof DepartmentWithAddressImpl, "Department: not a valid type!");
+        System.out.println("Instance: " + department);
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        testEnd(DepartmentProducerImpl.class);
     }
 
     @AfterMethod
