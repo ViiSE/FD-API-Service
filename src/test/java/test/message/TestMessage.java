@@ -116,6 +116,10 @@ public class TestMessage {
         writeToFile(className);
     }
 
+    public static void writeTestTime(Class<?> clazz) {
+        writeToFile(clazz.getSimpleName());
+    }
+
     public static void writeTestTime(ITestResult tr) {
         long milliseconds = tr.getEndMillis() - tr.getStartMillis();
         String time = new SimpleDateFormat("mm'm' ss's' SSS'ms'").format(new Date(milliseconds));

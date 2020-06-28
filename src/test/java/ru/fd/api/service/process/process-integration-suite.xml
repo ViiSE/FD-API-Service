@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProcessIntegrationSuite">
+
+    <test name="ProcessIntegrationSuiteTest">
+        <classes>
+           <!--     Integration tests     -->
+            <class name="ru.fd.api.service.process.PsAttributeGroupsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsAttributesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsCategoriesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsChainCreateOrderIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsChainLgCreateOrderIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsChainLgProductsImpl"/>
+            <class name="ru.fd.api.service.process.PsChainProductsImpl"/>
+            <class name="ru.fd.api.service.process.PsChangedBalancesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsChangedBalancesWithOrderIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsCountriesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsCreateOrderIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsCustomerEmailOrPhoneReqIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsDeliveryIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsDepartmentsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgAttributeGroupsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgAttributesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgCategoriesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgChangedBalancesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgCountriesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgDepartmentsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgOffersIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgProductsOfferIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgStatusesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgUnitsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsLgVendorsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsOffersIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsOrderFromBodyIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsOrderProductsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsProductAdditionalIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsProductsOfferIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsStatusesIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsUnitsIntegrationTestNG"/>
+            <class name="ru.fd.api.service.process.PsVendorsIntegrationTestNG"/>
+        </classes>
+    </test>
+
+</suite>

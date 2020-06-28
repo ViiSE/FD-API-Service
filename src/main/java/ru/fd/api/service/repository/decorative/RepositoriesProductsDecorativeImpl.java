@@ -17,6 +17,7 @@
 package ru.fd.api.service.repository.decorative;
 
 import org.springframework.stereotype.Service;
+import ru.fd.api.service.constant.RepositoriesProducts;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.repository.ProductsRepositoryDecorative;
 
@@ -29,11 +30,11 @@ public class RepositoriesProductsDecorativeImpl implements Repositories<Products
     private final Map<String, ProductsRepositoryDecorative<Products>> reposMap = new HashMap<>();
 
     public RepositoriesProductsDecorativeImpl(ProductsRepositoryDecorativeProducer producer) {
-        reposMap.put("attributes", producer.productsRepoWithAttrInstance());
-        reposMap.put("balances", producer.productsRepoWithBalancesInstance());
-        reposMap.put("prices", producer.productsRepoWithPricesInstance());
-        reposMap.put("statuses", producer.productsRepoWithStatsInstance());
-        reposMap.put("descriptions", producer.productsRepoWithDescriptionInstance());
+        reposMap.put(RepositoriesProducts.ATTRIBUTES, producer.productsRepoWithAttrInstance());
+        reposMap.put(RepositoriesProducts.BALANCES, producer.productsRepoWithBalancesInstance());
+        reposMap.put(RepositoriesProducts.PRICES, producer.productsRepoWithPricesInstance());
+        reposMap.put(RepositoriesProducts.STATUSES, producer.productsRepoWithStatsInstance());
+        reposMap.put(RepositoriesProducts.DESCRIPTIONS, producer.productsRepoWithDescriptionInstance());
     }
 
     @Override

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="RepositoryDecorativeIntegrationSuite">
+
+    <test name="RepositoryDecorativeIntegrationSuiteTest">
+        <classes>
+            <!--     Integration tests     -->
+            <class name="ru.fd.api.service.repository.decorative.ProductsRepositoryWithAttributesImpl"/>
+            <class name="ru.fd.api.service.repository.decorative.ProductsRepositoryWithBalancesImpl"/>
+            <class name="ru.fd.api.service.repository.decorative.ProductsRepositoryWithDescriptionImpl"/>
+            <class name="ru.fd.api.service.repository.decorative.ProductsRepositoryWithPricesImpl"/>
+            <class name="ru.fd.api.service.repository.decorative.ProductsRepositoryWithStatusesImpl"/>
+            <class name="ru.fd.api.service.repository.decorative.RepositoriesProductsDecorativeIntegrationTestNG">
+        </classes>
+    </test>
+
+</suite>

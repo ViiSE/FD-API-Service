@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProcessSuite">
+
+    <test name="ProcessSuiteTest">
+        <classes>
+           <!--     Unit tests     -->
+            <class name="ru.fd.api.service.process.PsCountriesTestNG"/>
+            <class name="ru.fd.api.service.process.PsVendorsTestNG"/>
+            <class name="ru.fd.api.service.process.PsAttributeGroupsTestNG"/>
+            <class name="ru.fd.api.service.process.PsAttributesTestNG"/>
+            <class name="ru.fd.api.service.process.PsBalancesTestNG"/>
+            <class name="ru.fd.api.service.process.PsCategoriesTestNG"/>
+            <class name="ru.fd.api.service.process.PsCustomerTestNG"/>
+            <class name="ru.fd.api.service.process.PsDeliveryTestNG"/>
+            <class name="ru.fd.api.service.process.PsDepartmentsTestNG"/>
+            <class name="ru.fd.api.service.process.PsOrderProductsTestNG"/>
+            <class name="ru.fd.api.service.process.PsPricesTestNG"/>
+            <class name="ru.fd.api.service.process.PsProductsTestNG"/>
+            <class name="ru.fd.api.service.process.PsProductsWithChangedBalancesTestNG"/>
+            <class name="ru.fd.api.service.process.PsProductTestNG"/>
+            <class name="ru.fd.api.service.process.PsStatusesTestNG"/>
+            <class name="ru.fd.api.service.process.PsUnitsTestNG"/>
+        </classes>
+    </test>
+
+</suite>
