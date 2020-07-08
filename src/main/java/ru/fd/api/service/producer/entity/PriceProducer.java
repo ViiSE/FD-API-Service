@@ -21,4 +21,5 @@ import ru.fd.api.service.entity.Price;
 public interface PriceProducer {
     Price getPriceInstance(String departmentId, float value);
     Price getPriceOfferInstance(float originalValue, float offerValue);
+    Price getPriceOfferWithDepartmentIdInstance(Price price, String departmentId);
 }

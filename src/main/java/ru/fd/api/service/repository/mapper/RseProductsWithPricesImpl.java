@@ -48,7 +48,7 @@ public class RseProductsWithPricesImpl implements ResultSetExtractor<Map<String,
         while(rs.next()) {
             if(id.isEmpty())
                 id = rs.getString("GID_TOVAR").trim();
-            if(!id.equals(rs.getString("GID_TOVAR"))) {
+            if(!id.equals(rs.getString("GID_TOVAR").trim())) {
                 pricesMap.put(id, pricesProducer.getPricesInstance(new ArrayList<>(prices)));
                 id = rs.getString("GID_TOVAR").trim();
                 prices.clear();

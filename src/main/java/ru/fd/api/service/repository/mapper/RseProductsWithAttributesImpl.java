@@ -48,7 +48,7 @@ public class RseProductsWithAttributesImpl implements ResultSetExtractor<Map<Str
         while(rs.next()) {
             if(id.isEmpty())
                 id = rs.getString("GID_TOVAR").trim();
-            if(!id.equals(rs.getString("GID_TOVAR"))) {
+            if(!id.equals(rs.getString("GID_TOVAR").trim())) {
                 attrsMap.put(id, attrsProd.getProductsAttributesInstance(new ArrayList<>(attributes)));
                 id = rs.getString("GID_TOVAR").trim();
                 attributes.clear();

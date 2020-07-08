@@ -42,7 +42,7 @@ public class PsChainLgProductsIntegrationTestNG extends AbstractTestNGSpringCont
         try {
             Products products = psChProds.answer(with);
             assertNotNull(products, "Products is null!");
-//            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
+            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
             System.out.println("DONE!");
         } catch (ProcessException ex) {
             catchMessage(ex);

@@ -18,19 +18,19 @@ package ru.fd.api.service.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.fd.api.service.data.PriceOfferPojo;
+import ru.fd.api.service.data.PricesOfferPojo;
 import ru.fd.api.service.data.ProductOfferPojo;
 
-@Component("productOfferWithOfferPrice")
+@Component("productOfferWithOfferPrices")
 @Scope("prototype")
-public class ProductOfferWithOfferPriceImpl implements Product {
+public class ProductOfferWithOfferPricesImpl implements Product {
 
     private final Product product;
-    private final Price price;
+    private final Prices prices;
 
-    public ProductOfferWithOfferPriceImpl(Product product, Price price) {
+    public ProductOfferWithOfferPricesImpl(Product product, Prices prices) {
         this.product = product;
-        this.price = price;
+        this.prices = prices;
     }
 
     @Override
@@ -45,9 +45,9 @@ public class ProductOfferWithOfferPriceImpl implements Product {
 
     @Override
     public Object formForSend() {
-        PriceOfferPojo pricePojo = (PriceOfferPojo) price.formForSend();
+        PricesOfferPojo pricesPojo = (PricesOfferPojo) prices.formForSend();
         ProductOfferPojo productPojo = (ProductOfferPojo) product.formForSend();
-        productPojo.setPrice(pricePojo);
+        productPojo.setPrices(pricesPojo);
         return productPojo;
     }
 }

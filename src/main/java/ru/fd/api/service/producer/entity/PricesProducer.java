@@ -23,4 +23,5 @@ import java.util.List;
 
 public interface PricesProducer {
     Prices getPricesInstance(List<Price> prices);
+    Prices getPricesOfferInstance(List<Price> prices);
 }

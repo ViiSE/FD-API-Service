@@ -84,7 +84,7 @@ public class ProductProducerTestImpl implements ProductProducer {
     }
 
     @Override
-    public Product getProductOfferWithOfferPriceInstance(Product product, Price price) {
-        return new ProductOfferWithOfferPriceImpl(product, price);
+    public Product getProductOfferWithOfferPricesInstance(Product product, Prices prices) {
+        return new ProductOfferWithOfferPricesImpl(product, prices);
     }
 }

@@ -27,9 +27,11 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class PriceOfferPojo {
 
-    @ApiModelProperty(notes = "Цена до акции", position = 1)
+    @ApiModelProperty(notes = "GID подразделения", position = 1)
+    private String departmentId;
+    @ApiModelProperty(notes = "Цена до акции", position = 2)
     private final float originalValue;
-    @ApiModelProperty(notes = "Цена после акции", position = 2)
+    @ApiModelProperty(notes = "Цена после акции", position = 3)
     private final float offerValue;
 
     @JsonCreator
@@ -46,5 +48,13 @@ public class PriceOfferPojo {
 
     public float getOriginalValue() {
         return originalValue;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
     }
 }

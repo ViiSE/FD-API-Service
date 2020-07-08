@@ -38,14 +38,18 @@ public class ProductsOfferTestNG {
         products = new ProductsOfferImpl(
                 new ArrayList<>() {{
                     add(new ProductOfferWithOfferIdImpl(
-                            new ProductOfferWithOfferPriceImpl(
+                            new ProductOfferWithOfferPricesImpl(
                                     new ProductOfferWithIdImpl(id1),
-                                    new PriceOfferImpl(origValue1, offerValue1)),
+                                    new PricesOfferImpl(new ArrayList<>() {{
+                                        add(new PriceOfferImpl(origValue1, offerValue1));
+                                    }})),
                             offerId1));
                     add(new ProductOfferWithOfferIdImpl(
-                            new ProductOfferWithOfferPriceImpl(
+                            new ProductOfferWithOfferPricesImpl(
                                     new ProductOfferWithIdImpl(id2),
-                                    new PriceOfferImpl(origValue2, offerValue2)),
+                                    new PricesOfferImpl(new ArrayList<>() {{
+                                        add(new PriceOfferImpl(origValue1, offerValue1));
+                                    }})),
                             offerId2));
                 }}
         );

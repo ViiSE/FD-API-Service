@@ -20,32 +20,36 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
-import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
-import ru.fd.api.service.entity.ProductsOfferImpl;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
 import ru.fd.api.service.producer.entity.PriceProducer;
+import ru.fd.api.service.producer.entity.PricesProducer;
 import ru.fd.api.service.producer.entity.ProductProducer;
-import ru.fd.api.service.repository.mapper.RmProductsOfferImpl;
-
-import java.util.List;
+import ru.fd.api.service.producer.entity.ProductsProducer;
+import ru.fd.api.service.repository.mapper.RseProductsOfferImpl;
 
 @Repository("productsOfferRepository")
 public class ProductsOfferRepositoryImpl implements ProductsRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private final ProductsProducer productsProducer;
     private final ProductProducer productProducer;
     private final PriceProducer priceProducer;
+    private final PricesProducer pricesProducer;
     private final SQLQueryCreator<String, String> sqlQueryCreator;
 
     public ProductsOfferRepositoryImpl(
             JdbcTemplate jdbcTemplate,
+            ProductsProducer productsProducer,
             ProductProducer productProducer,
+            PricesProducer pricesProducer,
             PriceProducer priceProducer,
             SQLQueryCreator<String, String> sqlQueryCreator) {
         this.jdbcTemplate = jdbcTemplate;
+        this.productsProducer = productsProducer;
         this.productProducer = productProducer;
+        this.pricesProducer = pricesProducer;
         this.priceProducer = priceProducer;
         this.sqlQueryCreator = sqlQueryCreator;
     }
@@ -53,10 +57,9 @@ public class ProductsOfferRepositoryImpl implements ProductsRepository {
     @Override
     public Products read() throws RepositoryException {
         try {
-            List<Product> products = jdbcTemplate.query(
+            return jdbcTemplate.query(
                     sqlQueryCreator.create("products_offer.sql").content(),
-                    new RmProductsOfferImpl(productProducer, priceProducer));
-            return new ProductsOfferImpl(products);
+                    new RseProductsOfferImpl(productsProducer, productProducer, priceProducer, pricesProducer));
         } catch (DataAccessException | CreatorException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

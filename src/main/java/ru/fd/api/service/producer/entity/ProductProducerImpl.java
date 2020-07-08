@@ -90,7 +90,7 @@ public class ProductProducerImpl implements ProductProducer {
     }
 
     @Override
-    public Product getProductOfferWithOfferPriceInstance(Product product, Price price) {
-        return (Product) ctx.getBean("productOfferWithOfferPrice", product, price);
+    public Product getProductOfferWithOfferPricesInstance(Product product, Prices prices) {
+        return (Product) ctx.getBean("productOfferWithOfferPrices", product, prices);
     }
 }

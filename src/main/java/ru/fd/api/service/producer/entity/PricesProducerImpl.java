@@ -36,4 +36,9 @@ public class PricesProducerImpl implements PricesProducer {
     public Prices getPricesInstance(List<Price> prices) {
         return (Prices) ctx.getBean("prices", prices);
     }
+
+    @Override
+    public Prices getPricesOfferInstance(List<Price> prices) {
+        return (Prices) ctx.getBean("pricesOffer", prices);
+    }
 }

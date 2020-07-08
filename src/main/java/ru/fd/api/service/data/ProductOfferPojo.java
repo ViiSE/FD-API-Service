@@ -29,8 +29,8 @@ public class ProductOfferPojo {
 
     @ApiModelProperty(notes = "GID товара", position = 1)
     private String id;
-    @ApiModelProperty(notes = "Цена", position = 2)
-    private PriceOfferPojo price;
+    @ApiModelProperty(notes = "Цены", position = 2)
+    private PricesOfferPojo prices;
     @ApiModelProperty(notes = "ID акции", position = 3)
     private long offerId;
 
@@ -38,8 +38,8 @@ public class ProductOfferPojo {
         this.id = id;
     }
 
-    public void setPrice(PriceOfferPojo price) {
-        this.price = price;
+    public void setPrices(PricesOfferPojo prices) {
+        this.prices = prices;
     }
 
     public void setOfferId(long offerId) {
@@ -50,8 +50,8 @@ public class ProductOfferPojo {
         return id;
     }
 
-    public PriceOfferPojo getPrice() {
-        return price;
+    public PricesOfferPojo getPrices() {
+        return prices;
     }
 
     public long getOfferId() {

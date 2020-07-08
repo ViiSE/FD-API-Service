@@ -149,6 +149,19 @@
                 <parameter name="origValue" value="20.50"/>
                 <parameter name="offerValue" value="10.50"/>
             </class>
+            <class name="ru.fd.api.service.entity.PriceOfferWithDepartmentIdTestNG">
+                <parameter name="origValue" value="20.50"/>
+                <parameter name="offerValue" value="10.50"/>
+                <parameter name="depId" value="dep1"/>
+            </class>
+            <class name="ru.fd.api.service.entity.PricesOfferTestNG">
+                <parameter name="origValue1" value="20.50"/>
+                <parameter name="offerValue1" value="10.50"/>
+                <parameter name="origValue2" value="15.50"/>
+                <parameter name="offerValue2" value="5.50"/>
+                <parameter name="departmentId1" value="dep1"/>
+                <parameter name="departmentId2" value="dep2"/>
+            </class>
             <class name="ru.fd.api.service.entity.DateOfferStartsAtTestNG"/>
             <class name="ru.fd.api.service.entity.DateOfferFinishesAtTestNG"/>
             <class name="ru.fd.api.service.entity.DepartmentWithIdTestNG">
@@ -189,8 +202,9 @@
                 <parameter name="id" value="1"/>
                 <parameter name="offerId" value="100"/>
             </class>
-            <class name="ru.fd.api.service.entity.ProductOfferWithOfferPriceTestNG">
+            <class name="ru.fd.api.service.entity.ProductOfferWithOfferPricesTestNG">
                 <parameter name="id" value="1"/>
+                <parameter name="depId" value="dep1"/>
                 <parameter name="origValue" value="100.50"/>
                 <parameter name="offerValue" value="99.99"/>
             </class>

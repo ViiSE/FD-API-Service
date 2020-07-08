@@ -6,10 +6,12 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import ru.fd.api.service.data.ProductOfferPojo;
 
+import java.util.ArrayList;
+
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
-public class ProductOfferWithOfferPriceTestNG {
+public class ProductOfferWithOfferPricesTestNG {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private Product product;
@@ -17,22 +19,27 @@ public class ProductOfferWithOfferPriceTestNG {
     private String id;
 
     @BeforeClass
-    @Parameters({"id", "origValue", "offerValue"})
-    public void setUpClass(String id, float origValue, float offerValue) {
+    @Parameters({"id", "origValue", "offerValue", "depId"})
+    public void setUpClass(String id, float origValue, float offerValue, String depId) {
+        assertNotNull(depId, "Department ID cannot be null!");
+        assertFalse(depId.isEmpty(), "Department ID is empty!");
         assertNotNull(id, "ID cannot be null!");
         assertFalse(id.isEmpty(), "ID is empty!");
 
         assertFalse(origValue < 0.f, "Original value price is less than 0!");
         assertFalse(offerValue < 0.f, "Offer value price is less than 0!");
 
-        product = new ProductOfferWithOfferPriceImpl(
+        product = new ProductOfferWithOfferPricesImpl(
                 new ProductOfferWithIdImpl(id),
-                new PriceOfferImpl(origValue, offerValue));
+                new PricesOfferImpl(new ArrayList<>() {{
+                    add(new PriceOfferWithDepartmentIdImpl(
+                            new PriceOfferImpl(origValue, offerValue), depId));
+                }}));
         assertNotNull(product, "Product is null!");
 
         this.id = id;
 
-        testBegin(ProductOfferWithOfferPriceImpl.class);
+        testBegin(ProductOfferWithOfferPricesImpl.class);
     }
 
     @Test
@@ -58,6 +65,6 @@ public class ProductOfferWithOfferPriceTestNG {
 
     @AfterClass
     public void teardownClass() {
-        testEnd(ProductOfferWithOfferPriceImpl.class);
+        testEnd(ProductOfferWithOfferPricesImpl.class);
     }
 }

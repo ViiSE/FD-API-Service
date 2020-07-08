@@ -38,4 +38,9 @@ public class PriceProducerImpl implements PriceProducer {
     public Price getPriceOfferInstance(float originalValue, float offerValue) {
         return (Price) ctx.getBean("priceOffer", originalValue, offerValue);
     }
+
+    @Override
+    public Price getPriceOfferWithDepartmentIdInstance(Price price, String departmentId) {
+        return (Price) ctx.getBean("priceOfferWithDepartmentId", price, departmentId);
+    }
 }

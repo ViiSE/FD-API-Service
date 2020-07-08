@@ -34,5 +34,5 @@ public interface ProductProducer {
 
     Product getProductOfferWithIdInstance(String id);
     Product getProductOfferWithOfferIdInstance(Product product, long offerId);
-    Product getProductOfferWithOfferPriceInstance(Product product, Price price);
+    Product getProductOfferWithOfferPricesInstance(Product product, Prices prices);
 }

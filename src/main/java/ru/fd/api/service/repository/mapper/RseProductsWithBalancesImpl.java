@@ -49,7 +49,7 @@ public class RseProductsWithBalancesImpl implements ResultSetExtractor<Map<Strin
         while(rs.next()) {
             if(id.isEmpty())
                 id = rs.getString("GID_TOVAR").trim();
-            if(!id.equals(rs.getString("GID_TOVAR"))) {
+            if(!id.equals(rs.getString("GID_TOVAR").trim())) {
                 balancesMap.put(id, balancesProducer.getBalancesInstance(new ArrayList<>(balances)));
                 id = rs.getString("GID_TOVAR").trim();
                 balances.clear();
