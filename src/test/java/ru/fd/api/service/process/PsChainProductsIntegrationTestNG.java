@@ -36,7 +36,7 @@ public class PsChainProductsIntegrationTestNG extends AbstractTestNGSpringContex
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsChainProductsImpl.class, "answer()");
 
         try {

@@ -32,17 +32,17 @@ public class PsChainLgProductsIntegrationTestNG extends AbstractTestNGSpringCont
     @BeforeClass
     public void setUpClass() {
         writeTestTime(PsChainLgProductsImpl.class);
-        with = new ArrayList<>();
+        with = new ArrayList<>() {{ add("descriptions"); }};
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsChainLgProductsImpl.class, "answer()");
 
         try {
             Products products = psChProds.answer(with);
             assertNotNull(products, "Products is null!");
-            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
+//            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
             System.out.println("DONE!");
         } catch (ProcessException ex) {
             catchMessage(ex);

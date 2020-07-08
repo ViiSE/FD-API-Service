@@ -30,7 +30,7 @@ public class PsLgAttributeGroupsIntegrationTestNG extends AbstractTestNGSpringCo
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsLgAttributeGroupsImpl.class, "answer()");
 
         try {

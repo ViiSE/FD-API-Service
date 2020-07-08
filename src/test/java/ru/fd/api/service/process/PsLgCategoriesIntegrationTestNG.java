@@ -30,7 +30,7 @@ public class PsLgCategoriesIntegrationTestNG extends AbstractTestNGSpringContext
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsLgCategoriesImpl.class, "answer()");
 
         try {

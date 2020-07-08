@@ -31,7 +31,7 @@ public class PsLgProductsOfferIntegrationTestNG extends AbstractTestNGSpringCont
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsProductsOfferImpl.class, "answer()");
 
         try {

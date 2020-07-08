@@ -36,7 +36,7 @@ public class PsCustomerEmailOrPhoneReqIntegrationTestNG extends AbstractTestNGSp
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsCustomerEmailOrPhoneReqImpl.class, "answer()");
 
         try {

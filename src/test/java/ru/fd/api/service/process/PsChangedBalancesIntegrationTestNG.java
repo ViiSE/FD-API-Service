@@ -30,7 +30,7 @@ public class PsChangedBalancesIntegrationTestNG extends AbstractTestNGSpringCont
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsChangedBalancesImpl.class, "answer()");
 
         try {

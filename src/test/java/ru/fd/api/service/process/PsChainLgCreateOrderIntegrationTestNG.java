@@ -56,7 +56,7 @@ public class PsChainLgCreateOrderIntegrationTestNG extends AbstractTestNGSpringC
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsChainLgCreateOrderImpl.class, "answer()");
 
         try {

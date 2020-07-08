@@ -29,7 +29,7 @@ public class PsProductAdditionalIntegrationTestNG extends AbstractTestNGSpringCo
     }
 
     @Test
-    public void readCategories() throws JsonProcessingException {
+    public void answer() throws JsonProcessingException {
         testBegin(PsProductAdditionalImpl.class, "answer()");
 
         Process<Sendable, Void> unitsProc = psDeps.process(AdditionalProducts.UNITS);
