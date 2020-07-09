@@ -80,6 +80,6 @@ public class RseProductsChangedBalancesImpl implements ResultSetExtractor<Produc
                         mainId,
                         balancesProducer.getBalancesInstance(balances)));
 
-        return productsProducer.getProductsDefaultInstance(productProducer, products);
+        return productsProducer.getProductsInstance(productProducer, products);
     }
 }

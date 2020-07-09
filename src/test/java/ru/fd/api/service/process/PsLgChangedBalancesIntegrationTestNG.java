@@ -24,6 +24,9 @@ public class PsLgChangedBalancesIntegrationTestNG extends AbstractTestNGSpringCo
     @Qualifier("psLgChangedBalances")
     private Process<Products, Void> psLgChBalances;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     @BeforeClass
     public void setUpClass() {
         writeTestTime(PsLgChangedBalancesImpl.class);
@@ -36,7 +39,7 @@ public class PsLgChangedBalancesIntegrationTestNG extends AbstractTestNGSpringCo
         try {
             Products products = psLgChBalances.answer(null);
             assertNotNull(products, "Products is null!");
-            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
+            System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(products.formForSend()));
             System.out.println("DONE!");
         } catch (ProcessException ex) {
             catchMessage(ex);

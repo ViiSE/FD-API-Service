@@ -23,13 +23,18 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @ApiModel(value = "Products (with changed balances)", description = "Товары с измененными остатками")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ProductsChangedBalancesPojo {
 
-    @ApiModelProperty(notes = "Список товаров", position = 1)
+    @ApiModelProperty(notes = "Время и дата выгрузки товара в формате ISO 8601", position = 1)
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private ZonedDateTime from;
+
+    @ApiModelProperty(notes = "Список товаров", position = 2)
     private final List<ProductChangedBalancesPojo> products;
 
     @JsonCreator
@@ -39,5 +44,13 @@ public class ProductsChangedBalancesPojo {
 
     public List<ProductChangedBalancesPojo> getProducts() {
         return products;
+    }
+
+    public void setFrom(ZonedDateTime from) {
+        this.from = from;
+    }
+
+    public ZonedDateTime getFrom() {
+        return from;
     }
 }

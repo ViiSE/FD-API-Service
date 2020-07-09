@@ -29,6 +29,8 @@ import ru.fd.api.service.producer.entity.ProductProducer;
 import ru.fd.api.service.producer.entity.ProductsProducer;
 import ru.fd.api.service.repository.mapper.RseProductsChangedBalancesImpl;
 
+import java.time.ZonedDateTime;
+
 @Repository("productsRepositoryWithChangedBalances")
 public class ProductsRepositoryWithChangedBalancesImpl implements ProductsRepository {
 
@@ -57,13 +59,18 @@ public class ProductsRepositoryWithChangedBalancesImpl implements ProductsReposi
     @Override
     public Products read() throws RepositoryException {
         try {
-            return jdbcTemplate.query(
+            Products products = jdbcTemplate.query(
                     sqlQueryCreator.create("products_with_changed_balances.sql").content(),
                     new RseProductsChangedBalancesImpl(
                             pProd,
                             psProd,
                             bProd,
                             bsProd));
+
+            jdbcTemplate.batchUpdate(
+                    sqlQueryCreator.create("update_request_date_time_changed_balances.sql").content());
+
+            return psProd.getProductsChangedBalancesWithRequestDateTimeInstance(products, ZonedDateTime.now());
         } catch (CreatorException | DataAccessException ex) {
             throw new RepositoryException(ex.getMessage(), ex);
         }

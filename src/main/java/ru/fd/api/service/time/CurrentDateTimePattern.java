@@ -21,7 +21,7 @@ package ru.fd.api.service.time;
  * @author ViiSE
  */
 public class CurrentDateTimePattern {
-    public final static String DATE_TIME_IN_STANDARD_FORM_WITH_MS = "yyyy-MM-dd HH:mm:ss.S";
+    public final static String DATE_TIME_IN_STANDARD_FORM_WITH_MS = "yyyy-MM-dd HH:mm:ss.SSS";
     public final static String DATE_TIME_WITH_DOT = "dd.MM.yyyy HH:mm:ss";
     public final static String DATE_WITH_DOT = "dd.MM.yyyy";
     public final static String DATE_LOG = "dd-MM-yyyy";

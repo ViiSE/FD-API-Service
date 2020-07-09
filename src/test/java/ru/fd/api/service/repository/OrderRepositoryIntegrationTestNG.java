@@ -86,7 +86,7 @@ public class OrderRepositoryIntegrationTestNG extends AbstractTestNGSpringContex
                                                 "John Doe"),
                                         "22505",
                                         "43122")),
-                        psP.getOrderProductsDefaultInstance(
+                        psP.getOrderProductsInstance(
                                 new ArrayList<>() {{
                                     add(pP.getOrderProductSimpleInstance("id1", 10, 10.50f));
                                     add(pP.getOrderProductSimpleInstance("id2", 20, 50.99f));

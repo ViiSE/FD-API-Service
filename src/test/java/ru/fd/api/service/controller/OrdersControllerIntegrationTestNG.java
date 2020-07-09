@@ -147,7 +147,7 @@ public class OrdersControllerIntegrationTestNG extends AbstractTestNGSpringConte
 
         order = oPr.getOrderWithProductsInstance(
                 order,
-                psPr.getOrderProductsDefaultInstance(
+                psPr.getOrderProductsInstance(
                         new ArrayList<>() {{
                             add(pPr.getOrderProductSimpleInstance("id1", 10, 10.99f));
                             add(pPr.getOrderProductSimpleInstance("id2", 20, 400.99f));

@@ -66,7 +66,7 @@ public class ProductsRepositoryWithChangedBalancesAndOrderIntegrationTestNG exte
                                                 ),
                                                 (short) 0
                                         ),
-                                        psProd.getOrderProductsDefaultInstance(
+                                        psProd.getOrderProductsInstance(
                                                 new ArrayList<>() {{
                                                     pProd.getOrderProductSimpleInstance(
                                                             "1",

@@ -40,7 +40,7 @@ public class PsOrderProductsImpl implements Process<Products, OrderPojo> {
 
     @Override
     public Products answer(OrderPojo orderPojo) throws ProcessException {
-        return orderProductsProducer.getOrderProductsDefaultInstance(
+        return orderProductsProducer.getOrderProductsInstance(
                 orderPojo.getProducts()
                         .stream()
                         .map(product -> productProducer

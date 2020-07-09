@@ -60,7 +60,7 @@ public class PsCreateOrderIntegrationTestNG extends AbstractTestNGSpringContextT
                                                 ),
                                                 (short) 0
                                         ),
-                                        psProd.getOrderProductsDefaultInstance(
+                                        psProd.getOrderProductsInstance(
                                                 new ArrayList<>() {{
                                                     pProd.getOrderProductSimpleInstance(
                                                             "1",

@@ -20,10 +20,12 @@ package ru.fd.api.service.producer.entity;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public interface ProductsProducer {
-    Products getOrderProductsDefaultInstance(List<Product> products);
-    Products getProductsDefaultInstance(ProductProducer productProducer, List<Product> products);
+    Products getOrderProductsInstance(List<Product> products);
+    Products getProductsInstance(ProductProducer productProducer, List<Product> products);
+    Products getProductsChangedBalancesWithRequestDateTimeInstance(Products products, ZonedDateTime requestDateTime);
     Products getProductsOfferInstance(List<Product> products);
 }

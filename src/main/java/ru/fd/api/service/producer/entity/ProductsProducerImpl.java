@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import ru.fd.api.service.entity.Product;
 import ru.fd.api.service.entity.Products;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service("productsProducer")
@@ -34,13 +35,18 @@ public class ProductsProducerImpl implements ProductsProducer {
     }
 
     @Override
-    public Products getOrderProductsDefaultInstance(List<Product> products) {
+    public Products getOrderProductsInstance(List<Product> products) {
         return (Products) ctx.getBean("orderProducts", products);
     }
 
     @Override
-    public Products getProductsDefaultInstance(ProductProducer productProducer, List<Product> products) {
+    public Products getProductsInstance(ProductProducer productProducer, List<Product> products) {
         return (Products) ctx.getBean("products", productProducer, products);
+    }
+
+    @Override
+    public Products getProductsChangedBalancesWithRequestDateTimeInstance(Products products, ZonedDateTime requestDateTime) {
+        return (Products) ctx.getBean("productsChangedBalancesWithRequestDateTime", products, requestDateTime);
     }
 
     @Override
