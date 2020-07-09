@@ -49,7 +49,7 @@ public class JacksonConfiguration {
             javaTimeModule.addSerializer(LocalDateTime.class, localDateTimeSerializer);
             javaTimeModule.addSerializer(LocalDate.class, localDateSerializer);
 
-            ZonedDateTimeSerializer zonedDateTimeSerializer = new ZonedDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+            ZonedDateTimeSerializer zonedDateTimeSerializer = new ZonedDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
             javaTimeModule.addSerializer(ZonedDateTime.class, zonedDateTimeSerializer);
 
             jacksonObjectMapperBuilder.modules(javaTimeModule);
