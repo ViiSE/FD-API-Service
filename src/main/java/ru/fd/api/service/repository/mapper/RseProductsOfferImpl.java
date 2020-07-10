@@ -70,6 +70,14 @@ public class RseProductsOfferImpl implements ResultSetExtractor<Products> {
                                 offerId));
                 mainId = id;
                 offerId = rs.getLong("offerId");
+
+                products.add(productProd.getProductOfferWithOfferIdInstance(
+                        productProd.getProductOfferWithOfferPricesInstance(
+                                productProd.getProductOfferWithIdInstance(mainId),
+                                pricesProd.getPricesOfferInstance(new ArrayList<>(prices))
+                        ),
+                        offerId));
+
                 prices.clear();
             }
 
@@ -85,13 +93,6 @@ public class RseProductsOfferImpl implements ResultSetExtractor<Products> {
                     departmentId);
             prices.add(price);
         }
-
-        products.add(productProd.getProductOfferWithOfferIdInstance(
-                productProd.getProductOfferWithOfferPricesInstance(
-                        productProd.getProductOfferWithIdInstance(mainId),
-                        pricesProd.getPricesOfferInstance(new ArrayList<>(prices))
-                ),
-                offerId));
 
         return productsProd.getProductsOfferInstance(products);
     }
