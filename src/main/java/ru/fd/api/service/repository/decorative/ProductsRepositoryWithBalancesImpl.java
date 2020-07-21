@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import ru.fd.api.service.database.SQLQueryCreator;
 import ru.fd.api.service.entity.Balances;
 import ru.fd.api.service.entity.Product;
+import ru.fd.api.service.entity.ProductWithBalancesImpl;
 import ru.fd.api.service.entity.Products;
 import ru.fd.api.service.exception.CreatorException;
 import ru.fd.api.service.exception.RepositoryException;
@@ -63,17 +64,19 @@ public class ProductsRepositoryWithBalancesImpl implements ProductsRepositoryDec
                     new RseProductsWithBalancesImpl(
                             bProd,
                             bsProd));
+
             if(balanceForProducts != null)
                     for(Product product : products) {
-                        products.decorateProduct(
-                                product.key(),
-                                productProducer.getProductWithBalancesInstance(
-                                        product,
-                                        balanceForProducts.getOrDefault(
-                                                product.id(),
-                                                bsProd.getBalancesInstance(new ArrayList<>()))));
+                        if(balanceForProducts.containsKey(product.id()))
+                            products.decorateProduct(
+                                    product.key(),
+                                    productProducer.getProductWithBalancesInstance(
+                                            product,
+                                            balanceForProducts.get(product.id())));
 
                     }
+
+            products.removeProducts(ProductWithBalancesImpl.class);
 
             return products;
         } catch (CreatorException ex) {
